@@ -23,7 +23,7 @@ pianoteq9/
 │   ├── Documentation/         # 官方四语言 HTML 用户手册与声学原理说明
 │   └── extra/                 # 辅助工具 (lame.exe MP3 编码器)
 ├── docs/                      # 核心研究文档、反编译证据与 Clean-Room 技术规格书
-│   ├── roadmap.md                                           # 深度逆向与物理建模算法研究路线图 (Phase 1~4 全闭环)
+│   ├── roadmap.md                                           # 深度逆向与物理建模算法研究路线图 (Phase 1~5 规划全景)
 │   ├── pianoteq9_parameter_dictionary_and_acoustic_spec.md  # 物理建模参数字典与声学特性清单
 │   ├── acoustic_benchmark_report.md                         # 黑盒声学实测基准报告 (Steinway D 物理常数)
 │   ├── phase1/                                              # Phase 1: 琴槌击弦非线性动力学 (已完成)
@@ -38,10 +38,14 @@ pianoteq9/
 │   │   ├── phase3-1-unison-control-chain.md                 # 同音RVA锚点、22处XRefs与槽位33/34控制链
 │   │   ├── phase3-2-beating-matrix-decompilation.md          # 1/sqrt(2)投影常数、正交模态矩阵与反投影算子
 │   │   └── phase3-3-unison-beating-spec.md                  # 三弦非对称失谐方程、立体声微相展开与C++20规约
-│   └── phase4/                                              # Phase 4: 全局开放弦交感共鸣与双音阶 (已完成)
-│       ├── phase4-1-sympathetic-anchors-evidence.md          # 交感/双音阶RVA锚点、24处XRefs与制音器3通路模型
-│       ├── phase4-2-resonance-pool-decompilation.md          # 1104字节12色度控制器、星型总线与反向广播模型
-│       └── phase4-3-sympathetic-system-spec.md              # 12色度共鸣腔网络、制音器门控与Aliquot扩展规约
+│   ├── phase4/                                              # Phase 4: 全局开放弦交感共鸣与双音阶 (已完成)
+│   │   ├── phase4-1-sympathetic-anchors-evidence.md          # 交感/双音阶RVA锚点、24处XRefs与制音器3通路模型
+│   │   ├── phase4-2-resonance-pool-decompilation.md          # 1104字节12色度控制器、星型总线与反向广播模型
+│   │   └── phase4-3-sympathetic-system-spec.md              # 12色度共鸣腔网络、制音器门控与Aliquot扩展规约
+│   └── phase5/                                              # Phase 5: 二次方张力非线性与泛音绽放 (启动中)
+│       ├── phase5-1-quadratic-blooming-anchors-evidence.md  # 二次方/绽放RVA锚点与核心函数取证 (待验收)
+│       ├── phase5-2-nonlinear-mechanics-decompilation.md     # 几何张力调制与惯性膨胀例程反编译 (待验收)
+│       └── phase5-3-quadratic-blooming-spec.md              # 纯数学Clean-Room规约与C++20参考实现 (待验收)
 ├── acoustic_lab/              # 黑盒声学实测实验室
 │   ├── midi/                  # 自动生成的标准 SMF 0 格式测试序列 (C1~C7, 三力度, 长延音)
 │   ├── audio/                 # 无头批处理渲染导出的 48 kHz / 24-bit 纯物理干音 WAV 采样

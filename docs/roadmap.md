@@ -30,7 +30,12 @@ flowchart TD
         P4_2 --> P4_3[Phase 4-3: 交感共鸣耦合网络规格]
     end
 
-    Phase 1 --> Phase 2 --> Phase 3 --> Phase 4
+    subgraph Phase 5: 二次方张力与泛音绽放
+        P5_1[Phase 5-1: 二次方与膨胀参数锚点取证] --> P5_2[Phase 5-2: 几何张力调制与膨胀滤波反编译]
+        P5_2 --> P5_3[Phase 5-3: 张力非线性与泛音绽放规格]
+    end
+
+    Phase 1 --> Phase 2 --> Phase 3 --> Phase 4 --> Phase 5
 ```
 
 ---
@@ -108,6 +113,25 @@ flowchart TD
 | **Phase 4-1** | 开放弦共鸣参数锚点与触发链路定位 | 定位 `sympathetic_resonance`、`duplex_scale_resonance`、`resonance_duration_view` 的 RVA 地址，追踪制音器抬起状态下的交感共鸣激活代码。 | **验收报告**：`docs/phase4/phase4-1-sympathetic-anchors-evidence.md`<br>**标准**：确认未击打弦作为被动振荡器加入计算的数据结构定义。 |
 | **Phase 4-2** | 共鸣池总线分配例程定向反编译 | 反编译琴桥共振总线（Resonance Bus）与 88 键未制音弦之间能量双向交换的混音与滤波例程。 | **验收报告**：`docs/phase4/phase4-2-resonance-pool-decompilation.md`<br>**标准**：解析共鸣池矩阵维度（是 12 半音腔还是 88 键双向网络）及计算复杂度控制。 |
 | **Phase 4-3** | 交感共鸣耦合网络算法规格提炼 | 提取阻尼耗散时间与共鸣强度增益方程，生成规范的交感共鸣与双音阶系统架构规格书。 | **验收报告**：`docs/phase4/phase4-3-sympathetic-system-spec.md`<br>**标准**：输出完整的全局交感共振池物理数学模型与离散实现设计规约。 |
+
+---
+
+## Phase 5: 二次方张力非线性效应与泛音滞后膨胀定向逆向 (Quadratic Effect & Blooming Dynamics)
+
+### 5.1 阶段目标
+逆向提取 Pianoteq 9 中大动态强奏下琴弦几何二次方张力调制机制（`Quadratic Effect`，Slot 58）、泛音时间滞后非线性能量泵浦与动态上升绽放模型（`Blooming Energy`，Slot 60 与 `Blooming Inertia`，Slot 61）。揭示其如何在极低 CPU 算力下离散求解非线性偏微分张力积分，以及如何在逐采样点渲染中动态驱动泛音模式的振幅爬升。
+
+### 5.2 研究边界与前置条件
+- **边界约束**：聚焦单音琴弦内部的几何张力非线性与模式间能量泵浦，不扩散至全局琴体空间声场混响。
+- **前置条件**：完成 Phase 1~4，已建立对单音击弦动力学、音板模态阻尼、同音拍频及全局共鸣池的完整物理数学认知。
+
+### 5.3 子阶段任务与验收标准
+
+| 子阶段编号 | 任务名称 | 具体任务内容 | 交付产物与验收标准 |
+| :--- | :--- | :--- | :--- |
+| **Phase 5-1** | 二次方效应与泛音膨胀参数锚点取证 | 在 `binaries/Pianoteq 9.vst3plugin` 的 `.text` 节中检索参数 `Quadratic Effect`、`Blooming Energy`、`Blooming Inertia` 的物理 RVA 内存地址，扫描代码段交叉引用指令（XRefs），并通过 `.pdata` 运行时函数展开表定位其所属核心函数边界。 | **验收报告**：`docs/phase5/phase5-1-quadratic-blooming-anchors-evidence.md`<br>**标准**：锁定内部槽位（Slot 58/60/61）的绑定关系与包含函数权威边界。 |
+| **Phase 5-2** | 几何张力调制与膨胀滤波例程定向反编译 | 针对 Phase 5-1 锁定的核心 DSP 渲染例程执行定向反编译与数据流切片，逆向分析：<br>1. 振幅平方项 $\Delta y^2$ 如何在离散时间步步进中调制琴弦有效张力与瞬态音高微漂移（Pitch Glide）；<br>2. `Blooming Energy` 与 `Blooming Inertia` 如何转化为二阶惯性低通滤波器对高阶分音施加时变增益包络。 | **验收报告**：`docs/phase5/phase5-2-nonlinear-mechanics-decompilation.md`<br>**标准**：提供 Ghidra 伪代码原件、张力调制方程与双参数惯性膨胀微分方程。 |
+| **Phase 5-3** | 张力非线性与泛音绽放算法规格提炼 | 整合 Phase 5-1 与 Phase 5-2 的全链路分析，提炼出完全脱离专有机器码的纯数学物理 Clean-Room《二次方张力非线性与泛音绽放算法技术规约》，并提供自包含的 C++20 算法实现参考类（`NonlinearTensionAndBloomingVoice`）。 | **验收报告**：`docs/phase5/phase5-3-quadratic-blooming-spec.md`<br>**标准**：输出包含非线性张力更新、惯性绽放滤波器与完整 C++20 实现的独立规约文档。 |
 
 ---
 
