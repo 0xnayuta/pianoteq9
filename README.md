@@ -22,10 +22,26 @@ pianoteq9/
 │   ├── AppData/               # 官方预设 (.fxp)、模型扩展包 (.ptq) 与配置
 │   ├── Documentation/         # 官方四语言 HTML 用户手册与声学原理说明
 │   └── extra/                 # 辅助工具 (lame.exe MP3 编码器)
-├── docs/                      # 核心研究文档与技术报告
-│   ├── roadmap.md                                           # 深度逆向与物理建模算法研究路线图 (Phase 1~4)
+├── docs/                      # 核心研究文档、反编译证据与 Clean-Room 技术规格书
+│   ├── roadmap.md                                           # 深度逆向与物理建模算法研究路线图 (Phase 1~4 全闭环)
 │   ├── pianoteq9_parameter_dictionary_and_acoustic_spec.md  # 物理建模参数字典与声学特性清单
-│   └── acoustic_benchmark_report.md                         # 黑盒声学实测基准报告 (Steinway D)
+│   ├── acoustic_benchmark_report.md                         # 黑盒声学实测基准报告 (Steinway D 物理常数)
+│   ├── phase1/                                              # Phase 1: 琴槌击弦非线性动力学 (已完成)
+│   │   ├── phase1-1-rva-xrefs-evidence.md                   # 锚点取证、9处指令级XRefs与.pdata函数边界
+│   │   ├── phase1-2-hammer-mapping-decompilation.md          # 96字节红黑树结构、别名网络与三锚点刚度方程
+│   │   └── phase1-3-hammer-dynamics-spec.md                  # 逐采样点Verlet力求解器、回弹状态机与C++20规约
+│   ├── phase2/                                              # Phase 2: 音板力学阻抗与模态网络 (已完成)
+│   │   ├── phase2-1-soundboard-anchors-evidence.md          # 阻抗RVA锚点、25处XRefs与43KB核心求解器
+│   │   ├── phase2-2-filter-coefficient-decompilation.md     # 阻抗延音线性缩放律与双线性变换损耗滤波方程
+│   │   └── phase2-3-soundboard-acoustic-spec.md             # 长短琴桥断裂补偿、16模态参数表与空间辐射规约
+│   ├── phase3/                                              # Phase 3: 同音微失谐与双阶段拍频 (已完成)
+│   │   ├── phase3-1-unison-control-chain.md                 # 同音RVA锚点、22处XRefs与槽位33/34控制链
+│   │   ├── phase3-2-beating-matrix-decompilation.md          # 1/sqrt(2)投影常数、正交模态矩阵与反投影算子
+│   │   └── phase3-3-unison-beating-spec.md                  # 三弦非对称失谐方程、立体声微相展开与C++20规约
+│   └── phase4/                                              # Phase 4: 全局开放弦交感共鸣与双音阶 (已完成)
+│       ├── phase4-1-sympathetic-anchors-evidence.md          # 交感/双音阶RVA锚点、24处XRefs与制音器3通路模型
+│       ├── phase4-2-resonance-pool-decompilation.md          # 1104字节12色度控制器、星型总线与反向广播模型
+│       └── phase4-3-sympathetic-system-spec.md              # 12色度共鸣腔网络、制音器门控与Aliquot扩展规约
 ├── acoustic_lab/              # 黑盒声学实测实验室
 │   ├── midi/                  # 自动生成的标准 SMF 0 格式测试序列 (C1~C7, 三力度, 长延音)
 │   ├── audio/                 # 无头批处理渲染导出的 48 kHz / 24-bit 纯物理干音 WAV 采样
