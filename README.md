@@ -42,10 +42,10 @@ pianoteq9/
 │   │   ├── phase4-1-sympathetic-anchors-evidence.md          # 交感/双音阶RVA锚点、24处XRefs与制音器3通路模型
 │   │   ├── phase4-2-resonance-pool-decompilation.md          # 1104字节12色度控制器、星型总线与反向广播模型
 │   │   └── phase4-3-sympathetic-system-spec.md              # 12色度共鸣腔网络、制音器门控与Aliquot扩展规约
-│   └── phase5/                                              # Phase 5: 二次方张力非线性与泛音绽放 (启动中)
-│       ├── phase5-1-quadratic-blooming-anchors-evidence.md  # 二次方/绽放RVA锚点与核心函数取证 (待验收)
-│       ├── phase5-2-nonlinear-mechanics-decompilation.md     # 几何张力调制与惯性膨胀例程反编译 (待验收)
-│       └── phase5-3-quadratic-blooming-spec.md              # 纯数学Clean-Room规约与C++20参考实现 (待验收)
+│   └── phase5/                                              # Phase 5: 二次方张力非线性与泛音绽放 (已完成)
+│       ├── phase5-1-quadratic-blooming-anchors-evidence.md  # 二次方/绽放RVA锚点与核心函数取证
+│       ├── phase5-2-nonlinear-mechanics-decompilation.md     # 几何张力调制与惯性膨胀例程反编译
+│       └── phase5-3-quadratic-blooming-spec.md              # 纯数学Clean-Room规约与C++20参考实现
 ├── acoustic_lab/              # 黑盒声学实测实验室
 │   ├── midi/                  # 自动生成的标准 SMF 0 格式测试序列 (C1~C7, 三力度, 长延音)
 │   ├── audio/                 # 无头批处理渲染导出的 48 kHz / 24-bit 纯物理干音 WAV 采样
