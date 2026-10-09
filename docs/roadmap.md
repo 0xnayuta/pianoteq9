@@ -9,33 +9,32 @@
 
 ```mermaid
 flowchart TD
-    subgraph Phase 1: 琴槌击弦动力学
-        P1_1[Phase 1-1: RVA锚点与XRefs取证] --> P1_2[Phase 1-2: 参数映射与结构体反编译]
-        P1_2 --> P1_3[Phase 1-3: 离散接触力方程重构]
+    subgraph P1_G ["Phase 1: 琴槌击弦动力学"]
+        P1_1["Phase 1-1: RVA锚点与XRefs取证"] --> P1_2["Phase 1-2: 参数映射与结构体反编译"]
+        P1_2 --> P1_3["Phase 1-3: 离散接触力方程重构"]
     end
 
-    subgraph Phase 2: 音板阻抗与截止
-        P2_1[Phase 2-1: 阻抗参数锚点检索] --> P2_2[Phase 2-2: 滤波器系数生成例程反编译]
-        P2_2 --> P2_3[Phase 2-3: 音板网络拓扑与衰减规约]
+    subgraph P2_G ["Phase 2: 音板阻抗与截止"]
+        P2_1["Phase 2-1: 阻抗参数锚点检索"] --> P2_2["Phase 2-2: 滤波器系数生成例程反编译"]
+        P2_2 --> P2_3["Phase 2-3: 音板网络拓扑与衰减规约"]
     end
 
-    subgraph Phase 3: 同音微调与拍频
-        P3_1[Phase 3-1: 同音失谐控制链定位] --> P3_2[Phase 3-2: 偏振耦合与相位反相算子反编译]
-        P3_3[Phase 3-3: 双阶段衰减生成算法规格]
-        P3_1 --> P3_2 --> P3_3
+    subgraph P3_G ["Phase 3: 同音微调与拍频"]
+        P3_1["Phase 3-1: 同音失谐控制链定位"] --> P3_2["Phase 3-2: 偏振耦合与相位反相算子反编译"]
+        P3_1 --> P3_2 --> P3_3["Phase 3-3: 双阶段衰减生成算法规格"]
     end
 
-    subgraph Phase 4: 交感共鸣与双音阶
-        P4_1[Phase 4-1: 开放弦共鸣触发链路定位] --> P4_2[Phase 4-2: 共鸣池总线分配例程反编译]
-        P4_2 --> P4_3[Phase 4-3: 交感共鸣耦合网络规格]
+    subgraph P4_G ["Phase 4: 交感共鸣与双音阶"]
+        P4_1["Phase 4-1: 开放弦共鸣触发链路定位"] --> P4_2["Phase 4-2: 共鸣池总线分配例程反编译"]
+        P4_2 --> P4_3["Phase 4-3: 交感共鸣耦合网络规格"]
     end
 
-    subgraph Phase 5: 二次方张力与泛音绽放
-        P5_1[Phase 5-1: 二次方与膨胀参数锚点取证] --> P5_2[Phase 5-2: 几何张力调制与膨胀滤波反编译]
-        P5_2 --> P5_3[Phase 5-3: 张力非线性与泛音绽放规格]
+    subgraph P5_G ["Phase 5: 二次方张力与泛音绽放"]
+        P5_1["Phase 5-1: 二次方与膨胀参数锚点取证"] --> P5_2["Phase 5-2: 几何张力调制与膨胀滤波反编译"]
+        P5_2 --> P5_3["Phase 5-3: 张力非线性与泛音绽放规格"]
     end
 
-    Phase 1 --> Phase 2 --> Phase 3 --> Phase 4 --> Phase 5
+    P1_G --> P2_G --> P3_G --> P4_G --> P5_G
 ```
 
 ---

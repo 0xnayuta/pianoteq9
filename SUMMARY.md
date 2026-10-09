@@ -32,23 +32,23 @@
 
 ```mermaid
 flowchart TD
-    subgraph Phase 1: 琴槌激振动力学
-        P1[96B 红黑树参数节点<br>三锚点有效硬度幂律插值<br>Verlet 逐采样点接触力求解器]
+    subgraph P1_G ["Phase 1: 琴槌激振动力学"]
+        P1["96B 红黑树参数节点<br>三锚点有效硬度幂律插值<br>Verlet 逐采样点接触力求解器"]
     end
-    subgraph Phase 2: 音板阻抗与模态
-        P2[43KB 核心声学设计求解器<br>双线性变换频变低通损耗滤波<br>544B 16 峰正交云杉模态网络]
+    subgraph P2_G ["Phase 2: 音板阻抗与模态"]
+        P2["43KB 核心声学设计求解器<br>双线性变换频变低通损耗滤波<br>544B 16 峰正交云杉模态网络"]
     end
-    subgraph Phase 3: 同音微调与拍频
-        P3[槽位 33/34 非对称失谐分配<br>Weinreich 1/sqrt(2) 正交投影矩阵<br>双频微澜与双阶段衰减闭环]
+    subgraph P3_G ["Phase 3: 同音微调与拍频"]
+        P3["槽位 33/34 非对称失谐分配<br>Weinreich 1/sqrt(2) 正交投影矩阵<br>双频微澜与双阶段衰减闭环"]
     end
-    subgraph Phase 4: 全局交感共鸣池
-        P4[1104B 12 色度共鸣控制器<br>星型琴桥总线 O(N) 复杂度降维<br>制音器三通路门控反向广播]
+    subgraph P4_G ["Phase 4: 全局交感共鸣池"]
+        P4["1104B 12 色度共鸣控制器<br>星型琴桥总线 O(N) 复杂度降维<br>制音器三通路门控反向广播"]
     end
-    subgraph Phase 5: 二次方张力与绽放
-        P5[槽位 94 二次方几何张力调制<br>瞬态音高微漂移 Pitch Glide<br>二阶惯性低通泛音滞后膨胀]
+    subgraph P5_G ["Phase 5: 二次方张力与绽放"]
+        P5["槽位 94 二次方几何张力调制<br>瞬态音高微漂移 Pitch Glide<br>二阶惯性低通泛音滞后膨胀"]
     end
 
-    P1 --> P2 --> P3 --> P4 --> P5
+    P1_G --> P2_G --> P3_G --> P4_G --> P5_G
 ```
 
 ### 1. Phase 1: 琴槌非线性击弦动力学 (Hammer-String Dynamics)
