@@ -30,7 +30,7 @@
 | `hammer_hardness_forte` | Forte 力度硬度全名 | `0x00078a98` | `0x00079698` | `0x0000000180079698` | `.text` |
 | `hammer_hardness_mezzo` | Mezzo 力度硬度全名 | `0x0007c630` | `0x0007d230` | `0x000000018007d230` | `.text` |
 | `hammer_hardness_piano` | Piano 力度硬度全名 | `0x000806e8` | `0x000812e8` | `0x00000001800812e8` | `.text` |
-| `hammer_hard_forte` | Forte 预设短键名 | `0x00078a84` | `0x00079684` | `0x0000000180079684` | `.text` |
+| `hammer_hard_forte` | Forte 预设短键名 | `0x00069ac0` | `0x0006a6c0` | `0x000000018006a6c0` | `.text` |
 | `hammer_hard_mezzo` | Mezzo 预设短键名 | `0x0002f248` | `0x0002fe48` | `0x000000018002fe48` | `.text` |
 | `hammer_hard_piano` | Piano 预设短键名 | `0x0003c7a8` | `0x0003d3a8` | `0x000000018003d3a8` | `.text` |
 | `hard_forte` | 极短兼容别名 | `0x00077520` | `0x00078120` | `0x0000000180078120` | `.text` |

@@ -189,7 +189,7 @@ public:
         float duplexAirMix = 0.0f;
     };
 
-    [[nodiscard]] StepOutput processSample(float bridgeForceIn, const std::array<float, 88>& activeStringForces) noexcept {
+    [[nodiscard]] StepOutput processSample(float bridgeForceIn) noexcept {
         // 1. 步进 12 个色度共鸣腔
         float sumChroma = 0.0f;
         std::array<float, 12> chromaOutputs {};
