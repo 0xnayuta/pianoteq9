@@ -3,7 +3,7 @@
 > **实验时间**：2026-10-09  
 > **基准乐器模型**：NY Steinway D Classical (48 kHz / 24-bit 纯干音渲染，关闭 Reverb 与后级 EQ)  
 > **数据来源**：WSL2 驱动 Windows 原生 `Pianoteq 9.exe` 无头批处理渲染 + NumPy / SciPy 信号分析  
-> **目标对标系统**：`/root/repos/devpiano` 物理建模钢琴引擎 (`PianoSynthVoice.h`, `AcousticSnapshot.h`)
+> **目标对标系统**：[`devpiano`](https://github.com/0xnayuta/devpiano) 物理建模钢琴引擎 (`PianoSynthVoice.h`, `AcousticSnapshot.h`)
 
 ---
 

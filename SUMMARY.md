@@ -3,7 +3,7 @@
 > **文档性质**：实验室终结性战略技术白皮书  
 > **归档位置**：`pianoteq9/SUMMARY.md`  
 > **发布日期**：2026-10-09  
-> **目标对标系统**：[`/root/repos/devpiano`](../devpiano/) 自主研发高保真物理建模钢琴音源（`PianoSynthVoice`）  
+> **目标对标系统**：[`devpiano`](https://github.com/0xnayuta/devpiano) 自主研发高保真物理建模钢琴音源（`PianoSynthVoice`）  
 > **合规声明**：本报告成果完全基于静态参数锚点取证、汇编切片反编译重构、黑盒自动化音频测量与经典声学理论，遵循严格的 Clean-Room 隔离规范，只输出纯数学物理离散方程与 C++20 算法参考，**绝不包含任何专有二进制代码搬运**。
 
 ---

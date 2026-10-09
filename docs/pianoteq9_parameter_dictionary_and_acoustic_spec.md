@@ -1,6 +1,6 @@
 # Pianoteq 9 物理建模参数字典与声学特性清单
 
-> **文档定位**：本清单基于 WSL2 环境下从真实 `Pianoteq 9.vst3plugin` (58.0 MiB) 二进制中提取的明文参数字典、导出符号与官方用户手册声学定义，结合 `devpiano` 当前的物理建模引擎架构（`PianoSynthVoice.h`, `AcousticSnapshot.h` 等）整理而成。旨在为 `devpiano` 高保真物理建模钢琴音源提供可直接对齐的物理参数体系、声学公式与架构升级参考。
+> **文档定位**：本清单基于 WSL2 环境下从真实 `Pianoteq 9.vst3plugin` (58.0 MiB) 二进制中提取的明文参数字典、导出符号与官方用户手册声学定义，结合 [`devpiano`](https://github.com/0xnayuta/devpiano) 当前的物理建模引擎架构（`PianoSynthVoice.h`, `AcousticSnapshot.h` 等）整理而成。旨在为 `devpiano` 高保真物理建模钢琴音源提供可直接对齐的物理参数体系、声学公式与架构升级参考。
 
 ## 一、Pianoteq 9 二进制声学参数架构全景
 
