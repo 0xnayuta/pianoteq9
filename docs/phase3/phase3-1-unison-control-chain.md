@@ -81,8 +81,8 @@
 在单键发声初始化回路中，Pianoteq 将槽位 33（Width）与槽位 34（Balance）解算为三根同音弦的独立频率偏置：
 
 设琴键基础基频为 $f_0$：
-- 用户参数：$W = \text{Unison Width} \in [0.0, 20.0]$（Cent 音分值）
-- 用户参数：$B_{bal} = \text{Unison Balance} \in [-1.0, +1.0]$（无量纲平衡因子，默认 0.0）
+- 用户参数： $W = \text{Unison Width} \in [0.0, 20.0]$（Cent 音分值）
+- 用户参数： $B_{bal} = \text{Unison Balance} \in [-1.0, +1.0]$（无量纲平衡因子，默认 0.0）
 
 ### 1. 总失谐物理频宽计算
 $$\Delta F = f_0 \cdot \left(2^{\frac{W}{1200.0}} - 1.0\right)$$

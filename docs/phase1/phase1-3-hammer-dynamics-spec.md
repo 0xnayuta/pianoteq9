@@ -35,9 +35,9 @@ flowchart TD
 $$u = \frac{v - 1}{126} \in [0.0, 1.0]$$
 
 ### 2. 三速度控制网格锚点 (Three-Anchor Control Grid)
-- **弱奏锚点 (Piano)**：$u_p = \frac{41 - 1}{126} \approx 0.3175$，对应用户设定硬度 $H_p \in [0.1, 2.5]$（默认 1.0）
-- **基准锚点 (Mezzo)**：$u_m = \frac{70 - 1}{126} \approx 0.5476$，对应用户设定硬度 $H_m \in [0.1, 2.5]$（默认 1.0）
-- **强奏锚点 (Forte)**：$u_f = \frac{98 - 1}{126} \approx 0.7698$，对应用户设定硬度 $H_f \in [0.1, 2.5]$（默认 1.0）
+- **弱奏锚点 (Piano)**： $u_p = \frac{41 - 1}{126} \approx 0.3175$，对应用户设定硬度 $H_p \in [0.1, 2.5]$（默认 1.0）
+- **基准锚点 (Mezzo)**： $u_m = \frac{70 - 1}{126} \approx 0.5476$，对应用户设定硬度 $H_m \in [0.1, 2.5]$（默认 1.0）
+- **强奏锚点 (Forte)**： $u_f = \frac{98 - 1}{126} \approx 0.7698$，对应用户设定硬度 $H_f \in [0.1, 2.5]$（默认 1.0）
 
 ### 3. 分段非线性有效硬度插值函数 $H(u)$
 为复现实测中从 Mezzo 到 Forte 泛音能量暴增 $+12.12\text{ dB}$ 的物理特性，分段插值函数定义为：
@@ -55,7 +55,7 @@ $$
 ### 4. 物理参数导出公式
 - **非线性接触刚度系数 $K(v)$**：
   $$K(v) = K_0(k) \cdot [H(u)]^3$$
-  其中 $K_0(k)$ 为按琴键音高 $k \in [1, 88]$ 预计算的基准刚度（低音区毛毡重而软，$K_0 \approx 10^8 \text{ N/m}^p$；高音区毛毡小而硬，$K_0 \approx 5 \times 10^{11} \text{ N/m}^p$）。
+  其中 $K_0(k)$ 为按琴键音高 $k \in [1, 88]$ 预计算的基准刚度（低音区毛毡重而软， $K_0 \approx 10^8 \text{ N/m}^p$；高音区毛毡小而硬， $K_0 \approx 5 \times 10^{11} \text{ N/m}^p$）。
 - **动态非线性接触指数 $p(H)$**：
   $$p = 2.20 + 0.45 \cdot [H(u) - 1.0]$$
   确保强奏时 $p \to 2.7 \sim 2.8$ 产生尖锐短促的脉冲接触，弱奏时 $p \to 2.2$ 呈现平滑柔和的宽脉冲接触。
@@ -76,8 +76,8 @@ $$
 
 ### 2. 初始条件 (Note-On Initialization)
 当收到 Note-On 事件（力度 $v$）时：
-- 初始位移：$y_h[0] = 0.0, \quad y_h[-1] = -v_{in} \cdot \Delta t$
-- 初速度：$v_{in} = v_{\max} \cdot \left(\dfrac{v}{127}\right)^{1.4}$（$v_{\max} \approx 6.0\text{ m/s}$）
+- 初始位移： $y_h[0] = 0.0, \quad y_h[-1] = -v_{in} \cdot \Delta t$
+- 初速度： $v_{in} = v_{\max} \cdot \left(\dfrac{v}{127}\right)^{1.4}$（ $v_{\max} \approx 6.0\text{ m/s}$）
 - 激活接触状态机：`state = Active`
 
 ### 3. 逐采样点离散步进方程 (Sample-by-Sample Step)

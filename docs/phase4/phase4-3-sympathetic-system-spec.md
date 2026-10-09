@@ -62,8 +62,8 @@ $$f_c = 65.4064 \cdot 2^{c / 12.0} \quad (\text{Hz})$$
 ### 3. 共鸣持续时间离散滤波器更新方程
 参数 `Resonance Duration`（记作 $T_{res} \in [0.2\text{ s}, 10.0\text{ s}]$，默认 2.0s）控制共振腔能量半衰期：
 $$\gamma_{res} = \frac{3.0}{T_{res}}$$
-- 极点半径：$r_{res} = e^{-\gamma_{res} \cdot \Delta t}$
-- 离散角频率：$\theta_c = 2\pi f_c \cdot \Delta t$
+- 极点半径： $r_{res} = e^{-\gamma_{res} \cdot \Delta t}$
+- 离散角频率： $\theta_c = 2\pi f_c \cdot \Delta t$
 - 二阶 Direct Form II 差分方程：
   $$y_c[n] = 2 r_{res} \cos(\theta_c) \cdot y_c[n-1] - r_{res}^2 \cdot y_c[n-2] + (1.0 - r_{res}) \cdot F_{bridge}[n]$$
 
@@ -73,6 +73,7 @@ $$\gamma_{res} = \frac{3.0}{T_{res}}$$
 
 ### 1. 瞬时制音器状态掩码方程 $M_k[n]$
 对于全键盘任意琴键 $k \in [1, 88]$：
+
 $$
 M_k[n] = 
 \begin{cases}
@@ -95,10 +96,11 @@ $$F_{sympa, k}[n] = G_{sympa} \cdot M_k[n] \cdot y_c[n]$$
 
 ## 四、算法模块三：双音阶弦区（Duplex Scale）超高频 Aliquot 扩展
 
-真实三角钢琴在长琴桥后段留有一段未制音的自由琴弦（Aliquot Scale）。该弦段受琴桥高频振动激励，在超高频（$4\text{ kHz} \sim 12\text{ kHz}$）产生晶莹的微弱交感共振：
+真实三角钢琴在长琴桥后段留有一段未制音的自由琴弦（Aliquot Scale）。该弦段受琴桥高频振动激励，在超高频（ $4\text{ kHz} \sim 12\text{ kHz}$）产生晶莹的微弱交感共振：
 
 ### 1. 高频能量提取
 将 12 色度共鸣腔的输出求和，并输入一个截止频率为 $4.0\text{ kHz}$ 的高通滤波器（Highpass Filter）：
+
 $$y_{sum}[n] = \sum_{c=0}^{11} y_c[n]$$
 $$y_{duplex\_raw}[n] = \text{Highpass}_{4k}(y_{sum}[n])$$
 
@@ -265,6 +267,6 @@ private:
 2. **Phase 2（音板力学阻抗与 16 模态网络）**：
    逆向定位了 43 KB 核心声学求解器，提取了双琴桥截面断裂跳变补偿机制、544 字节 16 峰正交云杉模态网络拓扑及立体声空间辐射方程。
 3. **Phase 3（同音微失谐与双阶段拍频）**：
-   逆向定位了同音调律专用槽位（Slot 33 与 Slot 34），导出了三弦非对称微失谐公式、Weinreich 正交反投影矩阵（$1/\sqrt{2}$ 投影），闭环复现了实测 3.56 Hz 双频呼吸拍频。
+   逆向定位了同音调律专用槽位（Slot 33 与 Slot 34），导出了三弦非对称微失谐公式、Weinreich 正交反投影矩阵（ $1/\sqrt{2}$ 投影），闭环复现了实测 3.56 Hz 双频呼吸拍频。
 4. **Phase 4（全局开放弦交感共鸣与双音阶）**：
    逆向定位了 1104 字节共鸣控制器与专用槽位（Slot 88 与 Slot 90），导出了 $O(N)$ 12 色度基底星型琴桥总线方程、制音器三通路门控反向激励模型及 Aliquot 双音阶超高频扩展规约。

@@ -15,10 +15,10 @@
 $$\Delta L(t) = \int_0^L \sqrt{1 + \left(\frac{\partial y}{\partial x}\right)^2} dx - L \approx \frac{1}{2} \int_0^L \left(\frac{\partial y}{\partial x}\right)^2 dx$$
 琴弦在瞬间产生轴向附加张力：
 $$\Delta T(t) = \frac{E A}{2 L} \int_0^L \left(\frac{\partial y}{\partial x}\right)^2 dx$$
-总张力呈现强烈的振幅二次方相关性：$T(t) = T_0 + \Delta T(t)$。
+总张力呈现强烈的振幅二次方相关性： $T(t) = T_0 + \Delta T(t)$。
 
 ### 2. 离散模态空间的二次方投影与 Quadratic Effect 参数映射
-在模态合成架构中，弦空间位移由分音叠加表达：$y(x, t) = \sum_{n=1}^N a_n(t) \sin(n \pi x / L)$。  
+在模态合成架构中，弦空间位移由分音叠加表达： $y(x, t) = \sum_{n=1}^N a_n(t) \sin(n \pi x / L)$。  
 导数积分展开后正交归一化：
 $$\int_0^L \left(\frac{\partial y}{\partial x}\right)^2 dx = \frac{\pi^2}{2 L} \sum_{n=1}^N n^2 a_n^2(t)$$
 
@@ -29,7 +29,7 @@ $$\Delta T[n] = Q_{\text{eff}} \cdot \kappa_0 \cdot \sum_{m=1}^N m^2 \cdot \left
 ### 3. 声学物理效应一：大动态音高微漂移 (Amplitude-Dependent Pitch Glide)
 琴弦波动基频直接依赖于瞬时张力：
 $$f_0[n] = f_{0, \text{nominal}} \cdot \sqrt{1.0 + \frac{\Delta T[n]}{T_0}} \approx f_{0, \text{nominal}} \cdot \left(1.0 + \frac{\Delta T[n]}{2 T_0}\right)$$
-- **物理现象**：在强奏（Forte / Fortissimo）击键瞬间，琴弦位移极大，$\Delta T > 0$，基频与各分音频率在最初数毫秒内瞬间向上拉升（拉升幅度通常为 $10 \sim 30\text{ Cents}$）；随后随着能量耗散位移衰减，音高迅速平滑回落至标称音高，赋予低音强奏极具张力的“紧绷感”。
+- **物理现象**：在强奏（Forte / Fortissimo）击键瞬间，琴弦位移极大， $\Delta T > 0$，基频与各分音频率在最初数毫秒内瞬间向上拉升（拉升幅度通常为 $10 \sim 30\text{ Cents}$）；随后随着能量耗散位移衰减，音高迅速平滑回落至标称音高，赋予低音强奏极具张力的“紧绷感”。
 
 ### 4. 声学物理效应二：幻象分音非线性激发 (Phantom Partials Generation)
 由于非线性力包含 $(\sum a_m \cos(\omega_m t))^2$ 乘积项，三角函数展开直接激发出差频与和频成分 $(\omega_j \pm \omega_k)$：
@@ -50,7 +50,7 @@ Pianoteq 将其解耦为两大独立物理参数：
 $$B_n(t) = 1.0 + E_b \cdot \zeta_n \cdot \left(\frac{t}{\tau_{n}}\right) \cdot \exp\left(1.0 - \frac{t}{\tau_{n}}\right)$$
 
 式中：
-- 分音权值分布：$\zeta_n = \sin\left(\dfrac{\pi \cdot n}{N}\right)$（能量主要泵浦向中高阶泛音，基频不受影响）；
+- 分音权值分布： $\zeta_n = \sin\left(\dfrac{\pi \cdot n}{N}\right)$（能量主要泵浦向中高阶泛音，基频不受影响）；
 - 各分音的特征滞后时间常数：
   $$\tau_n = T_b \cdot \left[0.015 + 0.035 \cdot \left(1.0 - \frac{n}{N}\right)\right] \quad (\text{秒})$$
 

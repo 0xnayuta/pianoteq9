@@ -71,7 +71,7 @@ $$\tau_0(k) = \tau_{\text{nominal}}(k) \cdot \left(\frac{Z_{sb}}{Z_0}\right)$$
   - 当 $Z_{sb} > 1.0$（高阻抗）时：厚重的音乐会三角琴音板对琴弦形成强刚性边界反射，能量主要保存在琴弦内部缓慢耗散，赋予钢琴超长的“歌唱性”延音（Singing Sustain）。
 
 ### 2. 截止频率与衰减斜率的频域传递函数
-实际音板木材具有高频粘滞内耗（Viscous Dissipation）。参数 `Impedance Cutoff`（$f_c \in [0.3\text{ kHz}, 3.0\text{ kHz}]$）与 `Impedance Slope`（$S \in [0.2, 10.0]$，默认 1.0）联合控制高频泛音的额外吸声衰减率：
+实际音板木材具有高频粘滞内耗（Viscous Dissipation）。参数 `Impedance Cutoff`（ $f_c \in [0.3\text{ kHz}, 3.0\text{ kHz}]$）与 `Impedance Slope`（ $S \in [0.2, 10.0]$，默认 1.0）联合控制高频泛音的额外吸声衰减率：
 
 设分音频率为 $f$（Hz），频变额外损耗因子定义为：
 $$D(f) = 1.0 + \left(\frac{f}{f_c}\right)^{S}$$
@@ -81,8 +81,8 @@ $$D(f) = 1.0 + \left(\frac{f}{f_c}\right)^{S}$$
 $$\tau(f) = \frac{\tau_0(k)}{1.0 + \left(\dfrac{f}{f_c}\right)^{S}} = \frac{\tau_{\text{nominal}}(k) \cdot \left(\dfrac{Z_{sb}}{Z_0}\right)}{1.0 + \left(\dfrac{f}{f_c}\right)^{S}}$$
 
 - **声学规律验证**：
-  - 低频分音（$f \ll f_c$）：$(f/f_c)^S \approx 0 \implies \tau(f) \approx \tau_0(k)$，低频衰减时间完全受控于宏观 `Impedance`；
-  - 高频分音（$f \gg f_c$）：衰减时间按幂次 $(f/f_c)^S$ 急剧缩水，完美再现真实钢琴高频分音随时间快速被木质纤维吸收、音色逐渐变暗变润的物理过程。
+  - 低频分音（ $f \ll f_c$）： $(f/f_c)^S \approx 0 \implies \tau(f) \approx \tau_0(k)$，低频衰减时间完全受控于宏观 `Impedance`；
+  - 高频分音（ $f \gg f_c$）：衰减时间按幂次 $(f/f_c)^S$ 急剧缩水，完美再现真实钢琴高频分音随时间快速被木质纤维吸收、音色逐渐变暗变润的物理过程。
 
 ---
 

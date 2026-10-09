@@ -65,9 +65,9 @@ $$\Delta \theta_i = \frac{2\pi \cdot (f_0 + \Delta f_i)}{f_s}, \quad i \in \{1, 
 ## 三、算法模块二：双阶段能量衰减与模态闭环方程 (Two-Stage Decay Model)
 
 根据我们在 Steinway D 基准实验 C 中测得的权威常数：
-- **快衰减时间常数**：$\tau_1 = 0.865\text{ s}$（同相强辐射能量占比 $E_1 = 0.895$）；
-- **慢衰减时间常数**：$\tau_2 = 5.322\text{ s}$（反相闭锁长延音能量占比 $E_2 = 0.105$）；
-- **拍频调制频率**：$f_{beat} \approx 3.56\text{ Hz}$。
+- **快衰减时间常数**： $\tau_1 = 0.865\text{ s}$（同相强辐射能量占比 $E_1 = 0.895$）；
+- **慢衰减时间常数**： $\tau_2 = 5.322\text{ s}$（反相闭锁长延音能量占比 $E_2 = 0.105$）；
+- **拍频调制频率**： $f_{beat} \approx 3.56\text{ Hz}$。
 
 ### 1. 离散双阶段模态包络发生器
 在音频渲染步进中，每个采样点 $n$（采样周期 $\Delta t = 1/f_s$）：
@@ -84,8 +84,7 @@ $$
 y_1[n] \\
 y_2[n] \\
 y_3[n]
-\end{bmatrix}
-=
+\end{bmatrix} =
 \begin{bmatrix}
 \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{6}} \\
 \frac{1}{\sqrt{3}} & 0 & -\frac{2}{\sqrt{6}} \\

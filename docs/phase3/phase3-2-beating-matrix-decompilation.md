@@ -44,12 +44,12 @@
 
 ### 1. 对称同相模态 (In-Phase / Prompt Mode, $S$)
 $$S(t) = \frac{1}{\sqrt{3}} \cdot [y_1(t) + y_2(t) + y_3(t)]$$
-- **物理声学本质**：三弦同向、同相振动，琴桥受力为三弦之和（$F_{bridge} \propto \sqrt{3} \cdot S$），声能极速辐射至音板；
+- **物理声学本质**：三弦同向、同相振动，琴桥受力为三弦之和（ $F_{bridge} \propto \sqrt{3} \cdot S$），声能极速辐射至音板；
 - **衰减特性**：阻抗匹配良好，能量泄露快，时间常数 $\tau_{prompt} = \tau_1$（实测 **$0.865\text{ s}$**，占初始能量 **89.5%**）。
 
 ### 2. 第一反对称反相模态 (Asymmetric Aftersound Mode 1, $A_1$)
 $$A_1(t) = \frac{1}{\sqrt{2}} \cdot [y_1(t) - y_3(t)]$$
-- **物理声学本质**：外侧两弦做反相剪刀式振动，对琴桥受力完全抵消为零（$F_{bridge} = 0$）；
+- **物理声学本质**：外侧两弦做反相剪刀式振动，对琴桥受力完全抵消为零（ $F_{bridge} = 0$）；
 - **衰减特性**：声能不能向音板辐射，被“锁死”在琴弦内部缓慢耗散，时间常数 $\tau_{after} = \tau_2$（实测 **$5.322\text{ s}$**，占能量 **10.5%**）；
 - **常量验证**：式中归一化系数 $\frac{1}{\sqrt{2}} \approx 0.7071068$，完全对应代码中 `0x1803b2c50` 加载的字面量！
 
@@ -65,8 +65,7 @@ $$
 y_1(t) \\
 y_2(t) \\
 y_3(t)
-\end{bmatrix}
-=
+\end{bmatrix} =
 \begin{bmatrix}
 \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{6}} \\
 \frac{1}{\sqrt{3}} & 0 & -\frac{2}{\sqrt{6}} \\
@@ -88,7 +87,7 @@ $$y_i(t) = \rho_i(t) \cdot \cos(2\pi (f_0 + \Delta f_i) t + \phi_i)$$
 其中 $\Delta f_1 = -\frac{\Delta F}{2}(1 - \beta), \quad \Delta f_2 = \beta \frac{\Delta F}{4}, \quad \Delta f_3 = +\frac{\Delta F}{2}(1 + \beta)$。
 
 ### 1. 初始同相状态 ($t = 0$)
-- 击弦瞬间，毛毡琴槌将三根弦同时向下压迫，初始相位高度同相（$\phi_1 \approx \phi_2 \approx \phi_3 \approx 0$）；
+- 击弦瞬间，毛毡琴槌将三根弦同时向下压迫，初始相位高度同相（ $\phi_1 \approx \phi_2 \approx \phi_3 \approx 0$）；
 - 反相分量 $A_1(0) \approx 0, A_2(0) \approx 0$；
 - 声能 100% 注入同相模态 $S(0)$，初始响度极大，形成起始强音 (Prompt Decay)。
 
@@ -100,7 +99,7 @@ $$y_i(t) = \rho_i(t) \cdot \cos(2\pi (f_0 + \Delta f_i) t + \phi_i)$$
 - 随后两弦相位再次对齐，能量再次回到同相模态。
 
 ### 3. 实测数据闭环吻合
-- **拍频周期**：$T_{beat} = \frac{1}{\Delta F} \approx \frac{1}{3.56\text{ Hz}} \approx 0.28\text{ s}$；
+- **拍频周期**： $T_{beat} = \frac{1}{\Delta F} \approx \frac{1}{3.56\text{ Hz}} \approx 0.28\text{ s}$；
 - **双阶段能量比例**：同相强辐射提供初始快速衰减（前 1 秒占 89.5% 能量）；反相闭锁模态在 1.5 秒后接管延音，提供长达 5.3 秒的悠长柔和长延音（占 10.5% 能量）。
 
 ---

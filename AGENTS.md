@@ -133,7 +133,7 @@
 2. **高精度分音追踪与非谐性拟合**：
    - 采样率统一锁定为 **48000 Hz**，位深为 **24-bit**。
    - 提取分音前必须加窗（如 Blackman-Harris 窗）并进行不少于 65536 或 131072 点的零填充 FFT，以保证频率分辨率优于 0.7 Hz。
-   - 拟合非谐性模型：$f_n = n \cdot f_0 \cdot \sqrt{1 + B \cdot n^2}$，报告必须记录各音符对应的 $R^2$ 拟合优度。
+   - 拟合非谐性模型： $f_n = n \cdot f_0 \cdot \sqrt{1 + B \cdot n^2}$，报告必须记录各音符对应的 $R^2$ 拟合优度。
 3. **REA 工具调用规范**：
    - 调用 `rea decompile`、`rea search` 时必须使用 Linux 下的**绝对路径**。
    - 优先使用已部署的包装器 `/usr/local/bin/rea`，其内部已自动注入所需的 `JAVA_HOME` 与 `GHIDRA_INSTALL_DIR`。

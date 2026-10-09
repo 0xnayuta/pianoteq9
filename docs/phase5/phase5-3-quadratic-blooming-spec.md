@@ -59,10 +59,10 @@ $$G_{\text{glide}}[n] = \sqrt{1.0 + \text{clamp}\left(\frac{\Delta T[n]}{T_0}, 0
 - $v$：当前音符的 MIDI 击弦力度。
 
 ### 2. 惯性包络发生方程
-只有在中高力度（$v > 40$）时，能量泵浦机制才被显著激活：
+只有在中高力度（ $v > 40$）时，能量泵浦机制才被显著激活：
 $$\text{VelFactor} = \text{clamp}\left(\frac{v - 40}{87.0}, 0.0, 1.0\right)^{1.2}$$
 
-对于第 $n$ 阶分音（$n \in [1, N]$）：
+对于第 $n$ 阶分音（ $n \in [1, N]$）：
 - **分音权重分布**：
   $$\zeta_n = \sin\left(\frac{\pi \cdot n}{N}\right) \quad (\text{低阶基频与极高阶保持稳定，主要作用于中频泛音})$$
 - **分音特征滞后时间常数**：
