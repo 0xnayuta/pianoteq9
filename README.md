@@ -23,6 +23,7 @@ pianoteq9/
 │   ├── Documentation/         # 官方四语言 HTML 用户手册与声学原理说明
 │   └── extra/                 # 辅助工具 (lame.exe MP3 编码器)
 ├── docs/                      # 核心研究文档与技术报告
+│   ├── roadmap.md                                           # 深度逆向与物理建模算法研究路线图 (Phase 1~4)
 │   ├── pianoteq9_parameter_dictionary_and_acoustic_spec.md  # 物理建模参数字典与声学特性清单
 │   └── acoustic_benchmark_report.md                         # 黑盒声学实测基准报告 (Steinway D)
 ├── acoustic_lab/              # 黑盒声学实测实验室
