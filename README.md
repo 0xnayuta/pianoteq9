@@ -51,7 +51,7 @@ pianoteq9/
 ├── acoustic_lab/              # 黑盒声学实测实验室
 │   ├── midi/                  # 自动生成的标准 SMF 0 格式测试序列 (C1~C7, 三力度, 长延音)
 │   ├── audio/                 # 无头批处理渲染导出的 48 kHz / 24-bit 纯物理干音 WAV 采样
-│   └── results/               # 信号分析输出产物与拟合数据
+│   └── results/               # 信号分析输出产物与拟合数据 (.gitkeep 占位)
 └── scripts/                   # 自动化可复现工程脚本
     ├── extract_parameters.py  # 二进制明文字典与文档提取脚本
     └── run_acoustic_experiments.py  # MIDI生成、无头渲染与科学信号分析套件

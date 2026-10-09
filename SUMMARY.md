@@ -219,7 +219,8 @@ pianoteq9/
 │   └── phase5/ (Phase 5-1, 5-2, 5-3)                   # 二次方张力非线性与泛音绽放 (已闭环)
 ├── acoustic_lab/                                       # 黑盒实测实验室
 │   ├── midi/                                           # 100% 可重现的标准测试 MIDI 文件 (SMF 0)
-│   └── audio/                                          # 纯干音 WAV 采样目录 (.gitkeep 占位)
+│   ├── audio/                                          # 纯干音 WAV 采样目录 (.gitkeep 占位)
+│   └── results/                                        # 实验拟合数据产物目录 (.gitkeep 占位)
 └── scripts/                                            # 自动化提取与测量工具
     ├── extract_parameters.py                           # 二进制明文字典与文档提取脚本
     └── run_acoustic_experiments.py                     # 端到端无头批处理与 SciPy 信号拟合套件
