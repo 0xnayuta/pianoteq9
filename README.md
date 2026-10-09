@@ -12,7 +12,9 @@
 
 ```
 pianoteq9/
+├── SUMMARY.md                 # 实验室总决算报告：五大战役收获全景与 devpiano 落地蓝图
 ├── README.md                  # 本文档：项目架构、工具链与研究成果说明
+├── AGENTS.md                  # Agent 协同守则、合规红线与提交规范
 ├── .omp/                      # OMP Agent 本地配置
 │   └── mcp.json               # REA (Reverse Engineer Anything) MCP 服务注册配置
 ├── binaries/                  # Pianoteq 9 上游原始模块与资源归档
