@@ -2,14 +2,8 @@
   "mcpServers": {
     "rea": {
       "type": "stdio",
-      "command": "rea",
-      "args": ["--mcp"],
-      "env": {
-        "REA_ANALYSIS_PROVIDER": "ghidra",
-        "GHIDRA_INSTALL_DIR": "/opt/ghidra/ghidra_12.1.4_PUBLIC",
-        "JAVA_HOME": "/usr/lib/jvm/java-21-openjdk-amd64",
-        "REA_GHIDRA_STARTUP_TIMEOUT_MS": "600000"
-      },
+      "command": "/usr/local/bin/rea",
+      "args": ["mcp"],
       "timeout": 660000
     }
   }

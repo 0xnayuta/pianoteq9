@@ -4,7 +4,7 @@
 
 本项目作为 [`devpiano`](https://github.com/0xnayuta/devpiano) 自主研发高保真物理建模钢琴音源（`PianoSynthVoice`）的专属声学研究前哨，核心职责是通过 **REA + Ghidra 静态定向反编译取证** 与 **无头自动化黑盒声学实测**，提炼出商业级物理建模钢琴的核心声学参数体系、毛毡击弦动力学、琴弦非谐性方程以及同音双阶段衰减规律。
 
-开发与研究环境采用：**WSL2 Ubuntu 26.04 主工作树 + Windows 11 宿主运行环境 + OpenJDK 21 + Ghidra 12.1.4 + REA 6.1.0 + NumPy / SciPy 信号处理套件**。
+开发与研究环境采用：**WSL2 Ubuntu 26.04 主工作树 + Windows 11 宿主运行环境 + OpenJDK 21 + Ghidra 12.1.4 + REA 6.3.0 + NumPy / SciPy 信号处理套件**。
 
 ---
 
@@ -31,7 +31,7 @@
     - `run_acoustic_experiments.py`：MIDI 生成、无头批处理干音渲染、加窗 FFT 分音拾取与双指数拟合套件。
 - `/.omp/`
   - OMP Agent 本地配置：
-    - `mcp.json`：注册本地 `rea` stdio 服务（超时 660 秒），支持 Agent 自动化调用 Ghidra 反编译器。
+    - `mcp.json`：注册本地 `rea` stdio 服务（规范化指向 `/usr/local/bin/rea mcp`，超时 660 秒），保持项目级沙盒隔离，支持 Agent 自动化调用 Ghidra 反编译器。
 
 ---
 

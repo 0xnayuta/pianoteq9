@@ -68,7 +68,7 @@ pianoteq9/
 | **基础操作系统** | Ubuntu 26.04.1 LTS | 内核 `6.18.40.1-microsoft-standard-WSL2`，内存 15 GiB，磁盘空间充足 |
 | **Java 运行环境** | OpenJDK 21.0.12.1 | 路径 `/usr/lib/jvm/java-21-openjdk-amd64`，满足 Ghidra 12.1.x 严格要求 |
 | **反编译分析引擎** | Ghidra 12.1.4_PUBLIC | 路径 `/opt/ghidra/ghidra_12.1.4_PUBLIC`，Headless 与原生反编译器就绪 |
-| **AI 逆向框架** | REA 6.1.0 (`rea-agents`) | 全局安装并注入固定环境变量，`rea doctor` 9 项健康指标全部通过 |
+| **AI 逆向框架** | REA 6.3.0 (`rea-agents`) | 全局安装并注入固定环境变量，`rea doctor` 9 项健康指标全部通过 |
 | **科学计算库** | NumPy 2.5.3 / SciPy 1.18.1 | 用于高精度加窗 FFT、分音自动拾取、非线性最小二乘曲线拟合与包络分析 |
 | **OMP 协同** | `.omp/mcp.json` | 注册 `rea` 为本地 stdio MCP 服务，支持 Agent 交互式执行反编译与 XRefs 查询 |
 
