@@ -1,0 +1,60 @@
+{
+  "schema": "pianoteq9-claim-admission-v1",
+  "canonical_report": "docs/acoustic_benchmark_report.md",
+  "claims": [
+    {
+      "id": "historical-render-conditions",
+      "previous": "纯干音且关闭 Reverb/EQ",
+      "status": "unknown",
+      "current": "旧渲染 receipt、预设参数、Reverb/EQ、麦克风、增益和种子未知；命令模板与当前prefs不能补证"
+    },
+    {
+      "id": "C7-frequency",
+      "previous": "柔弦基频 2276.84 Hz 可作锚点",
+      "status": "withdrawn",
+      "current": "固定窗最强混合峰约2107.37 Hz；候选族拟合f1约2109.57 Hz，不能互称中心弦或复现旧f0"
+    },
+    {
+      "id": "legacy-B-curve",
+      "previous": "指数B(k)与报告散点可直接注入生产",
+      "status": "withdrawn",
+      "current": "键号语义和锚点不一致；候选B_eff只描述给定WAV和固定配对，不是商业内部或实琴参数"
+    },
+    {
+      "id": "contact-time",
+      "previous": "32.2 ms 为恒定琴槌接触/起振常数",
+      "status": "withdrawn-attribution",
+      "current": "输出因果RMS上升时间随10/20/40ms窗口变化，不能直接设定接触时间、ADSR或硬件延迟"
+    },
+    {
+      "id": "hammer-exponent",
+      "previous": "+12.12dB 唯一证明 p=2.4..2.8",
+      "status": "withdrawn-attribution",
+      "current": "同口径HF功率占比70→98增加约12.49dB；不能由三个输出点唯一反演毛毡接触指数"
+    },
+    {
+      "id": "decay-energy-beat",
+      "previous": "0.865/5.322s、89.5/10.5%和3.56Hz为全琴常数",
+      "status": "withdrawn-attribution",
+      "current": "拟合依赖窗口和幅度/功率域，慢项不可唯一识别，输出系数不是机械能量或唯一同音宽度"
+    },
+    {
+      "id": "commercial-algorithm-equivalence",
+      "previous": "常量/分配大小/注册链证明完整商业DSP算法，示例工业级已验证",
+      "status": "not-established",
+      "current": "原始静态记录保留但本轮未重做Ghidra；理论/候选方程不等于专有实现或工程实时验收"
+    },
+    {
+      "id": "public-parameter-semantics",
+      "previous": "三力度/Unison/Last damper语义",
+      "status": "admitted-semantics",
+      "current": "Piano/Mezzo forte/Forte约41/70/98；Balance是中弦频率位置；Last damper用MIDI严格大于界限；未认证其它滑块范围"
+    },
+    {
+      "id": "reference-candidate-families",
+      "previous": "新B_eff表可作为新权威物理常数",
+      "status": "conditional-observation-only",
+      "current": "只准入给定文件和固定配对下的自洽结果；LOO保留全数据选峰，非无泄漏外推"
+    }
+  ]
+}

@@ -1,0 +1,897 @@
+{
+  "schema": "pianoteq9-reference-revalidation-v1",
+  "dataset_id": "task39-1-reference-revalidation",
+  "provenance": {
+    "consumer_task": "devpiano Task39-1",
+    "devpiano_source_input_commit": "76ebdca84e45e1b04a01ab0dddf6b7211a15b69c",
+    "devpiano_document_state": "working-tree snapshot in sealed backup; no claim that source input commit includes the result record",
+    "pianoteq9_original_revision": "3f710ece3c88dfa97eb8b55f3629b9606cec397b",
+    "source_evidence_manifest_SHA256": "a979d58a5ff367d0df7cb58567b7f8e2ee23f9599fd3a68be178a032fdfcc5ee"
+  },
+  "target_identity": {
+    "reported_and_PE_resource_version": "9.1.2",
+    "identity_verification": "readonly Windows FileVersion/ProductVersion resource query; original file SHA256 separately computed",
+    "files": [
+      {
+        "path": "binaries/Pianoteq 9.exe",
+        "bytes": 62666448,
+        "sha256": "620ba6d53808994e0a9fa999a7e060780e36daeb27693d5f249d0ad6df3f1eda"
+      },
+      {
+        "path": "binaries/Pianoteq 9.vst3plugin",
+        "bytes": 60844544,
+        "sha256": "218ba590b07877d5a80d1e48f2d61f90ceda7971a02e5d34ddbc8ecb0d5678a5"
+      },
+      {
+        "path": "binaries/Documentation/pianoteq-english.html",
+        "bytes": 3919167,
+        "sha256": "601473ece9de67913718973e121dc4d158ad1340e94ad70be9e81868ddf5fe29"
+      }
+    ],
+    "historical_render_preset": "NY Steinway D Classical (report/command template claim only)",
+    "historical_render_receipt": "unknown/not located",
+    "historical_preset_parameter_hash": "unknown",
+    "historical_reverb_EQ_microphone_gain_seed": "unknown; command template and current preferences cannot certify past WAV settings",
+    "REA_package_version": "6.3.0",
+    "Ghidra_availability": "12.1.4/JDK21.0.12.1 available; no target opened/decompiled"
+  },
+  "inputs": [
+    {
+      "name": "exp_a_C1",
+      "wav": {
+        "path": "acoustic_lab/audio/exp_a_C1.wav",
+        "sha256": "b155b10897bcb43f08549a69a269d200b4d9a205840e3034e16480bd1aa32e75",
+        "rate": 48000,
+        "bits": 24,
+        "channels": 2,
+        "frames": 285184
+      },
+      "midi": {
+        "path": "acoustic_lab/midi/exp_a_C1.mid",
+        "format": 0,
+        "tracks": 1,
+        "ppq": 480,
+        "events": [
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "meta": 81,
+            "data": [
+              7,
+              161,
+              32
+            ]
+          },
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              24,
+              70
+            ]
+          },
+          {
+            "tick": 3840,
+            "seconds": 4.0,
+            "status": 128,
+            "channel": 1,
+            "data": [
+              24,
+              0
+            ]
+          },
+          {
+            "tick": 4800,
+            "seconds": 5.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 4800,
+            "seconds": 5.0,
+            "meta": 47,
+            "data": []
+          }
+        ],
+        "sha256": "6f8c7dacfe68f0342db2bd6858abcffc550f153808b092af8e76edca930e0345"
+      }
+    },
+    {
+      "name": "exp_a_C2",
+      "wav": {
+        "path": "acoustic_lab/audio/exp_a_C2.wav",
+        "sha256": "7302fef1b94b597bb4d18ccc53b862dc7e128d7bad59ca95ddefb5482f1f4337",
+        "rate": 48000,
+        "bits": 24,
+        "channels": 2,
+        "frames": 251136
+      },
+      "midi": {
+        "path": "acoustic_lab/midi/exp_a_C2.mid",
+        "format": 0,
+        "tracks": 1,
+        "ppq": 480,
+        "events": [
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "meta": 81,
+            "data": [
+              7,
+              161,
+              32
+            ]
+          },
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              36,
+              70
+            ]
+          },
+          {
+            "tick": 3840,
+            "seconds": 4.0,
+            "status": 128,
+            "channel": 1,
+            "data": [
+              36,
+              0
+            ]
+          },
+          {
+            "tick": 4800,
+            "seconds": 5.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 4800,
+            "seconds": 5.0,
+            "meta": 47,
+            "data": []
+          }
+        ],
+        "sha256": "607fb3390e4352307ef03b1777161d0b41f4bee47d735b9f1236fb447fec7b46"
+      }
+    },
+    {
+      "name": "exp_a_C3",
+      "wav": {
+        "path": "acoustic_lab/audio/exp_a_C3.wav",
+        "sha256": "1fae0028a29defe6c3ee44844c67190100d37c8a8ed031d6dd9ee65eb17547d6",
+        "rate": 48000,
+        "bits": 24,
+        "channels": 2,
+        "frames": 250880
+      },
+      "midi": {
+        "path": "acoustic_lab/midi/exp_a_C3.mid",
+        "format": 0,
+        "tracks": 1,
+        "ppq": 480,
+        "events": [
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "meta": 81,
+            "data": [
+              7,
+              161,
+              32
+            ]
+          },
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              48,
+              70
+            ]
+          },
+          {
+            "tick": 3840,
+            "seconds": 4.0,
+            "status": 128,
+            "channel": 1,
+            "data": [
+              48,
+              0
+            ]
+          },
+          {
+            "tick": 4800,
+            "seconds": 5.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 4800,
+            "seconds": 5.0,
+            "meta": 47,
+            "data": []
+          }
+        ],
+        "sha256": "b29a757d2b08e9a9516549bfdefb2ad2036d708bfbdb56d582fec70aada3ae9c"
+      }
+    },
+    {
+      "name": "exp_a_C4",
+      "wav": {
+        "path": "acoustic_lab/audio/exp_a_C4.wav",
+        "sha256": "5e3ba1fd4c3c96fe1cb51d6f0ae1d9ad22be2ffbb6d68e1b768a10013dd6105b",
+        "rate": 48000,
+        "bits": 24,
+        "channels": 2,
+        "frames": 249856
+      },
+      "midi": {
+        "path": "acoustic_lab/midi/exp_a_C4.mid",
+        "format": 0,
+        "tracks": 1,
+        "ppq": 480,
+        "events": [
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "meta": 81,
+            "data": [
+              7,
+              161,
+              32
+            ]
+          },
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              60,
+              70
+            ]
+          },
+          {
+            "tick": 3840,
+            "seconds": 4.0,
+            "status": 128,
+            "channel": 1,
+            "data": [
+              60,
+              0
+            ]
+          },
+          {
+            "tick": 4800,
+            "seconds": 5.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 4800,
+            "seconds": 5.0,
+            "meta": 47,
+            "data": []
+          }
+        ],
+        "sha256": "af6837d98fca635f9360b8017f8685c4f69f5444f43fe63a64792ccfd55bc810"
+      }
+    },
+    {
+      "name": "exp_a_C5",
+      "wav": {
+        "path": "acoustic_lab/audio/exp_a_C5.wav",
+        "sha256": "8a1cbe91addc52dafd9a2386fa3c43f2106a3bbea0f13511221e7afc20b257a0",
+        "rate": 48000,
+        "bits": 24,
+        "channels": 2,
+        "frames": 249856
+      },
+      "midi": {
+        "path": "acoustic_lab/midi/exp_a_C5.mid",
+        "format": 0,
+        "tracks": 1,
+        "ppq": 480,
+        "events": [
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "meta": 81,
+            "data": [
+              7,
+              161,
+              32
+            ]
+          },
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              72,
+              70
+            ]
+          },
+          {
+            "tick": 3840,
+            "seconds": 4.0,
+            "status": 128,
+            "channel": 1,
+            "data": [
+              72,
+              0
+            ]
+          },
+          {
+            "tick": 4800,
+            "seconds": 5.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 4800,
+            "seconds": 5.0,
+            "meta": 47,
+            "data": []
+          }
+        ],
+        "sha256": "85756a4035cd71662e54715cd721ff949ef767ce0f31a03da1f8b11f01e00760"
+      }
+    },
+    {
+      "name": "exp_a_C6",
+      "wav": {
+        "path": "acoustic_lab/audio/exp_a_C6.wav",
+        "sha256": "833543073aef7cec85b542ee236a775bdad66cf46172c50de0cd3b341c4b4745",
+        "rate": 48000,
+        "bits": 24,
+        "channels": 2,
+        "frames": 249856
+      },
+      "midi": {
+        "path": "acoustic_lab/midi/exp_a_C6.mid",
+        "format": 0,
+        "tracks": 1,
+        "ppq": 480,
+        "events": [
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "meta": 81,
+            "data": [
+              7,
+              161,
+              32
+            ]
+          },
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              84,
+              70
+            ]
+          },
+          {
+            "tick": 3840,
+            "seconds": 4.0,
+            "status": 128,
+            "channel": 1,
+            "data": [
+              84,
+              0
+            ]
+          },
+          {
+            "tick": 4800,
+            "seconds": 5.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 4800,
+            "seconds": 5.0,
+            "meta": 47,
+            "data": []
+          }
+        ],
+        "sha256": "8fc414406c7f0d550119c92b675337689c0b5b339a29ff2fb0b606391811088a"
+      }
+    },
+    {
+      "name": "exp_a_C7",
+      "wav": {
+        "path": "acoustic_lab/audio/exp_a_C7.wav",
+        "sha256": "e91a4f0c472b63b6986d5636ad54942f46b31b1487ae2dd406c62b22b81b8a84",
+        "rate": 48000,
+        "bits": 24,
+        "channels": 2,
+        "frames": 249856
+      },
+      "midi": {
+        "path": "acoustic_lab/midi/exp_a_C7.mid",
+        "format": 0,
+        "tracks": 1,
+        "ppq": 480,
+        "events": [
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "meta": 81,
+            "data": [
+              7,
+              161,
+              32
+            ]
+          },
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              96,
+              70
+            ]
+          },
+          {
+            "tick": 3840,
+            "seconds": 4.0,
+            "status": 128,
+            "channel": 1,
+            "data": [
+              96,
+              0
+            ]
+          },
+          {
+            "tick": 4800,
+            "seconds": 5.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 4800,
+            "seconds": 5.0,
+            "meta": 47,
+            "data": []
+          }
+        ],
+        "sha256": "33c1237c6d4d4cb47e610f2712cc5556fc1717e67f4ddb07c68882a001a91706"
+      }
+    },
+    {
+      "name": "exp_b_c4_piano",
+      "wav": {
+        "path": "acoustic_lab/audio/exp_b_c4_piano.wav",
+        "sha256": "c6495105de4cd2230f4f67d4ffe8fc9d735b1bd89f756e8eaa9ac963f4205dee",
+        "rate": 48000,
+        "bits": 24,
+        "channels": 2,
+        "frames": 201984
+      },
+      "midi": {
+        "path": "acoustic_lab/midi/exp_b_c4_piano.mid",
+        "format": 0,
+        "tracks": 1,
+        "ppq": 480,
+        "events": [
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "meta": 81,
+            "data": [
+              7,
+              161,
+              32
+            ]
+          },
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              60,
+              41
+            ]
+          },
+          {
+            "tick": 2880,
+            "seconds": 3.0,
+            "status": 128,
+            "channel": 1,
+            "data": [
+              60,
+              0
+            ]
+          },
+          {
+            "tick": 3840,
+            "seconds": 4.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 3840,
+            "seconds": 4.0,
+            "meta": 47,
+            "data": []
+          }
+        ],
+        "sha256": "e6ee17d3afe7cb22cd156827b367ebc9a5c5b1e2fdf4f1570208b5c54f3c8170"
+      }
+    },
+    {
+      "name": "exp_b_c4_mezzo",
+      "wav": {
+        "path": "acoustic_lab/audio/exp_b_c4_mezzo.wav",
+        "sha256": "2353196dd49c7ba3351548aaa0b0ae989e403e738390d654b146fb71c2f9a546",
+        "rate": 48000,
+        "bits": 24,
+        "channels": 2,
+        "frames": 201984
+      },
+      "midi": {
+        "path": "acoustic_lab/midi/exp_b_c4_mezzo.mid",
+        "format": 0,
+        "tracks": 1,
+        "ppq": 480,
+        "events": [
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "meta": 81,
+            "data": [
+              7,
+              161,
+              32
+            ]
+          },
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              60,
+              70
+            ]
+          },
+          {
+            "tick": 2880,
+            "seconds": 3.0,
+            "status": 128,
+            "channel": 1,
+            "data": [
+              60,
+              0
+            ]
+          },
+          {
+            "tick": 3840,
+            "seconds": 4.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 3840,
+            "seconds": 4.0,
+            "meta": 47,
+            "data": []
+          }
+        ],
+        "sha256": "d3d128a9f9637d649b2cadc85e5c808767d00f9e764c84992e4239658d78c566"
+      }
+    },
+    {
+      "name": "exp_b_c4_forte",
+      "wav": {
+        "path": "acoustic_lab/audio/exp_b_c4_forte.wav",
+        "sha256": "ad745fe7aad715881109248fbd9db3f867c1a0da4163439bc92662479219b54b",
+        "rate": 48000,
+        "bits": 24,
+        "channels": 2,
+        "frames": 201984
+      },
+      "midi": {
+        "path": "acoustic_lab/midi/exp_b_c4_forte.mid",
+        "format": 0,
+        "tracks": 1,
+        "ppq": 480,
+        "events": [
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "meta": 81,
+            "data": [
+              7,
+              161,
+              32
+            ]
+          },
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              60,
+              98
+            ]
+          },
+          {
+            "tick": 2880,
+            "seconds": 3.0,
+            "status": 128,
+            "channel": 1,
+            "data": [
+              60,
+              0
+            ]
+          },
+          {
+            "tick": 3840,
+            "seconds": 4.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 3840,
+            "seconds": 4.0,
+            "meta": 47,
+            "data": []
+          }
+        ],
+        "sha256": "979541f4fccce77b8418038a0fa6c06210c8a545748c285c9f31769601ee3ccb"
+      }
+    },
+    {
+      "name": "exp_c_c3_decay",
+      "wav": {
+        "path": "acoustic_lab/audio/exp_c_c3_decay.wav",
+        "sha256": "7841043ea97ae3472f0da323ad65a73ca97cb3d89e39a7aae8832b06bbc9bc5e",
+        "rate": 48000,
+        "bits": 24,
+        "channels": 2,
+        "frames": 393728
+      },
+      "midi": {
+        "path": "acoustic_lab/midi/exp_c_c3_decay.mid",
+        "format": 0,
+        "tracks": 1,
+        "ppq": 480,
+        "events": [
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "meta": 81,
+            "data": [
+              7,
+              161,
+              32
+            ]
+          },
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              48,
+              80
+            ]
+          },
+          {
+            "tick": 5760,
+            "seconds": 6.0,
+            "status": 128,
+            "channel": 1,
+            "data": [
+              48,
+              0
+            ]
+          },
+          {
+            "tick": 7680,
+            "seconds": 8.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 7680,
+            "seconds": 8.0,
+            "meta": 47,
+            "data": []
+          }
+        ],
+        "sha256": "57aeadb43f2650a09e6990f981a77e2127ae64c200ce5838f61f1121d939258c"
+      }
+    },
+    {
+      "name": "test_c4",
+      "wav": {
+        "path": "acoustic_lab/audio/test_c4.wav",
+        "sha256": "2353196dd49c7ba3351548aaa0b0ae989e403e738390d654b146fb71c2f9a546",
+        "rate": 48000,
+        "bits": 24,
+        "channels": 2,
+        "frames": 201984
+      },
+      "midi": {
+        "path": "acoustic_lab/midi/test_c4.mid",
+        "format": 0,
+        "tracks": 1,
+        "ppq": 480,
+        "events": [
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "meta": 81,
+            "data": [
+              7,
+              161,
+              32
+            ]
+          },
+          {
+            "tick": 0,
+            "seconds": 0.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              60,
+              70
+            ]
+          },
+          {
+            "tick": 2880,
+            "seconds": 3.0,
+            "status": 128,
+            "channel": 1,
+            "data": [
+              60,
+              0
+            ]
+          },
+          {
+            "tick": 3840,
+            "seconds": 4.0,
+            "status": 144,
+            "channel": 1,
+            "data": [
+              0,
+              0
+            ]
+          },
+          {
+            "tick": 3840,
+            "seconds": 4.0,
+            "meta": 47,
+            "data": []
+          }
+        ],
+        "sha256": "d3d128a9f9637d649b2cadc85e5c808767d00f9e764c84992e4239658d78c566"
+      }
+    }
+  ],
+  "receipts": [
+    {
+      "path": "reference-family-checks.json",
+      "sha256": "f0a71380a6f649eb458632eee924c2e1b88ceabf9cc7f71431f9520434682192"
+    },
+    {
+      "path": "reference-parent-checks.json",
+      "sha256": "18710a7bed673f94e4ab35c52813f1fba63811745fc8f90a749e04b435e9e344"
+    },
+    {
+      "path": "reference-candidate-recipe.json",
+      "sha256": "01244694b699f4d8db47e7d35e2602a608e4bb37dd6e67c55ccf4f1f197db1cb"
+    },
+    {
+      "path": "methods.json",
+      "sha256": "aa9d8624e01123e74c9ca816e2d54bcd05b5fe2502109dd3b6abb9cf78c7feba"
+    },
+    {
+      "path": "claims.json",
+      "sha256": "606a7c1af40054f0e54b5fdb34caeab0df966d0274d2d99b7250da10660086ab"
+    }
+  ],
+  "original_claim_documents_SHA256": {
+    "scripts/run_acoustic_experiments.py": "a95b2d86112ba23ec0be90ac468429aedd2cd201a358a8de07f1e3531d94be53",
+    "docs/acoustic_benchmark_report.md": "280f21fc885585588f63536c303165b414ca487e93d7d0b1f057725b2082cea0",
+    "docs/phase1/phase1-3-hammer-dynamics-spec.md": "31824ef8f3a4f0983869d6ec3774df4486685f62ebb16db6c5b807370df43903",
+    "docs/phase3/phase3-3-unison-beating-spec.md": "5715758f9ded141262434b454aac080da141bd8b6e3e89f737a890dfd2d75d02"
+  },
+  "archive_seal": {
+    "path": "acoustic_lab/backups/task39-1-20261010/seal.json",
+    "sha256": "73db23ab415ea4a66e4dcaa5c270d23f721473d319c2135a3dfcf5b56cbec53b",
+    "archives": [
+      {
+        "path": "devpiano-evidence.tar",
+        "bytes": 186746880,
+        "sha256": "6a530103386538116366e434c26e353a4e32a3f2690975d6f8e01676f10ce5e4"
+      },
+      {
+        "path": "pianoteq-reference-inputs.tar",
+        "bytes": 18176000,
+        "sha256": "3f60dc55ee187afc563519c5a2e35eb9ce8ab329be9127601f1d536b05602bdb"
+      },
+      {
+        "path": "devpiano-document-snapshot.tar",
+        "bytes": 133120,
+        "sha256": "6025be88f66dae812bb10c557e0651eec741bc82633a3120ed76daf5b8405e14"
+      }
+    ],
+    "availability": "ignored local assets, not distributed with Git; restore matching inputs from local backup without overwriting existing assets"
+  },
+  "admission": {
+    "public_semantics": "admitted as documented meanings only",
+    "measured_WAV_features": "conditional observations tied to hashes and method",
+    "B_effective": "candidate fixed-family fit; not production/internal/real-piano physical parameters",
+    "historical_render_conditions": "unknown",
+    "mechanical_contact_exponent_and_time": "not established",
+    "stored_energy_weights_and_unique_decay_constants": "not established",
+    "commercial_algorithm_equivalence": "not established; no new Ghidra reconstruction in Task39-1"
+  },
+  "cross_repository_ownership": "reference results/methods owned here; production baseline, Windows build inputs and implementation schedule remain devpiano-owned",
+  "recomputation_entrypoint": {
+    "path": "scripts/run_acoustic_experiments.py",
+    "sha256": "fbb4b133e618c26ab93820b47ecf3bdc90005b48ba28af193fc7285d4332d93f",
+    "behavior": "verify existing input/receipt hashes and recompute WAV/MIDI observations, stdout only; no subprocess/rendering/code execution from JSON"
+  }
+}

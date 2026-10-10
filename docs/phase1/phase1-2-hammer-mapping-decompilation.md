@@ -3,7 +3,8 @@
 > **任务编号**：Phase 1-2  
 > **研究目标**：对 Phase 1-1 锁定的整音参数主初始化函数 `0x00000001806c49f0` 及核心子例程执行定向反汇编与数据流切片分析，逆向提取 Pianoteq 9 琴槌参数内部存储结构体、长短键名别名绑定机制，以及三力度琴槌硬度（Piano / Mezzo / Forte）到击弦物理刚度的离散数学映射模型。  
 > **报告归档路径**：`docs/phase1/phase1-2-hammer-mapping-decompilation.md`  
-> **执行状态**：**已通过验收 (Accepted)**  
+> **当前状态**：历史切片与节点解释保留；旧 Accepted 不等于别名、硬度映射或接触求解器已获当前认证。
+> **复核入口**：[统一证据等级与旧主张处理](../acoustic_benchmark_report.md#证据等级与旧主张处理)。汇编及表内作者注释是当时解释，未在本轮重做Ghidra验证。
 
 ---
 
@@ -62,7 +63,7 @@
 
 ## 二、参数节点结构体逆向 (ParameterTreeNode Layout)
 
-通过反编译子例程 `0x18033e9d0`（参数节点分配与构造器），提取出其底层基于 MSVC STL 红黑树（`std::_Tree_node`）的内存布局，节点固定大小为 **96 字节（0x60）**：
+原稿将子例程 `0x18033e9d0` 解释为参数节点分配/构造，并提出 **96 字节（0x60）** 的 MSVC STL 红黑树布局猜测。以下偏移记录保留，字段角色与C++草案不视为已重新核对的专有结构或工程实现：
 
 ### 内存布局表 (Node Size: 96 Bytes / 0x60)
 
@@ -81,7 +82,7 @@
 | `+0x50 ~ +0x57` | `aliasLength` | `size_t` | 别名有效长度 |
 | `+0x58 ~ +0x5F` | `aliasCapacity`| `size_t` | 缓冲区容量（初始化设为 `0xF = 15` 字节，`movq $0xf, 0x58(%rax)`） |
 
-### 逆向还原的 C++ 结构体草案
+### 原稿的 C++ 结构体草案（字段解释未重新认证）
 
 ```cpp
 // Pianoteq 内部参数注册红黑树节点定义 (MSVC x64 ABI, 96 字节)
@@ -116,67 +117,21 @@ static_assert(sizeof(ParameterTreeNode) == 0x60, "ParameterTreeNode size must be
 
 ---
 
-## 三、长短键名别名互锁机制 (Alias Network)
+## 三、别名绑定解释的当前限制
 
-Pianoteq 采用了多层次的参数键名注册架构，在同一函数内执行两轮映射：
-1. **第一轮（长键名 $\leftrightarrow$ 预设短键名）**：
-   - `hammer_hardness_forte` $\longleftrightarrow$ `hammer_hard_mezzo` (兼容过渡)
-   - `hammer_hardness_mezzo` $\longleftrightarrow$ `hammer_hard_piano`
-   - `hammer_hardness_piano` $\longleftrightarrow$ `hard_forte`
-2. **第二轮（长键名 $\leftrightarrow$ 极短别名）**：
-   - `hammer_hardness_forte` $\longleftrightarrow$ `hard_mezzo`
-   - `hammer_hardness_mezzo` $\longleftrightarrow$ `hard_piano`
-   - `hammer_hardness_piano` $\longleftrightarrow$ 基础锚点
+上方切片中的名字、地址与作者注释保留原样。原稿将相邻注册调用推定为 Forte↔Mezzo 等跨力度别名和“绝对向下兼容”，本次不采用该解释；字符串共现不能证明同一对象、槽位或物理状态的绑定关系。
 
-**设计意图分析**：
-该设计允许 Pianoteq 无论接收到 VST3 标准自动化全称（`hammer_hardness_*`）、历史 `.fxp` 预设键名（`hammer_hard_*`）还是精简脚本指令（`hard_*`），都能经由红黑树在 $O(\log N)$ 时间内命中同一底层物理状态变量，保证绝对的向下兼容性。
+必须分别确认节点身份、调用参数和后续读取链条，才能讨论别名。当前没有这组补证，也不据此让 devpiano 增加旧字段别名或迁移路径。
 
----
+## 四、三力度与接触模型的证据等级
 
-## 四、三力度琴槌硬度到物理刚度的数学映射模型 (Mathematical Model)
+- 官方 Voicing 语义支持 Piano / Mezzo forte / Forte 约41/70/98；硬度的具体滑块范围和默认值未复核，不再将原稿 `[0,2]` 与规格书 `[0.1,2.5]` 两种范围都写成已知。
+- 归一化力度 `(v-1)/126` 可作为候选设计口径，但 MIDI 值不等于已标定的机械初速度或压缩量。
+- 原稿的分段幂指数、`K=K0*H³`、动态接触指数与迟滞力模型是候选重构，不是由本页注册切片证实的内部方程。三力度高频输出不能唯一标定这些值。
+- 原稿与后续规格书的 `p(H)` 表达不一致，数值/单位没有完整来源，已撤去作为生产映射的指引；不以任意一种新表达补成专有算法。
 
-通过静态反汇编与黑盒实测数据交叉验证，Pianoteq 9 琴槌硬度系统并非在发声时直接使用常数，而是将三个滑块值作为**连续控制网格（3-Anchor Control Grid）**。
+经典非线性接触理论仍可研究，但质量、刚度、位移尺度、损耗、反作用耦合及稳定性必须另行建立。当前 [声学基准报告](../acoustic_benchmark_report.md) 只准入指定文件的输出观察。
 
-### 1. 速度域归一化
-设 MIDI 击弦力度为 $v \in [1, 127]$，归一化力度为 $u = \frac{v - 1}{126} \in [0.0, 1.0]$。  
-官方手册定义的三个特征力度对应锚点坐标：
-- **Piano 弱奏锚点**： $v_p = 41 \implies u_p = \frac{41 - 1}{126} \approx 0.3175$（对应参数值 $H_p \in [0, 2.0]$，默认 1.0）
-- **Mezzo 中等锚点**： $v_m = 70 \implies u_m = \frac{70 - 1}{126} \approx 0.5476$（对应参数值 $H_m \in [0, 2.0]$，默认 1.0）
-- **Forte 强奏锚点**： $v_f = 98 \implies u_f = \frac{98 - 1}{126} \approx 0.7698$（对应参数值 $H_f \in [0, 2.0]$，默认 1.0）
+## 五、后续补证边界
 
-### 2. 分段连续硬度插值方程 (Effective Hardness Function)
-对于任意输入力度 $u$，当前音符的瞬时有效硬度因子 $H(u)$ 采用分段幂律曲线平滑过渡：
-
-$$
-H(u) = 
-\begin{cases}
-H_p \cdot \left(\dfrac{u}{u_p}\right)^{\alpha_0}, & 0 \le u < u_p \\[10pt]
-H_p + (H_m - H_p) \cdot \left(\dfrac{u - u_p}{u_m - u_p}\right)^{\alpha_1}, & u_p \le u < u_m \\[10pt]
-H_m + (H_f - H_m) \cdot \left(\dfrac{u - u_m}{u_f - u_m}\right)^{\alpha_2}, & u_m \le u < u_f \\[10pt]
-H_f + (H_f - H_m) \cdot \left(\dfrac{u - u_f}{1.0 - u_f}\right)^{\alpha_3}, & u_f \le u \le 1.0
-\end{cases}
-$$
-
-- **实测参数标定**：
-  - 低力度段指数： $\alpha_1 \approx 1.15$（线性至微弱下凹，音色温和，高频增长平缓）；
-  - 高力度段指数： $\alpha_2 \approx 2.45$（强非线性上凸！毛毡被剧烈压实，接触刚度急剧攀升，精准解释了实测中从 Mezzo 到 Forte 高频分音能量爆发 **$+12.12\text{ dB}$** 的物理成因）。
-
-### 3. 接触力学方程与非线性指数生成
-将求得的有效硬度 $H(u)$ 转化为物理仿真核心参数：
-1. **毛毡刚度系数 $K(v)$**：
-   $$K(v) = K_0 \cdot [H(u)]^3$$
-   （刚度与有效硬度呈现 3 次方关系）
-2. **接触力计算模型 (Hunt-Crossley 非线性力)**：
-   $$F(t) = K(v) \cdot [\max(0, y_h(t) - y_s(t))]^p \cdot [1 + \lambda \cdot (\dot{y}_h - \dot{y}_s)]$$
-   其中接触指数 $p$ 动态依赖于硬度：
-   $$p(H) = 2.2 + 0.4 \cdot H(u)$$
-   强奏时 $p \to 2.8$ 呈现刚性撞击；弱奏时 $p \to 2.2$ 呈现柔顺接触。
-
----
-
-## 五、Phase 1-3 衔接与下一步指引
-
-在 Phase 1-2 完成了参数注册结构体（96 字节红黑树节点）与三力度到刚度数学映射方程的逆向之后，**Phase 1-3** 将聚焦于：
-1. 提取实际音频渲染线程中琴槌位移 $y_h$ 与琴弦位移 $y_s$ 的离散差分方程更新回路；
-2. 逆向击弦打击噪声（`hammer_noise_slider`）的带通激励核（Impact Kernel）拓扑；
-3. 输出完整自包含的《琴槌击弦物理建模独立算法技术规约》（`docs/phase1/phase1-3-hammer-dynamics-spec.md`）。
+若有真实研究需求，先补注册对象到渲染状态的身份/数据流，再用受控输入验证候选接触模型；本轮未开展这项新逆向。当前模型限制见 [琴槌候选规格](phase1-3-hammer-dynamics-spec.md)，原文与旧草案见输入修订/本机封存。

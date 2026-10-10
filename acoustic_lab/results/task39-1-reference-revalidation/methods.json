@@ -1,0 +1,181 @@
+{
+  "schema": "pianoteq9-reference-methods-v1",
+  "method_id": "task39-1-fixed-observation-v1",
+  "versions": {
+    "python": "3.14.4",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1"
+  },
+  "frequency": {
+    "window_low": [
+      0.08,
+      3.8
+    ],
+    "window_C7": [
+      0.08,
+      0.8
+    ],
+    "window": "Hann",
+    "zero_padding_min_factor": 8,
+    "peak_interpolation": "log-power parabola",
+    "family_spectrum": "stereo power, no mean subtraction (original candidate-search definition)",
+    "parent_spotcheck": "mono-mean, subtract segment mean",
+    "peak_threshold_relative_dB": -80,
+    "nearest_peak_tolerance": 0.01,
+    "max_frequency_Hz": 20000,
+    "family_seeds": [
+      [
+        "C1",
+        32.4907,
+        8.976e-05,
+        25
+      ],
+      [
+        "C2",
+        65.2969,
+        5.028e-05,
+        25
+      ],
+      [
+        "C3",
+        130.7003,
+        0.0001164,
+        25
+      ],
+      [
+        "C4",
+        261.511,
+        0.0003587,
+        25
+      ],
+      [
+        "C5",
+        523.3,
+        0.001106,
+        20
+      ],
+      [
+        "C6",
+        1049.639,
+        0.003143,
+        12
+      ],
+      [
+        "C7",
+        2109.575,
+        0.009002,
+        8
+      ]
+    ],
+    "qualification": "fixed full-data peak selection/refit consistency, not isolated center string or leakage-free peak-identification validation"
+  },
+  "C4": {
+    "window": [
+      0.05,
+      0.8
+    ],
+    "power": "(abs(FFT(L))**2 + abs(FFT(R))**2)/2",
+    "detrend": "per-channel segment mean",
+    "minimum_Hz": 20,
+    "high_frequency_Hz": 2500,
+    "centroid": "sum(f*P)/sum(P)",
+    "HF_dB": "10*log10(HF_power/total_power)",
+    "peak": "raw stereo max and mono-mean max reported separately"
+  },
+  "rise": {
+    "window_peak_end_s": 0.15,
+    "RMS_windows_ms": [
+      10,
+      20,
+      40
+    ],
+    "thresholds": [
+      0.1,
+      0.9
+    ],
+    "time_stamp": "causal window end",
+    "reference_prefix_zero_s": 0.04,
+    "qualification": "zero prefix defines meter initialization only, not pre-event silence or hammer contact time"
+  },
+  "C3": {
+    "windows": [
+      [
+        0.08,
+        5.8
+      ],
+      [
+        0.3,
+        5.8
+      ],
+      [
+        0.5,
+        4.5
+      ]
+    ],
+    "RMS_window_s": 0.1,
+    "hop_s": 0.02,
+    "domains": [
+      "RMS amplitude",
+      "power"
+    ],
+    "normalized_by": "max observation in selected window",
+    "time_origin": "first window center",
+    "model": "a*exp(-t/fast) + b*exp(-t/(fast+delta))",
+    "lower_bounds": [
+      0,
+      0,
+      0.02,
+      0.001
+    ],
+    "upper_bounds": [
+      10,
+      10,
+      5,
+      30
+    ],
+    "seeds": [
+      [
+        0.9,
+        0.1,
+        0.8,
+        4.5
+      ],
+      [
+        0.5,
+        0.5,
+        0.3,
+        2
+      ],
+      [
+        0.8,
+        0.2,
+        1,
+        10
+      ]
+    ],
+    "x_scale": [
+      1,
+      1,
+      1,
+      5
+    ],
+    "max_nfev": 4000,
+    "residual_modulation_band_Hz": [
+      0.3,
+      10
+    ],
+    "qualification": "output-envelope phenomenology; coefficients are not stored mechanical energy; slow component not identifiable as universal constant"
+  },
+  "verification_tolerances": {
+    "peak_Hz": 0.002,
+    "family_f1_Hz": 0.002,
+    "family_B_relative": 1e-05,
+    "family_residual_cents": 0.005,
+    "metric_dB": 1e-06,
+    "centroid_Hz": 1e-05,
+    "rise_ms": 0.025,
+    "decay_tau_relative": 0.0001,
+    "matrix_absolute": 1e-12
+  },
+  "policy": "readonly existing files only; no rendering, binary execution, preset inference or output writes"
+}

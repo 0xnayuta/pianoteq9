@@ -1,72 +1,85 @@
-# Phase 5-2 验收报告：几何张力调制与膨胀滤波例程定向反编译
+# Phase 5-2 历史报告：几何张力候选方程与滞后膨胀候选模型
 
 > **任务编号**：Phase 5-2  
-> **研究目标**：结合 Phase 5-1 锁定的 Slot 94（`Quadratic Effect`）、Slot 63（`Blooming Energy`）与 Slot 65（`Blooming Inertia`）及底层音频渲染数据流切片，逆向推导大动态强奏下琴弦几何二次方张力调制公式、瞬时音高微漂移（Pitch Glide）方程，以及由双参数驱动的高阶分音滞后膨胀惯性包络离散模型。  
+> **原研究目标**：结合 Phase 5-1 的 Slot 94（`Quadratic Effect`）、Slot 63（`Blooming Energy`）与 Slot 65（`Blooming Inertia`）历史记录及渲染数据流切片，推导琴弦几何二次方张力调制、瞬时音高微漂移（Pitch Glide）与高阶分音滞后膨胀包络的**候选**模型。  
 > **报告归档路径**：`docs/phase5/phase5-2-nonlinear-mechanics-decompilation.md`  
-> **执行状态**：**已通过验收 (Accepted)**  
+> **复核状态**：**历史产物**（原记录“已通过验收 (Accepted)”仅为当时流程状态）。本轮 Task 39-1 未重做 Ghidra/反汇编复核：原文地址与切片按原样保留为历史静态记录；本文公式不是从已记录切片中解出的内部方程。相关等价主张对应[统一复核](../acoustic_benchmark_report.md#证据等级与旧主张处理)中的 `commercial-algorithm-equivalence`（not-established）。  
+> **证据标注**：【官方语义】随附 9.1.2 英文手册；【静态记录】历史反汇编/地址记录（本轮未复核）；【经典理论】公开声学/教科书结论；【候选模型】未经认证的方程、数值或实现假设；【工程】未经生产验证的外推与建议。统一口径：[统一复核与证据等级](../acoustic_benchmark_report.md#证据等级与旧主张处理)、[复算与原始数据保留](../acoustic_benchmark_report.md#复算与原始数据保留)。  
 
 ---
 
-## 一、琴弦几何二次方张力非线性数学物理推导 (Quadratic Tension Mechanics)
+## 〇、证据状态摘要（先读）
 
-### 1. 连续介质物理方程基础
-根据经典非线性琴弦声学波动理论（Desvages & Bilbao 2016 IEEE TASLP, Bank & Sujbert 2005 JASA）：
-两端固定琴弦的横向振动位移为 $y(x, t)$。在考虑大动态几何非线性时，琴弦微元由于横向位移产生微观弧长伸长量：
+| 项目 | 来源类别 | 当前状态 |
+|---|---|---|
+| Slot 63/65/94 立即数与字符串记录 | 【静态记录】（Phase 5-1，本轮未复核） | 保留；**不能**推出任何方程、系数或“二阶状态求解器” |
+| 弦长伸长积分与 $\Delta T = \frac{EA}{2L}\int (\partial_x y)^2 dx$ | 【经典理论】（连续弦几何非线性） | 准入为公开理论；不含任何软件内部信息 |
+| $\sum m^2 a_m^2$ 模态投影、$\sqrt{T/T_0}$ 音高漂移 | 【经典理论】+【候选模型】 | 实数运算成立；作为中间量单位/系数未标定 |
+| $Q_{eff}\cdot\kappa_0$ 与 `Quadratic Effect` 的对应、$\kappa_0$ 数值 | 【候选模型】 | 未认证；该参数到内部实现的映射无证据 |
+| “$10\sim30$ cents 漂移”“幻象分音金属撕裂感” | 未提供数值来源 | **撤回**归因；仅保留为待验证现象类别 |
+| $t/\tau \cdot e^{1-t/\tau}$ 闭式包络、$\tau_n$ 展开式、`VelFactor` 幂 1.2 | 【候选模型】 | 未认证；**不是**已取证的二阶状态求解器 |
+| $E_b \in [0,2.0]$、$T_b \in [0.1,3.0]\ \text{s}$ 等范围 | 无原始来源 | **撤回**为分析者候选值 |
+
+---
+
+## 一、琴弦几何二次方张力的经典理论与候选映射
+
+### 1. 连续介质理论基础（准入）
+【经典理论】根据公开的非线性弦声学文献（如 Desvages & Bilbao 2016 IEEE TASLP；Bank & Sujbert 2005 JASA 等公开结论）：两端固定弦的横向位移 $y(x,t)$ 在大振幅下引起微观弧长伸长，其一阶近似为
 $$\Delta L(t) = \int_0^L \sqrt{1 + \left(\frac{\partial y}{\partial x}\right)^2} dx - L \approx \frac{1}{2} \int_0^L \left(\frac{\partial y}{\partial x}\right)^2 dx$$
-琴弦在瞬间产生轴向附加张力：
-$$\Delta T(t) = \frac{E A}{2 L} \int_0^L \left(\frac{\partial y}{\partial x}\right)^2 dx$$
-总张力呈现强烈的振幅二次方相关性： $T(t) = T_0 + \Delta T(t)$。
+相应的轴向附加张力（$\mu$ 为线密度，$T_0$ 为静态张力）：
+$$\Delta T(t) = \frac{E A}{2 L} \int_0^L \left(\frac{\partial y}{\partial x}\right)^2 dx,\qquad T(t) = T_0 + \Delta T(t)$$
+$$\Rightarrow\ f_0(t) = f_{0, \text{nominal}} \cdot \sqrt{\frac{T(t)}{T_0}},\qquad \frac{c(t)}{c_{nom}} = \sqrt{\frac{T(t)}{T_0}}$$
+以上属公开连续弦几何非线性结论，是任何基于该物理图像的实现都会写出的关系；它**不含**任何 Pianoteq 内部约定，$\Delta T$ 在首阶近似下**正**（大位移使张力与音高上升）。
 
-### 2. 离散模态空间的二次方投影与 Quadratic Effect 参数映射
-在模态合成架构中，弦空间位移由分音叠加表达： $y(x, t) = \sum_{n=1}^N a_n(t) \sin(n \pi x / L)$。  
-导数积分展开后正交归一化：
+### 2. 模态空间的二次方投影（准入为实数运算）
+【经典理论】若弦空间位移由固定端模态叠加表达：$y(x, t) = \sum_{n=1}^N a_n(t) \sin(n \pi x / L)$，则导数积分对正交归一化基展开为
 $$\int_0^L \left(\frac{\partial y}{\partial x}\right)^2 dx = \frac{\pi^2}{2 L} \sum_{n=1}^N n^2 a_n^2(t)$$
-
-Pianoteq 内部参数 `Quadratic Effect`（记作 $Q_{\text{eff}} \in [0.0, 20.00]$，Slot 94）是控制该非线性耦合强度的全局缩放系数。瞬时几何张力增量方程定义为：
+【候选模型】把上式与 `Quadratic Effect` 参数相接时，原文写出
 $$\Delta T[n] = Q_{\text{eff}} \cdot \kappa_0 \cdot \sum_{m=1}^N m^2 \cdot \left(y_m[n]\right)^2$$
-式中 $\kappa_0$ 为依赖于琴弦有效线密度的常数。
+并称 $\kappa_0$ 为“依赖于琴弦有效线密度的常数”、$Q_{\text{eff}} \in [0.0, 20.00]$ 为 Slot 94 控制的全局缩放系数。
 
-### 3. 声学物理效应一：大动态音高微漂移 (Amplitude-Dependent Pitch Glide)
-琴弦波动基频直接依赖于瞬时张力：
-$$f_0[n] = f_{0, \text{nominal}} \cdot \sqrt{1.0 + \frac{\Delta T[n]}{T_0}} \approx f_{0, \text{nominal}} \cdot \left(1.0 + \frac{\Delta T[n]}{2 T_0}\right)$$
-- **物理现象**：在强奏（Forte / Fortissimo）击键瞬间，琴弦位移极大， $\Delta T > 0$，基频与各分音频率在最初数毫秒内瞬间向上拉升（拉升幅度通常为 $10 \sim 30\text{ Cents}$）；随后随着能量耗散位移衰减，音高迅速平滑回落至标称音高，赋予低音强奏极具张力的“紧绷感”。
+**边界（撤回归属）**：
+- 【静态记录】只有“立即数 `0x5E` 与字符串 `Quadratic Effect` 在代码块中相邻处理”，**没有**任何 slice 显示该例程执行 $\sum m^2 y_m^2$ 或该式的浮点更新；
+- 模态叠加与 $n^2 a_n^2$ 投影是标准技巧，但“内部按此形式实现”**未被证明**；该参数的真实范畴（是否 $[0,20]$、默认值）未复核；
+- 弦空间位移 $y(x,t)$ 与归一化模态系数 $a_n$ 的单位换算、$\kappa_0$ 的物理标定与 $f_0$ 基础值的对应均未建立。
 
-### 4. 声学物理效应二：幻象分音非线性激发 (Phantom Partials Generation)
-由于非线性力包含 $(\sum a_m \cos(\omega_m t))^2$ 乘积项，三角函数展开直接激发出差频与和频成分 $(\omega_j \pm \omega_k)$：
-- 这一机制在低音区激发出大量非谐波相干微小泛音（Phantom Partials），重现了三角钢琴演奏强奏低音时极其深沉、充满金属开裂感的宏大声场。
+### 3. 音高漂移现象：候选描述与撤回项
+【候选模型】把 $\Delta T$ 代入波动速度关系可得音高乘数 $G_{\text{glide}} = \sqrt{1 + \Delta T / T_0}$（若单位一致）及其首阶线性化 $G_{\text{glide}} \approx 1 + \Delta T/(2 T_0)$。
+
+【撤回】旧稿的定性归因不保留为结论：
+- “强奏时基频与各分音瞬间向上拉升（幅度通常为 $10 \sim 30\ \text{Cents}$）”→ 该数值范围无任何来源；本轮研究与基准报告均未建立该测量。
+- “随后迅速平滑回落至标称音高”“赋予低音强奏极具张力的紧绷感”“低频金属撕裂感/金属开裂感”→ 属主观描述，不是证据。
+- 【经典理论】大振幅下的张力增量与随之的音高变化是公开可研究的现象；其在本仓库既未被逆向导出的方程证实，也未被任何输出测量标定。
+
+### 4. 幻象分音（Phantom Partials）：候选类别与撤回
+【经典理论】非线性力包含分音乘积项时，三角函数展开会生成和频/差频成分（$\omega_j \pm \omega_k$），这是标准的非线性混频结论。
+
+【撤回】旧稿“这一机制在低音区激发出大量非谐波相干微小泛音……重现三角钢琴演奏强奏低音时极其深沉、充满金属开裂感的宏大声场”不能保留：“大量”“相干”“深邃”“金属开裂感”均为无测量来源的定性外推；本仓库未对输出做分音/混频成分的专门检验，也没有证据表明软件内部存在该机制。
 
 ---
 
-## 二、双参数泛音滞后膨胀动力学模型 (Two-Parameter Blooming Dynamics)
+## 二、滞后膨胀（Blooming）的候选包络模型
 
-在真钢琴物理发声中，中高力度击弦后，高阶分音（特别是第 3 至第 12 阶分音）的振幅**并非在击弦瞬间达到峰值**，而是经历短暂的时间滞后，随后在数十毫秒内向上攀升绽放（Blooming）。
+### 1. 官方语义（准入）
+【官方语义】随附 9.1.2 手册定义：`Blooming energy` 控制低阶泛音向高阶泛音转移的能量多少；`Blooming inertia` 控制该转移速度（惯性越大越慢）；该参数最初为钢鼓设计，也可用于其他乐器。手册为定性说明，**不给**数值范围、单位或方程。
 
-Pianoteq 将其解耦为两大独立物理参数：
-- **`Blooming Energy` ($E_b \in [0.0, 2.0]$，Slot 63)**：控制高阶分音能量向外膨胀的深度增益；
-- **`Blooming Inertia` ($T_b \in [0.1, 3.0\text{ s}]$，Slot 65)**：控制能量由低频向高频转移的惯性时间常数。
+### 2. 原文候选形式（全部为未认证假设）
+原文写出的“双参数滞后膨胀”形式如下，**不是**已还原的内部模型，也不构成“二阶状态求解器”的证明：
 
-### 1. 二阶惯性低通包络生成方程 (Inertial Envelope Generator)
-每个分音 $n \in [1, N]$ 的动态膨胀乘法增益包络 $B_n(t)$ 定义为：
 $$B_n(t) = 1.0 + E_b \cdot \zeta_n \cdot \left(\frac{t}{\tau_{n}}\right) \cdot \exp\left(1.0 - \frac{t}{\tau_{n}}\right)$$
+$$\zeta_n = \sin\left(\frac{\pi \cdot n}{N}\right),\qquad \tau_n = T_b \cdot \left[0.015 + 0.035 \cdot \left(1.0 - \frac{n}{N}\right)\right]$$
 
-式中：
-- 分音权值分布： $\zeta_n = \sin\left(\dfrac{\pi \cdot n}{N}\right)$（能量主要泵浦向中高阶泛音，基频不受影响）；
-- 各分音的特征滞后时间常数：
-  $$\tau_n = T_b \cdot \left[0.015 + 0.035 \cdot \left(1.0 - \frac{n}{N}\right)\right] \quad (\text{秒})$$
+原文并称 $E_b \in [0.0, 2.0]$（Slot 63）、$T_b \in [0.1, 3.0]\ \text{s}$（Slot 65），$\zeta_n$ 使能量“主要泵浦向中高阶泛音、基频不受影响”。
 
-### 2. 包络动力学演化特征
-- **在击打初期 ($t = 0$)**：
-  $B_n(0) = 1.0$，分音从标准毛毡接触初值起振；
-- **在峰值绽放点 ($t = \tau_n$)**：
-  $B_n(\tau_n) = 1.0 + E_b \cdot \zeta_n$ 达到最大绽放极值（高阶分音能量显著上扬）；
-- **在稳态衰减期 ($t \gg \tau_n$)**：
-  $B_n(t) \to 1.0$，平滑回退，完全服从音板阻抗决定的自然双指数指数衰减。
+**边界（撤回归属）**：
+- $E_b$、$T_b$ 的范围与默认值无原始来源，撤回为分析者候选值；
+- $\zeta_n$ 的 $\sin(\pi n/N)$ 形状、$\tau_n$ 的 `0.015 + 0.035(1-n/N)` 展开与 $N$ 的定义均无来源；
+- 该闭式 $t \cdot e^{1-t/\tau}$ 包络**不是**已取证的“惯性滤波器/二阶状态求解器”：没有任何切片显示内部按哪个差分或状态方程积分，也没有测量支持该峰值形状；把它称为“二阶惯性低通包络生成器”或“高阶泛音时变增益方程”**已撤回**；
+- 中心主张“高阶分音先滞后后攀升”“$t = \tau_n$ 达最大绽放然后回退到 1.0”——作为**现象类别**可以研究，但本仓库未做相关测量；作为**内部机制**的断言无证据。
 
 ---
 
-## 三、Phase 5-3 衔接指引
+## 三、Phase 5-3 衔接（历史计划）
 
-在 Phase 5-2 成功推导出二次方几何张力非线性调制方程与双参数惯性滞后膨胀包络之后，**Phase 5-3** 将聚焦于：
-1. 整合 Phase 5-1 与 Phase 5-2 的全链路模型；
-2. 输出包含完整逐采样点张力积分更新、瞬时音高调制与双参数绽放发生器的《二次方张力非线性与泛音绽放算法技术规约》（`docs/phase5/phase5-3-quadratic-blooming-spec.md`）；
-3. 提供 C++20 Clean-Room 算法参考实现类 `NonlinearTensionAndBloomingVoice`，实现 Phase 5 的全胜闭环。
+当时的衔接计划为把 5-1/5-2 的整理合并为一份规格书（`docs/phase5/phase5-3-quadratic-blooming-spec.md`），并附 C++20 参考实现“实现 Phase 5 的全胜闭环”。该规约文件已归档；本轮按[统一复核与证据等级](../acoustic_benchmark_report.md#证据等级与旧主张处理)处理其中的示例与“已通过验收”声明，本文不重复其数值。

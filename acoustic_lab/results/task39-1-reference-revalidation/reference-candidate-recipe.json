@@ -1,0 +1,51 @@
+{
+  "task": "39-1",
+  "original_agent_recipe_SHA256": "5634a82f47bdccb2f1faa5a461282fbb20f2853659d6efe4bb068f65f175fee0",
+  "source_text": "\n# ===== pianoteq9 reference-audio independent recomputation recipe (verified) =====\n# Python 3.14.4 / numpy 2.5.3 / scipy 1.18.1 ; no mido/soundfile needed.\n# Inputs: /root/repos/pianoteq9/acoustic_lab/{midi,audio}/  (read-only)\nimport numpy as np, struct, glob, os, hashlib\nFS = 48000; BASE = '/root/repos/pianoteq9/acoustic_lab'\n\ndef parse_smf0(path):\n    b = open(path,'rb').read(); assert b[:4]==b'MThd'\n    hlen=int.from_bytes(b[4:8],'big'); fmt=int.from_bytes(b[8:10],'big')\n    ntrk=int.from_bytes(b[10:12],'big'); div=int.from_bytes(b[12:14],'big')\n    i=8+hlen; body=b[i+8:i+8+int.from_bytes(b[i+4:i+8],'big')]; j=0; t=0; ev=[]\n    while j<len(body):\n        d=0\n        while True:\n            c=body[j]; j+=1; d=(d<<7)|(c&0x7f)\n            if not c&0x80: break\n        t+=d; st=body[j]\n        if st==0xFF:\n            j+=1; mt=body[j]; j+=1; ln=0\n            while True:\n                c=body[j]; j+=1; ln=(ln<<7)|(c&0x7f)\n                if not c&0x80: break\n            data=body[j:j+ln]; j+=ln\n            ev.append((t,'meta',mt,int.from_bytes(data,'big') if mt==0x51 else None))\n        elif st&0xF0 in (0x80,0x90,0xA0,0xB0,0xE0):\n            ev.append((t,st>>4,st&0x0F,body[j+1],body[j+2])); j+=3\n        else:\n            ev.append((t,st>>4,st&0x0F,body[j+1],None)); j+=2\n    us=[e[3] for e in ev if e[1]=='meta' and e[2]==0x51 and e[3] is not None][0]\n    sec=lambda tk: tk/div*(us/1e6)\n    ons=[(sec(e[0]),e[3],e[4]) for e in ev if e[1]==9 and e[4]>0]\n    offs=[(sec(e[0]),e[3]) for e in ev if (e[1]==8) or (e[1]==9 and e[4]==0)]\n    return fmt,ntrk,div,us,ons,offs\n\ndef read_wav24(path):\n    b=open(path,'rb').read(); assert b[:4]==b'RIFF' and b[8:12]==b'WAVE'\n    i=12; data=None; fmt=None; chunks=[]\n    while i<len(b):\n        cid=b[i:i+4]; sz=int.from_bytes(b[i+4:i+8],'little'); body=b[i+8:i+8+sz]\n        chunks.append((cid.decode('latin1'),sz))\n        if cid==b'fmt ': fmt=struct.unpack('<HHIIHH',body[:16])\n        elif cid==b'data': data=body\n        i+=8+sz+(sz&1)\n    ch,sr,bits=fmt[1],fmt[2],fmt[5]\n    n=len(data)//(3*ch)\n    a=np.frombuffer(data[:n*3*ch],dtype=np.uint8).reshape(n,ch,3).astype(np.int32)\n    v=(a[:,:,0]|(a[:,:,1]<<8)|(a[:,:,2]<<16)); v=(v^0x800000)-0x800000\n    return v.astype(np.float64)/8388608.0, sr, ch, bits, n, chunks\n\ndef peaks_stereo_power(x, t0, t1, lo, hi, thresh_db=-80.0, padfac=8):\n    \"\"\"Hann window, stereo power (|L|^2+|R|^2)/2, zero-pad >=8x, parabolic log-power peak interp.\"\"\"\n    seg=x[int(round(t0*FS)):int(round(t1*FS)),:]; N=len(seg)\n    nfft=1<<int(np.ceil(np.log2(N*padfac)))\n    w=np.hanning(N)[:,None]\n    Y=np.fft.rfft(seg*w,nfft,axis=0)\n    P=(np.abs(Y[:,0])**2+np.abs(Y[:,1])**2)/2\n    f=np.fft.rfftfreq(nfft,1/FS); Pn=P/P.max()\n    out=[]\n    for i in range(max(np.searchsorted(f,lo),1), min(np.searchsorted(f,hi),len(f)-1)):\n        if Pn[i]>Pn[i-1] and Pn[i]>=Pn[i+1] and 10*np.log10(Pn[i])>thresh_db:\n            a,b,c=np.log(Pn[i-1]+1e-30),np.log(Pn[i]+1e-30),np.log(Pn[i+1]+1e-30)\n            d=0.5*(a-c)/(a-2*b+c) if (a-2*b+c)!=0 else 0.0\n            out.append((float(f[i]+d*(f[1]-f[0])), float(10*(np.log(Pn[i])-0.25*(a-c)*d)/np.log(10))))\n    return out\n\ndef f_n(f1,B,n): return n*f1*np.sqrt((1.0+B*n*n)/(1.0+B))   # f1 = FIRST PARTIAL (not soft string)\n\ndef fit_B_f1(peaks, f1_lo, f1_hi, Nmax=25, tol=0.010, minn=6):\n    \"\"\"coarse (B,f1) grid + Nelder-Mead refine; assignment = nearest peak within tol.\"\"\"\n    from scipy.optimize import minimize\n    P=np.array(peaks,float)\n    def chain(f1,B):\n        ns=[];fs=[]\n        for n in range(1,Nmax+1):\n            pr=f_n(f1,B,n)\n            if pr>20000: break\n            d=np.abs(P[:,0]-pr)/pr; j=int(np.argmin(d))\n            if d[j]<=tol: ns.append(n); fs.append(P[j,0])\n        return ns,fs\n    best=None\n    for B in np.concatenate([[0.0],np.logspace(-6.5,-0.5,300)]):\n        for f1 in np.linspace(f1_lo,f1_hi,241):\n            ns,fs=chain(f1,B)\n            if len(ns)<minn: continue\n            r=np.array([1200*np.log2(f/f_n(f1,B,n)) for n,f in zip(ns,fs)])\n            c=float(np.sqrt(np.mean(r*r)))\n            if best is None or c<best[0]: best=(c,f1,B)\n    if best is None: return None\n    def cost(p):\n        f1,B=p\n        if not(0<=B<0.3 and f1>0): return 1e9\n        ns,fs=chain(f1,B)\n        if len(ns)<minn: return 1e9\n        r=np.array([1200*np.log2(f/f_n(f1,B,n)) for n,f in zip(ns,fs)])\n        return float(np.sqrt(np.mean(r*r)))\n    r=minimize(cost,[best[1],best[2]],method='Nelder-Mead',\n               options={'xatol':1e-11,'fatol':1e-13,'maxiter':8000})\n    f1,B=r.x; ns,fs=chain(f1,B)\n    resid=[1200*np.log2(f/f_n(f1,B,n)) for n,f in zip(ns,fs)]\n    return dict(f1=float(f1),B=float(B),ns=ns,fs=fs,resid_c=resid,\n                maxres=float(max(abs(v) for v in resid)),\n                rms=float(np.sqrt(np.mean(np.square(resid)))))\n\ndef trio_metrics(key, t0=0.05, t1=0.80, fcut=2500.0, fmin=20.0):\n    \"\"\"Pinned definitions: stereo power, Hann, zero-pad 8x, centroid = sum(f*P)/sum(P),\n    HF = 10log10(sum P(f>fcut)/sum P(f>=fmin)). Peak = 20log10 max|mono|.\"\"\"\n    x=W[key]; n0=int(round(t0*FS)); n1=int(round(t1*FS)); seg=x[n0:n1,:]; N=n1-n0\n    w=np.hanning(N)[:,None]; nfft=1<<int(np.ceil(np.log2(N*8)))\n    Y=np.fft.rfft(seg*w,nfft,axis=0); P=(np.abs(Y[:,0])**2+np.abs(Y[:,1])**2)/2\n    f=np.fft.rfftfreq(nfft,1/FS); sel=f>=fmin\n    cen=float((f[sel]*P[sel]).sum()/P[sel].sum())\n    hf=float(10*np.log10(P[f>fcut].sum()/P[sel].sum()))\n    mono=(x[:,0]+x[:,1])/2\n    return dict(centroid_hz=cen, hf_db=hf, peak_mono_dbfs=float(20*np.log10(np.abs(mono).max())))\n\ndef c3_double_exp(key, t0, t1, band=(110,160), hop=0.01):\n    \"\"\"partial-1 band envelope (Hilbert), amplitude-domain double-exponential fit.\"\"\"\n    from scipy.signal import firwin, filtfilt, hilbert\n    from scipy.optimize import curve_fit\n    x=W[key]; mono=(x[:,0]+x[:,1])/2\n    h=firwin(4097,[band[0]/(FS/2),band[1]/(FS/2)],pass_zero=False,window='hann')\n    env=np.abs(hilbert(filtfilt(h,[1.0],mono)))\n    t=np.arange(len(mono))/FS; sel=(t>=t0)&(t<=t1)\n    dbl=lambda tt,a1,ta1,a2,ta2: a1*np.exp(-tt/ta1)+a2*np.exp(-tt/ta2)\n    p,_=curve_fit(dbl,t[sel],env[sel],p0=[env[sel][0],0.8,env[sel][0]*0.1,5.0],maxfev=80000,\n                  bounds=([-1e9,0.02,-1e9,0.05],[1e9,60,1e9,500]))\n    return dict(tau1=float(p[1]),tau2=float(p[3]),frac1_pct=float(p[0]/(p[0]+p[2])*100))\n\n# ---------- run ----------\nfor p in sorted(glob.glob(BASE+'/midi/*.mid')):\n    print('MIDI', os.path.basename(p), parse_smf0(p)[:4])\nW={}\nfor p in sorted(glob.glob(BASE+'/audio/*.wav')):\n    x,sr,ch,bits,n,ck=read_wav24(p); W[os.path.basename(p)[:-4]]=x\n    print('WAV ', os.path.basename(p), sr, ch, bits, n, round(n/sr,4), ck)\n\nNOTES=[('exp_a_C1',32.0,33.0,25,6),('exp_a_C2',64.0,67.0,25,6),('exp_a_C3',129.0,132.5,25,6),\n       ('exp_a_C4',260.0,264.0,25,6),('exp_a_C5',521.0,526.0,20,4),('exp_a_C6',1046.0,1052.0,12,3),\n       ('exp_a_C7',2104.0,2112.0,8,3)]\nfor key,lo,hi,Nm,mn in NOTES:\n    t0,t1=(0.08,0.80) if key=='exp_a_C7' else (0.08,3.80)\n    pk=peaks_stereo_power(W[key],t0,t1,max(10.0,lo*0.6),20000.0,-80.0)\n    r=fit_B_f1(pk,lo,hi,Nmax=Nm,tol=0.010,minn=mn)\n    print(key, 'f1=%.4f B=%.4e n=%d maxres=%.2fc rms=%.2fc'%(r['f1'],r['B'],len(r['ns']),r['maxres'],r['rms']))\nfor k in ('exp_b_c4_piano','exp_b_c4_mezzo','exp_b_c4_forte'):\n    print(k, trio_metrics(k))\nfor (a,b) in [(0.1,5.9),(0.2,4.8),(0.3,5.0)]:\n    print('C3 double-exp win',a,b, c3_double_exp('exp_c_c3_decay',a,b))\n",
+  "qualification": "Candidate search/assigned peaks and fixed-assignment consistency only; unknown historical controls and unison identity prevent production B calibration. LOO retains the full-data peak assignments, so it is not an independent no-leakage validation of peak selection. Parent did not adopt report arithmetic errors or general physical constants.",
+  "fixed_assignment_refit_text": "import numpy as np\nfrom scipy.optimize import least_squares\n\ndef refit_fixed_families(rows, seeds):\n    seed_lookup={name:(f,b) for name,f,b,_ in seeds}\n    out=[]\n    for row in rows:\n        seed_f,seed_b=seed_lookup[row['note']]\n        n=np.array(row['partial_numbers']); actual=np.array(row['observed_peak_Hz'])\n        def predict(params,indices):\n            f,b=params\n            return indices*f*np.sqrt((1+b*indices**2)/(1+b))\n        def fit(keep):\n            return least_squares(lambda p:1200*np.log2(actual[keep]/predict(p,n[keep])),[seed_f,seed_b],bounds=([seed_f*.98,0],[seed_f*1.02,.3]),x_scale=[seed_f,max(seed_b,1e-5)],max_nfev=2000)\n        solution=fit(np.ones(len(n),bool)); residual=1200*np.log2(actual/predict(solution.x,n))\n        loo=[]\n        for k in range(len(n)):\n            partfit=fit(np.arange(len(n))!=k)\n            loo.append(float(1200*np.log2(actual[k]/predict(partfit.x,np.array([n[k]]))[0])))\n        out.append({'note':row['note'],'f1_Hz':float(solution.x[0]),'B_effective':float(solution.x[1]),'residual_cents':residual.tolist(),'residual_Hz':(actual-predict(solution.x,n)).tolist(),'LOO_fixed_assignment_cents':loo})\n    return out\n",
+  "fixed_assignment_seeds": [
+    [
+      "C1",
+      32.4907,
+      8.976e-05,
+      25
+    ],
+    [
+      "C2",
+      65.2969,
+      5.028e-05,
+      25
+    ],
+    [
+      "C3",
+      130.7003,
+      0.0001164,
+      25
+    ],
+    [
+      "C4",
+      261.511,
+      0.0003587,
+      25
+    ],
+    [
+      "C5",
+      523.3,
+      0.001106,
+      20
+    ],
+    [
+      "C6",
+      1049.639,
+      0.003143,
+      12
+    ],
+    [
+      "C7",
+      2109.575,
+      0.009002,
+      8
+    ]
+  ]
+}

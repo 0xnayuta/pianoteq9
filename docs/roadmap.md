@@ -1,147 +1,36 @@
-# Pianoteq 9 深度逆向与物理建模算法研究路线图 (Roadmap)
+# Pianoteq 9 研究路线与证据状态
 
-> **文档定位**：本路线图定义了在 WSL2 环境下利用 REA 6.1.0 与 Ghidra 12.1.4 对 `binaries/Pianoteq 9.vst3plugin` (58.0 MiB) 开展代码级深度逆向工程的分阶段规划。
-> **严格边界**：本项目只负责产出客观的逆向证据、离散数学方程与声学参数规格报告，**严禁向 [`devpiano`](https://github.com/0xnayuta/devpiano) 复制专有二进制代码**；所有针对 `devpiano` 的吸收、重构与工程落地必须在 `devpiano` 自身的开发迭代中独立进行。
+> 用途：维护研究产物入口、当前证据类别与进一步验证的进入条件；不是 devpiano 产品路线。
+> 原始研究目标和旧Accepted记录可在输入Git修订/本机封存追溯。产物完成、数学可解释、内部算法已证实和生产工程通过不是同一状态。
 
----
+## 当前工作与边界
 
-## 阶段演进概览
+Task 39-1 下游复核结果回流：封存原始音频、重建输入和双方旧文档；参考结果、方法、claims及manifest落库；以 [声学基准报告](acoustic_benchmark_report.md) 统一口径与旧主张处理。复算入口只读取现有文件，不能补证过去商业渲染条件。
 
-```mermaid
-flowchart TD
-    subgraph P1_G ["Phase 1: 琴槌击弦动力学"]
-        P1_1["Phase 1-1: RVA锚点与XRefs取证"] --> P1_2["Phase 1-2: 参数映射与结构体反编译"]
-        P1_2 --> P1_3["Phase 1-3: 离散接触力方程重构"]
-    end
+REA/Ghidra用于有明确目标和真实工具记录的静态研究。本轮不重做完整商业DSP反编译、不修改二进制或 devpiano 音源。原路线的工具版本与槽位数字属于历史记录，不用当前安装版本或新假说覆盖；具体证据真实性仍须对应原始输出单独核对。
 
-    subgraph P2_G ["Phase 2: 音板阻抗与截止"]
-        P2_1["Phase 2-1: 阻抗参数锚点检索"] --> P2_2["Phase 2-2: 滤波器系数生成例程反编译"]
-        P2_2 --> P2_3["Phase 2-3: 音板网络拓扑与衰减规约"]
-    end
+## 原研究产物入口
 
-    subgraph P3_G ["Phase 3: 同音微调与拍频"]
-        P3_1["Phase 3-1: 同音失谐控制链定位"] --> P3_2["Phase 3-2: 偏振耦合与相位反相算子反编译"]
-        P3_1 --> P3_2 --> P3_3["Phase 3-3: 双阶段衰减生成算法规格"]
-    end
+| 方向 | 原子阶段文件 | 当前状态边界 |
+|---|---|---|
+| Phase 1：琴槌与整音 | [1-1](phase1/phase1-1-rva-xrefs-evidence.md) / [1-2](phase1/phase1-2-hammer-mapping-decompilation.md) / [1-3](phase1/phase1-3-hammer-dynamics-spec.md) | 原记录/候选产物保留，解释受统一证据等级限制；内部实现等价和生产工程认证未建立 |
+| Phase 2：音板与耗散 | [2-1](phase2/phase2-1-soundboard-anchors-evidence.md) / [2-2](phase2/phase2-2-filter-coefficient-decompilation.md) / [2-3](phase2/phase2-3-soundboard-acoustic-spec.md) | 原记录/候选产物保留，解释受统一证据等级限制；内部实现等价和生产工程认证未建立 |
+| Phase 3：同音与衰减 | [3-1](phase3/phase3-1-unison-control-chain.md) / [3-2](phase3/phase3-2-beating-matrix-decompilation.md) / [3-3](phase3/phase3-3-unison-beating-spec.md) | 原记录/候选产物保留，解释受统一证据等级限制；内部实现等价和生产工程认证未建立 |
+| Phase 4：开放弦与非发音段 | [4-1](phase4/phase4-1-sympathetic-anchors-evidence.md) / [4-2](phase4/phase4-2-resonance-pool-decompilation.md) / [4-3](phase4/phase4-3-sympathetic-system-spec.md) | 原记录/候选产物保留，解释受统一证据等级限制；内部实现等价和生产工程认证未建立 |
+| Phase 5：张力与泛音时间轨迹 | [5-1](phase5/phase5-1-quadratic-blooming-anchors-evidence.md) / [5-2](phase5/phase5-2-nonlinear-mechanics-decompilation.md) / [5-3](phase5/phase5-3-quadratic-blooming-spec.md) | 原记录/候选产物保留，解释受统一证据等级限制；内部实现等价和生产工程认证未建立 |
 
-    subgraph P4_G ["Phase 4: 交感共鸣与双音阶"]
-        P4_1["Phase 4-1: 开放弦共鸣触发链路定位"] --> P4_2["Phase 4-2: 共鸣池总线分配例程反编译"]
-        P4_2 --> P4_3["Phase 4-3: 交感共鸣耦合网络规格"]
-    end
+## 进一步研究的进入条件
 
-    subgraph P5_G ["Phase 5: 二次方张力与泛音绽放"]
-        P5_1["Phase 5-1: 二次方与膨胀参数锚点取证"] --> P5_2["Phase 5-2: 几何张力调制与膨胀滤波反编译"]
-        P5_2 --> P5_3["Phase 5-3: 张力非线性与泛音绽放规格"]
-    end
+1. **数据身份先固定**：版本、原始文件SHA、输入MIDI与实际生效参数分别记录；未知预设/拾音/增益不从模板或当前GUI prefs反推。
+2. **量测先定义**：分音号、柔弦/第一分音/同音峰、时窗、功率/幅度、分辨能力和真正独立的验证条件在比较前固定。
+3. **候选模型可证伪**：从固定输出建立分音族或包络假说，报告Hz/cents残差及窗口/边界敏感性；新 `B_eff` 不自动升级为内部参数。
+4. **静态证据须完整链条**：字符串、分配大小和常量不能唯一证明状态更新算法；涉及实现等价需有相应数据流/调用/状态和独立行为证据，本轮未建立。
+5. **工程落地独立验收**：数值稳定、Nyquist、生命周期和完整实时闭包必须由消费者验证；理论示例或未留receipt的编译声明不能代替工程通过。
 
-    P1_G --> P2_G --> P3_G --> P4_G --> P5_G
-```
+本仓库只在真实研究需求出现时小步补证，不为封板结论重开所有阶段或建立通用平台。旧指数B、固定接触时间、机械能量权重和算法等价断言的当前处理以基准报告为准，不能继续作为新研究的强制验收目标。
 
----
+## 资料与产品责任
 
-## Phase 1: 琴槌非线性击弦动力学定向逆向 (Hammer-String Dynamics)
+轻量参考结果随Git保存，本机忽略封存与原始音频由散列追溯。原始汇编、地址、XRefs和作者注释保留原样，解释部分可纠错；不把历史记录的存在误称为当前验证。
 
-### 1.1 阶段目标
-逆向提取 Pianoteq 9 琴槌毛毡在不同力度下的非线性接触刚度模型、三速度阶梯（Piano 41 / Mezzo 70 / Forte 98）映射逻辑、接触时间 $T_c$ 动态变化机制，以及击弦瞬态打击噪声与木质感平衡滤波器的算法实现。
-
-### 1.2 研究边界与前置条件
-- **边界约束**：聚焦于琴槌激励核（Exciter Kernel）本身，不扩散至琴弦全局波动方程求解器；不反编译无关的 GUI 控件与视图组件代码。
-- **前置条件**：`binaries/Pianoteq 9.vst3plugin` 完整就绪，REA + Ghidra 12.1.4 冒烟测试正常。
-
-### 1.3 子阶段任务与验收标准
-
-| 子阶段编号 | 任务名称 | 具体任务内容 | 交付产物与验收标准 |
-| :--- | :--- | :--- | :--- |
-| **Phase 1-1** | 击弦参数 RVA 锚点与 XRefs 交叉引用取证 | 编写提取脚本扫描 `.rdata` 节，精确定位 `hammer_hardness_*`、`hammer_noise_*`、`hammer_tone_*` 字符串的虚拟内存地址（RVA）；调用 REA/Ghidra 提取所有引用该地址的代码指令（XRefs）。 | **验收报告**：`docs/phase1/phase1-1-rva-xrefs-evidence.md`<br>**标准**：记录各字符串的物理偏移、RVA 地址、所有调用方指令地址与调用函数上下文。 |
-| **Phase 1-2** | 琴槌参数注册与映射函数定向反编译 | 针对 Phase 1-1 锁定的函数入口，调用 `rea decompile` 提取 C/C++ 伪代码；逆向分析琴槌参数结构体（struct）、MIDI Velocity 到刚度系数 $K(v)$ 的映射逻辑与三速度插值算法。 | **验收报告**：`docs/phase1/phase1-2-hammer-mapping-decompilation.md`<br>**标准**：提供 Ghidra 伪代码原件、字段标注的 C++ 结构体草案、三点拟合数学公式。 |
-| **Phase 1-3** | 离散接触力计算核心算法与激振核数学重构 | 追踪参数进入实时音频渲染循环（Process Loop）的关键调用，提取琴槌-琴弦接触受力计算的逐采样点离散方程、毛毡压缩回弹状态判定逻辑与打击噪声带通滤波器拓扑。 | **验收报告**：`docs/phase1/phase1-3-hammer-dynamics-spec.md`<br>**标准**：输出完全脱离专有汇编的纯离散数学方程、状态机定义及技术规约文档。 |
-
----
-
-## Phase 2: 音板力学阻抗与频带截止滤波器定向逆向 (Soundboard Impedance & Cutoff)
-
-### 2.1 阶段目标
-逆向提取 Pianoteq 9 音板机械力学阻抗、截止频率与高低音板分区的离散 DSP 滤波器拓扑结构、极零点系数计算公式以及琴弦振动能量向音板耗散的衰减控制机制。
-
-### 2.2 研究边界与前置条件
-- **边界约束**：聚焦于琴桥-音板界面的能量吸收网络与阻抗滤波，不涉及空间房间冲激响应（Reverb Space）与多麦克风拾音延迟阵列。
-- **前置条件**：Phase 1 逆向完成，熟悉核心声音引擎的 C++ 类继承体系。
-
-### 2.3 子阶段任务与验收标准
-
-| 子阶段编号 | 任务名称 | 具体任务内容 | 交付产物与验收标准 |
-| :--- | :--- | :--- | :--- |
-| **Phase 2-1** | 音板阻抗与截止参数锚点检索 | 在 `.rdata` 节定位 `Impedance`、`impedance_cutoff`、`impedance_section`、`impedance_slope` 字符串的 RVA 地址，通过 REA 追踪读取该参数的初始化函数。 | **验收报告**：`docs/phase2/phase2-1-soundboard-anchors-evidence.md`<br>**标准**：锁定负责计算音板阻抗响应的核心类及其虚函数表 (vtable)。 |
-| **Phase 2-2** | 阻抗到 DSP 滤波器系数生成例程反编译 | 定向反编译将力学阻抗标量转化为实际 IIR/Biquad/SVF 极零点系数的例程，分析其截止频率与斜率（Slope）的数学映射公式。 | **验收报告**：`docs/phase2/phase2-2-filter-coefficient-decompilation.md`<br>**标准**：完整提取双二次滤波器或状态变量滤波器的连续到离散双线性变换公式。 |
-| **Phase 2-3** | 音板能量衰减网络拓扑规约提炼 | 判定其音板网络是 16 模态并联二阶谐振器、级联损耗端还是状态变量波导终止端，提取各频段能量耗散率常数。 | **验收报告**：`docs/phase2/phase2-3-soundboard-acoustic-spec.md`<br>**标准**：生成完整的音板阻抗与高频耗散离散网络结构图与参数计算清单。 |
-
----
-
-## Phase 3: 同音三弦微失谐与琴桥耦合矩阵定向逆向 (Unison Detuning & Beating)
-
-### 3.1 阶段目标
-逆向提取 `unison_width` 与 `Unison Balance` 在同音多弦之间分配失谐量（微音分偏差）的数值规律，以及琴桥端三弦耦合在离散时域产生 Weinreich 双阶段衰减（Prompt Decay 与 Aftersound）的矩阵算子结构。
-
-### 3.2 研究边界与前置条件
-- **边界约束**：聚焦单键同音弦（Unison Triplet）内部的力学耦合与非对称拍频，不扩展到跨琴键的全局交感共鸣池。
-- **前置条件**：已掌握音板琴桥阻抗边界条件。
-
-### 3.3 子阶段任务与验收标准
-
-| 子阶段编号 | 任务名称 | 具体任务内容 | 交付产物与验收标准 |
-| :--- | :--- | :--- | :--- |
-| **Phase 3-1** | 同音失谐参数控制链定位 | 检索 `Unison Width`、`Unison Balance`、`unison_width` 字符锚点，定位控制三根弦独立音高偏置与初始相位的代码路径。 | **验收报告**：`docs/phase3/phase3-1-unison-control-chain.md`<br>**标准**：列出三根琴弦失谐因子 $\Delta f_1, \Delta f_2, \Delta f_3$ 的符号引用。 |
-| **Phase 3-2** | 偏振耦合与相位反相算子反编译 | 定向反编译同相模态（Prompt 衰减）与反相模态（Aftersound 延音）的能量传递计算代码，逆向三弦振动合成时的振幅加权矩阵。 | **验收报告**：`docs/phase3/phase3-2-beating-matrix-decompilation.md`<br>**标准**：提取 Weinreich 经典偏振耦合在离散采样回路中的矩阵更新算法。 |
-| **Phase 3-3** | 同音双阶段衰减生成算法规格提炼 | 结合实验测得的 $\tau_1=0.865\text{s}, \tau_2=5.322\text{s}$ 与 $f_{beat}=3.56\text{Hz}$ 数据，重构出可复现的同音三振荡器衰减规范。 | **验收报告**：`docs/phase3/phase3-3-unison-beating-spec.md`<br>**标准**：输出包含能量权重比、失谐公式与相位初值的独立算法规格书。 |
-
----
-
-## Phase 4: 全局开放弦交感共鸣与延音共鸣池定向逆向 (Sympathetic & Duplex Resonances)
-
-### 4.1 阶段目标
-逆向分析延音踏板踩下（CC64=127）或单键和弦长音时，未制音琴弦与琴桥振动的全局双向耦合能量注入模型，揭示交感共鸣池与双音阶弦区（Duplex Scale）的计算复杂度、共鸣池分配拓扑与能量衰减方程。
-
-### 4.2 研究边界与前置条件
-- **边界约束**：聚焦琴弦间的被动激励与阻尼时间，不包含机械踏板踩踏物理杂音模型。
-- **前置条件**：完成 Phase 1~3，已建立对单音发声物理全链路的认知。
-
-### 4.3 子阶段任务与验收标准
-
-| 子阶段编号 | 任务名称 | 具体任务内容 | 交付产物与验收标准 |
-| :--- | :--- | :--- | :--- |
-| **Phase 4-1** | 开放弦共鸣参数锚点与触发链路定位 | 定位 `sympathetic_resonance`、`duplex_scale_resonance`、`resonance_duration_view` 的 RVA 地址，追踪制音器抬起状态下的交感共鸣激活代码。 | **验收报告**：`docs/phase4/phase4-1-sympathetic-anchors-evidence.md`<br>**标准**：确认未击打弦作为被动振荡器加入计算的数据结构定义。 |
-| **Phase 4-2** | 共鸣池总线分配例程定向反编译 | 反编译琴桥共振总线（Resonance Bus）与 88 键未制音弦之间能量双向交换的混音与滤波例程。 | **验收报告**：`docs/phase4/phase4-2-resonance-pool-decompilation.md`<br>**标准**：解析共鸣池矩阵维度（是 12 半音腔还是 88 键双向网络）及计算复杂度控制。 |
-| **Phase 4-3** | 交感共鸣耦合网络算法规格提炼 | 提取阻尼耗散时间与共鸣强度增益方程，生成规范的交感共鸣与双音阶系统架构规格书。 | **验收报告**：`docs/phase4/phase4-3-sympathetic-system-spec.md`<br>**标准**：输出完整的全局交感共振池物理数学模型与离散实现设计规约。 |
-
----
-
-## Phase 5: 二次方张力非线性效应与泛音滞后膨胀定向逆向 (Quadratic Effect & Blooming Dynamics)
-
-### 5.1 阶段目标
-逆向提取 Pianoteq 9 中大动态强奏下琴弦几何二次方张力调制机制（`Quadratic Effect`，Slot 58）、泛音时间滞后非线性能量泵浦与动态上升绽放模型（`Blooming Energy`，Slot 60 与 `Blooming Inertia`，Slot 61）。揭示其如何在极低 CPU 算力下离散求解非线性偏微分张力积分，以及如何在逐采样点渲染中动态驱动泛音模式的振幅爬升。
-
-### 5.2 研究边界与前置条件
-- **边界约束**：聚焦单音琴弦内部的几何张力非线性与模式间能量泵浦，不扩散至全局琴体空间声场混响。
-- **前置条件**：完成 Phase 1~4，已建立对单音击弦动力学、音板模态阻尼、同音拍频及全局共鸣池的完整物理数学认知。
-
-### 5.3 子阶段任务与验收标准
-
-| 子阶段编号 | 任务名称 | 具体任务内容 | 交付产物与验收标准 |
-| :--- | :--- | :--- | :--- |
-| **Phase 5-1** | 二次方效应与泛音膨胀参数锚点取证 | 在 `binaries/Pianoteq 9.vst3plugin` 的 `.text` 节中检索参数 `Quadratic Effect`、`Blooming Energy`、`Blooming Inertia` 的物理 RVA 内存地址，扫描代码段交叉引用指令（XRefs），并通过 `.pdata` 运行时函数展开表定位其所属核心函数边界。 | **验收报告**：`docs/phase5/phase5-1-quadratic-blooming-anchors-evidence.md`<br>**标准**：锁定内部槽位（Slot 58/60/61）的绑定关系与包含函数权威边界。 |
-| **Phase 5-2** | 几何张力调制与膨胀滤波例程定向反编译 | 针对 Phase 5-1 锁定的核心 DSP 渲染例程执行定向反编译与数据流切片，逆向分析：<br>1. 振幅平方项 $\Delta y^2$ 如何在离散时间步步进中调制琴弦有效张力与瞬态音高微漂移（Pitch Glide）；<br>2. `Blooming Energy` 与 `Blooming Inertia` 如何转化为二阶惯性低通滤波器对高阶分音施加时变增益包络。 | **验收报告**：`docs/phase5/phase5-2-nonlinear-mechanics-decompilation.md`<br>**标准**：提供 Ghidra 伪代码原件、张力调制方程与双参数惯性膨胀微分方程。 |
-| **Phase 5-3** | 张力非线性与泛音绽放算法规格提炼 | 整合 Phase 5-1 与 Phase 5-2 的全链路分析，提炼出完全脱离专有机器码的纯数学物理 Clean-Room《二次方张力非线性与泛音绽放算法技术规约》，并提供自包含的 C++20 算法实现参考类（`NonlinearTensionAndBloomingVoice`）。 | **验收报告**：`docs/phase5/phase5-3-quadratic-blooming-spec.md`<br>**标准**：输出包含非线性张力更新、惯性绽放滤波器与完整 C++20 实现的独立规约文档。 |
-
----
-
-## 阶段验收与文档归档准则
-
-1. **严格的子目录归档**：
-   各阶段产生的证据日志、反编译伪代码与数学技术报告，必须统一落盘至对应的 `docs/phaseX/` 子目录下，严禁散落在 `docs/` 根目录。
-2. **证据链铁律 (Evidence-First)**：
-   每份验收报告必须明确包含：
-   - **已观测事实 (Observations)**：物理文件偏移、RVA 地址、REA 生成的 Evidence ID、Ghidra 反编译原始行；
-   - **推断结论 (Inferences)**：数据结构推导、数学物理公式重构；
-   - **待验证未知项 (Unknowns)**：由于内联或反编译缺陷尚未完全证实的细节。
-3. **单向赋能边界**：
-   本路线图执行过程中，**任何阶段均不得自动修改 `devpiano` 仓库中的代码**。所有验收产物以离散数学方程、结构体伪代码与技术报告的形式提交至本仓库版本控制。
+实现、状态与后续任务只由 [devpiano roadmap](https://github.com/0xnayuta/devpiano/blob/main/docs/roadmap/roadmap.md) 管理。研究可以接收下游纠错，但不复制专有代码、不自动修改其DSP或自有文件格式，也不在本仓库维护另一套产品进度。

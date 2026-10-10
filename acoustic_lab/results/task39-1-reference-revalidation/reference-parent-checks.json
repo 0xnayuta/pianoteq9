@@ -1,0 +1,247 @@
+{
+  "C4": [
+    {
+      "name": "exp_b_c4_piano",
+      "velocity": 41,
+      "peak_stereo_dBFS": -25.527253755147697,
+      "centroid_stereo_power_Hz": 299.2292574956337,
+      "HF_stereo_power_ratio_dB": -60.04211827297908,
+      "HF_mono_power_ratio_dB": -63.311724460292766,
+      "rise_rms_10_20_40ms_ms": {
+        "10": 32.583333333333336,
+        "20": 34.208333333333336,
+        "40": 39.75
+      },
+      "onset_assumption": "MIDI note-on at WAV time 0; causal RMS prepended with 40ms zero only to define meter initialization, not evidence of pre-event silence",
+      "wav_sha256": "c6495105de4cd2230f4f67d4ffe8fc9d735b1bd89f756e8eaa9ac963f4205dee",
+      "peak_mono_mean_dBFS": -28.380779372751356
+    },
+    {
+      "name": "exp_b_c4_mezzo",
+      "velocity": 70,
+      "peak_stereo_dBFS": -17.188000910048082,
+      "centroid_stereo_power_Hz": 387.33749141510026,
+      "HF_stereo_power_ratio_dB": -40.727864650863516,
+      "HF_mono_power_ratio_dB": -44.63200303398129,
+      "rise_rms_10_20_40ms_ms": {
+        "10": 31.479166666666668,
+        "20": 33.083333333333336,
+        "40": 41.1875
+      },
+      "onset_assumption": "MIDI note-on at WAV time 0; causal RMS prepended with 40ms zero only to define meter initialization, not evidence of pre-event silence",
+      "wav_sha256": "2353196dd49c7ba3351548aaa0b0ae989e403e738390d654b146fb71c2f9a546",
+      "peak_mono_mean_dBFS": -19.309766381670663
+    },
+    {
+      "name": "exp_b_c4_forte",
+      "velocity": 98,
+      "peak_stereo_dBFS": -10.610545066204311,
+      "centroid_stereo_power_Hz": 477.9051699360261,
+      "HF_stereo_power_ratio_dB": -28.23893786764813,
+      "HF_mono_power_ratio_dB": -32.522837410601085,
+      "rise_rms_10_20_40ms_ms": {
+        "10": 31.583333333333332,
+        "20": 31.041666666666668,
+        "40": 39.833333333333336
+      },
+      "onset_assumption": "MIDI note-on at WAV time 0; causal RMS prepended with 40ms zero only to define meter initialization, not evidence of pre-event silence",
+      "wav_sha256": "ad745fe7aad715881109248fbd9db3f867c1a0da4163439bc92662479219b54b",
+      "peak_mono_mean_dBFS": -12.085729958406548
+    }
+  ],
+  "B_curve_checks": [
+    {
+      "midi": 24,
+      "pianoKey": 4,
+      "report_B": 0.0008518,
+      "formula_with_MIDI_index_B": 0.00025216328544091767,
+      "formula_with_piano_key_B": 0.0009252619029642794,
+      "piano_key_validity": "low segment value"
+    },
+    {
+      "midi": 36,
+      "pianoKey": 16,
+      "report_B": 0.000108,
+      "formula_with_MIDI_index_B": 0.00011559316587659163,
+      "formula_with_piano_key_B": 0.00042414561835053615,
+      "piano_key_validity": "low segment value"
+    },
+    {
+      "midi": 84,
+      "pianoKey": 64,
+      "report_B": 0.0032169,
+      "formula_with_MIDI_index_B": 0.0005546389527928596,
+      "formula_with_piano_key_B": null,
+      "piano_key_validity": "high formula advertised for key72-88 does not cover C6 key64"
+    }
+  ],
+  "matrix_and_envelope_semantics": {
+    "inverse_matrix_column_sums": [
+      1.7320508075688776,
+      0.0,
+      0.0
+    ],
+    "mono_aftersound_coefficients_zero": true,
+    "duplicated_after_mode_initial_energy": 1.105,
+    "single_exponential_amplitude_vs_power_rule": "tau_power=tau_amplitude/2; composite sums require cross terms, not a universal two-stage conversion",
+    "interpretation": "generic matrix arithmetic only; not proof of commercial internal implementation"
+  },
+  "C3_envelope_window_sensitivity": [
+    {
+      "window": [
+        0.08,
+        5.8
+      ],
+      "domain": "RMS amplitude",
+      "RMS_window_s": 0.1,
+      "hop_s": 0.02,
+      "tau_fast_s": 0.9016709680037849,
+      "tau_slow_s": 25.267494644145508,
+      "coefficient_fast_fraction": 0.9352004000454978,
+      "normalized_RMSE": 0.0031911537675444086,
+      "boundary_active": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "residual_modulation_peaks_Hz": [
+        0.57373046875,
+        1.3824462890625,
+        1.8768310546875,
+        7.32421875
+      ],
+      "physical_qualification": "phenomenological output-envelope fit only; coefficients are not stored string energy or universal piano constants"
+    },
+    {
+      "window": [
+        0.08,
+        5.8
+      ],
+      "domain": "power",
+      "RMS_window_s": 0.1,
+      "hop_s": 0.02,
+      "tau_fast_s": 0.48887738214557136,
+      "tau_slow_s": 2.8122605061485237,
+      "coefficient_fast_fraction": 0.9813788144229708,
+      "normalized_RMSE": 0.0034016818242069698,
+      "boundary_active": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "residual_modulation_peaks_Hz": [
+        0.5645751953125,
+        1.385498046875,
+        1.849365234375,
+        7.32421875
+      ],
+      "physical_qualification": "phenomenological output-envelope fit only; coefficients are not stored string energy or universal piano constants"
+    },
+    {
+      "window": [
+        0.3,
+        5.8
+      ],
+      "domain": "RMS amplitude",
+      "RMS_window_s": 0.1,
+      "hop_s": 0.02,
+      "tau_fast_s": 0.8769880726953236,
+      "tau_slow_s": 15.384770472795337,
+      "coefficient_fast_fraction": 0.9093669824157526,
+      "normalized_RMSE": 0.0031666936610955597,
+      "boundary_active": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "residual_modulation_peaks_Hz": [
+        0.5462646484375,
+        1.37939453125,
+        1.8798828125,
+        2.142333984375
+      ],
+      "physical_qualification": "phenomenological output-envelope fit only; coefficients are not stored string energy or universal piano constants"
+    },
+    {
+      "window": [
+        0.3,
+        5.8
+      ],
+      "domain": "power",
+      "RMS_window_s": 0.1,
+      "hop_s": 0.02,
+      "tau_fast_s": 0.4946566064568575,
+      "tau_slow_s": 3.6880286978297843,
+      "coefficient_fast_fraction": 0.9804115578267489,
+      "normalized_RMSE": 0.002840806943214935,
+      "boundary_active": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "residual_modulation_peaks_Hz": [
+        0.592041015625,
+        1.385498046875,
+        1.8798828125,
+        7.32421875
+      ],
+      "physical_qualification": "phenomenological output-envelope fit only; coefficients are not stored string energy or universal piano constants"
+    },
+    {
+      "window": [
+        0.5,
+        4.5
+      ],
+      "domain": "RMS amplitude",
+      "RMS_window_s": 0.1,
+      "hop_s": 0.02,
+      "tau_fast_s": 0.8677529438250685,
+      "tau_slow_s": 30.867752943803872,
+      "coefficient_fast_fraction": 0.8987273761307195,
+      "normalized_RMSE": 0.002256732315542471,
+      "boundary_active": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "residual_modulation_peaks_Hz": [
+        0.5645751953125,
+        1.30615234375,
+        7.421875,
+        4.0252685546875
+      ],
+      "physical_qualification": "phenomenological output-envelope fit only; coefficients are not stored string energy or universal piano constants"
+    },
+    {
+      "window": [
+        0.5,
+        4.5
+      ],
+      "domain": "power",
+      "RMS_window_s": 0.1,
+      "hop_s": 0.02,
+      "tau_fast_s": 0.46514904052683337,
+      "tau_slow_s": 2.0217170983905985,
+      "coefficient_fast_fraction": 0.9413897013253167,
+      "normalized_RMSE": 0.0016575217344304328,
+      "boundary_active": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "residual_modulation_peaks_Hz": [
+        0.50048828125,
+        1.3519287109375,
+        7.421875,
+        4.0283203125
+      ],
+      "physical_qualification": "phenomenological output-envelope fit only; coefficients are not stored string energy or universal piano constants"
+    }
+  ]
+}
