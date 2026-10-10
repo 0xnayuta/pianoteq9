@@ -1,8 +1,10 @@
 # Project: pianoteq9
 
-你正在协助进行 **pianoteq9** 逆向工程与声学物理建模分析实验室的维护与研究工作。
+你正在协助进行 **pianoteq9** 声学研究与保留音频量测实验室的维护与分析工作。
 
-本项目作为 [`devpiano`](https://github.com/0xnayuta/devpiano) 自主研发高保真物理建模钢琴音源（`PianoSynthVoice`）的专属声学研究前哨，核心职责是通过 **REA + Ghidra 静态定向反编译取证** 与 **无头自动化黑盒声学实测**，提炼出商业级物理建模钢琴的核心声学参数体系、毛毡击弦动力学、琴弦非谐性方程以及同音双阶段衰减规律。
+本项目作为 [`devpiano`](https://github.com/0xnayuta/devpiano) 自主研发高保真物理建模钢琴音源（`PianoSynthVoice`）的专属声学研究前哨，核心职责是通过 **公开参数语义解构、历史静态取证记录整理与可复核的黑盒声学量测**，提炼出商业级物理建模钢琴的核心参数语义、客观物理现象特征与参考数值范围。
+
+**【核心认知红线】彻底放弃“逆向完整原厂物理建模引擎代码”的不切实际幻想**：商业 C++ 二进制经过激进编译优化（/O2, AVX2, 内联展开），彻底抹去了变量名、结构体布局与物理量纲；浮点 SIMD 乘加指令无法逆向反推微观物理机制。本项目只输出可公开解释的数学假说、候选模型与客观量测数据，不提供也不宣称与商业内部实现等价的整器算法。
 
 开发与研究环境采用：**WSL2 Ubuntu 26.04 主工作树 + Windows 11 宿主运行环境 + OpenJDK 21 + Ghidra 12.1.4 + REA 6.3.0 + NumPy / SciPy 信号处理套件**。
 
@@ -18,20 +20,23 @@
   - **绝对只读**：严禁修改、篡改、打补丁或覆盖其中的专有二进制与资源。
 - `/docs/`
   - 核心研究产物与技术文档：
-    - [`docs/pianoteq9_parameter_dictionary_and_acoustic_spec.md`](docs/pianoteq9_parameter_dictionary_and_acoustic_spec.md)：明文参数字典与官方声学特性清单。
-    - [`docs/acoustic_benchmark_report.md`](docs/acoustic_benchmark_report.md)：黑盒声学实测基准报告（Steinway D 物理常数与拟合曲线）。
+    - [`docs/pianoteq9_parameter_dictionary_and_acoustic_spec.md`](docs/pianoteq9_parameter_dictionary_and_acoustic_spec.md)：参数语义与声学研究字典。
+    - [`docs/acoustic_benchmark_report.md`](docs/acoustic_benchmark_report.md)：保留音频量测与证据复核（统一量测口径、证据等级分层与旧主张撤回表）。
+    - [`docs/roadmap.md`](docs/roadmap.md)：研究路线与证据状态。
+    - `phase1/` ~ `phase5/`：历史静态记录与候选假说（每篇均标注证据等级，旧 C++ 示例已撤下）。
 - `/acoustic_lab/`
-  - 黑盒声学实验执行目录：
-    - `midi/`：标准测试 MIDI 序列（版本控制追踪，保障 100% 可重现）。
-    - `audio/`：无头批处理导出的 48 kHz / 24-bit 纯物理干音 WAV 采样（`.gitignore` 排除大体积文件，由 `scripts/` 按需生成）。
-    - `results/`：拟合数据与中间输出产物。
+  - 黑盒声学实验执行与证据保存目录：
+    - `midi/`：保留的标准测试 MIDI 序列（版本控制追踪，保障 100% 可重现）。
+    - `audio/`：保留参考 WAV 采样（`.gitignore` 排除大体积文件，由本机备份追溯）。
+    - `results/task39-1-reference-revalidation/`：经 devpiano Task 39-1 独立复算的轻量结果、方法、claims 与 manifest。
+    - `backups/task39-1-20261010/`：本机只读封存包（`.gitignore` 排除），包含原始音频、重建输入快照与 seal 校验散列。
 - `/scripts/`
   - 自动化、自包含的 Python 研究工具：
-    - `extract_parameters.py`：二进制明文字典与文档提取脚本。
-    - `run_acoustic_experiments.py`：MIDI 生成、无头批处理干音渲染、加窗 FFT 分音拾取与双指数拟合套件。
+    - `extract_parameters.py`：历史参数提取工具。
+    - `run_acoustic_experiments.py`：只读分析现有参考文件、复算谱峰与包络，并执行 JSON 冻结证据检查。
 - `/.omp/`
   - OMP Agent 本地配置：
-    - `mcp.json`：注册本地 `rea` stdio 服务（规范化指向 `/usr/local/bin/rea mcp`，超时 660 秒），保持项目级沙盒隔离，支持 Agent 自动化调用 Ghidra 反编译器。
+    - `mcp.json`：注册本地 `rea` stdio 服务（规范化指向 `/usr/local/bin/rea mcp`，超时 660 秒），支持 Agent 自动化调用 Ghidra 反编译器。
 
 ---
 
@@ -39,14 +44,25 @@
 
 1. **合法研究与合规红线**：
    - 本项目纯粹用于自主乐器算法研发（Clean-Room Design 与声学机理研究），**严禁制作、集成或分发任何绕过授权、脱壳或激活补丁**（已彻底清除 `ptq912p.dll` / `ptq912w.dll` 等无关第三方文件）。
-   - 严禁将专有二进制代码逐字反汇编复制到 `devpiano` 中；所有在 `devpiano` 的实现必须是基于物理声学规律（如 Hunt-Crossley 刚度模型、Weinreich 双阶段衰减模型）的自主代码。
-2. **定向反编译铁律（定向取证 vs 盲目全盘扫描）**：
-   - 商业 C++ 二进制（如 58.0 MiB 的 `Pianoteq 9.vst3plugin`）经过高度内联与优化，**严禁向 Ghidra 抛入整个二进制发起全量无序 Auto-Analysis**（会导致内存爆满或数小时超时）。
-   - 反编译必须基于**参数锚点与精确 RVA**：先通过 `scripts/extract_parameters.py` 或字符串搜索定位关键参数（如 `hammer_hardness_*`、`impedance_cutoff`）在 `.rdata` 节的内存地址，再通过 REA/Ghidra 的交叉引用（XRefs）定向提取特定初始化或计算函数的伪代码。
-3. **黑盒实测数据驱动**：
-   - 纯伪代码无法完整复原浮点声学全貌，必须配合黑盒实测验证。任何声学假设（非谐性常数 $B$、双阶段衰减时间常数 $\tau_1, \tau_2$、三力度频谱重心）必须以 `acoustic_lab/` 中的实测 WAV 数据为准。
+   - 严禁将专有二进制代码逐字反汇编复制到 `devpiano` 中；Clean-Room 声明不能代替来源和许可核对。
+2. **工程事实铁律：为什么“完整逆向商业物理建模代码”是不可能的**：
+   - 商业编译器的激进优化彻底摧毁了物理意图；浮点汇编无法证明是“琴弦张力”还是“音板阻尼”。
+   - **严禁主观脑补拼凑伪代码**：严禁仅凭字符串锚点或个别浮点常量，就强行结合外部学术论文拼凑所谓的“原厂 C++ 求解器”；严禁将未认证的数学假说宣称为商业内部实现。
+   - **深刻吸取前期惨痛教训**：
+     - Phase 3 曾错误构造出单声道下完全相位抵消且两阶段能量和达 1.105（违背能量守恒）的矩阵；
+     - Phase 5 曾错误使用单位余弦平方，导致能量均值恒为 1/2、频移滑音永不归零；
+     - 旧示例在音频内循环疯狂调用 `std::cos`、`std::exp`、`std::pow`，严重违背音频硬实时契约。
+     **上述旧 C++ 示例已整块撤下，严禁重新引入或推荐给 devpiano**。
+3. **五层证据等级分层法**：
+   本仓库文档必须严格区分并标注以下五层边界，严禁层级混淆：
+   - **【官方语义】**：来自官方手册与公开规格的明确说明（仅作为参考语义，不等于内部实现）；
+   - **【静态记录】**：来自 REA/Ghidra 的确定性只读记录（地址、字符串、槽位立即数、内存分配大小，不外推算法）；
+   - **【公开理论】**：经典声学教科书与公开已发表文献定理（属于公开知识，非商业秘密）；
+   - **【候选模型】**：未获代码级证实的离散方程、拟合曲线或结构假设（必须明确标为未认证，可证伪）；
+   - **【黑盒观测】**：基于特定音频、固定时窗与明确算法测得的客观数据（仅代表该条件下的测量观测，不冒称实琴物理常数）。
 4. **与 devpiano 的单向赋能边界**：
    - 对 `devpiano` 仓库的操作仅限于**只读参考**其声学模型架构（`source/Audio/PianoSynthVoice.h`、`PianoTuning.h`、`AcousticSnapshot.h`）。未获用户明确批准前，不得擅自修改 `devpiano` 中的业务代码。
+   - devpiano 仅以数据驱动方式吸收可复核量测结果与合理参考范围，自主编写符合其自有“零分配、零锁、零库函数三角”硬实时契约的代码。
 
 ---
 
@@ -54,16 +70,14 @@
 
 - 保持代码极简、清晰，使用现代 Python 3.10+ 标准库与 NumPy / SciPy 规范。
 - **绝不修改 `/binaries/` 下的任何文件**。
-- **代码探索首选静态提取与 REA 定向检索**，禁止在 60MB 二进制上发起盲目遍历。
-- 优先小步操作、小范围验证，任何实验更新必须确保脚本可全自动端到端重现。
+- **优先复算现有数据**，`scripts/run_acoustic_experiments.py --json` 必须能在现有保留数据上 100% 验证通过。
 - 环境变量持久化保证：无论通过哪个 shell 启动 `rea`，均通过 `/usr/local/bin/rea` 及包装器保证 `JAVA_HOME` 与 `GHIDRA_INSTALL_DIR` 自动注入。
 
 ### 3.1 研究期减负与 YAGNI
 
-1. **按需实验**：只针对 `devpiano` 当前声学演进阶段（琴槌动力学、非谐性拉伸、音板阻抗与同音拍频）进行专项测量，不无目的地遍历所有 88 个音符或生成数十 GB 音频。
+1. **数据驱动而非代码搬运**：只针对 devpiano 当前声学演进阶段进行针对性量测分析，不搞大而全的商业软件全量复刻。
 2. **零残留脚本**：一次性调试代码应整合进 `scripts/` 的模块化工具中，不留散落临时文件。
-3. **以物理证据为事实源**：区分“已观测事实（Observation）”、“理论推断（Inference）”与“待验证未知（Unknown）”，报告中必须注明证据来源（Evidence ID、拟合 $R^2$、实测采样率与参数值）。
-
+3. **严格以证据为事实源**：区分“已观测事实（Observation）”、“理论推断（Inference）”与“待验证未知（Unknown）”，报告中必须注明证据等级与复算散列。
 ---
 
 ## 4. 提交信息规范
@@ -146,12 +160,12 @@
 
 ```mermaid
 flowchart TD
-    A[明确声学研究目标: 如琴槌/非谐性/衰减] --> B[查阅文档字典 docs/ 明确参数控制键]
-    B --> C[编写/复用 scripts/ 生成专用测试 MIDI]
-    C --> D[无头运行批处理导出纯干音 WAV]
-    D --> E[NumPy/SciPy 科学拟合物理常数]
-    E --> F[更新 docs/ 实验基准报告]
-    F --> G[对比 devpiano 架构提出 C++ 实现方案]
+    A[明确声学研究目标: 如琴槌/非谐性/衰减] --> B[查阅参数字典与官方公开语义]
+    B --> C[执行/复算 scripts/ 验证参考音频与数据散列]
+    C --> D[NumPy/SciPy 科学拟合与留一交叉复核]
+    D --> E[更新 docs/ 基准报告与证据等级矩阵]
+    E --> F[提炼客观声学特征量测数据与参考范围]
+    F --> G[单向赋能 devpiano 自主实现算法与硬实时闭环]
 ```
 
 ### 7.2 工具决策矩阵
@@ -159,11 +173,10 @@ flowchart TD
 | 研究阶段 / 动作 | 唯一首选工具 | 辅助 / 确认工具 | 严格禁止的行为 |
 |:---|:---|:---|:---|
 | **提取参数名称、树状结构与明文标签** | `scripts/extract_parameters.py` | `strings` / `objdump` | 盲目人工滚动反编译伪代码寻找变量名 |
-| **定向函数反编译 / 交叉引用 (XRefs)** | `rea` CLI / MCP (Ghidra 12.1.4) | `objdump -d` | 将整个 58MB 二进制丢给 Ghidra 做全量反编译 |
-| **音频渲染与声学规律提取** | `scripts/run_acoustic_experiments.py` | Audacity / 外部分析工具 | 手工打开 DAW 逐个录制导出 WAV |
-| **声学数学模型拟合 ($B$, $\tau_1, \tau_2$)** | `scipy.optimize.curve_fit` | NumPy FFT 峰值检测 | 凭主观听感猜测衰减常数与非谐性曲线 |
-| **对标 devpiano 自主实现方案** | 只读查阅 `devpiano/source/Audio/` | 本地测试用例对照 | 擅自跨仓库修改 devpiano 源码或搬运专有汇编 |
-
+| **定向函数反编译 / 交叉引用 (XRefs)** | `rea` CLI / MCP (Ghidra 12.1.4) | `objdump -d` | 试图反编译并拼凑完整物理求解器伪代码 |
+| **音频渲染与声学规律提取** | `scripts/run_acoustic_experiments.py` | Audacity / 外部分析工具 | 手工打开 DAW 逐个录制，缺少散列与版本追溯 |
+| **声学数学特征拟合 ($B$, $\tau_1, \tau_2$)** | `scripts/run_acoustic_experiments.py` / `scipy` | 留一分音复核与多窗残差检验 | 凭主观听感猜测常数，或将单组拟合冒充全琴物理常数 |
+| **对标 devpiano 自主实现** | 提供客观声学量测数据与物理参考范围 | devpiano 本地测试用例对照 | 擅自跨仓库修改源码，或向 devpiano 搬运专有汇编/候选求解器 |
 ---
 
 ## 8. 结束输出要求
