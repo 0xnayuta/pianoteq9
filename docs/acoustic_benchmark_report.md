@@ -4,10 +4,11 @@
 > 原研究日期：2026-10-09；Task 39-1 复核及证据回流：2026-10-10。原稿已随原始数据封存，不静默改写历史观测。
 > 来源：devpiano Task 39-1，渲染源码输入 `76ebdca`；结果记录来自当时工作树快照，不声称该提交包含本次全部复核记录。
 > 数据与责任：[参考 manifest](../acoustic_lab/results/task39-1-reference-revalidation/manifest.json)；devpiano 实现状态只在其 [roadmap](https://github.com/0xnayuta/devpiano/blob/main/docs/roadmap/roadmap.md) 维护。
+> 2026-10-11 来源纠正：旧 9.1.2 来自用户确认的第三方破解/补丁发布，相关静态记录与本页旧 WAV 统一标为 `untrusted-binary-provenance`，禁止执行旧样本或用于证明 Modartt 官方输出。当前资格见 [provenance.json](../acoustic_lab/results/task39-2-official-reference-v2/provenance.json)；它追加撤销资格，不覆盖历史 manifest、claims、方法或数值。
 
 ## 数据身份与历史条件
 
-- 候选独立程序与核心 PE 的 FileVersion/ProductVersion 均为 9.1.2。独立程序 SHA256：`620ba6d53808994e0a9fa999a7e060780e36daeb27693d5f249d0ad6df3f1eda`；核心：`218ba590b07877d5a80d1e48f2d61f90ceda7971a02e5d34ddbc8ecb0d5678a5`；英文手册：`601473ece9de67913718973e121dc4d158ad1340e94ad70be9e81868ddf5fe29`。身份不证明旧 WAV 由该散列及某组参数生成。
+- 历史修改版独立程序与核心 PE 自报 FileVersion/ProductVersion 为 9.1.2。独立程序 SHA256：`620ba6d53808994e0a9fa999a7e060780e36daeb27693d5f249d0ad6df3f1eda`；核心：`218ba590b07877d5a80d1e48f2d61f90ceda7971a02e5d34ddbc8ecb0d5678a5`。英文手册 SHA256 `601473ece9de67913718973e121dc4d158ad1340e94ad70be9e81868ddf5fe29` 与新官方 9.2.5 签名包中的文档逐字节相同，公开文档语义可独立保留；文档一致不认证旧程序或其声音，二进制身份亦不证明旧 WAV 的生成条件。
 - 保留参考为 48 kHz、24-bit、双声道 WAV；SMF 0、单轨、480 PPQ、500000 µs/quarter、Ch1。C1–C7 为力度70、0秒起音、4秒离键；三力度 C4 为41/70/98、3秒离键；C3衰减样本实际力度80、6秒离键。末尾 NoteOn(0,0) 使用 NoteOff 语义，不是新的低音。
 - 预设名 NY Steinway D Classical 仅来自旧报告/命令模板。历史渲染 receipt、预设参数散列、EQ/Reverb、麦克风、Master/限制器、随机种子均未知；当前 prefs 与脚本模板不能补造过去的生效条件。官方手册还说明 Classical/Prelude 可只在拾音位置上不同。
 - 本次是保留输出的复算，不是重做实琴测量或新的完整 Ghidra 取证。旧地址、切片和 XRefs 的历史记录不因文档纠错自动得到验证或全部被推翻。
@@ -90,7 +91,7 @@ C7在父方单声道、去均值、0.08–0.8秒窗的最强混合峰约2107.37H
 | `public-parameter-semantics` | 三力度/Unison/Last damper语义 | `admitted-semantics` | Piano/Mezzo forte/Forte约41/70/98；Balance是中弦频率位置；Last damper用MIDI严格大于界限；未认证其它滑块范围 |
 | `reference-candidate-families` | 新B_eff表可作为新权威物理常数 | `conditional-observation-only` | 只准入给定文件和固定配对下的自洽结果；LOO保留全数据选峰，非无泄漏外推 |
 
-机器可读状态由 [claims.json](../acoustic_lab/results/task39-1-reference-revalidation/claims.json) 保存。公开定义、历史静态观察、经典理论、候选模型和工程验证分别管理；任务产物完成不等于内部机制或生产实时契约已认证。参考逆投影的两反对称列在单声道/琴桥平均力求和中抵消；若两份after能量均取0.105，总量为1.105，不是1。这些数学复核不认证专有代码。
+历史主张状态原样保存在 [claims.json](../acoustic_lab/results/task39-1-reference-revalidation/claims.json)，当前来源资格由上述 provenance 追加覆盖；不能只读取旧 `conditional-observation-only` 状态而忽略来源撤销。公开定义、历史样本观察、经典理论、候选模型和工程验证分别管理。下述数学关系不认证专有代码：静态逆投影的两反对称列在等权求和中抵消；若两份 after 预算均为 0.105，则总和为 1.105 而非 1。
 
 ## 复算与原始数据保留
 

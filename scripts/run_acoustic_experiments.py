@@ -15,6 +15,7 @@ from scipy.optimize import least_squares
 
 ROOT = Path(__file__).resolve().parent.parent
 RESULTS = ROOT / "acoustic_lab/results/task39-1-reference-revalidation"
+PROVENANCE = ROOT / "acoustic_lab/results/task39-2-official-reference-v2/provenance.json"
 
 
 class EvidenceError(ValueError):
@@ -278,6 +279,9 @@ def recompute(audio_dir, midi_dir, evidence_dir):
     manifest = read_json(evidence_dir / "manifest.json")
     if manifest.get("schema") != "pianoteq9-reference-revalidation-v1":
         raise EvidenceError("unsupported reference manifest")
+    provenance = read_json(PROVENANCE)
+    if provenance.get("status") != "untrusted-binary-provenance":
+        raise EvidenceError("historical source retirement qualification is missing")
     for receipt in manifest["receipts"]:
         name = receipt["path"]
         if Path(name).name != name:
@@ -354,7 +358,11 @@ def recompute(audio_dir, midi_dir, evidence_dir):
             "input_pairs_verified": len(audio), "input_hashes_and_events_verified": True,
             "frozen_result_checks_passed": True, "candidate_families": families,
             "C4": c4, "C3_output_envelope_fits": decay,
-            "qualification": manifest["admission"],
+            "qualification": {
+                "source_status": provenance["status"],
+                "official_reference_eligible": False,
+                "physical_B_or_default_anchor_admitted": False,
+                "historical_conditions": manifest["admission"]},
             "source_ownership": manifest["cross_repository_ownership"]}
 
 
@@ -380,7 +388,7 @@ def main():
                   f"max residual={family['max_residual_cents']:.3f} cents")
         difference = result["C4"][2]["HF_stereo_power_ratio_dB"] - result["C4"][1]["HF_stereo_power_ratio_dB"]
         print(f"C4 HF power ratio 70->98: {difference:.5f} dB")
-        print("Conditional WAV observations only; historical rendering controls and commercial algorithm equivalence remain unknown.")
+        print("Untrusted modified-binary WAV observations only; numeric reproducibility does not restore official reference qualification.")
     return 0
 
 

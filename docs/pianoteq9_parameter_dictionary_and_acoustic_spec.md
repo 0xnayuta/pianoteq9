@@ -2,6 +2,7 @@
 
 > 用途：组织公开参数语义、历史字符串线索和候选理论；不是商业内部类、滑块范围或方程的完整还原。
 > 当前量测、旧主张处理与身份见 [声学基准报告](acoustic_benchmark_report.md) / [manifest](../acoustic_lab/results/task39-1-reference-revalidation/manifest.json)。
+> 旧二进制标识、地址和旧 WAV 的官方资格已撤销，统一受 [来源登记](../acoustic_lab/results/task39-2-official-reference-v2/provenance.json) 限制；公开定义必须由独立官方文档支持，不从破解样本的字符串恢复厂家权威。
 
 ## 来源等级与单位
 
@@ -32,7 +33,7 @@
 | `Quadratic Effect`、`Blooming Energy`、`Blooming Inertia` | 张力与泛音时间轨迹的研究维度 | 历史槽位版本不一致不自动统一；候选方程不证明二阶状态求解器 |
 | `Lid Position` | 琴盖与辐射控制研究维度 | 角度、离散模式与传递函数未复核 |
 
-公开依据来自本机 `binaries/Documentation/pianoteq-english.html` 的 Advanced Tuning、Voicing/Spectrum profile和Action章节；该完整手册不提交Git，其SHA已写入manifest。历史字符串、汇编和作者注释见 `docs/phase1/`–`docs/phase5/`，本轮不重新认证它们。
+当前公开依据为官方 9.2.5 归档 `binaries/Pianoteq_9.2.5_Windows/Documentation/pianoteq-english.html` 的 Advanced Tuning、Voicing/Spectrum profile 和 Action 章节；文档 SHA256 `601473ece9de67913718973e121dc4d158ad1340e94ad70be9e81868ddf5fe29` 与已核验官方签名包及历史手册逐字节相同。完整手册不提交 Git。历史字符串、汇编和作者注释见 `docs/phase1/`–`docs/phase5/`，只归属于旧非官方具体样本，不认证内部算法或新版本映射。
 
 ## 理论模型与本次量测
 
