@@ -21,8 +21,9 @@
 谱：0.08–3.8 s 或 0.5–4.1 s Hann 窗，立体声功率和（L、R 各自 FFT 后功率相加，非相干下混）；
 峰：局部极大 + 抛物线插值，低限 40 Hz（C2 基频 65.4 Hz 之上，避开瞬态伪峰区）。
 
-输入网格：`--preset pilot|register|corpus`；`corpus`（training 12 音 × 3 力度 × 2 rate）需多次
+输入网格：`--preset pilot|register|corpus|bridge|anchors2|treble96|midfill`；`corpus`（training 12 音 × 3 力度 × 2 rate）需多次
 `--batch`——复用单元来自 pilot-v2 / register 批次，新单元来自 corpus 批次，按会话名在首个命中的根下查找。
+`treble96`（P3：96 kHz 高音区 {87,93,99,105,108}）需配合 `--max-freq 40000`；`midfill`（P3：48 kHz {25,27,49,51,64,74}）用默认口径。
 
 高音区默认（2026-10-13 批准的正式方法）：`note >= --snr-min-note`（默认 72）时默认启用局部 SNR
 准入通道（默认 25 dB：峰值 ±3% 带内功率中位数为噪声地板，>= 阈值且相对功率 >= 1e-9 准入）
@@ -109,13 +110,34 @@ PRESETS = {
             ("s09-n95-44100-rep0", 95, 44100, 0), ("s10-n95-48000-rep0", 95, 48000, 0),
         ],
     },
+    "treble96": {  # P3：96 kHz 高音区新验证集（未看过参考的音高；--max-freq 40000）
+        "notes": {87: 1244.5081, 93: 1760.0, 99: 2489.0162, 105: 3520.0, 108: 4186.0090},
+        "sessions": [
+            ("s01-n87-96000-rep0", 87, 96000, 0),
+            ("s02-n93-96000-rep0", 93, 96000, 0),
+            ("s03-n99-96000-rep0", 99, 96000, 0),
+            ("s04-n105-96000-rep0", 105, 96000, 0),
+            ("s05-n108-96000-rep0", 108, 96000, 0),
+        ],
+    },
+    "midfill": {  # P3：48 kHz 中低音加密新验证集（24->28 与 48->60 曲率诊断确认）
+        "notes": {25: 34.6478, 27: 38.8909, 49: 138.5913, 51: 155.5635, 64: 329.6276, 74: 587.3295},
+        "sessions": [
+            ("s01-n25-48000-rep0", 25, 48000, 0),
+            ("s02-n27-48000-rep0", 27, 48000, 0),
+            ("s03-n49-48000-rep0", 49, 48000, 0),
+            ("s04-n51-48000-rep0", 51, 48000, 0),
+            ("s05-n64-48000-rep0", 64, 48000, 0),
+            ("s06-n74-48000-rep0", 74, 48000, 0),
+        ],
+    },
 }
 NOTES = PRESETS["pilot"]["notes"]
 SESSIONS = PRESETS["pilot"]["sessions"]
 
 WINDOWS = {"W1": (0.08, 3.8), "W2": (0.5, 4.1)}
 LOW_FREQ = 40.0
-MAX_FREQ = 20000.0
+MAX_FREQ = 20000.0  # 默认口径；96 kHz 采集用 --max-freq 40000（见 runbook-treble96）
 SEED_STIFFNESS = 1e-4
 DEFAULT_SEEDS = (3e-5, 5e-5, 8e-5, 1.2e-4, 2e-4)
 EXTENDED_SEEDS = DEFAULT_SEEDS + (4e-4, 8e-4, 1.6e-3, 3e-3, 7e-3, 1.5e-2, 3e-2)
@@ -438,11 +460,15 @@ def main():
                              "default 25 (adopted high-register method); pass 'none' to disable")
     parser.add_argument("--snr-min-note", type=int, default=72,
                         help="lowest MIDI note for the SNR channel and extended stiffness seeds")
+    parser.add_argument("--max-freq", type=float, default=20000.0,
+                        help="peak-search and model upper frequency in Hz (default 20000; "
+                             "use 40000 for 96 kHz captures, where treble partials extend above 20 kHz)")
     options = parser.parse_args()
-    global NOTES, SESSIONS, SNR_ADMISSION_DB, SNR_MIN_NOTE  # noqa: PLW0603 - 输入网格/通道由 CLI 决定
+    global NOTES, SESSIONS, SNR_ADMISSION_DB, SNR_MIN_NOTE, MAX_FREQ  # noqa: PLW0603 - 输入网格/通道由 CLI 决定
     NOTES, SESSIONS = PRESETS[options.preset]["notes"], PRESETS[options.preset]["sessions"]
     SNR_ADMISSION_DB = options.snr_admission_db
     SNR_MIN_NOTE = options.snr_min_note
+    MAX_FREQ = options.max_freq
     batches = [Path(value) for value in options.batch]
     if not any((root / "sessions" / session).is_dir() for root in batches for session, *_ in SESSIONS):
         raise SystemExit(
@@ -491,7 +517,7 @@ def main():
                "families": {}}
     for note in NOTES:
         for velocity in VELOCITIES:
-            for rate in RATES:
+            for rate in sorted({u["rate"] for u in units.values()}):
                 rows = [u for u in units.values() if u["note"] == note and u["velocity"] == velocity and u["rate"] == rate]
                 if not rows:
                     continue
