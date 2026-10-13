@@ -1,0 +1,147 @@
+{
+  "schema": "devpiano-task39-2-corpus-stimulus",
+  "generated_utc": "2026-10-13T15:26:47.236129+00:00",
+  "generator": "pilot/tools/make-stimulus-corpus.py",
+  "notes": [
+    87,
+    93,
+    99,
+    105,
+    108
+  ],
+  "velocities": [
+    41,
+    70,
+    98
+  ],
+  "parameters": {
+    "format": 0,
+    "ppq": 480,
+    "tempo_us": 500000,
+    "channel": 1,
+    "onset_s": 0.1,
+    "release_s": 4.2,
+    "end_s": 5.2,
+    "cc64": 0,
+    "cc66": 0,
+    "cc67": 0,
+    "note_off_velocity": 0
+  },
+  "reference": {
+    "path": "stimulus-corpus/n69-v70.mid",
+    "sha256": "9e4827ed6ca1f69cf9d7ab4bd438fbe2b9fd897fe6d3264ea1604c5a04ba1462",
+    "replication": {
+      "note": 69,
+      "velocity": 70,
+      "bit_identical": true,
+      "sha256": "9e4827ed6ca1f69cf9d7ab4bd438fbe2b9fd897fe6d3264ea1604c5a04ba1462"
+    }
+  },
+  "files": [
+    {
+      "path": "n87-v41.mid",
+      "note": 87,
+      "velocity": 41,
+      "bytes": 55,
+      "sha256": "093362d05b388c14277ea31d8e32c7c2b526bf53c64d6f5db1d02212428cf858"
+    },
+    {
+      "path": "n87-v70.mid",
+      "note": 87,
+      "velocity": 70,
+      "bytes": 55,
+      "sha256": "90cf70edc9d503f1959884087a17e433a1aa3458749519b9f1c12b8014465418"
+    },
+    {
+      "path": "n87-v98.mid",
+      "note": 87,
+      "velocity": 98,
+      "bytes": 55,
+      "sha256": "6dfc9be20c05640b2393b02e8978854149a3ddbda643ebc9be8018c17523ac01"
+    },
+    {
+      "path": "n93-v41.mid",
+      "note": 93,
+      "velocity": 41,
+      "bytes": 55,
+      "sha256": "f6ebcc408bf6054ee0562df0b6851a2f9411ba3b61728bd8559c30e413f7d8e0"
+    },
+    {
+      "path": "n93-v70.mid",
+      "note": 93,
+      "velocity": 70,
+      "bytes": 55,
+      "sha256": "5a5b577d704b23f3ee98ac2e147a6ed4121bfcc7dcf58fc688c50076a1d8ee94"
+    },
+    {
+      "path": "n93-v98.mid",
+      "note": 93,
+      "velocity": 98,
+      "bytes": 55,
+      "sha256": "523c26452a32fc1a97367497b2627203b521f30c625eebe9b1dc86d29ee9c71c"
+    },
+    {
+      "path": "n99-v41.mid",
+      "note": 99,
+      "velocity": 41,
+      "bytes": 55,
+      "sha256": "b0a8b8c35183e498f888f0b4c6d08c010829533d2531f39c99f1eb5a34e8bd73"
+    },
+    {
+      "path": "n99-v70.mid",
+      "note": 99,
+      "velocity": 70,
+      "bytes": 55,
+      "sha256": "43fde8acba10a4e27c3c40f2614507ad66b045bac44d0040ce8e8c47eb60b086"
+    },
+    {
+      "path": "n99-v98.mid",
+      "note": 99,
+      "velocity": 98,
+      "bytes": 55,
+      "sha256": "0701800f7ec6f063ad2ff834c6388e03d1c6e6f454915ed4918cdd20e7872490"
+    },
+    {
+      "path": "n105-v41.mid",
+      "note": 105,
+      "velocity": 41,
+      "bytes": 55,
+      "sha256": "669a5eee95d9bbb04f6698a749427fc4eaf2463a2b37700225550f8df6f35583"
+    },
+    {
+      "path": "n105-v70.mid",
+      "note": 105,
+      "velocity": 70,
+      "bytes": 55,
+      "sha256": "a92d96972beaac33dfc6c0c72614f4162c12df2170ea4f64a0fa1737a3af7d47"
+    },
+    {
+      "path": "n105-v98.mid",
+      "note": 105,
+      "velocity": 98,
+      "bytes": 55,
+      "sha256": "ace170b2686694fafc031e43e5d8f887fe391a37cdb596a0f3339adf4a08b985"
+    },
+    {
+      "path": "n108-v41.mid",
+      "note": 108,
+      "velocity": 41,
+      "bytes": 55,
+      "sha256": "822a870ecede25ab78f2cf3f5828057cd941e8c79e13bf3d14fc8fbbadc0a39d"
+    },
+    {
+      "path": "n108-v70.mid",
+      "note": 108,
+      "velocity": 70,
+      "bytes": 55,
+      "sha256": "935ac699b0e13848457fc8f418570c89be800b576cb9499f45b27c4de86b26cc"
+    },
+    {
+      "path": "n108-v98.mid",
+      "note": 108,
+      "velocity": 98,
+      "bytes": 55,
+      "sha256": "def83982abf6f20964a68da5a64616e37c6c20b7e887076e3286c4ed74513180"
+    }
+  ]
+}
