@@ -1,8 +1,9 @@
 {
+  "$schema": "https://raw.githubusercontent.com/can1357/oh-my-pi/main/packages/coding-agent/src/config/mcp-schema.json",
   "mcpServers": {
     "rea": {
       "type": "stdio",
-      "command": "/usr/local/bin/rea",
+      "command": "/root/.bun/bin/rea",
       "args": ["mcp"],
       "timeout": 660000
     }
