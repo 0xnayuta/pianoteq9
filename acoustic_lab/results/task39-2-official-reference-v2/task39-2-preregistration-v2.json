@@ -1,0 +1,235 @@
+{
+  "schema": "devpiano-task39-2-preregistration-v2",
+  "registered_date": "2026-10-11",
+  "registered_before_new_calibration_or_validation_render": true,
+  "scope": "prospective official9.2.5 Windows trial reference protocol; this task is minimal closure and registration, not B calibration",
+  "supersedes_v1_for_new_reference_only": {
+    "v1_sha256": "6ae87a53f3df3262b03530a315a8be43088db7607fc844567cc1068210d279e9",
+    "old_file_preserved": true,
+    "old_sealed_validation_consumed": false,
+    "old9.1.2_source_status": "untrusted-binary-provenance",
+    "do_not_mix_versions_platforms_or_old_data": true
+  },
+  "reference": {
+    "vendor": "Modartt",
+    "version": "9.2.5",
+    "platform": "Windows x86_64",
+    "edition": "official trial",
+    "exe_sha256": "7fcb5b2385a753e2f7d0a9ed068692abe877ab65b438e70a3fe2b44879b278bd",
+    "vendor_installer_sha256": "3b487f10787a0c2b658ae57afc42179a0e25c7d1fa093edbe65c241b9f90011a",
+    "official_manual_sha256": "601473ece9de67913718973e121dc4d158ad1340e94ad70be9e81868ddf5fe29",
+    "source_provenance_file": "provenance.json",
+    "trial": {
+      "publisher_source": "https://www.modartt.com/try",
+      "silent_note_names": [
+        "F#1",
+        "G#1",
+        "A#1",
+        "C#5",
+        "D#5",
+        "F#5",
+        "G#5",
+        "A#5"
+      ],
+      "expected_standard_MIDI_numbers": [
+        30,
+        32,
+        34,
+        73,
+        75,
+        78,
+        80,
+        82
+      ],
+      "numbering_boundary": "standard C4=MIDI60; native trial mapping must be evidenced without opening validation notes",
+      "maximum_session_minutes": 20,
+      "no_bypass": true
+    },
+    "source_is_not_physical_truth_or_algorithm_equivalence": true,
+    "linux_archive_is_not_part_of_this_cohort": true
+  },
+  "training": {
+    "notes": [
+      21,
+      24,
+      36,
+      43,
+      44,
+      48,
+      60,
+      69,
+      72,
+      84,
+      96,
+      108
+    ],
+    "velocities": [
+      41,
+      70,
+      98
+    ],
+    "rates": [
+      44100,
+      48000
+    ],
+    "A4_Hz": 440,
+    "stage_policy": "only authorized pilot first; no full corpus until pilot identity and prediction admission",
+    "controls": {
+      "A4_Hz": 440,
+      "temperament": "Flat, as documented strict octave ratio; observed partial identity not replaced by name",
+      "retuning": "Full rebuild recorded in full snapshot or explicitly unresolved and blocking",
+      "unison_width": 0,
+      "condition": 0,
+      "pedal_CC64_CC66_CC67": 0,
+      "sympathetic_resonance": 0,
+      "duplex_resonance": 0,
+      "quadratic_effect": 0,
+      "blooming_energy": 0,
+      "EQ": false,
+      "reverb": false,
+      "other_effects_and_limiter": false,
+      "lid": "fully open, actual named/normalized value logged",
+      "pickup": "one fixed documented active microphone, other microphones off; stereo-power metrology, never call coherent downmix a central string",
+      "gain": "explicit dB and output gain recorded, no automatic normalization; reject clipped/floor dominated lines"
+    }
+  },
+  "pilot": {
+    "notes": [
+      36,
+      48,
+      60
+    ],
+    "velocities": [
+      41,
+      70,
+      98
+    ],
+    "rates": [
+      44100,
+      48000
+    ],
+    "repeats": 2,
+    "purpose": "prove traceable families and independent-partial prediction before high register",
+    "execution_authorized_this_task": false
+  },
+  "sealed_validation": {
+    "notes": [
+      26,
+      39,
+      50,
+      63,
+      77,
+      86,
+      98,
+      104
+    ],
+    "velocities": [
+      55,
+      85,
+      113
+    ],
+    "rates": [
+      44100,
+      48000
+    ],
+    "selection_change_from_v1": {
+      "exclude": 75,
+      "replace_with": 77,
+      "reason": "published trial D#5 exclusion, standard MIDI mapping; choose an unviewed white-key pitch before rendering/inspecting new corpus, not from fit quality",
+      "restriction_numbering": "published pitch names and standard C4=MIDI60 mapping; validate native naming/disable boundary without opening holdouts"
+    },
+    "controls": {
+      "A4_Hz": 442,
+      "retuning": "Full rebuild, not unknown tension change",
+      "pickup": "same known microphone with documented changed perspective/position fixed before validation, not selected for best spectral match",
+      "session_and_seed": "normal session time <=20min, recorded seed or deterministic repeat proof, no hidden-state inheritance"
+    },
+    "policy": "separate raw directory/manifest; do not inspect spectral metrics, select peaks, choose seeds, or tune on this set; one final evaluation; failure consumes holdout, next iteration registers new validation data",
+    "status": "unrendered and unopened"
+  },
+  "already_viewed_diagnostic_only": {
+    "notes": [
+      21,
+      24,
+      35,
+      36,
+      43,
+      44,
+      47,
+      48,
+      57,
+      60,
+      62,
+      69,
+      71,
+      72,
+      84,
+      95,
+      96,
+      102,
+      106,
+      107,
+      108
+    ],
+    "qualification": "prior original/modified outputs and self-owned measurements remain viewed; source switch does not reset blindness; optional30 mute-boundary diagnostic is not calibration data"
+  },
+  "capture": {
+    "rates": [
+      44100,
+      48000
+    ],
+    "bit_depth": 24,
+    "dither": false,
+    "MIDI_format": 0,
+    "PPQ": 480,
+    "tempo_microseconds_per_quarter": 500000,
+    "channel": 1,
+    "onset_s": 0.1,
+    "release_s": 4.2,
+    "end_s": 5.2,
+    "repeats": 2
+  },
+  "state_binding": {
+    "required_before_any_pilot": "separate immutable execution-state receipt: exact official producer version/preset/bank/FXP hash plus private storage isolation, control values/seed and actual restore counterexample",
+    "opaque_or_unexposed_fields": "use normal complete snapshot plus documented behavior; never infer hidden state from label or exposed controls alone",
+    "unresolved_capability": "block training, not prefs-only fallback or guessed controls"
+  },
+  "current_gate": {
+    "B_or_stretch_mutation": false,
+    "new_training_or_validation_corpus_execution": false,
+    "admitted_default_B_anchors": 0
+  },
+  "meter_preflight": {
+    "single_stationary_partial_error": "<= max(0.005 Hz, 0.05 cents in Hz)",
+    "single_stiff_family_B_relative_error": 0.02,
+    "known_two_amplitude_exponentials_tau_relative_error": {
+      "fast": 0.03,
+      "slow": 0.05
+    },
+    "unresolved_case": "two 0.4 Hz spaced lines under 3.72 s Hann; no center-string or physical-B admission regardless of small fit residual"
+  },
+  "physical_admission": {
+    "requirements": [
+      "documented target/version/preset/control identity",
+      "separate reference and devpiano producers",
+      "traceable same-string family or explicit only-effective-output label",
+      "new observations and peak assignments independent of candidate table",
+      "window/repeat uncertainty estimates; no clip/floor-dominated peaks"
+    ],
+    "minimum_identified_partials": 5,
+    "C7_three_partial_policy": "diagnostic candidate only; no default B anchor from three mixed output peaks",
+    "fitting_minimum": "use >=3 identified training partials and >=2 untouched partials for prediction; re-identify heldout peaks without full-data nearest-peak assignments"
+  },
+  "acceptance_metrics": {
+    "admitted_partial_prediction": "RMS <=1 cent and max <=3 cents on independent partials/notes; estimator repeat/window spread <=1 cent for admitted stationary line; no tolerance relaxation after seeing outputs",
+    "A4_audio": "same identified line within 0.07 Hz for 400/440/480 Hz, ageing 0; mono mixed winner cannot substitute for line identity",
+    "intervals": "preselected 4:2 below A4 and 2:1 above A4; central interpolation exceptions documented; <=1 cent matching error outside interpolation band",
+    "pitch_order": "strict adjacent-note increase on 44.1/48 kHz; 8 kHz safety/degradation separate, never claim full-range accurate pitch",
+    "Nyquist": "finite bounded long audio; no active modeled oscillator beyond safe band; nonlinear alias residual separately observed",
+    "block_rate_consistency": "same-line frequency <=0.1 cent at 44.1/48 kHz; normalized spectrum and RMS shifts <=0.5 dB for same held-out condition; 512/257 sample delta <=2 24-bit PCM LSB when quantized",
+    "B_stability": "window/repeat relative B spread <=10% if B identifiable; failure means not admitted, not a forced table entry"
+  },
+  "no_automatic_pianoteq_default_injection": true,
+  "threshold_qualification": "pre-registered engineering criteria, not measured achievements or universal piano laws",
+  "unavailable_controlled_reference": "retain current devpiano constants; preserve this registration, diagnose capability or register a new approved reference; do not force B or relax errors"
+}

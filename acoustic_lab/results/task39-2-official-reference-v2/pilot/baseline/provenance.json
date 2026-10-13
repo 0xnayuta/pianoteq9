@@ -1,0 +1,29 @@
+{
+  "schema": "devpiano-task39-2-pilot-baseline",
+  "purpose": "v2 Pilot 每个会话在 FXP 加载后必须逐项等于的认证导出状态（215 参数）",
+  "canonical_source": "gui-export-20261012-092853/rpc/cold2-pre-export-parameters.json",
+  "canonical_param_count": 215,
+  "certified_export_wav": {
+    "sha256": "d232bda0dd4202b0e7899142fbd76c6c81c650becd38c0ad7d88b675063f9952",
+    "bytes": 953448,
+    "note": 69,
+    "velocity": 70,
+    "rate": 44100,
+    "bit_depth": 16
+  },
+  "cross_checked_sources": {
+    "092853-cold1-pre-export": "5e12a9ed207f8add152af0df036e392c2015f8280f140f5a3f5bc4cadba6e061",
+    "092853-cold2-pre-export": "18e8f4b53500962a2430804e27ae6a25afab2f92c3b13222da9cd0d6496b8a9e",
+    "092853-cold2-post-export": "17646775472f71fb88669d57284ec1cf94f8e479b71707261032d8a11816f635",
+    "official925-standard-full-load": "40fa865c3774bdb4422b166e1294faae1aaaecc03a30702bb2ecee46126069b1",
+    "official925-flat-full-pre-cold": "9e66e10fc506f16dbd462114d389a768bbc13d53160508648ed9e4c65e286f73"
+  },
+  "cross_check": "五份独立快照（092853 cold1/cold2 的 pre/post 与 official925 FXP 加载前后）逐项 text 与 normalized_value 完全一致；零差异",
+  "four_advanced_parameters_expected": {
+    "unison": "0",
+    "sympathetic_resonance": "0",
+    "duplex_scale_resonance": "0",
+    "quadratic_effect": "0"
+  },
+  "generated_utc": "2026-10-12T12:37:50.793722+00:00"
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "pianoteq-reference-source-provenance-v1",
+  "recorded_date": "2026-10-11",
+  "status": "untrusted-binary-provenance",
+  "supersedes_official_attribution_only": true,
+  "old_sample": {
+    "directory": "binaries/Pianoteq_9.1.2_Windows_cracked",
+    "reported_version": "9.1.2",
+    "origin_url": "https://rutracker.org/forum/viewtopic.php?t=6831355",
+    "origin_authority": "user-confirmed cracked/patched distribution",
+    "execution_allowed": false,
+    "official_algorithm_or_output_authority": false,
+    "malware_determination": "not implied by provenance; separate security scan evidence required",
+    "binary_sha256": {
+      "Pianoteq 9.exe": "620ba6d53808994e0a9fa999a7e060780e36daeb27693d5f249d0ad6df3f1eda",
+      "Pianoteq 9.vst3plugin": "218ba590b07877d5a80d1e48f2d61f90ceda7971a02e5d34ddbc8ecb0d5678a5",
+      "VST3/Pianoteq 9.vst3": "c79e057133fd4dc2791dc1c2950e89181d9c81b7b4bc811f0ec88e1895465f67",
+      "ptq912p.dll": "9076aa7afe878788367b2311e67c065e48d2f6608aff3699e7f802323e07b402",
+      "ptq912w.dll": "85196c280b6324e123eb56f7f16805291a685a640fd34b88448be9384d8905d2"
+    }
+  },
+  "affected_evidence": [
+    "docs/phase1 through docs/phase5 historical sample address/string records",
+    "acoustic_lab/results/task39-1-reference-revalidation and preserved reference WAV",
+    "devpiano phase39-task2-evidence-20261011-155528/reference-training diagnostic 144 captures"
+  ],
+  "current_admission": {
+    "historical_file_observations_retained": true,
+    "official_reference_eligible": false,
+    "physical_B_or_default_anchor_admitted": false,
+    "reanalyzing_same_bytes_restores_official_qualification": false
+  },
+  "independent_results_preserved": [
+    "devpiano Task39-1 production measurements",
+    "devpiano 39-A mathematics and actual consumer fixes",
+    "devpiano 39-A post-fix production baseline",
+    "known synthetic meter preflight and self-owned production consumers"
+  ],
+  "new_candidate": {
+    "directory": "binaries/Pianoteq_9.2.5_Windows",
+    "version": "9.2.5",
+    "platform": "Windows x86_64",
+    "exe_sha256": "7fcb5b2385a753e2f7d0a9ed068692abe877ab65b438e70a3fe2b44879b278bd",
+    "matches_x64_executable_from_verified_vendor_installer": true,
+    "vendor_installer_sha256": "3b487f10787a0c2b658ae57afc42179a0e25c7d1fa093edbe65c241b9f90011a",
+    "vendor_installer_authenticode": "Valid MODARTT observed in prior official-package receipt",
+    "state_and_audio_closure": "pending",
+    "calibration_or_physical_admission": false
+  },
+  "preservation": "append-only qualification; do not rewrite old manifests, raw files, methods or v1 registration",
+  "local_transition_evidence_root": "phase39-task2-source-transition-20261011-203015"
+}

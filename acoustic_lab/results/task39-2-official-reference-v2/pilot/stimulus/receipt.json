@@ -1,0 +1,93 @@
+{
+  "schema": "devpiano-task39-2-pilot-stimulus",
+  "generated_utc": "2026-10-12T12:37:40.452030+00:00",
+  "generator": "pilot/tools/make-stimulus.py",
+  "parameters": {
+    "format": 0,
+    "ppq": 480,
+    "tempo_us": 500000,
+    "channel": 1,
+    "onset_s": 0.1,
+    "release_s": 4.2,
+    "end_s": 5.2,
+    "cc64": 0,
+    "cc66": 0,
+    "cc67": 0,
+    "note_off_velocity": 0
+  },
+  "reference": {
+    "path": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/gui-export-20261012-092853/stimulus/A4-v70.mid",
+    "sha256": "9e4827ed6ca1f69cf9d7ab4bd438fbe2b9fd897fe6d3264ea1604c5a04ba1462",
+    "replication": {
+      "note": 69,
+      "velocity": 70,
+      "bit_identical": true,
+      "sha256": "9e4827ed6ca1f69cf9d7ab4bd438fbe2b9fd897fe6d3264ea1604c5a04ba1462"
+    }
+  },
+  "files": [
+    {
+      "path": "n36-v41.mid",
+      "note": 36,
+      "velocity": 41,
+      "bytes": 55,
+      "sha256": "709f6d80dfa807e44817d061352287cb07130548e4bc917783bc9ebc63ecf517"
+    },
+    {
+      "path": "n36-v70.mid",
+      "note": 36,
+      "velocity": 70,
+      "bytes": 55,
+      "sha256": "0944f74c39835231d1d58ee83eced6972664b6de3b99225aac2bdef71632d064"
+    },
+    {
+      "path": "n36-v98.mid",
+      "note": 36,
+      "velocity": 98,
+      "bytes": 55,
+      "sha256": "d8006fee15702ecefd9b355c1f348004f37a005b3304b83569c13f0c93c8f29a"
+    },
+    {
+      "path": "n48-v41.mid",
+      "note": 48,
+      "velocity": 41,
+      "bytes": 55,
+      "sha256": "c61e1b2c785e93cc188f59d76a41643a6c1132df408d3f54a176734c048b34dd"
+    },
+    {
+      "path": "n48-v70.mid",
+      "note": 48,
+      "velocity": 70,
+      "bytes": 55,
+      "sha256": "f7fda93007bf3316acc3dee1a231734dd846b403744cc11cb4fba59fade6d405"
+    },
+    {
+      "path": "n48-v98.mid",
+      "note": 48,
+      "velocity": 98,
+      "bytes": 55,
+      "sha256": "bf8ab457dc2c3a43fd63b3c88858bda7095ae48f77f7d57c8320488625c66bd4"
+    },
+    {
+      "path": "n60-v41.mid",
+      "note": 60,
+      "velocity": 41,
+      "bytes": 55,
+      "sha256": "a37fc93bd43d4489c306e89d2955d510ee8914cdcc472a7ea38904302533797f"
+    },
+    {
+      "path": "n60-v70.mid",
+      "note": 60,
+      "velocity": 70,
+      "bytes": 55,
+      "sha256": "5bbc29d161e5826392982c2fdb62e621265a04a545a2ed8ce79114412e79fb4c"
+    },
+    {
+      "path": "n60-v98.mid",
+      "note": 60,
+      "velocity": 98,
+      "bytes": 55,
+      "sha256": "880283f1f8a696d26137d3846170828958ed58df7c6c96567170b6053da955b2"
+    }
+  ]
+}

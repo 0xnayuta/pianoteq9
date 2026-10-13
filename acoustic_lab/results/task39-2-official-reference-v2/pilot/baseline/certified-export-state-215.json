@@ -1,0 +1,1722 @@
+[
+ {
+  "id": "condition",
+  "index": 0,
+  "name": "Condition",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "dynamics",
+  "index": 1,
+  "name": "Dynamics",
+  "normalized_value": 0.4444444477558136,
+  "text": "45",
+  "unit": "dB"
+ },
+ {
+  "id": "volume",
+  "index": 2,
+  "name": "Volume",
+  "normalized_value": 0.7272727489471436,
+  "text": "0",
+  "unit": "dB"
+ },
+ {
+  "id": "velocity_offset",
+  "index": 3,
+  "name": "Velocity Offset",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "post_effect_gain",
+  "index": 4,
+  "name": "Post Effect Gain",
+  "normalized_value": 0.5541666746139526,
+  "text": "+1.3",
+  "unit": "dB"
+ },
+ {
+  "id": "morphing",
+  "index": 5,
+  "name": "Morphing",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": "%"
+ },
+ {
+  "id": "equalizer_switch",
+  "index": 6,
+  "name": "Equalizer Switch",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "aftertouch",
+  "index": 7,
+  "name": "Aftertouch",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "diapason",
+  "index": 8,
+  "name": "Diapason",
+  "normalized_value": 0.5,
+  "text": "440.0",
+  "unit": "Hz"
+ },
+ {
+  "id": "sustain_pedal",
+  "index": 9,
+  "name": "Sustain Pedal",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "soft_pedal",
+  "index": 10,
+  "name": "Soft Pedal",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "sostenuto_pedal",
+  "index": 11,
+  "name": "Sostenuto Pedal",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "harmonic_pedal",
+  "index": 12,
+  "name": "Harmonic Pedal",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "rattle_pedal",
+  "index": 13,
+  "name": "Rattle Pedal",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "lute_stop_pedal",
+  "index": 14,
+  "name": "Buff Stop Pedal",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "celeste_pedal",
+  "index": 15,
+  "name": "Celeste Pedal",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "mozart_rail",
+  "index": 16,
+  "name": "Mozart Rail",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "super_sostenuto",
+  "index": 17,
+  "name": "Super Sostenuto",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "pinch_harmonic_pedal",
+  "index": 18,
+  "name": "Pinch Harmonic Pedal",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "glissando_pedal",
+  "index": 19,
+  "name": "Glissando Pedal",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "thunder_pedal",
+  "index": 20,
+  "name": "Thunder Pedal",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "harpsichord_register_1",
+  "index": 21,
+  "name": "Harpsichord Register 1",
+  "normalized_value": 1.0,
+  "text": "On",
+  "unit": ""
+ },
+ {
+  "id": "harpsichord_register_2",
+  "index": 22,
+  "name": "Harpsichord Register 2",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "harpsichord_register_3",
+  "index": 23,
+  "name": "Harpsichord Register 3",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "reversed_sustain",
+  "index": 24,
+  "name": "Reversed Sustain",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "pitch_bend",
+  "index": 25,
+  "name": "Pitch Bend",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "cents"
+ },
+ {
+  "id": "unison",
+  "index": 26,
+  "name": "Unison Width",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "octave_stretching",
+  "index": 27,
+  "name": "Octave Stretching",
+  "normalized_value": 0.23108820617198944,
+  "text": "1.00",
+  "unit": ""
+ },
+ {
+  "id": "unison_balance",
+  "index": 28,
+  "name": "Unison Balance",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "direct_sound",
+  "index": 29,
+  "name": "Direct Sound Duration",
+  "normalized_value": 0.5,
+  "text": "1.00",
+  "unit": ""
+ },
+ {
+  "id": "hammer_noise",
+  "index": 30,
+  "name": "Hammer Noise",
+  "normalized_value": 0.3103448152542114,
+  "text": "1.00",
+  "unit": ""
+ },
+ {
+  "id": "hammer_hardness",
+  "index": 31,
+  "name": "Hammer Hardness",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "hammer_hardness_piano",
+  "index": 32,
+  "name": "Hammer Hardness Piano",
+  "normalized_value": 0.4806444048881531,
+  "text": "0.27",
+  "unit": ""
+ },
+ {
+  "id": "hammer_hardness_mezzo",
+  "index": 33,
+  "name": "Hammer Hardness Mezzo",
+  "normalized_value": 0.5467440485954285,
+  "text": "0.90",
+  "unit": ""
+ },
+ {
+  "id": "hammer_hardness_forte",
+  "index": 34,
+  "name": "Hammer Hardness Forte",
+  "normalized_value": 0.5,
+  "text": "1.60",
+  "unit": ""
+ },
+ {
+  "id": "profil_1",
+  "index": 35,
+  "name": "Spectrum Profile 1",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "dB"
+ },
+ {
+  "id": "profil_2",
+  "index": 36,
+  "name": "Spectrum Profile 2",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "dB"
+ },
+ {
+  "id": "profil_3",
+  "index": 37,
+  "name": "Spectrum Profile 3",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "dB"
+ },
+ {
+  "id": "profil_4",
+  "index": 38,
+  "name": "Spectrum Profile 4",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "dB"
+ },
+ {
+  "id": "profil_5",
+  "index": 39,
+  "name": "Spectrum Profile 5",
+  "normalized_value": 0.5081967115402222,
+  "text": "+0.2",
+  "unit": "dB"
+ },
+ {
+  "id": "profil_6",
+  "index": 40,
+  "name": "Spectrum Profile 6",
+  "normalized_value": 0.5096153616905212,
+  "text": "+0.3",
+  "unit": "dB"
+ },
+ {
+  "id": "profil_7",
+  "index": 41,
+  "name": "Spectrum Profile 7",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "dB"
+ },
+ {
+  "id": "profil_8",
+  "index": 42,
+  "name": "Spectrum Profile 8",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "dB"
+ },
+ {
+  "id": "hammer_tone",
+  "index": 43,
+  "name": "Hammer Tone",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "strike_point",
+  "index": 44,
+  "name": "Strike Point",
+  "normalized_value": 0.5576758980751038,
+  "text": "1/9.3",
+  "unit": ""
+ },
+ {
+  "id": "pinch_harmonic_point",
+  "index": 45,
+  "name": "Pinch Harmonic Point",
+  "normalized_value": 1.0,
+  "text": "1/2.0",
+  "unit": ""
+ },
+ {
+  "id": "pickup_symmetry",
+  "index": 46,
+  "name": "Pickup Symmetry",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "pickup_distance",
+  "index": 47,
+  "name": "Pickup Distance",
+  "normalized_value": 0.444444477558136,
+  "text": "1.00",
+  "unit": ""
+ },
+ {
+  "id": "soft_level",
+  "index": 48,
+  "name": "Soft Level",
+  "normalized_value": 0.30000001192092896,
+  "text": "0.30",
+  "unit": ""
+ },
+ {
+  "id": "clavinet_low_mic",
+  "index": 49,
+  "name": "Clavinet Low Mic",
+  "normalized_value": 1.0,
+  "text": "+1.00",
+  "unit": ""
+ },
+ {
+  "id": "clavinet_high_mic",
+  "index": 50,
+  "name": "Clavinet High Mic",
+  "normalized_value": 1.0,
+  "text": "+1.00",
+  "unit": ""
+ },
+ {
+  "id": "impedance",
+  "index": 51,
+  "name": "Impedance",
+  "normalized_value": 0.5,
+  "text": "1.00",
+  "unit": ""
+ },
+ {
+  "id": "impedance_cutoff",
+  "index": 52,
+  "name": "Impedance Cutoff",
+  "normalized_value": 0.5,
+  "text": "1.00",
+  "unit": ""
+ },
+ {
+  "id": "q_factor",
+  "index": 53,
+  "name": "Impedance Slope",
+  "normalized_value": 0.5,
+  "text": "1.00",
+  "unit": ""
+ },
+ {
+  "id": "string_length",
+  "index": 54,
+  "name": "String Length",
+  "normalized_value": 0.5,
+  "text": "2.70",
+  "unit": "m"
+ },
+ {
+  "id": "sympathetic_resonance",
+  "index": 55,
+  "name": "Sympathetic Resonance",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "duplex_scale_resonance",
+  "index": 56,
+  "name": "Duplex Scale Resonance",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "quadratic_effect",
+  "index": 57,
+  "name": "Quadratic Effect",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "hammer_tine_noise",
+  "index": 58,
+  "name": "Hammer Tine Noise",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "dB"
+ },
+ {
+  "id": "blooming_energy",
+  "index": 59,
+  "name": "Blooming Energy",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "blooming_inertia",
+  "index": 60,
+  "name": "Blooming Inertia",
+  "normalized_value": 0.5,
+  "text": "1.00",
+  "unit": "s"
+ },
+ {
+  "id": "external_audio_mix",
+  "index": 61,
+  "name": "External Audio Mix",
+  "normalized_value": 1.0,
+  "text": "1.00",
+  "unit": ""
+ },
+ {
+  "id": "external_audio_tone",
+  "index": 62,
+  "name": "External Audio Tone",
+  "normalized_value": 1.0,
+  "text": "1.00",
+  "unit": ""
+ },
+ {
+  "id": "stereo_width",
+  "index": 63,
+  "name": "Stereo Width",
+  "normalized_value": 0.5,
+  "text": "1.00",
+  "unit": ""
+ },
+ {
+  "id": "bus_1_volume",
+  "index": 64,
+  "name": "Bus 1 Volume",
+  "normalized_value": 0.75,
+  "text": "0",
+  "unit": "dB"
+ },
+ {
+  "id": "bus_1_pan",
+  "index": 65,
+  "name": "Bus 1 Pan",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "lid_position",
+  "index": 66,
+  "name": "Lid Position",
+  "normalized_value": 1.0,
+  "text": "1.00",
+  "unit": ""
+ },
+ {
+  "id": "mic_level_compensation",
+  "index": 67,
+  "name": "Mic Level Compensation",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "mic_delay_compensation",
+  "index": 68,
+  "name": "Mic Delay Compensation",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "head_x",
+  "index": 69,
+  "name": "Head X position",
+  "normalized_value": 0.6333333253860474,
+  "text": "+0.800",
+  "unit": "m"
+ },
+ {
+  "id": "head_y",
+  "index": 70,
+  "name": "Head Y position",
+  "normalized_value": 0.46000000834465027,
+  "text": "-0.240",
+  "unit": "m"
+ },
+ {
+  "id": "head_z",
+  "index": 71,
+  "name": "Head Z position",
+  "normalized_value": 0.75,
+  "text": "1.500",
+  "unit": "m"
+ },
+ {
+  "id": "head_diameter",
+  "index": 72,
+  "name": "Head Diameter",
+  "normalized_value": 0.20000000298023224,
+  "text": "18.000",
+  "unit": "cm"
+ },
+ {
+  "id": "head_angle",
+  "index": 73,
+  "name": "Head Angle",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "°"
+ },
+ {
+  "id": "mic_1_mic_switch",
+  "index": 74,
+  "name": "Mic 1 Mic Switch",
+  "normalized_value": 1.0,
+  "text": "On",
+  "unit": ""
+ },
+ {
+  "id": "mic_1_x",
+  "index": 75,
+  "name": "Mic 1 X position",
+  "normalized_value": 0.8424999713897705,
+  "text": "+2.440",
+  "unit": "m"
+ },
+ {
+  "id": "mic_1_y",
+  "index": 76,
+  "name": "Mic 1 Y position",
+  "normalized_value": 0.7933332920074463,
+  "text": "+1.760",
+  "unit": "m"
+ },
+ {
+  "id": "mic_1_z",
+  "index": 77,
+  "name": "Mic 1 Z position",
+  "normalized_value": 0.75,
+  "text": "1.500",
+  "unit": "m"
+ },
+ {
+  "id": "mic_1_azimuth",
+  "index": 78,
+  "name": "Mic 1 Azimuth",
+  "normalized_value": 0.0,
+  "text": "-180.0",
+  "unit": "°"
+ },
+ {
+  "id": "mic_1_elevation",
+  "index": 79,
+  "name": "Mic 1 Elevation",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "°"
+ },
+ {
+  "id": "mic_1_bus_1_volume",
+  "index": 80,
+  "name": "Mic 1 Bus 1 Volume",
+  "normalized_value": 0.875,
+  "text": "+3.0",
+  "unit": "dB"
+ },
+ {
+  "id": "mic_1_bus_1_pan",
+  "index": 81,
+  "name": "Mic 1 Bus 1 Pan",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "mic_2_mic_switch",
+  "index": 82,
+  "name": "Mic 2 Mic Switch",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "mic_2_x",
+  "index": 83,
+  "name": "Mic 2 X position",
+  "normalized_value": 0.84375,
+  "text": "+2.500",
+  "unit": "m"
+ },
+ {
+  "id": "mic_2_y",
+  "index": 84,
+  "name": "Mic 2 Y position",
+  "normalized_value": 0.6333333253860474,
+  "text": "+0.800",
+  "unit": "m"
+ },
+ {
+  "id": "mic_2_z",
+  "index": 85,
+  "name": "Mic 2 Z position",
+  "normalized_value": 0.75,
+  "text": "1.500",
+  "unit": "m"
+ },
+ {
+  "id": "mic_2_azimuth",
+  "index": 86,
+  "name": "Mic 2 Azimuth",
+  "normalized_value": 0.625,
+  "text": "+45.0",
+  "unit": "°"
+ },
+ {
+  "id": "mic_2_elevation",
+  "index": 87,
+  "name": "Mic 2 Elevation",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "°"
+ },
+ {
+  "id": "mic_2_bus_1_volume",
+  "index": 88,
+  "name": "Mic 2 Bus 1 Volume",
+  "normalized_value": 0.875,
+  "text": "+3.0",
+  "unit": "dB"
+ },
+ {
+  "id": "mic_2_bus_1_pan",
+  "index": 89,
+  "name": "Mic 2 Bus 1 Pan",
+  "normalized_value": 1.0,
+  "text": "+1.00",
+  "unit": ""
+ },
+ {
+  "id": "mic_3_mic_switch",
+  "index": 90,
+  "name": "Mic 3 Mic Switch",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "mic_3_x",
+  "index": 91,
+  "name": "Mic 3 X position",
+  "normalized_value": 0.5599998831748962,
+  "text": "+0.360",
+  "unit": "m"
+ },
+ {
+  "id": "mic_3_y",
+  "index": 92,
+  "name": "Mic 3 Y position",
+  "normalized_value": 0.7233332991600037,
+  "text": "+1.340",
+  "unit": "m"
+ },
+ {
+  "id": "mic_3_z",
+  "index": 93,
+  "name": "Mic 3 Z position",
+  "normalized_value": 0.5099999904632568,
+  "text": "1.020",
+  "unit": "m"
+ },
+ {
+  "id": "mic_3_azimuth",
+  "index": 94,
+  "name": "Mic 3 Azimuth",
+  "normalized_value": 0.8157835006713867,
+  "text": "+113.7",
+  "unit": "°"
+ },
+ {
+  "id": "mic_3_elevation",
+  "index": 95,
+  "name": "Mic 3 Elevation",
+  "normalized_value": 1.0,
+  "text": "+180.0",
+  "unit": "°"
+ },
+ {
+  "id": "mic_3_bus_1_volume",
+  "index": 96,
+  "name": "Mic 3 Bus 1 Volume",
+  "normalized_value": 0.38053590059280396,
+  "text": "-11.7",
+  "unit": "dB"
+ },
+ {
+  "id": "mic_3_bus_1_pan",
+  "index": 97,
+  "name": "Mic 3 Bus 1 Pan",
+  "normalized_value": 0.15667027235031128,
+  "text": "-0.69",
+  "unit": ""
+ },
+ {
+  "id": "mic_4_mic_switch",
+  "index": 98,
+  "name": "Mic 4 Mic Switch",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "mic_4_x",
+  "index": 99,
+  "name": "Mic 4 X position",
+  "normalized_value": 0.5766666531562805,
+  "text": "+0.460",
+  "unit": "m"
+ },
+ {
+  "id": "mic_4_y",
+  "index": 100,
+  "name": "Mic 4 Y position",
+  "normalized_value": 0.7066666483879089,
+  "text": "+1.240",
+  "unit": "m"
+ },
+ {
+  "id": "mic_4_z",
+  "index": 101,
+  "name": "Mic 4 Z position",
+  "normalized_value": 0.5099999904632568,
+  "text": "1.020",
+  "unit": "m"
+ },
+ {
+  "id": "mic_4_azimuth",
+  "index": 102,
+  "name": "Mic 4 Azimuth",
+  "normalized_value": 0.8138889074325562,
+  "text": "+113.0",
+  "unit": "°"
+ },
+ {
+  "id": "mic_4_elevation",
+  "index": 103,
+  "name": "Mic 4 Elevation",
+  "normalized_value": 0.2527777850627899,
+  "text": "-89.0",
+  "unit": "°"
+ },
+ {
+  "id": "mic_4_bus_1_volume",
+  "index": 104,
+  "name": "Mic 4 Bus 1 Volume",
+  "normalized_value": 0.38053590059280396,
+  "text": "-11.7",
+  "unit": "dB"
+ },
+ {
+  "id": "mic_4_bus_1_pan",
+  "index": 105,
+  "name": "Mic 4 Bus 1 Pan",
+  "normalized_value": 0.8433297276496887,
+  "text": "+0.69",
+  "unit": ""
+ },
+ {
+  "id": "mic_5_mic_switch",
+  "index": 106,
+  "name": "Mic 5 Mic Switch",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "mic_5_x",
+  "index": 107,
+  "name": "Mic 5 X position",
+  "normalized_value": 0.7566666603088379,
+  "text": "+1.540",
+  "unit": "m"
+ },
+ {
+  "id": "mic_5_y",
+  "index": 108,
+  "name": "Mic 5 Y position",
+  "normalized_value": 0.6399999856948853,
+  "text": "+0.840",
+  "unit": "m"
+ },
+ {
+  "id": "mic_5_z",
+  "index": 109,
+  "name": "Mic 5 Z position",
+  "normalized_value": 0.7825000286102295,
+  "text": "1.760",
+  "unit": "m"
+ },
+ {
+  "id": "mic_5_azimuth",
+  "index": 110,
+  "name": "Mic 5 Azimuth",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "°"
+ },
+ {
+  "id": "mic_5_elevation",
+  "index": 111,
+  "name": "Mic 5 Elevation",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "°"
+ },
+ {
+  "id": "mic_5_bus_1_volume",
+  "index": 112,
+  "name": "Mic 5 Bus 1 Volume",
+  "normalized_value": 0.4377145767211914,
+  "text": "-9.0",
+  "unit": "dB"
+ },
+ {
+  "id": "mic_5_bus_1_pan",
+  "index": 113,
+  "name": "Mic 5 Bus 1 Pan",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "mic_6_mic_switch",
+  "index": 114,
+  "name": "Mic 6 Mic Switch",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "mic_6_x",
+  "index": 115,
+  "name": "Mic 6 X position",
+  "normalized_value": 0.8199999332427979,
+  "text": "+1.920",
+  "unit": "m"
+ },
+ {
+  "id": "mic_6_y",
+  "index": 116,
+  "name": "Mic 6 Y position",
+  "normalized_value": 0.19333334267139435,
+  "text": "-1.840",
+  "unit": "m"
+ },
+ {
+  "id": "mic_6_z",
+  "index": 117,
+  "name": "Mic 6 Z position",
+  "normalized_value": 0.7099999785423279,
+  "text": "1.420",
+  "unit": "m"
+ },
+ {
+  "id": "mic_6_azimuth",
+  "index": 118,
+  "name": "Mic 6 Azimuth",
+  "normalized_value": 0.3333333432674408,
+  "text": "-60.0",
+  "unit": "°"
+ },
+ {
+  "id": "mic_6_elevation",
+  "index": 119,
+  "name": "Mic 6 Elevation",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "°"
+ },
+ {
+  "id": "mic_6_bus_1_volume",
+  "index": 120,
+  "name": "Mic 6 Bus 1 Volume",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": "dB"
+ },
+ {
+  "id": "mic_6_bus_1_pan",
+  "index": 121,
+  "name": "Mic 6 Bus 1 Pan",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "mic_7_mic_switch",
+  "index": 122,
+  "name": "Mic 7 Mic Switch",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "mic_7_x",
+  "index": 123,
+  "name": "Mic 7 X position",
+  "normalized_value": 0.38333332538604736,
+  "text": "-0.700",
+  "unit": "m"
+ },
+ {
+  "id": "mic_7_y",
+  "index": 124,
+  "name": "Mic 7 Y position",
+  "normalized_value": 0.7300000190734863,
+  "text": "+1.380",
+  "unit": "m"
+ },
+ {
+  "id": "mic_7_z",
+  "index": 125,
+  "name": "Mic 7 Z position",
+  "normalized_value": 0.8600000143051147,
+  "text": "2.380",
+  "unit": "m"
+ },
+ {
+  "id": "mic_7_azimuth",
+  "index": 126,
+  "name": "Mic 7 Azimuth",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "°"
+ },
+ {
+  "id": "mic_7_elevation",
+  "index": 127,
+  "name": "Mic 7 Elevation",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "°"
+ },
+ {
+  "id": "mic_7_bus_1_volume",
+  "index": 128,
+  "name": "Mic 7 Bus 1 Volume",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": "dB"
+ },
+ {
+  "id": "mic_7_bus_1_pan",
+  "index": 129,
+  "name": "Mic 7 Bus 1 Pan",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "mic_8_mic_switch",
+  "index": 130,
+  "name": "Mic 8 Mic Switch",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "mic_8_x",
+  "index": 131,
+  "name": "Mic 8 X position",
+  "normalized_value": 0.7566666603088379,
+  "text": "+1.540",
+  "unit": "m"
+ },
+ {
+  "id": "mic_8_y",
+  "index": 132,
+  "name": "Mic 8 Y position",
+  "normalized_value": 0.8066666126251221,
+  "text": "+1.840",
+  "unit": "m"
+ },
+ {
+  "id": "mic_8_z",
+  "index": 133,
+  "name": "Mic 8 Z position",
+  "normalized_value": 0.8324999809265137,
+  "text": "2.160",
+  "unit": "m"
+ },
+ {
+  "id": "mic_8_azimuth",
+  "index": 134,
+  "name": "Mic 8 Azimuth",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "°"
+ },
+ {
+  "id": "mic_8_elevation",
+  "index": 135,
+  "name": "Mic 8 Elevation",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "°"
+ },
+ {
+  "id": "mic_8_bus_1_volume",
+  "index": 136,
+  "name": "Mic 8 Bus 1 Volume",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": "dB"
+ },
+ {
+  "id": "mic_8_bus_1_pan",
+  "index": 137,
+  "name": "Mic 8 Bus 1 Pan",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "sound_speed",
+  "index": 138,
+  "name": "Sound Speed",
+  "normalized_value": 0.5323789119720459,
+  "text": "350",
+  "unit": "m/s"
+ },
+ {
+  "id": "wall_distance",
+  "index": 139,
+  "name": "Wall distance",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": "m"
+ },
+ {
+  "id": "lid",
+  "index": 140,
+  "name": "Lid",
+  "normalized_value": 1.0,
+  "text": "On",
+  "unit": ""
+ },
+ {
+  "id": "mute",
+  "index": 141,
+  "name": "Mute",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "damper_noise",
+  "index": 142,
+  "name": "Damper Noise",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "dB"
+ },
+ {
+  "id": "damper_position",
+  "index": 143,
+  "name": "Damper Position",
+  "normalized_value": 0.7421188354492188,
+  "text": "1/4.9",
+  "unit": ""
+ },
+ {
+  "id": "last_damper",
+  "index": 144,
+  "name": "Last Damper",
+  "normalized_value": 0.7109375,
+  "text": "91",
+  "unit": ""
+ },
+ {
+  "id": "pedal_noise",
+  "index": 145,
+  "name": "Pedal Noise",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "dB"
+ },
+ {
+  "id": "key_release_noise",
+  "index": 146,
+  "name": "Key Release Noise",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "dB"
+ },
+ {
+  "id": "damping_duration",
+  "index": 147,
+  "name": "Damping Duration",
+  "normalized_value": 0.5,
+  "text": "1.00",
+  "unit": ""
+ },
+ {
+  "id": "keyboard_range_switch",
+  "index": 148,
+  "name": "Keyboard Range Switch",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "bounce_switch",
+  "index": 149,
+  "name": "Bounce Switch",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "bounce_delay",
+  "index": 150,
+  "name": "Bounce Delay",
+  "normalized_value": 0.4999999701976776,
+  "text": "120.00",
+  "unit": "ms"
+ },
+ {
+  "id": "bounce_sync",
+  "index": 151,
+  "name": "Bounce Sync",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "bounce_sync_speed",
+  "index": 152,
+  "name": "Bounce Sync Speed",
+  "normalized_value": 0.4482758641242981,
+  "text": "1",
+  "unit": ""
+ },
+ {
+  "id": "bounce_velocity_sensitivity",
+  "index": 153,
+  "name": "Bounce Velocity Sensitivity",
+  "normalized_value": 0.5,
+  "text": "50",
+  "unit": "%"
+ },
+ {
+  "id": "bounce_delay_loss",
+  "index": 154,
+  "name": "Bounce Delay Loss",
+  "normalized_value": 0.5,
+  "text": "10",
+  "unit": "%"
+ },
+ {
+  "id": "bounce_velocity_loss",
+  "index": 155,
+  "name": "Bounce Velocity Loss",
+  "normalized_value": 0.5,
+  "text": "20",
+  "unit": "%"
+ },
+ {
+  "id": "bounce_humanization",
+  "index": 156,
+  "name": "Bounce Humanization",
+  "normalized_value": 0.5,
+  "text": "50",
+  "unit": "%"
+ },
+ {
+  "id": "nfx_lfo_shape",
+  "index": 157,
+  "name": "NFX Lfo Shape",
+  "normalized_value": 0.5,
+  "text": "1.00",
+  "unit": ""
+ },
+ {
+  "id": "nfx_lfo_skew",
+  "index": 158,
+  "name": "NFX Lfo Skew",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "nfx_lfo_rate",
+  "index": 159,
+  "name": "NFX Lfo Rate",
+  "normalized_value": 0.4000000059604645,
+  "text": "4.00",
+  "unit": "Hz"
+ },
+ {
+  "id": "nfx_lfo_phase",
+  "index": 160,
+  "name": "NFX Lfo Phase",
+  "normalized_value": 0.25,
+  "text": "90",
+  "unit": "°"
+ },
+ {
+  "id": "nfx_lfo_phase_locked",
+  "index": 161,
+  "name": "NFX Lfo Phase Locked",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "nfx_onset_duration",
+  "index": 162,
+  "name": "NFX Onset Duration",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": "s"
+ },
+ {
+  "id": "nfx_vibrato",
+  "index": 163,
+  "name": "NFX Vibrato",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": "cents"
+ },
+ {
+  "id": "nfx_vibrato_offset",
+  "index": 164,
+  "name": "NFX Vibrato Offset",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "nfx_tremolo_depth",
+  "index": 165,
+  "name": "NFX Tremolo Depth",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": "dB"
+ },
+ {
+  "id": "nfx_tremolo_phase",
+  "index": 166,
+  "name": "NFX Tremolo Phase",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": "°"
+ },
+ {
+  "id": "attack_envelope",
+  "index": 167,
+  "name": "Attack Envelope",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "smear",
+  "index": 168,
+  "name": "Smear",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "virtuosity",
+  "index": 169,
+  "name": "Virtuosity",
+  "normalized_value": 0.5,
+  "text": "0.50",
+  "unit": ""
+ },
+ {
+  "id": "fret",
+  "index": 170,
+  "name": "Fret",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "guitar_legato",
+  "index": 171,
+  "name": "Guitar Legato",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "guitar_easy_fingering",
+  "index": 172,
+  "name": "Guitar easy fingering",
+  "normalized_value": 1.0,
+  "text": "On",
+  "unit": ""
+ },
+ {
+  "id": "guitar_body",
+  "index": 173,
+  "name": "Guitar Body",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "effect_1_switch",
+  "index": 174,
+  "name": "Eff 1 Switch",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "effect_1_param_1",
+  "index": 175,
+  "name": "Eff 1 DelMix",
+  "normalized_value": 0.07000000029802322,
+  "text": "7",
+  "unit": "%"
+ },
+ {
+  "id": "effect_1_param_2",
+  "index": 176,
+  "name": "Eff 1 DelTime",
+  "normalized_value": 0.2283361405134201,
+  "text": "60",
+  "unit": "ms"
+ },
+ {
+  "id": "effect_1_param_3",
+  "index": 177,
+  "name": "Eff 1 DelFb",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": "%"
+ },
+ {
+  "id": "effect_1_param_4",
+  "index": 178,
+  "name": "Eff 1 DelTone",
+  "normalized_value": 0.25,
+  "text": "-0.50",
+  "unit": ""
+ },
+ {
+  "id": "effect_1_param_5",
+  "index": 179,
+  "name": "Eff 1 DelPol",
+  "normalized_value": 1.0,
+  "text": "On",
+  "unit": ""
+ },
+ {
+  "id": "effect_1_param_6",
+  "index": 180,
+  "name": "Eff 1 DelPing",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "effect_1_param_7",
+  "index": 181,
+  "name": "Eff 1 Param 7",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "effect_1_param_8",
+  "index": 182,
+  "name": "Eff 1 Param 8",
+  "normalized_value": 0.0,
+  "text": "0",
+  "unit": ""
+ },
+ {
+  "id": "effect_2_switch",
+  "index": 183,
+  "name": "Eff 2 Switch",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "effect_2_param_1",
+  "index": 184,
+  "name": "Eff 2 PEQ1F",
+  "normalized_value": 0.17404618859291077,
+  "text": "120",
+  "unit": "Hz"
+ },
+ {
+  "id": "effect_2_param_2",
+  "index": 185,
+  "name": "Eff 2 PEQ1G",
+  "normalized_value": 0.5400000214576721,
+  "text": "+2.0",
+  "unit": "dB"
+ },
+ {
+  "id": "effect_2_param_3",
+  "index": 186,
+  "name": "Eff 2 PEQ1Q",
+  "normalized_value": 0.46127447485923767,
+  "text": "0.70",
+  "unit": ""
+ },
+ {
+  "id": "effect_2_param_4",
+  "index": 187,
+  "name": "Eff 2 PEQ1T",
+  "normalized_value": 0.4285714328289032,
+  "text": "Low Shelve",
+  "unit": ""
+ },
+ {
+  "id": "effect_2_param_5",
+  "index": 188,
+  "name": "Eff 2 PEQ2F",
+  "normalized_value": 0.3192083239555359,
+  "text": "300",
+  "unit": "Hz"
+ },
+ {
+  "id": "effect_2_param_6",
+  "index": 189,
+  "name": "Eff 2 PEQ2G",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "dB"
+ },
+ {
+  "id": "effect_2_param_7",
+  "index": 190,
+  "name": "Eff 2 PEQ2Q",
+  "normalized_value": 0.46127447485923767,
+  "text": "0.70",
+  "unit": ""
+ },
+ {
+  "id": "effect_2_param_8",
+  "index": 191,
+  "name": "Eff 2 PEQ2T",
+  "normalized_value": 0.0,
+  "text": "Peak",
+  "unit": ""
+ },
+ {
+  "id": "effect_3_switch",
+  "index": 192,
+  "name": "Eff 3 Switch",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "effect_3_param_1",
+  "index": 193,
+  "name": "Eff 3 PEQ1F",
+  "normalized_value": 0.0,
+  "text": "40",
+  "unit": "Hz"
+ },
+ {
+  "id": "effect_3_param_2",
+  "index": 194,
+  "name": "Eff 3 PEQ1G",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "dB"
+ },
+ {
+  "id": "effect_3_param_3",
+  "index": 195,
+  "name": "Eff 3 PEQ1Q",
+  "normalized_value": 0.4999999701976776,
+  "text": "1.00",
+  "unit": ""
+ },
+ {
+  "id": "effect_3_param_4",
+  "index": 196,
+  "name": "Eff 3 PEQ1T",
+  "normalized_value": 0.4285714328289032,
+  "text": "Low Shelve",
+  "unit": ""
+ },
+ {
+  "id": "effect_3_param_5",
+  "index": 197,
+  "name": "Eff 3 PEQ2F",
+  "normalized_value": 0.10981091856956482,
+  "text": "80",
+  "unit": "Hz"
+ },
+ {
+  "id": "effect_3_param_6",
+  "index": 198,
+  "name": "Eff 3 PEQ2G",
+  "normalized_value": 0.4699999988079071,
+  "text": "-1.5",
+  "unit": "dB"
+ },
+ {
+  "id": "effect_3_param_7",
+  "index": 199,
+  "name": "Eff 3 PEQ2Q",
+  "normalized_value": 0.6945378184318542,
+  "text": "6.00",
+  "unit": ""
+ },
+ {
+  "id": "effect_3_param_8",
+  "index": 200,
+  "name": "Eff 3 PEQ2T",
+  "normalized_value": 0.0,
+  "text": "Peak",
+  "unit": ""
+ },
+ {
+  "id": "reverb_switch",
+  "index": 201,
+  "name": "Reverb Switch",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "reverb_duration",
+  "index": 202,
+  "name": "Reverb Duration",
+  "normalized_value": 0.4223325252532959,
+  "text": "1.60",
+  "unit": "s"
+ },
+ {
+  "id": "reverb_mix",
+  "index": 203,
+  "name": "Reverb Mix",
+  "normalized_value": 0.5400000214576721,
+  "text": "+4.0",
+  "unit": "dB"
+ },
+ {
+  "id": "room_dimensions",
+  "index": 204,
+  "name": "Room Dimensions",
+  "normalized_value": 0.2222222238779068,
+  "text": "15.00",
+  "unit": "m"
+ },
+ {
+  "id": "reverb_pre_delay",
+  "index": 205,
+  "name": "Reverb Pre-delay",
+  "normalized_value": 0.21569781005382538,
+  "text": "0.010",
+  "unit": "s"
+ },
+ {
+  "id": "reverb_early_reflections",
+  "index": 206,
+  "name": "Reverb Early Reflections",
+  "normalized_value": 0.5,
+  "text": "0",
+  "unit": "dB"
+ },
+ {
+  "id": "reverb_tone",
+  "index": 207,
+  "name": "Reverb Tone",
+  "normalized_value": 0.44999998807907104,
+  "text": "-0.10",
+  "unit": ""
+ },
+ {
+  "id": "reverb_envelope",
+  "index": 208,
+  "name": "Reverb Envelope",
+  "normalized_value": 1.0,
+  "text": "0",
+  "unit": "dB/s"
+ },
+ {
+  "id": "reverb_resampling",
+  "index": 209,
+  "name": "Reverb Resampling",
+  "normalized_value": 0.5,
+  "text": "100",
+  "unit": "%"
+ },
+ {
+  "id": "reverb_highpass_cutoff",
+  "index": 210,
+  "name": "Reverb Highpass Cutoff",
+  "normalized_value": 0.6356906890869141,
+  "text": "400.00",
+  "unit": "Hz"
+ },
+ {
+  "id": "limiter_switch",
+  "index": 211,
+  "name": "Limiter Switch",
+  "normalized_value": 0.0,
+  "text": "Off",
+  "unit": ""
+ },
+ {
+  "id": "limiter_sharpness",
+  "index": 212,
+  "name": "Limiter Sharpness",
+  "normalized_value": 0.5,
+  "text": "1.00",
+  "unit": ""
+ },
+ {
+  "id": "limiter_threshold",
+  "index": 213,
+  "name": "Limiter Threshold",
+  "normalized_value": 0.5199999809265137,
+  "text": "-12",
+  "unit": "dB"
+ },
+ {
+  "id": "limiter_gain",
+  "index": 214,
+  "name": "Limiter Gain",
+  "normalized_value": 0.8333333134651184,
+  "text": "0",
+  "unit": "dB"
+ }
+]
