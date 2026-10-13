@@ -1,11 +1,13 @@
 # Pianoteq 9 逆向研究与保留音频实验室
 
-本仓库面向 Modartt Pianoteq 9.1.2 的参数语义、历史静态取证记录和保留输出声学分析，服务于 [devpiano](https://github.com/0xnayuta/devpiano) 的自主增强模态钢琴开发。
+本仓库整理 Pianoteq 的公开参数语义、历史样本静态记录与软件输出声学观察，服务于 [devpiano](https://github.com/0xnayuta/devpiano) 的自研钢琴开发。旧 9.1.2 已确认来自第三方破解/补丁发布，停止执行并撤销官方参考资格；新研究仅在核验后的官方 9.2.5 试用版上按独立协议开展。
 
 ## 当前证据边界
 
 - 官方参数定义、历史地址/XRefs、经典理论、候选模型和生产工程验证分别管理；有报告、字符串、常量或分配大小不等于完整商业算法已被还原。
 - devpiano Task 39-1 的参考侧复算与纠错已回流。本仓库当前量测与旧主张处理的唯一入口为 [声学基准报告](docs/acoustic_benchmark_report.md)，轻量结果和方法见 [manifest](acoustic_lab/results/task39-1-reference-revalidation/manifest.json)。
+- **Task 39-2（官方 9.2.5 受控参考）**：私有隔离 GUI 采集与分析（pilot v2、高音区 register、全语料 corpus、补充锚点 anchors2、桥界 bridge，共 195 单元参考 WAV）已完成，14 个逐键锚点经用户核准进入 devpiano 生产 `B` 表；封闭验证集（8 音）一次性执行并消耗，修正方法（[method-amendment-1](acoustic_lab/results/task39-2-official-reference-v2/task39-2-method-amendment-1.md) 独立留出预测、[method-amendment-2](acoustic_lab/results/task39-2-official-reference-v2/task39-2-method-amendment-2.md) 相邻分音安全窗口）重评 **12/34 通过——未达预登记指标**，需注册新验证数据。协议、pilot 套件与分析工具在 [results/task39-2-official-reference-v2](acoustic_lab/results/task39-2-official-reference-v2/)。
+- 当前来源资格由 [provenance.json](acoustic_lab/results/task39-2-official-reference-v2/provenance.json) 追加说明：旧二进制、Phase 1–5 地址记录与旧 WAV 为 `untrusted-binary-provenance`，数值复算不能恢复其官方资格。原 manifest、数据和方法不覆盖，公开手册/理论、自有量测器与 devpiano 生产基线分别保留。
 - 候选分音族及 `B_eff` 只描述指定 WAV/方法/固定配对。历史预设参数、EQ/Reverb、拾音、增益及种子未知，不称为真实 Steinway 逐键常数，也不直接注入 devpiano 参数表。
 - **放弃“逆向完整物理建模引擎”的幻想**：商业编译器激进优化抹去了物理意图，浮点指令无法反演物理量纲；彻底撤回存在致命缺陷的旧 C++ 求解器示例（如 Phase 3 单声道抵消与能量 1.105、Phase 5 余弦平方均值 1/2 滑音不衰减、音频内循环逐采样超越函数调用等）。
 - 旧指数刚度曲线、C7错误频率锚点、恒定接触时间、固定机械能量权重和完整算法等价主张已按证据限制或撤回；不是把旧常数替换成另一套权威常数。
@@ -29,9 +31,10 @@ acoustic_lab/
   midi/                                  保留 SMF 输入
   audio/                                 保留参考 WAV，本机忽略，不保证可重新生成
   results/task39-1-reference-revalidation/ 轻量结果、方法、claims 和 manifest
+  results/task39-2-official-reference-v2/  Task 39-2 官方 9.2.5 协议、pilot 套件、逐键锚点与封闭验证闭环；不覆盖 v1
   backups/task39-1-20261010/               本机只读封存包，不随 Git 分发
 scripts/
-  extract_parameters.py                   历史参数提取工具
+  extract_parameters.py                   只读已登记官方样本的字符串并核对散列
   run_acoustic_experiments.py              只读分析现有参考文件并检查冻结证据
 ```
 
@@ -48,7 +51,7 @@ python3 scripts/run_acoustic_experiments.py
 python3 scripts/run_acoustic_experiments.py --json
 ```
 
-可用 `--audio-dir`、`--midi-dir`、`--evidence-dir` 指向等价保留目录。入口先检查输入/结果散列，再由 WAV/MIDI 独立计算谱峰、候选族、功率、RMS及包络并核对关键结果；缺失、损坏或数值不符返回非零。没有生成 MIDI、调用商业程序、重渲染或覆盖输出的代码路径，也不执行 JSON 重建文本。
+可用 `--audio-dir`、`--midi-dir`、`--evidence-dir` 指向等价保留目录。入口先检查输入/结果散列，再由 WAV/MIDI 独立计算并核对冻结数值；缺失、损坏或数值不符返回非零。JSON 与文本输出均明确旧数据不具官方参考资格；复算通过不是校准准入。入口没有调用商业程序、重渲染或覆盖输出的代码路径，也不执行 JSON 重建文本。
 
 REA 6.3.0 / Ghidra 12.1.4 是 Task 39-1 记录的可用研究工具环境，具体过程应保留对应版本和真实工具证据；不能用当前环境版本改写过去 session。该任务没有新开展完整 Ghidra 商业 DSP 重构。
 

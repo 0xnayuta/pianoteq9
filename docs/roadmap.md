@@ -6,6 +6,9 @@
 ## 当前工作与边界
 
 Task 39-1 下游复核结果回流：封存原始音频、重建输入和双方旧文档；参考结果、方法、claims及manifest落库；以 [声学基准报告](acoustic_benchmark_report.md) 统一口径与旧主张处理。复算入口只读取现有文件，不能补证过去商业渲染条件。
+2026-10-11 旧参考来源资格撤销：9.1.2 为第三方破解/补丁样本，停止执行及官方算法/声音归因，保留历史文件身份与数值。当前 [来源登记](../acoustic_lab/results/task39-2-official-reference-v2/provenance.json) 独立于旧 manifest；仅在已核验官方 9.2.5 的独立配置、完整状态和试用限制下建立新协议，不将版本切换当作 B 锚点准入。
+
+Task 39-2 执行与闭环（2026-10-13）：官方 9.2.5 私有隔离采集完成 195 单元（pilot v2 / register / corpus / anchors2 / bridge），逐键锚点分析产出 14 个准入锚点（经用户核准进入 devpiano 生产表）；封闭验证集一次性执行并消耗，修正方法（[amendment-1](../acoustic_lab/results/task39-2-official-reference-v2/task39-2-method-amendment-1.md) 独立留出预测、[amendment-2](../acoustic_lab/results/task39-2-official-reference-v2/task39-2-method-amendment-2.md) 相邻分音安全窗口）重评 12/34 通过——未达预登记指标，依预登记保留常量、需注册新验证数据。分析工具、runbook、预登记与重评产物均在 `results/task39-2-official-reference-v2/`。
 
 REA/Ghidra用于有明确目标和真实工具记录的静态研究。本轮不重做完整商业DSP反编译、不修改二进制或 devpiano 音源。原路线的工具版本与槽位数字属于历史记录，不用当前安装版本或新假说覆盖；具体证据真实性仍须对应原始输出单独核对。
 
@@ -18,6 +21,7 @@ REA/Ghidra用于有明确目标和真实工具记录的静态研究。本轮不�
 | Phase 3：同音与衰减 | [3-1](phase3/phase3-1-unison-control-chain.md) / [3-2](phase3/phase3-2-beating-matrix-decompilation.md) / [3-3](phase3/phase3-3-unison-beating-spec.md) | 原记录/候选产物保留，解释受统一证据等级限制；内部实现等价和生产工程认证未建立 |
 | Phase 4：开放弦与非发音段 | [4-1](phase4/phase4-1-sympathetic-anchors-evidence.md) / [4-2](phase4/phase4-2-resonance-pool-decompilation.md) / [4-3](phase4/phase4-3-sympathetic-system-spec.md) | 原记录/候选产物保留，解释受统一证据等级限制；内部实现等价和生产工程认证未建立 |
 | Phase 5：张力与泛音时间轨迹 | [5-1](phase5/phase5-1-quadratic-blooming-anchors-evidence.md) / [5-2](phase5/phase5-2-nonlinear-mechanics-decompilation.md) / [5-3](phase5/phase5-3-quadratic-blooming-spec.md) | 原记录/候选产物保留，解释受统一证据等级限制；内部实现等价和生产工程认证未建立 |
+上述 Phase 1–5 的地址、字符串与切片均属于旧具体样本的历史记录，不因保留而恢复官方实现证明资格；公开理论和经独立官方文档核对的参数语义分别保留。
 
 ## 进一步研究的进入条件
 
