@@ -1,7 +1,7 @@
-# Task 39-2 validation-interp2 采集与评估执行手册（runbook v1）
+# Task 39-2 validation-interp2 采集与评估执行手册（runbook v1.1）
 
-> 本手册是 `runbook-validation-interp.md` 的后继版本：执行套件（launcher / 采集流程 / 处置树 / 禁令）
-> 与 validation-interp 逐条沿用，仅矩阵、评估器与判定产物不同。**draft：待用户批准预登记后生效。**
+> 本手册沿用 `runbook-validation-interp.md` 的执行套件与已登记误差门槛，增加用户批准的 B 表冻结与单次验收上限。
+> **执行状态（2026-10-14）：本手册已按授权完整执行并消耗**——48/48 单元采集，唯一一次 guarded 判决为**证据不足**（32 个可评估单元全部达标；12 个 n88 单元参考侧无法收敛、4 个 n67-v47 单元可比分音不足）。本批不重开、不扩采、不补开替代批次；历史手册中的续采建议不构成本批授权。
 
 ## 0. 差异总表（相对 runbook-validation-interp）
 
@@ -19,6 +19,18 @@
 | 敏感性并列 | — | 评估产物必须并列 guarded 与 legacy（`--refinement-guard-db off`）关键统计（amendment-5 §4.6） |
 | 依赖链 | 仅钉评估器散列 | **同时钉评估器与其 import 的分析工具散列**（amendment-5 §6） |
 
+### 0.1 冻结范围与停止条件（优先于继承手册）
+
+- 生产表冻结为 `Piano88KeyTable.h` SHA-256 `c1997c904115ca23bdb1c9bbeb1d41542b25d8f7ed1dce0234109649da91a5b1`，19 表节点 = 17 实测锚点 + 2 文献外推节点；停止追加训练音高、锚点与插值/外推修订。
+- 本批只验证该表：最多 48 单元 / 16 冷会话、一个正式批次和一次 guarded 最终评估；不更换 29/55/67/88、力度、rate 或重复矩阵，不新增会话或补开替代批次。legacy 仅作原登记的敏感性旁证，不是第二次判决。
+- 可比较分音机械遵守 amendment-3：MIDI <72 用 n≥7，72–95 用 n≥5，≥96 不排除；基准 m 为最小共同可比分音，不计入 RMS/max，非基准样本 ≥2，RMS ≤1 / max ≤3 cents 不变。
+- 进入门禁失败记未执行/阻塞；采集中出现不可恢复的身份、受保护状态或参数状态错误即停止，按既有受控流程安全收尾，不自动强杀。
+- 固定矩阵全部输入/状态/内容/参考族质量合格，且 `units_total = units_evaluable = units_passing = 48` 才可记所选条件通过。不能仅凭命令 exit 0、形式 accepted 或排除失败行后的子集计数声明通过。
+- 任一可评估单元超界记不通过；缺单元、族质量不合格、可比分音不足或分析错误记证据不足；两类缺口并列记录，不以不充分掩盖已确认失败。通过、不通过或证据不足均结束本 Task 39-2 采集计划。
+- 保持 B 表、判据、历史判决与归档原件不变；不在本集拟合、不自动修工具后重判、不追加训练或注册下一验证集。原手册有界 GUI 动作重试只服务本批既定单元，不增加正式批次或评估次数。
+- n88 尚无本次参考声学证据，分音是否充分须如实观察；不足不允许删除或换成有利音高。通过只支持登记的抽样条件，不认证 85–108 全域或真实琴型。
+
+
 ## 1. 批次前置（一次）
 
 与 validation-interp 相同（批次根、launcher/prefs 复制、stimulus 逐文件散列核验、基线自检、受保护快照 before、preflight-protection），差异为：
@@ -29,10 +41,10 @@ python3 "$PILOT/tools/make-stimulus-corpus.py" --out-dir "$BATCH_WSL/stimulus" \
 ```
 
 进入门禁（全部满足才进入会话）：
-1. 预登记 `validation-interp2-preregistration.json` 已获用户批准并置为 frozen；
-2. 工具散列与时点校验通过（analysis tool `80fa2c9f…`、evaluator `2358d5bf…`、candidate table `300b0680…`）；
-3. stimulus 与登记清单逐文件散列一致；
-4. 受保护快照 before 生成成功。
+1. 完整工作区预登记已获执行批准并在任何本批渲染前置为 frozen，另有明确采集启动授权；`closure_policy.capture_authorized` 与授权记录一致；
+2. 生产表、候选表、评估器及 import 分析工具实际散列与预登记逐一一致（production table `c1997c90…`、analysis tool `0255ae71…`、evaluator `a4b9c9bc…`、candidate table `300b0680…`），不把评估器“仅记录散列”当作门禁已经强制校验；
+3. stimulus 与登记清单逐文件散列一致，矩阵与 reference/native trial 禁键映射无冲突；
+4. 受保护快照 before 生成成功，沿用官方 EXE、认证 FXP 与 215 项基线；本次没有已有正式批次或已执行的 guarded 判决。
 
 ## 2. 会话流程
 
@@ -43,13 +55,15 @@ lifecycle-created 等待；GUI 准备（G1/G3–G5 跳过、G2/G6 执行）；RP
 
 ## 3. 批次收尾（一次性评估）
 
+先完成固定矩阵的身份/状态/内容与参考族质量检查；任何不可恢复缺口按 §0.1 停止，不以新会话替换失败单元。完整输入具备后才运行 guarded 最终评估；从其完整输出逐单元判定，通过/不通过/证据不足均保留且不重判。
+
 ```bash
 PILOT=/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot
 # 1) 48 单元状态汇总（同 validation-interp）
 # 2) 最终受保护比对
 # 3) 参考侧族质量（interpval2 preset；不构成判决）
-#    —— 说明：pilot-partial-analysis.py 需新增 interpval2 输入网格（登记为批次前工具扩展，
-#       算法/判据/窗口不变；扩展后的工具散列在预登记 entry gate 中登记）
+#    —— interpval2 输入网格已完成；工具与 import 散列按当前预登记硬核对，
+#       无需再新增网格或变更分析算法
 python3 "$PILOT/tools/pilot-partial-analysis.py" --batch "$BATCH_WSL" --out "$BATCH_WSL/analysis" --preset interpval2
 # 4) devpiano 侧渲染（临时渲染测试：29/55/67/88 × 47/79/107 × 双率、A4=440、5.2 s、24-bit、
 #    velocity/127；与 validation-interp 渲染逐参数同构）
@@ -78,16 +92,14 @@ python3 "$PILOT/tools/archive_pilot_batch.py" --meta "$BATCH_WSL/meta.json"
 
 ## 5. 失败/挂起处置树
 
-与 `runbook-validation-interp.md` §5 逐条相同（P1–P11）。
+沿用 `runbook-validation-interp.md` §5 的 P1–P11 安全处置，续采或新批次建议受本手册 §0.1 覆盖；任何分支均不授权新增会话、替换矩阵、重新判决或解除生产 B 冻结。
 
 ## 6. 会话检查单
 
 与 `runbook-validation-interp.md` §6 逐条相同。
 
-## 7. 待决事项（批准前）
+## 7. 执行授权与冻结复核
 
-1. 工具扩展：`pilot-partial-analysis.py` 需新增 `interpval2` 输入网格（`NOTES` 29/55/67/88 + `PRESETS['interpval2']`
-   + `velocities` 47/79/107 + help 文本）。该扩展改变工具散列，必须在本预登记置为 frozen **之前**完成并更新
-   `entry_gate_frozen.analysis_tool.sha256`。
-2. 音高选择复核：29（28-33 段）/ 55（52-57 段内）/ 67（60-69 长段）/ 88（84-96 段）——如需调整音高，
-   在批准前修改矩阵与数据角色声明。
+1. `interpval2` 网格已完成，分析工具散列为 `0255ae71…`；通用评估器已按既有 amendment-3 修正音区分音边界，散列为 `a4b9c9bc…`。原归档草稿的 `80fa2c9f…` / `2358d5bf…` 不作为本工作区版本的执行身份。
+2. 生产冻结与一次验收上限已获批准，不等于本批采集授权；预登记当前保持 `draft_pending_user_approval`，待用户批准完整工作区协议与启动后才冻结执行快照。
+3. 执行批准时核对固定矩阵、状态/文件保护、进入门禁及 §0.1 停止条件；不将待批准草稿直接当 frozen 运行，不提前打开本次新参考留出声音。

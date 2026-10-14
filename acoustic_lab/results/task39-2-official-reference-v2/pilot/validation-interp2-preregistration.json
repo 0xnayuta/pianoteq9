@@ -1,8 +1,8 @@
 {
  "schema": "devpiano-task39-2-preregistration-validation-interp2",
  "date": "2026-10-14",
- "status": "draft_pending_user_approval",
- "purpose": "Second independent validation of the current production 19-anchor B table after the interp-training anchors (26/52/57), executed under method amendments 1-5 (comparable partial set, min-common base, strength-guarded refinement). Newly registered, previously unrendered pitches only.",
+ "status": "frozen_before_validation_rendering_or_inspection",
+ "purpose": "One bounded independent acceptance of the frozen production B table (19 nodes: 17 measured anchors and two literature-extrapolated nodes), under method amendments 1-5. Newly registered, previously uncaptured reference pitches only; this batch is not additional training.",
  "supersedes": "none; independent of validation-interp-20261014-105959 (consumed). The production table is unchanged since that batch.",
  "entry_gate_frozen": {
   "preregistered_before_any_rendering_or_inspection": true,
@@ -13,7 +13,7 @@
   },
   "evaluator": {
    "path": "pilot/tools/validation-eval.py",
-   "sha256": "2358d5bfdbfb3c635bfc1b9f5a326b1c71d4b7867cf39ec6c51840da54103f54"
+   "sha256": "a4b9c9bce5aecaa2ed5f2bae5041ad7a133129426ee0baefd0d6788d7cc63493"
   },
   "candidate_table": {
    "path": "pilot/validation-interp2-candidate-table.json",
@@ -24,23 +24,30 @@
    },
    "content": "88-key table (21-108) recomputed from the production Piano88KeyTable.h (sha256 c1997c904115ca23bdb1c9bbeb1d41542b25d8f7ed1dce0234109649da91a5b1) via log-space piecewise interpolation"
   },
+  "production_table": {
+   "path": "source/Audio/Piano88KeyTable.h",
+   "sha256": "c1997c904115ca23bdb1c9bbeb1d41542b25d8f7ed1dce0234109649da91a5b1",
+   "table_nodes": 19,
+   "measured_anchors": 17,
+   "literature_extrapolated_nodes": [96, 108]
+  },
   "data_roles": {
-   "29": "first-time pitch (F1); interpolates the 28-33 segment; absent from every inventoried stimulus/unit list (mechanical scan of all archived batches, blind-audit-scan.json)",
+   "29": "first-time reference pitch (F1); interpolates the 28-33 segment; absent from the inventoried reference stimulus/unit lists (mechanical scan, blind-audit-scan.json)",
    "55": "first-time pitch (G3); lies inside the 52-57 segment created by the interp-training anchors",
    "67": "first-time pitch (G4); lies inside the 60-69 long segment (9 semitones without an intermediate anchor)",
-   "88": "first-time pitch (E6); lies inside the 84-96 model-upper segment; n<=104 analyzable, n98/104 historically below the partial minimum"
+   "88": "first-time reference pitch (E6); lies inside the 84-96 literature-extrapolated segment. Partial sufficiency is unknown until capture; insufficient evidence does not authorize dropping or replacing this pitch."
   },
   "known_non_blind": {
    "57_62": "Task 39-1 diagnostic pitches (not part of this matrix)",
    "muted_notes": [
-    30,
-    32,
-    34,
-    73,
-    75,
-    78,
-    80,
-    82
+    42,
+    44,
+    46,
+    85,
+    87,
+    90,
+    92,
+    94
    ]
   }
  },
@@ -97,12 +104,12 @@
   "bit_depth": 24,
   "channels": 2,
   "audio": "DirectSound / main driver / <rate>.0 / buffer 2560",
-  "mute_check": "29/55/67/88 are not in the published trial silent-note list; confirm from actual signal evidence per unit (family quality gate)",
+  "mute_check": "29/55/67/88 are outside the evidenced native trial silent-note mapping [42,44,46,85,87,90,92,94] (corpus-20261013-070234). Actual non-silent content and family quality must still pass per unit.",
   "execution_suite": "same as validation-interp (owned-session.ps1 + pilot-rpc.ps1 + seed-prefs.py + windows-mcp GUI actions; G6 once per session; per-unit pre/post + 215-item baseline assertions)"
  },
  "evaluation": {
   "method": "amendments 1-5: independent split prediction (1/2), comparable partial set (3), min-common base (4), strength-guarded refinement (5)",
-  "criterion": "RMS <= 1 cent and max <= 3 cents over non-base comparable partials; >= 2 non-base comparable partials required; all-scope and B_rel recorded as parallel diagnostics",
+  "criterion": "RMS <= 1 cent and max <= 3 cents over non-base comparable partials; >= 2 non-base comparable partials required. Amendment-3 excludes n<=6 below MIDI72, n<=4 at MIDI72-95, and none from MIDI96. B_rel remains diagnostic.",
   "min_comparable_below_72": 7,
   "a4_hz": 440,
   "refinement_guard_db": 20,
@@ -213,7 +220,27 @@
   "no_relaxation": true,
   "dev_side": "current production table (Piano88KeyTable.h sha256 c1997c90...) rendered via a temporary Windows Debug unit test (A4=440, 5.2 s, 24-bit, velocity/127), identical to the validation-interp render contract"
  },
- "one_shot": "Single final evaluation after both producers are rendered; do not inspect spectral metrics, select peaks, choose seeds, or tune on this set; failure consumes the set (the next iteration registers new validation data).",
- "authorization": "Draft prepared 2026-10-14 per user instruction (amendment-5 as method basis + newly registered unrendered pitches); execution requires explicit user approval after review.",
+ "one_shot": "At most one formal batch and one guarded final evaluation after both producers are rendered. Do not inspect comparison metrics, select peaks, choose seeds, or tune on this set before that evaluation. Failed or inconclusive acceptance ends this Task 39-2 capture plan; no replacement batch, added training anchors, retuning or automatic new registration.",
+ "closure_policy": {
+  "decision_date": "2026-10-14",
+  "production_B_frozen": true,
+  "additional_training_authorized": false,
+  "maximum_formal_batches": 1,
+  "maximum_guarded_final_evaluations": 1,
+  "maximum_units": 48,
+  "maximum_cold_sessions": 16,
+  "matrix_change_authorized": false,
+  "replacement_batch_authorized": false,
+  "retuning_or_threshold_change_authorized": false,
+  "capture_authorized": true,
+  "legacy_role": "Prespecified sensitivity output only, not a second verdict or a way to replace the guarded result.",
+  "pass": "All 48 registered units have valid identity/state/content/family quality, are evaluable, and meet the unchanged per-unit criterion. Acceptance supports these selected conditions only, not all pitches or a real piano model.",
+  "fail": "Any evaluable registered unit exceeds the frozen criterion; preserve the failure, table and thresholds, then stop.",
+  "inconclusive": "Missing units, rejected reference families, insufficient non-base comparable partials or analysis errors prevent acceptance; do not drop rows or replace conditions, then stop.",
+  "not_executed": "Entry gate failure is recorded as blocked/not executed, not as an acoustic pass.",
+  "capture_stop": "Unrecoverable identity, protected-state or parameter-state errors stop capture and require safe session closure. Existing bounded GUI action retries may serve the same registered unit only; no extra sessions or replacement batch.",
+  "after_any_outcome": "Keep the production table, historical verdicts and archived inputs unchanged. No automatic post-failure tool change and re-verdict, extra capture, or parameter fit is authorized."
+ },
+ "authorization": "User approved production B freeze, no additional training, and the single bounded acceptance limit on 2026-10-14. The user then explicitly approved executing the formal independent acceptance, which authorizes this frozen protocol and the capture launch; the protocol was frozen before any rendering or inspection of this batch's data.",
  "runbook": "pilot/runbook-validation-interp2.md"
 }
