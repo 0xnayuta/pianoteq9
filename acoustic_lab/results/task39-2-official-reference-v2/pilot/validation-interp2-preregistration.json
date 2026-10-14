@@ -1,0 +1,219 @@
+{
+ "schema": "devpiano-task39-2-preregistration-validation-interp2",
+ "date": "2026-10-14",
+ "status": "draft_pending_user_approval",
+ "purpose": "Second independent validation of the current production 19-anchor B table after the interp-training anchors (26/52/57), executed under method amendments 1-5 (comparable partial set, min-common base, strength-guarded refinement). Newly registered, previously unrendered pitches only.",
+ "supersedes": "none; independent of validation-interp-20261014-105959 (consumed). The production table is unchanged since that batch.",
+ "entry_gate_frozen": {
+  "preregistered_before_any_rendering_or_inspection": true,
+  "analysis_tool": {
+   "path": "pilot/tools/pilot-partial-analysis.py",
+   "sha256": "0255ae7157c4f40aa16cb01caafdca788548b59c7b0426a3e15d6d9ce921b897",
+   "note": "guard version (amendment-5, REFINEMENT_GUARD_DB=20) plus the interpval2 input grid (NOTES 29/55/67/88, PRESETS[\"interpval2\"], velocities 47/79/107); the evaluator imports this module, so both hashes are pinned (amendment-5 section 6). Behavior regression against the archived interp-training analysis: zero differences."
+  },
+  "evaluator": {
+   "path": "pilot/tools/validation-eval.py",
+   "sha256": "2358d5bfdbfb3c635bfc1b9f5a326b1c71d4b7867cf39ec6c51840da54103f54"
+  },
+  "candidate_table": {
+   "path": "pilot/validation-interp2-candidate-table.json",
+   "sha256": "300b06806d13347d7f6b9c9da4bafce3504a9e92218ff3a8d70d7e1404c89fcf",
+   "generator": {
+    "path": "pilot/tools/make-candidate-table.py",
+    "sha256": "2e1910a5c2bb0dbf40215756412c6cb690007c103c9a1d2358004334a18cee74"
+   },
+   "content": "88-key table (21-108) recomputed from the production Piano88KeyTable.h (sha256 c1997c904115ca23bdb1c9bbeb1d41542b25d8f7ed1dce0234109649da91a5b1) via log-space piecewise interpolation"
+  },
+  "data_roles": {
+   "29": "first-time pitch (F1); interpolates the 28-33 segment; absent from every inventoried stimulus/unit list (mechanical scan of all archived batches, blind-audit-scan.json)",
+   "55": "first-time pitch (G3); lies inside the 52-57 segment created by the interp-training anchors",
+   "67": "first-time pitch (G4); lies inside the 60-69 long segment (9 semitones without an intermediate anchor)",
+   "88": "first-time pitch (E6); lies inside the 84-96 model-upper segment; n<=104 analyzable, n98/104 historically below the partial minimum"
+  },
+  "known_non_blind": {
+   "57_62": "Task 39-1 diagnostic pitches (not part of this matrix)",
+   "muted_notes": [
+    30,
+    32,
+    34,
+    73,
+    75,
+    78,
+    80,
+    82
+   ]
+  }
+ },
+ "matrix": {
+  "notes": [
+   29,
+   55,
+   67,
+   88
+  ],
+  "note_names": [
+   "F1",
+   "G3",
+   "G4",
+   "E6"
+  ],
+  "velocities": [
+   47,
+   79,
+   107
+  ],
+  "rates": [
+   44100,
+   48000
+  ],
+  "repeats": 2,
+  "units": 48,
+  "cold_sessions": 16,
+  "session_shape": "one note, one rate, one repeat; three velocities per owned cold session",
+  "session_order": [
+   "s01-n29-44100-rep0",
+   "s02-n29-44100-rep1",
+   "s03-n29-48000-rep0",
+   "s04-n29-48000-rep1",
+   "s05-n55-44100-rep0",
+   "s06-n55-44100-rep1",
+   "s07-n55-48000-rep0",
+   "s08-n55-48000-rep1",
+   "s09-n67-44100-rep0",
+   "s10-n67-44100-rep1",
+   "s11-n67-48000-rep0",
+   "s12-n67-48000-rep1",
+   "s13-n88-44100-rep0",
+   "s14-n88-44100-rep1",
+   "s15-n88-48000-rep0",
+   "s16-n88-48000-rep1"
+  ]
+ },
+ "conditions": {
+  "producer": "official Pianoteq 9.2.5 Windows Standard Trial",
+  "exe_sha256": "7fcb5b2385a753e2f7d0a9ed068692abe877ab65b438e70a3fe2b44879b278bd",
+  "fxp_sha256": "9f749ca99143c4b1e0760099b2d6aad83cc3e9a745aa57a0a535a481342cddc9",
+  "A4_Hz": 440,
+  "bit_depth": 24,
+  "channels": 2,
+  "audio": "DirectSound / main driver / <rate>.0 / buffer 2560",
+  "mute_check": "29/55/67/88 are not in the published trial silent-note list; confirm from actual signal evidence per unit (family quality gate)",
+  "execution_suite": "same as validation-interp (owned-session.ps1 + pilot-rpc.ps1 + seed-prefs.py + windows-mcp GUI actions; G6 once per session; per-unit pre/post + 215-item baseline assertions)"
+ },
+ "evaluation": {
+  "method": "amendments 1-5: independent split prediction (1/2), comparable partial set (3), min-common base (4), strength-guarded refinement (5)",
+  "criterion": "RMS <= 1 cent and max <= 3 cents over non-base comparable partials; >= 2 non-base comparable partials required; all-scope and B_rel recorded as parallel diagnostics",
+  "min_comparable_below_72": 7,
+  "a4_hz": 440,
+  "refinement_guard_db": 20,
+  "sensitivity_requirement": "evaluation outputs must record both guarded (preregistered) and legacy ('off') key statistics as sensitivity rows (amendment-5 section 4.6)",
+  "matrix": [
+   {
+    "note": 29,
+    "rate": 44100,
+    "repeat": 0,
+    "session": "s01-n29-44100-rep0"
+   },
+   {
+    "note": 29,
+    "rate": 44100,
+    "repeat": 1,
+    "session": "s02-n29-44100-rep1"
+   },
+   {
+    "note": 29,
+    "rate": 48000,
+    "repeat": 0,
+    "session": "s03-n29-48000-rep0"
+   },
+   {
+    "note": 29,
+    "rate": 48000,
+    "repeat": 1,
+    "session": "s04-n29-48000-rep1"
+   },
+   {
+    "note": 55,
+    "rate": 44100,
+    "repeat": 0,
+    "session": "s05-n55-44100-rep0"
+   },
+   {
+    "note": 55,
+    "rate": 44100,
+    "repeat": 1,
+    "session": "s06-n55-44100-rep1"
+   },
+   {
+    "note": 55,
+    "rate": 48000,
+    "repeat": 0,
+    "session": "s07-n55-48000-rep0"
+   },
+   {
+    "note": 55,
+    "rate": 48000,
+    "repeat": 1,
+    "session": "s08-n55-48000-rep1"
+   },
+   {
+    "note": 67,
+    "rate": 44100,
+    "repeat": 0,
+    "session": "s09-n67-44100-rep0"
+   },
+   {
+    "note": 67,
+    "rate": 44100,
+    "repeat": 1,
+    "session": "s10-n67-44100-rep1"
+   },
+   {
+    "note": 67,
+    "rate": 48000,
+    "repeat": 0,
+    "session": "s11-n67-48000-rep0"
+   },
+   {
+    "note": 67,
+    "rate": 48000,
+    "repeat": 1,
+    "session": "s12-n67-48000-rep1"
+   },
+   {
+    "note": 88,
+    "rate": 44100,
+    "repeat": 0,
+    "session": "s13-n88-44100-rep0"
+   },
+   {
+    "note": 88,
+    "rate": 44100,
+    "repeat": 1,
+    "session": "s14-n88-44100-rep1"
+   },
+   {
+    "note": 88,
+    "rate": 48000,
+    "repeat": 0,
+    "session": "s15-n88-48000-rep0"
+   },
+   {
+    "note": 88,
+    "rate": 48000,
+    "repeat": 1,
+    "session": "s16-n88-48000-rep1"
+   }
+  ],
+  "velocities": [
+   47,
+   79,
+   107
+  ],
+  "no_relaxation": true,
+  "dev_side": "current production table (Piano88KeyTable.h sha256 c1997c90...) rendered via a temporary Windows Debug unit test (A4=440, 5.2 s, 24-bit, velocity/127), identical to the validation-interp render contract"
+ },
+ "one_shot": "Single final evaluation after both producers are rendered; do not inspect spectral metrics, select peaks, choose seeds, or tune on this set; failure consumes the set (the next iteration registers new validation data).",
+ "authorization": "Draft prepared 2026-10-14 per user instruction (amendment-5 as method basis + newly registered unrendered pitches); execution requires explicit user approval after review.",
+ "runbook": "pilot/runbook-validation-interp2.md"
+}
