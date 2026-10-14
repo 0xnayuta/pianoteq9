@@ -5,7 +5,8 @@
 重新计算并写入产物，供审计比对。
 
 判据（amendment-3/4，与 validation-interp 相同）：
-- 可比较分音集 = 两侧 W1 共同识别分音 ∩ n >= min_comparable_below_72（<72 键）；
+- 可比较分音集 = 两侧 W1 共同识别分音；<72 键用 n>=min_comparable_below_72，
+- 72–95 键用 n>=5，>=96 键不排除分音（amendment-3 的固定拍频段边界）；
 - 基准 m = 可比较集最小共同分音，不计入样本；
 - err(n) = 1200 * log2( (dev(n)/dev(m)) / (ref(n)/ref(m)) )；
 - 判据：RMS(err) <= 1 cent 且 max|err| <= 3 cents，且非基准样本 >= 2。
@@ -89,7 +90,8 @@ def main():
                 results.append(entry)
                 continue
             common = sorted(set(rp) & set(dp))
-            comparable = [n for n in common if n >= min_comparable]
+            first_comparable = min_comparable if note < 72 else (5 if note < 96 else 1)
+            comparable = [n for n in common if n >= first_comparable]
             entry.update({
                 "ref_partials": rparts, "dev_partials": dparts,
                 "common_partials": len(common), "comparable_partials": len(comparable),
@@ -126,7 +128,8 @@ def main():
         "reference_batch": str(ref_root),
         "dev_render": str(dev_root),
         "candidate_table": options.candidate_table,
-        "criterion": ("amendment-3 comparable set (n>=%d); amendment-4 base m = min common comparable; "
+        "criterion": ("amendment-3 comparable set (n>=%d below MIDI72, n>=5 at MIDI72-95, n>=1 from MIDI96); "
+                      "amendment-4 base m = min common comparable; "
                       "RMS<=1 cent and max<=3 cents, >=2 non-base partials; amendment-5 strength guard"
                       % min_comparable),
         "units_total": len(results),
