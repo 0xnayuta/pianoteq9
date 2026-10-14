@@ -21,9 +21,12 @@
 谱：0.08–3.8 s 或 0.5–4.1 s Hann 窗，立体声功率和（L、R 各自 FFT 后功率相加，非相干下混）；
 峰：局部极大 + 抛物线插值，低限 40 Hz（C2 基频 65.4 Hz 之上，避开瞬态伪峰区）。
 
-输入网格：`--preset pilot|register|corpus|bridge|anchors2|treble96|midfill`；`corpus`（training 12 音 × 3 力度 × 2 rate）需多次
+输入网格：`--preset pilot|register|corpus|bridge|anchors2|midfill|interp|interpval`；`corpus`（training 12 音 × 3 力度 × 2 rate）需多次
 `--batch`——复用单元来自 pilot-v2 / register 批次，新单元来自 corpus 批次，按会话名在首个命中的根下查找。
-`treble96`（P3：96 kHz 高音区 {87,93,99,105,108}）需配合 `--max-freq 40000`；`midfill`（P3：48 kHz {25,27,49,51,64,74}）用默认口径。
+`midfill`（P3：48 kHz {25,27,49,51,64,74}）用默认口径；`interp`（P3 interp-training：{26,52,57} × 3 力度 × 2 rate × 2 reps = 36 单元）用默认口径；
+`interpval`（P3 interp 验证集：{25,27,53,59} × 力度 47/79/107 × 2 rate × 2 reps = 48 单元）用默认口径；
+`interpval2`（P3 后继验证集：{29,55,67,88} × 力度 47/79/107 × 2 rate × 2 reps = 48 单元）用默认口径；
+treble96 已因参考环境限制关闭，不提供执行入口。
 
 高音区默认（2026-10-13 批准的正式方法）：`note >= --snr-min-note`（默认 72）时默认启用局部 SNR
 准入通道（默认 25 dB：峰值 ±3% 带内功率中位数为噪声地板，>= 阈值且相对功率 >= 1e-9 准入）
@@ -43,8 +46,10 @@ from pathlib import Path
 import numpy as np
 from scipy.optimize import least_squares
 
-NOTE_NAMES = {21: "A0", 24: "C1", 28: "E1", 33: "A1", 36: "C2", 40: "E2", 43: "G2", 44: "G#2",
-              45: "A2", 47: "B2", 48: "C3", 60: "C4", 69: "A4", 72: "C5", 84: "C6", 91: "G6",
+NOTE_NAMES = {21: "A0", 24: "C1", 25: "C#1", 26: "D1", 27: "D#1", 28: "E1", 29: "F1", 33: "A1",
+              36: "C2", 40: "E2", 43: "G2", 44: "G#2", 45: "A2", 47: "B2", 48: "C3",
+              49: "C#3", 51: "D#3", 52: "E3", 53: "F3", 55: "G3", 57: "A3", 59: "B3", 60: "C4",
+              64: "E4", 67: "G4", 69: "A4", 72: "C5", 74: "D5", 84: "C6", 88: "E6", 91: "G6",
               95: "B6", 96: "C7", 108: "C8"}
 VELOCITIES = [41, 70, 98]
 RATES = [44100, 48000]
@@ -110,16 +115,6 @@ PRESETS = {
             ("s09-n95-44100-rep0", 95, 44100, 0), ("s10-n95-48000-rep0", 95, 48000, 0),
         ],
     },
-    "treble96": {  # P3：96 kHz 高音区新验证集（未看过参考的音高；--max-freq 40000）
-        "notes": {87: 1244.5081, 93: 1760.0, 99: 2489.0162, 105: 3520.0, 108: 4186.0090},
-        "sessions": [
-            ("s01-n87-96000-rep0", 87, 96000, 0),
-            ("s02-n93-96000-rep0", 93, 96000, 0),
-            ("s03-n99-96000-rep0", 99, 96000, 0),
-            ("s04-n105-96000-rep0", 105, 96000, 0),
-            ("s05-n108-96000-rep0", 108, 96000, 0),
-        ],
-    },
     "midfill": {  # P3：48 kHz 中低音加密新验证集（24->28 与 48->60 曲率诊断确认）
         "notes": {25: 34.6478, 27: 38.8909, 49: 138.5913, 51: 155.5635, 64: 329.6276, 74: 587.3295},
         "sessions": [
@@ -131,13 +126,52 @@ PRESETS = {
             ("s06-n74-48000-rep0", 74, 48000, 0),
         ],
     },
+    "interp": {  # P3 interp-training：n26/52/57（3 音 × 3 力度 × 2 rate × 2 reps = 36 单元）
+        "notes": {26: 36.7081, 52: 164.8138, 57: 220.0},
+        "sessions": [
+            ("s01-n26-44100-rep0", 26, 44100, 0), ("s02-n26-44100-rep1", 26, 44100, 1),
+            ("s03-n26-48000-rep0", 26, 48000, 0), ("s04-n26-48000-rep1", 26, 48000, 1),
+            ("s05-n52-44100-rep0", 52, 44100, 0), ("s06-n52-44100-rep1", 52, 44100, 1),
+            ("s07-n52-48000-rep0", 52, 48000, 0), ("s08-n52-48000-rep1", 52, 48000, 1),
+            ("s09-n57-44100-rep0", 57, 44100, 0), ("s10-n57-44100-rep1", 57, 44100, 1),
+            ("s11-n57-48000-rep0", 57, 48000, 0), ("s12-n57-48000-rep1", 57, 48000, 1),
+        ],
+    },
+    "interpval": {  # P3 interp 验证集：n25/27/53/59（4 音 × 3 力度(47/79/107) × 2 rate × 2 reps = 48 单元）
+        "notes": {25: 34.6478, 27: 38.8909, 53: 174.6141, 59: 246.9417},
+        "velocities": [47, 79, 107],  # 更正：preset 声明的力度此前回落到全局默认 [41,70,98]
+        "sessions": [
+            ("s01-n25-44100-rep0", 25, 44100, 0), ("s02-n25-44100-rep1", 25, 44100, 1),
+            ("s03-n25-48000-rep0", 25, 48000, 0), ("s04-n25-48000-rep1", 25, 48000, 1),
+            ("s05-n27-44100-rep0", 27, 44100, 0), ("s06-n27-44100-rep1", 27, 44100, 1),
+            ("s07-n27-48000-rep0", 27, 48000, 0), ("s08-n27-48000-rep1", 27, 48000, 1),
+            ("s09-n53-44100-rep0", 53, 44100, 0), ("s10-n53-44100-rep1", 53, 44100, 1),
+            ("s11-n53-48000-rep0", 53, 48000, 0), ("s12-n53-48000-rep1", 53, 48000, 1),
+            ("s13-n59-44100-rep0", 59, 44100, 0), ("s14-n59-44100-rep1", 59, 44100, 1),
+            ("s15-n59-48000-rep0", 59, 48000, 0), ("s16-n59-48000-rep1", 59, 48000, 1),
+        ],
+    },
+    "interpval2": {  # P3 后继验证集：n29/55/67/88（F1/G3/G4/E6；全部首次使用音高；4 音 × 3 力度 × 2 rate × 2 reps = 48 单元）
+        "notes": {29: 43.6536, 55: 195.9977, 67: 391.9954, 88: 1318.5102},
+        "velocities": [47, 79, 107],
+        "sessions": [
+            ("s01-n29-44100-rep0", 29, 44100, 0), ("s02-n29-44100-rep1", 29, 44100, 1),
+            ("s03-n29-48000-rep0", 29, 48000, 0), ("s04-n29-48000-rep1", 29, 48000, 1),
+            ("s05-n55-44100-rep0", 55, 44100, 0), ("s06-n55-44100-rep1", 55, 44100, 1),
+            ("s07-n55-48000-rep0", 55, 48000, 0), ("s08-n55-48000-rep1", 55, 48000, 1),
+            ("s09-n67-44100-rep0", 67, 44100, 0), ("s10-n67-44100-rep1", 67, 44100, 1),
+            ("s11-n67-48000-rep0", 67, 48000, 0), ("s12-n67-48000-rep1", 67, 48000, 1),
+            ("s13-n88-44100-rep0", 88, 44100, 0), ("s14-n88-44100-rep1", 88, 44100, 1),
+            ("s15-n88-48000-rep0", 88, 48000, 0), ("s16-n88-48000-rep1", 88, 48000, 1),
+        ],
+    },
 }
 NOTES = PRESETS["pilot"]["notes"]
 SESSIONS = PRESETS["pilot"]["sessions"]
 
 WINDOWS = {"W1": (0.08, 3.8), "W2": (0.5, 4.1)}
 LOW_FREQ = 40.0
-MAX_FREQ = 20000.0  # 默认口径；96 kHz 采集用 --max-freq 40000（见 runbook-treble96）
+MAX_FREQ = 20000.0  # 搜索上限不增加输入 WAV 的实际带宽
 SEED_STIFFNESS = 1e-4
 DEFAULT_SEEDS = (3e-5, 5e-5, 8e-5, 1.2e-4, 2e-4)
 EXTENDED_SEEDS = DEFAULT_SEEDS + (4e-4, 8e-4, 1.6e-3, 3e-3, 7e-3, 1.5e-2, 3e-2)
@@ -147,6 +181,7 @@ SNR_MIN_NOTE = 72  # 启用 SNR 通道与扩展种子的最低 MIDI 音符（高
 STAGE_A_TOL, STAGE_A_REL = 0.015, 1e-5
 STAGE_B_TOL, STAGE_B_REL = 0.007, 1e-6
 NEAREST_REL = 1e-7  # nearest 精化轮专用阈值：容许被附加强峰遮蔽的弱真分音（如 C2-v98 n=72 的 -65 dB 真峰）
+REFINEMENT_GUARD_DB = 20.0  # 方法修订 5：nearest 精化轮候选强度守卫（候选低于窗内最强该 dB 数则排除；None = 关闭守卫）
 EXPANSION_LEVELS = (10, 16, 24, 32, 40, 48, 60, 80, 120, 160, 220, 300)
 
 
@@ -222,11 +257,13 @@ def partial_prediction(parameters, numbers):
 
 
 def match_partials(peaks, rel, snr, first, stiffness, tolerance, min_rel,
-                   maximum=400, mode="strongest", min_snr=None):
+                   maximum=400, mode="strongest", min_snr=None, guard_db=None):
     """按模型预测位置匹配峰；mode=strongest 取窗内最强，mode=nearest 取最靠近预测。
 
     峰值准入：rel >= min_rel；若给定 min_snr，则追加“rel >= 1e-9 且局部 SNR >= min_snr”通道
     （用于动态范围大的高音区，真分音相对基频低但局部 SNR 很高）。
+    guard_db（仅 nearest 模式，方法修订 5）：候选强度守卫——容差窗内相对功率低于最强候选
+    该 dB 数的峰被排除，防止泄漏/噪声伪峰（如 -65 dB）在距离略近时抢占真分音。
     """
     numbers, observed = [], []
     for number in range(1, maximum + 1):
@@ -241,7 +278,12 @@ def match_partials(peaks, rel, snr, first, stiffness, tolerance, min_rel,
             inside = inside[keep]
         if len(inside):
             if mode == "nearest":
-                best = inside[np.argmin(np.abs(peaks[inside] - prediction))]
+                if guard_db is not None:
+                    ceiling = float(np.max(rel[inside]))
+                    admitted = inside[rel[inside] >= ceiling * 10.0 ** (-guard_db / 10.0)]
+                    best = admitted[np.argmin(np.abs(peaks[admitted] - prediction))]
+                else:
+                    best = inside[np.argmin(np.abs(peaks[inside] - prediction))]
             else:
                 best = inside[np.argmax(rel[inside])]
             numbers.append(number)
@@ -403,7 +445,7 @@ def analyze_unit(path, note):
         # （如 C2-v98 的 n=72 处存在 -50 dB 附加峰遮蔽 -65 dB 真分音）
         refined_numbers, refined_observed = match_partials(
             peaks, rel, snr, first, stiffness, STAGE_B_TOL, NEAREST_REL, mode="nearest",
-            min_snr=min_snr)
+            min_snr=min_snr, guard_db=REFINEMENT_GUARD_DB)
         if len(refined_numbers) >= 5:
             refined_solution = fit(refined_observed, refined_numbers, first, stiffness)
             refined_first = float(refined_solution.x[0])
@@ -447,25 +489,40 @@ def _snr_threshold(text):
     return float(text)
 
 
+def _guard_threshold(text):
+    """CLI 值解析：'off'/'none' 关闭候选强度守卫（legacy nearest 行为）；否则解析为 dB。"""
+    if str(text).strip().lower() in ("off", "none"):
+        return None
+    return float(text)
+
+
 def main():
+    global NOTES, SESSIONS, VELOCITIES, SNR_ADMISSION_DB, SNR_MIN_NOTE, MAX_FREQ  # noqa: PLW0603 - 输入网格/通道由 CLI 决定
+    global REFINEMENT_GUARD_DB  # noqa: PLW0603 - 方法修订 5 守卫由 CLI 决定
     parser = argparse.ArgumentParser()
     parser.add_argument("--batch", required=True, action="append",
                         help="pilot batch root (WSL path); repeat for multi-batch corpora")
     parser.add_argument("--out", required=True, help="output directory (WSL path)")
     parser.add_argument("--preset", choices=sorted(PRESETS), default="pilot",
                         help="input grid preset (pilot: n36/48/60; register: n72/84/96; corpus: training 12 notes; "
-                             "bridge: n45/47; anchors2: n28/33/40/91/95)")
+                             "bridge: n45/47; anchors2: n28/33/40/91/95; midfill: n25/27/49/51/64/74; "
+                             "interp: n26/52/57 x3 vel x2 rate x2 reps; interpval: n25/27/53/59 x velocities 47/79/107; "
+                             "interpval2: n29/55/67/88 x velocities 47/79/107)")
     parser.add_argument("--snr-admission-db", type=_snr_threshold, default=25.0,
                         help="local-SNR peak admission threshold (dB) at/above --snr-min-note; "
                              "default 25 (adopted high-register method); pass 'none' to disable")
     parser.add_argument("--snr-min-note", type=int, default=72,
                         help="lowest MIDI note for the SNR channel and extended stiffness seeds")
+    parser.add_argument("--refinement-guard-db", type=_guard_threshold,
+                        default=REFINEMENT_GUARD_DB,
+                        help="nearest 精化轮候选强度守卫 (dB); 'off' 关闭守卫（legacy 行为）")
     parser.add_argument("--max-freq", type=float, default=20000.0,
-                        help="peak-search and model upper frequency in Hz (default 20000; "
-                             "use 40000 for 96 kHz captures, where treble partials extend above 20 kHz)")
+                        help="peak-search and model upper frequency in Hz (default 20000); "
+                             "does not increase the input WAV bandwidth")
     options = parser.parse_args()
-    global NOTES, SESSIONS, SNR_ADMISSION_DB, SNR_MIN_NOTE, MAX_FREQ  # noqa: PLW0603 - 输入网格/通道由 CLI 决定
     NOTES, SESSIONS = PRESETS[options.preset]["notes"], PRESETS[options.preset]["sessions"]
+    VELOCITIES = PRESETS[options.preset].get("velocities", VELOCITIES)
+    REFINEMENT_GUARD_DB = options.refinement_guard_db
     SNR_ADMISSION_DB = options.snr_admission_db
     SNR_MIN_NOTE = options.snr_min_note
     MAX_FREQ = options.max_freq
