@@ -42,6 +42,8 @@ devpiano 已有第一分音归一化、模型拉伸、被动 Duplex、多弦/双
 
 Task 39-1 只建立生产导出基线和准入边界，没有修改 DSP、`B` 表或文件格式。**Task 39-2** 完成官方 9.2.5 受控参考的逐键非谐性锚点分析（14 锚点，devpiano 侧已实施）；封闭验证集一次性执行并消耗，修正方法（独立留出预测 + 冻结归一化判据）重评 12/34 通过、未达预登记指标，需注册新验证数据。参数校准、三力度整音、耦合/辐射与后续工程闭环以 [devpiano roadmap](https://github.com/0xnayuta/devpiano/blob/main/docs/roadmap/roadmap.md) 为准；这里不维护第二份产品任务、成本或通过声明。
 
+在用户仅提供当前官方 Standard Trial 的资源范围内，P3 的 treble96 高采样率采集关闭为无法实施，不再保留此轮或后续采集承诺；只开展 [48 kHz midfill](acoustic_lab/results/task39-2-official-reference-v2/pilot/runbook-midfill.md)。85–108 保持公开文献外推，缺少独立高采样率实测验收；中低音新验证不能补齐或豁免该缺口。
+
 若继续研究，优先获得带明确控制/版本/预设散列的受控输出，区分同音分音族并设置真正独立的验证条件，再讨论模型改变；不搬运专有控制流，不预留迁移链，也不将本页示例当生产实现接口。
 
 ## 本次资料纠错记录
