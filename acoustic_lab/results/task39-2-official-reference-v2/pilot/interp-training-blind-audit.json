@@ -1,0 +1,55 @@
+{
+  "schema": "devpiano-task39-2-interp-blind-audit",
+  "date": "2026-10-14",
+  "purpose": "Audit prior reference-side viewing for the interp-training capture. Training pitches do not require blindness; validation candidates must not have been reference-viewed. This audit covers both, plus the devpiano-side caveat.",
+  "pitch_roles": {
+    "training_new_render": [26, 52, 57],
+    "validation_candidates": [25, 27, 53, 59],
+    "validation_qualification": {
+      "25_27": "new velocity/condition holdout only; both pitches consumed by midfill-20261014-001725 (user-approved condition-level qualification, 2026-10-14)",
+      "53_59": "no reference rendering or reference-name appearance found in any inventoried set; see checks below"
+    }
+  },
+  "checks": [
+    {
+      "check": "9.2.5 stimulus inventories",
+      "scope": "pilot/stimulus, pilot/stimulus-corpus, pilot/stimulus-midfill, pilot/stimulus-treble96 (.mid files + receipt.json notes)",
+      "observed_pitches": [21, 24, 25, 27, 36, 43, 44, 48, 49, 51, 60, 64, 69, 74, 87, 93, 99, 105, 108],
+      "result": "53/59 absent from every stimulus set; 26/52/57 absent (never previously stimulated)."
+    },
+    {
+      "check": "archived 9.2.5 unit directories",
+      "scope": "devpiano-evidence/phase39/task39-2 all batches (pilot-v2, register, corpus, anchors2, bridge, validation, midfill, cross-eval render, closure batches)",
+      "observed_pitches": [21, 24, 25, 26, 27, 28, 33, 36, 39, 40, 43, 44, 45, 47, 48, 49, 50, 51, 60, 63, 64, 69, 72, 74, 77, 84, 86, 91, 95, 96, 98, 104, 108],
+      "result": "53/59 absent from every unit. 26 present only as the consumed sealed-validation pitch (old reference output viewed and consumed; old data must not enter new fitting). 52/57 never rendered."
+    },
+    {
+      "check": "pre-registration already_viewed_diagnostic_only list",
+      "scope": "task39-2-preregistration-v2.json",
+      "viewed_pitches": [21, 24, 35, 36, 43, 44, 47, 48, 57, 60, 62, 69, 71, 72, 84, 95, 96, 102, 106, 107, 108],
+      "result": "53/59 absent. 57 present (legacy viewed pitch) but assigned the training role, which requires no blindness. 26 absent from this list."
+    },
+    {
+      "check": "pianoteq9 repository text search",
+      "scope": "all .json/.md/.py under /root/repos/pianoteq9 (excluding .git)",
+      "result": "no n53/n59 references."
+    },
+    {
+      "check": "old 9.1.2 seal and retained audio",
+      "scope": "acoustic_lab/backups/task39-1-20261010 (seal.json + tarballs), acoustic_lab/audio (exp_a_C1..C7, exp_b_c4_*, exp_c_c3_decay, test_c4)",
+      "result": "legacy experiments use C-octave pitches only; no 53/59 references."
+    },
+    {
+      "check": "devpiano-side full-key renders",
+      "scope": "closure-supplement-20261013-220627/fullkey-render, p1-corrected-upper-20261013-233500/fullkey-render-p1",
+      "result": "n53.wav/n59.wav exist (88-key regression renders of the devpiano model, produced after the holdout was consumed). These contain no reference-side information; they cover all 88 pitches uniformly. Registered caveat: the later validation evaluation must render the devpiano side anew from the then-adopted table; these current-table renders must not be reused as the evaluation-side output, and their per-pitch recovery values must not be consulted when preparing the validation."
+    },
+    {
+      "check": "byte-level coincidences",
+      "scope": "grep matches in phase38 PNG and legacy prefs files",
+      "result": "matched substrings are base64-like encoding content and a settings screenshot; no pitch-level data. Not viewing."
+    }
+  ],
+  "conclusion": "Validation candidates 53/59 are reference-blind across every inventoried set. 25/27 remain condition-level holdouts as approved. Training pitches 26/52/57 require no blindness; 26's old consumed reference output is excluded from all fitting. The devpiano-side full-key render caveat is registered for the later validation evaluation.",
+  "not_a_guarantee": "This audit covers the inventoried evidence trees and text-searched repositories only; it does not prove the absence of any viewing outside these locations."
+}

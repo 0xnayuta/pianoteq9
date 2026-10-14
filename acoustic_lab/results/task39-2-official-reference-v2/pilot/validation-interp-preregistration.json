@@ -1,0 +1,71 @@
+{
+  "schema": "devpiano-task39-2-validation-interp-preregistration",
+  "date": "2026-10-14",
+  "status": "frozen_before_validation_rendering_or_inspection",
+  "supersedes": "none; this is the newly registered validation set after the consumed sealed validation (validation-20261013-185755) and the interp-training admission",
+  "purpose": "One-shot independent evaluation of the current production B table (19 anchors incl. 26/52/57) against the official reference on newly registered pitches/velocities, under the frozen amendment-3/4 comparison basis.",
+  "entry_gate_frozen": {
+    "admitted_training_anchors": {
+      "source_batch": "interp-training-20261014-014327 (analysis partial-analysis.json sha256 b597f959-era input; admission batch admission-analysis-20261014-094045; implementation batch interp-anchor-20261014-104607; correction batch interp-anchor-correction-20261014-105438)",
+      "anchors": {
+        "26": {"value": 6.868533e-5, "policy": "v41 single-velocity (low-region weak-velocity policy, matching 21/24/28)"},
+        "52": {"value": 1.617091e-4, "policy": "median of all independently passing families (v41/v70/v98 x 2 rates)"},
+        "57": {"value": 2.914628e-4, "policy": "median of all independently passing families (v41/v70/v98 x 2 rates)"}
+      }
+    },
+    "candidate_table": {
+      "path": "pilot/validation-interp-candidate-table.json",
+      "sha256": "d4385d90f0862e6e245569d062759a6a339b181bb160eb2764ec53ff51d262e4",
+      "content": "88-key table (21-108) from the production 19-point bMidi/bVals via log-space piecewise interpolation (same formula as Piano88KeyTable.h)"
+    },
+    "evaluator": {
+      "family_quality": {"path": "pilot/tools/pilot-partial-analysis.py", "sha256": "32e3393236003d4575817615421f0f63674af2b6d95406b66a7b1318337c7e22", "preset": "interpval"},
+      "comparison": {"path": "pilot/tools/interp-validation-eval.py", "sha256": "6d7798e659b3d7511bd7413fcf164dd235319e84e89b90d3431012758156de9d"}
+    },
+    "data_roles": {
+      "25": "new velocity/condition holdout only; pitch already consumed by midfill (user-approved condition-level qualification, 2026-10-14)",
+      "27": "new velocity/condition holdout only; pitch already consumed by midfill (user-approved condition-level qualification, 2026-10-14)",
+      "53": "unconsumed pitch; absent from every inventoried stimulus/unit/note list (interp-training blind audit sha256 94de27023f43133b8e99db8e5238a0acdb88b7564e5fd7f96a13652aa370ebaa)",
+      "59": "unconsumed pitch; absent from every inventoried stimulus/unit/note list (same audit)"
+    },
+    "production_table_state": {
+      "path": "source/Audio/Piano88KeyTable.h",
+      "sha256": "c1997c904115ca23bdb1c9bbeb1d41542b25d8f7ed1dce0234109649da91a5b1",
+      "note": "19-point table incl. corrected n26; Windows Debug build + full CTest 323150/0 + full-key regression verified (interp-anchor-correction-20261014-105438)"
+    }
+  },
+  "matrix": {
+    "notes": [25, 27, 53, 59],
+    "note_names": ["C#1", "D#1", "F3", "B3"],
+    "velocities": [47, 79, 107],
+    "rates": [44100, 48000],
+    "repeats": 2,
+    "units": 48,
+    "cold_sessions": 16,
+    "session_shape": "one note, one rate, one repeat; three velocities per owned cold session",
+    "session_order": ["s01-n25-44100-rep0", "s02-n25-44100-rep1", "s03-n25-48000-rep0", "s04-n25-48000-rep1",
+                      "s05-n27-44100-rep0", "s06-n27-44100-rep1", "s07-n27-48000-rep0", "s08-n27-48000-rep1",
+                      "s09-n53-44100-rep0", "s10-n53-44100-rep1", "s11-n53-48000-rep0", "s12-n53-48000-rep1",
+                      "s13-n59-44100-rep0", "s14-n59-44100-rep1", "s15-n59-48000-rep0", "s16-n59-48000-rep1"]
+  },
+  "conditions": {
+    "producer": "official Pianoteq 9.2.5 Windows Standard Trial",
+    "exe_sha256": "7fcb5b2385a753e2f7d0a9ed068692abe877ab65b438e70a3fe2b44879b278bd",
+    "fxp_sha256": "9f749ca99143c4b1e0760099b2d6aad83cc3e9a745aa57a0a535a481342cddc9",
+    "A4_Hz": 440,
+    "bit_depth": 24,
+    "channels": 2,
+    "audio": "DirectSound / main driver / <rate>.0 / buffer 2560",
+    "trial_silent_notes": [30, 32, 34, 73, 75, 78, 80, 82],
+    "mute_check": "25/27/53/59 are not in the published trial silent-note list; confirm from actual signal evidence per unit (family quality gate)",
+    "execution_suite": "same as interp-training (owned-session.ps1 + pilot-rpc.ps1 + seed-prefs.py + windows-mcp GUI actions; G6 once per session; per-unit pre/post + 215-item baseline assertions)"
+  },
+  "metrics": {
+    "reference_family_quality_first": "interpval preset (amendment-1/2 family gates on the reference side)",
+    "comparison": "amendment-3 comparable partials (n>=7 for these <72 keys) with amendment-4 base m = min common comparable; RMS <= 1 cent and max <= 3 cents over non-base comparable partials; >= 2 non-base comparable partials required; all-scope and B_rel recorded as parallel diagnostics",
+    "no_relaxation": true
+  },
+  "one_shot": "Single final evaluation after both producers are rendered; do not inspect spectral metrics, select peaks, choose seeds, or tune on this set; failure consumes the set (the next iteration registers new validation data).",
+  "authorization": "User (2026-10-14): approved option 2(a) - execute the full 48-unit validation set after freezing the candidate table; the 25/27 condition-level holdout qualification was confirmed 2026-10-14 (scope.json / blind audit).",
+  "runbook": "pilot/runbook-validation-interp.md"
+}

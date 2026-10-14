@@ -1,0 +1,125 @@
+{
+  "schema": "devpiano-task39-2-corpus-stimulus",
+  "generated_utc": "2026-10-14T02:58:28.501979+00:00",
+  "generator": "pilot/tools/make-stimulus-corpus.py",
+  "notes": [
+    25,
+    27,
+    53,
+    59
+  ],
+  "velocities": [
+    47,
+    79,
+    107
+  ],
+  "parameters": {
+    "format": 0,
+    "ppq": 480,
+    "tempo_us": 500000,
+    "channel": 1,
+    "onset_s": 0.1,
+    "release_s": 4.2,
+    "end_s": 5.2,
+    "cc64": 0,
+    "cc66": 0,
+    "cc67": 0,
+    "note_off_velocity": 0
+  },
+  "reference": {
+    "path": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/gui-export-20261012-092853/stimulus/A4-v70.mid",
+    "sha256": "9e4827ed6ca1f69cf9d7ab4bd438fbe2b9fd897fe6d3264ea1604c5a04ba1462",
+    "replication": {
+      "note": 69,
+      "velocity": 70,
+      "bit_identical": true,
+      "sha256": "9e4827ed6ca1f69cf9d7ab4bd438fbe2b9fd897fe6d3264ea1604c5a04ba1462"
+    }
+  },
+  "files": [
+    {
+      "path": "n25-v47.mid",
+      "note": 25,
+      "velocity": 47,
+      "bytes": 55,
+      "sha256": "c98614d8c782d88aff8996508587a513994a81eec17d4dad3e0f675d9ae13065"
+    },
+    {
+      "path": "n25-v79.mid",
+      "note": 25,
+      "velocity": 79,
+      "bytes": 55,
+      "sha256": "c2e59665bfc49cfe872581b110b1a95e18996c02de78ecae0ffb7eedb98a10bb"
+    },
+    {
+      "path": "n25-v107.mid",
+      "note": 25,
+      "velocity": 107,
+      "bytes": 55,
+      "sha256": "3cf1627d98bcb7714350632e70a393dce26ad533ff246da8a8867d3e6ca0615c"
+    },
+    {
+      "path": "n27-v47.mid",
+      "note": 27,
+      "velocity": 47,
+      "bytes": 55,
+      "sha256": "93e6dcbdc22107a515a5411e81d170dddc774dd6479864e5c41f310f025856b6"
+    },
+    {
+      "path": "n27-v79.mid",
+      "note": 27,
+      "velocity": 79,
+      "bytes": 55,
+      "sha256": "fc54644e925a04941600dc66a314169ebeab76149bd98309b5696d8b9d1cc251"
+    },
+    {
+      "path": "n27-v107.mid",
+      "note": 27,
+      "velocity": 107,
+      "bytes": 55,
+      "sha256": "788eb568f18f135c51e0f3e53c36ba84812298810f44d5eac9980d43eb4ec6f6"
+    },
+    {
+      "path": "n53-v47.mid",
+      "note": 53,
+      "velocity": 47,
+      "bytes": 55,
+      "sha256": "a98a16acaef6d03296b6b4e533483da6b03290a5753ef1e07993adf93300bb9f"
+    },
+    {
+      "path": "n53-v79.mid",
+      "note": 53,
+      "velocity": 79,
+      "bytes": 55,
+      "sha256": "86ea6aeab9570d542dce42dd228ba8abfd969284cb317cd4e929fb4dc13a7410"
+    },
+    {
+      "path": "n53-v107.mid",
+      "note": 53,
+      "velocity": 107,
+      "bytes": 55,
+      "sha256": "5bb634a11b06a2a6e707bab415ed46ee9685fa83fdf11761dc4ff7b5c639b467"
+    },
+    {
+      "path": "n59-v47.mid",
+      "note": 59,
+      "velocity": 47,
+      "bytes": 55,
+      "sha256": "1a806d37e6e0a23ea412855b98eef7a256931c286504a24fd7973d58246c37fd"
+    },
+    {
+      "path": "n59-v79.mid",
+      "note": 59,
+      "velocity": 79,
+      "bytes": 55,
+      "sha256": "824baff05349866063278378e7881e6ff0a6be9259b295f87a9d96693c38c54f"
+    },
+    {
+      "path": "n59-v107.mid",
+      "note": 59,
+      "velocity": 107,
+      "bytes": 55,
+      "sha256": "f9b0acf87e7c8333b1ff43182363efa9f9af110f62a4d95f99aedeae9e640aa1"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "schema": "devpiano-task39-2-corpus-stimulus",
+  "generated_utc": "2026-10-13T17:41:34.489773+00:00",
+  "generator": "pilot/tools/make-stimulus-corpus.py",
+  "notes": [
+    26,
+    52,
+    57
+  ],
+  "velocities": [
+    41,
+    70,
+    98
+  ],
+  "parameters": {
+    "format": 0,
+    "ppq": 480,
+    "tempo_us": 500000,
+    "channel": 1,
+    "onset_s": 0.1,
+    "release_s": 4.2,
+    "end_s": 5.2,
+    "cc64": 0,
+    "cc66": 0,
+    "cc67": 0,
+    "note_off_velocity": 0
+  },
+  "reference": {
+    "path": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/gui-export-20261012-092853/stimulus/A4-v70.mid",
+    "sha256": "9e4827ed6ca1f69cf9d7ab4bd438fbe2b9fd897fe6d3264ea1604c5a04ba1462",
+    "replication": {
+      "note": 69,
+      "velocity": 70,
+      "bit_identical": true,
+      "sha256": "9e4827ed6ca1f69cf9d7ab4bd438fbe2b9fd897fe6d3264ea1604c5a04ba1462"
+    }
+  },
+  "files": [
+    {
+      "path": "n26-v41.mid",
+      "note": 26,
+      "velocity": 41,
+      "bytes": 55,
+      "sha256": "6ebe1e36a063d5d69e3abf2bb0a7c76211ef4f4642aeed6738fa9fd900a0640a"
+    },
+    {
+      "path": "n26-v70.mid",
+      "note": 26,
+      "velocity": 70,
+      "bytes": 55,
+      "sha256": "842560d8fa2e3c8c7d0c468bb21ec9fb0878fe8e305dc2678c99affd2dd12e28"
+    },
+    {
+      "path": "n26-v98.mid",
+      "note": 26,
+      "velocity": 98,
+      "bytes": 55,
+      "sha256": "a1e082f27e026186299be8b00d3537f230d76d0c30880b3c53858cbe02366144"
+    },
+    {
+      "path": "n52-v41.mid",
+      "note": 52,
+      "velocity": 41,
+      "bytes": 55,
+      "sha256": "e10f7dcd3cf735c714436a18a8241b4c5a812f3868cddc5c0c809e1294f205bd"
+    },
+    {
+      "path": "n52-v70.mid",
+      "note": 52,
+      "velocity": 70,
+      "bytes": 55,
+      "sha256": "9bea7c37a5892614bd060c850dd9cb3efb93b6f4825938f389348c521b43179f"
+    },
+    {
+      "path": "n52-v98.mid",
+      "note": 52,
+      "velocity": 98,
+      "bytes": 55,
+      "sha256": "6cba1fffb78672fb462e345853b8971c44298178fce4bf8f6e1c071411f83486"
+    },
+    {
+      "path": "n57-v41.mid",
+      "note": 57,
+      "velocity": 41,
+      "bytes": 55,
+      "sha256": "31932ea4e63772685c7f05459173063c8c56cfa965e0e199f73abc543ba169d1"
+    },
+    {
+      "path": "n57-v70.mid",
+      "note": 57,
+      "velocity": 70,
+      "bytes": 55,
+      "sha256": "2e55b5a6db2b50fffd34d7cdca411f6d6ef91c7d5f98bac17cecb28d4cecbca4"
+    },
+    {
+      "path": "n57-v98.mid",
+      "note": 57,
+      "velocity": 98,
+      "bytes": 55,
+      "sha256": "5513a51cb3e1e35c2d773ded79eb54915672109da0f96c54c4510056e9436769"
+    }
+  ]
+}
