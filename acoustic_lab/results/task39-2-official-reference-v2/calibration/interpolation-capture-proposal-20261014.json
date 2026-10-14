@@ -1,0 +1,62 @@
+{
+  "schema": "devpiano-task39-2-interpolation-capture-proposal-v1",
+  "date": "2026-10-14",
+  "status": "proposal_only_not_execution_authorization",
+  "purpose": "Resolve local stiffness interpolation without changing the interpolation algorithm or reusing consumed validation as independent evidence.",
+  "reference": {
+    "producer": "official Pianoteq 9.2.5 Windows Standard Trial",
+    "exe_sha256": "7fcb5b2385a753e2f7d0a9ed068692abe877ab65b438e70a3fe2b44879b278bd",
+    "fxp_sha256": "9f749ca99143c4b1e0760099b2d6aad83cc3e9a745aa57a0a535a481342cddc9",
+    "A4_Hz": 440,
+    "rates": [44100, 48000],
+    "bit_depth": 24,
+    "channels": 2,
+    "repeats_per_condition": 2,
+    "trial_session_maximum_seconds": 900,
+    "state_gate": "Complete 215-parameter authenticated baseline, pre/post and baseline exact assertions, protected-state hashes, native rate readback. No normalization, effects, sympathetic/duplex resonance or unison width.",
+    "capture_gate": "GUI mutations in the main conversation with approval for every action; identity EXE/PID/creation/HWND verified before action, UI snapshot or screenshot after action, save raw tool requests and responses. Existing controlled scripts only for process lifecycle.",
+    "high_rate_treble_capture": "closed_unavailable_not_in_this_proposal"
+  },
+  "training": {
+    "notes": [26, 52, 57],
+    "standard_C4_equals_MIDI60_names": ["D1", "E3", "A3"],
+    "velocities": [41, 70, 98],
+    "units": 36,
+    "cold_sessions": 12,
+    "session_shape": "one note, one rate, one repeat; three velocities per owned cold session",
+    "reason": "26 splits 24-28 into two 2-semitone spans. 52/57 reduce 48-60 to spans of 4/5/3 semitones using white keys. No midpoint chosen from fit quality.",
+    "admission": "Same independent partial prediction and window/rate/repeat quality gates as the current protocol, no threshold relaxation. For low-note 26, v41 is the static-anchor candidate matching the existing 24/28 weak-velocity policy; v70/v98 remain dynamic/strength observations. For 52/57, use the median of all independently passing families and record every rejected family.",
+    "old_data": "Do not fit using old n26 holdout, midfill, cross-eval or untrusted 9.1.2 recordings. New recordings at old pitches do not restore pitch blindness.",
+    "production_admission": "At most three new anchors, only after user approval and observed admission. Preserve the 14 existing measured values and P1 upper extrapolation; keep logPieceWiseInterp. Do not invent values before capture. If 52/57 support the current interpolation, do not add points solely to increase density."
+  },
+  "validation": {
+    "notes": [25, 27, 53, 59],
+    "standard_C4_equals_MIDI60_names": ["C#1", "D#1", "F3", "B3"],
+    "velocities": [47, 79, 107],
+    "units": 48,
+    "cold_sessions": 16,
+    "session_shape": "one note, one rate, one repeat; three velocities per owned cold session",
+    "data_roles": {
+      "25_27": "new velocity/condition holdout only; both pitches already consumed by midfill",
+      "53_59": "not in currently registered training, consumed validation or already-viewed note lists; audit stimulus inventories before making a pitch-blind claim"
+    },
+    "entry_gate": "Freeze admitted new training anchors, candidate table, evaluator hash and data roles before validation rendering or inspection. Finish Windows Debug actual synthesis and existing related regressions first. One final independent evaluation; failure consumes the set.",
+    "metrics": "Reference family quality first; amendment-3 comparable partials and amendment-4 clean base m; exclude m from RMS/max sample count. Require at least two non-base comparable partials for a meaningful prediction comparison. All-scope and design-zone diagnostics remain parallel. RMS <= 1 cent, max <= 3 cents; no threshold relaxation.",
+    "limitations": "There is no unviewed pitch within 24-28: 25/27 consumed midfill, 26 consumed original holdout. Strict new-pitch validation of that exact span is unavailable. Re-recording the same pitch/velocity does not restore independence, and deterministic repeats are stability/state checks, not new independent piano specimens.",
+    "requires_explicit_decision": "Approve condition-level holdout qualification for 25/27 before execution, or keep the low span diagnostic-only. This proposal does not silently amend the existing new-pitch validation contract."
+  },
+  "total": {
+    "units": 84,
+    "cold_sessions": 28,
+    "training_validation_overlap_pitches": [],
+    "unexecuted": true
+  },
+  "implementation_scope_after_capture": "Piano88KeyTable.h section 4 arrays only if admitted anchors justify it; no interpolation helper change, no realtime DSP abstraction, no new dynamics model. B changes must still be checked through PianoTuning stretch and actual synthesis.",
+  "before_execution": [
+    "User approves this training/validation split and the low-span condition-level holdout limitation.",
+    "Write and freeze the executable preregistration and stimulus inventory; check mute restrictions from actual producer readback and signal evidence.",
+    "Capture only new training; keep validation unopened.",
+    "User approves any production table change after training admission; run actual Windows Debug synthesis and related regressions.",
+    "Render/open validation once; retain failures and protected-state evidence, archive with SHA-256."
+  ]
+}
