@@ -7,6 +7,8 @@
 
 **当前有效范围（2026-10-14，用户批准收口；有界验收已执行并消耗）**：midfill、interp-training 及 26/52/57 生产准入已完成，现行表含 17 实测锚点 + 2 文献外推节点。冻结该表，停止追加训练；[validation-interp2 预登记](../acoustic_lab/results/task39-2-official-reference-v2/pilot/validation-interp2-preregistration.json) 所述一次有界独立验收已完整执行并消耗：48/48 单元采集，唯一一次 guarded 判决为**证据不足**（32 个可评估单元全部达标；12 个 n88 单元参考侧分音匹配失败、4 个 n67-v47 单元可比分音不足；legacy 敏感性计数相同），未记通过。判决后保留常量与记录，不自动调参、扩采或补开替代验证；通过或证据不足均不认证全域或真实琴型。下列阶段记录只作历史依据，不构成续采授权；产品完成状态以 devpiano roadmap 为准。
 
+当前方法工作另见 [runbook §8](../acoustic_lab/results/task39-2-official-reference-v2/pilot/runbook-validation-interp2.md#8-有界量测资格与诊断入口2026-10-14)：用户批准的有界资格修订已完成数值门禁与完整分类修复；合成负例仍揭示未分辨混合族假阳性，候选未获总体资格，保持原分析器默认、冻结表和原判决，不启动新采集。该修订只支持诊断与观察器能力边界，不把低残差拟合升级为物理弦身份。
+
 Task 39-1 下游复核结果回流：封存原始音频、重建输入和双方旧文档；参考结果、方法、claims及manifest落库；以 [声学基准报告](acoustic_benchmark_report.md) 统一口径与旧主张处理。复算入口只读取现有文件，不能补证过去商业渲染条件。
 2026-10-11 旧参考来源资格撤销：9.1.2 为第三方破解/补丁样本，停止执行及官方算法/声音归因，保留历史文件身份与数值。当前 [来源登记](../acoustic_lab/results/task39-2-official-reference-v2/provenance.json) 独立于旧 manifest；仅在已核验官方 9.2.5 的独立配置、完整状态和试用限制下建立新协议，不将版本切换当作 B 锚点准入。
 
