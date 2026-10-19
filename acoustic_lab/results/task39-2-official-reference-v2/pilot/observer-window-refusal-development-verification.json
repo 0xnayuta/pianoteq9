@@ -1,0 +1,150 @@
+{
+ "schema": "devpiano-task39-2-observer-window-refusal-development-v1",
+ "registered_utc": "2026-10-16T13:40:09.251098+00:00",
+ "user_authorization_verbatim": "同意，我批准 runner 窗级输入拒绝契约的最小修订及针对性开发验证",
+ "scope": "Only runner observer-window input refusal, corresponding registration validation/scoring and directly relevant development controls. Not fresh independent qualification.",
+ "allowed_source_changes": [
+  "pilot/tools/meter-qualification.py",
+  "pilot/tools/meter-qualification-tests.py"
+ ],
+ "contract": [
+  "Use existing boundary.kind=frames_boundary, admission_expectation=rejected and boundary.expected_windows=not_ok plus actual unaltered sample bounds. No case-ID, pitch, seed or numeric-error special casing.",
+  "Every declared frames-boundary window remains present; W1 stays an ordinary observed window and the invalid W2 has an explicit runner input_refused record. Registration validation rejects missing W2, invalid statuses, duplicate windows and unregistered out-of-frame windows.",
+  "Check actual channels/sample count/rate against binding. Expected refusal requires a matching declared frame count and a valid positive interval whose stop exceeds that count. Incorrect/cropped PCM or undeclared invalid windows never pass.",
+  "No candidate FFT or observer/fit call for an input-refused window. Preserve original requested bounds and actual available samples, without clipping or padding.",
+  "Candidate helper rejects out-of-range windows instead of silently clipping.",
+  "Score complete per-window records independently against the registered request and actual count. Missing/mismatched/forged refusal, any probe attached to a refused window, and every unexpected observer exception stay failed. Refusal records are not observer ambiguity, scalar claims, interval certification or positive coverage.",
+  "Shared observe_partial interface and strict ValueError behavior, numeric/timing budgets, generator, PPA, evaluator/comparator, source-preserved consumed registrations/reports/seals/markers remain unchanged."
+ ],
+ "permanent_regression_purposes": [
+  "Real candidate extraction refuses out-of-array windows and preserves a valid exact-end peak.",
+  "Runner window bookkeeping distinguishes planned refusal from undeclared invalid input and accidental PCM-length mismatch.",
+  "Missing, mismatched or forged window records and probes on refused windows cannot satisfy window scoring.",
+  "Valid-window observer errors remain hard failures, never expected refusal.",
+  "Static cross-lane validation rejects missing invalid-window coverage; unrelated existing unit tests keep their scientific/permission obligations."
+ ],
+ "test_fixture_cutover": "Existing unit-suite registration is a private in-memory consumed-control fixture. Normalize frames-boundary observer window lists there and write any CLI input only in the test temporary directory; never modify a consumed registration on disk.",
+ "regressions": [
+  [
+   "meter-qualification-tests.py"
+  ],
+  [
+   "partial-observer-tests.py"
+  ],
+  [
+   "validation-eval-tests.py"
+  ],
+  [
+   "pilot-partial-analysis-tests.py",
+   "TimingContract",
+   "SampleGrid",
+   "ReleaseBoundary"
+  ]
+ ],
+ "real_API_smoke": {
+  "role": "self_owned_development_not_independent_qualification",
+  "interface": "Direct check_case_design/expected_binding/run_case with real shared observer and PPA/reference_quality, not main --role or any registered role.",
+  "generator": "Existing meter.synthesize/write_pcm/read_pcm solely for the four explicit developer-owned conditions below; no consumed qualification case/PCM replay.",
+  "known_consumed_parameter_point": {
+   "note": 33,
+   "provenance_note": "This is reuse of a consumed self-owned parameter point, not an exact copy of the older producer waveform and not freshness evidence.",
+   "b": 0.00033,
+   "f1_offset_hz": 0.12,
+   "noise_seeds": [
+    521017,
+    521018
+   ]
+  },
+  "shared_recipe": {
+   "partials": 5,
+   "noise_sigma": 1e-06,
+   "phase0": 0.37,
+   "level": 1.0,
+   "probe_half_width_hz": 3.0,
+   "windows": [
+    "W1",
+    "W2"
+   ],
+   "string_phase_mode": "indexed",
+   "strings": [
+    {
+     "cents": 0.0
+    }
+   ],
+   "extra_modes": [],
+   "envelope": {
+    "model": "none"
+   },
+   "modulation": null,
+   "am": null,
+   "conditional": null
+  },
+  "cases": [
+   {
+    "id": "dev-window-normal-n33-r44100",
+    "rate": 44100,
+    "seed": 521017,
+    "note_on_sample": 1379,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "expected": "Both windows actually observed and family admitted"
+   },
+   {
+    "id": "dev-window-normal-n33-r48000",
+    "rate": 48000,
+    "seed": 521018,
+    "note_on_sample": 1643,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "expected": "Both windows actually observed and family admitted"
+   },
+   {
+    "id": "dev-window-frames-n33-r44100",
+    "rate": 44100,
+    "seed": 521017,
+    "note_on_sample": 1379,
+    "note_off_seconds_after_note_on": 3.86,
+    "frames_seconds_after_note_on": 3.93,
+    "expected": "W1 actually observed; W2 runner input_refused with no candidate/probe; real PPA W2 spectrum rejection preserved; direct development case satisfies the new contract"
+   },
+   {
+    "id": "dev-window-frames-n33-r48000",
+    "rate": 48000,
+    "seed": 521018,
+    "note_on_sample": 1643,
+    "note_off_seconds_after_note_on": 3.86,
+    "frames_seconds_after_note_on": 3.93,
+    "expected": "W1 actually observed; W2 runner input_refused with no candidate/probe; real PPA W2 spectrum rejection preserved; direct development case satisfies the new contract"
+   }
+  ],
+  "must_not_claim": [
+   "qualification",
+   "physical string identity",
+   "v3 readiness",
+   "repair of the consumed not_qualified verdict"
+  ]
+ },
+ "execution": {
+  "related_regressions": true,
+  "four_bounded_developer_conditions": true,
+  "registered_development_role": false,
+  "qualification_role_or_subset": false,
+  "new_execution_seal_or_marker": false,
+  "original_84_case_rerun_or_rescore": false,
+  "reference_GUI_RPC_capture": false,
+  "A6_A7_or_v3_release": false
+ },
+ "failure_policy": "Preserve every original development failure and command log. Fix only demonstrated implementation/fixture-contract mistakes within the approved scope; rerun only failed development checks if necessary, never tune scientific budgets/recipe expectations or rerun qualification.",
+ "source_before": {
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification.py": "c3584777862f8ff3065cc7e8ce50462af705924d95d06339559368c4a73514f5",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification-tests.py": "1ec3a48acf8a0bd6d9f5a9797263bb83af8c86fe0d035dd061ff7a065e81243f"
+ },
+ "consumed_qualification": {
+  "batch": "a3-a5-qualification-20261016-105446",
+  "outcome": "not_qualified",
+  "report_sha256": "0fb2a2380a651cda4195209b223d024c7968199611919106bafdf599c5055a48",
+  "seal_sha256": "be4c1f30966818a109f3fad39c1690be94e346a9a5fb0f21e6735f4c80757a65",
+  "marker_sha256": "ba1458a4d482af9568d45e27a075facd4db930446a42959e7d4af139a6289bdd"
+ },
+ "current_method_independently_qualified": false
+}

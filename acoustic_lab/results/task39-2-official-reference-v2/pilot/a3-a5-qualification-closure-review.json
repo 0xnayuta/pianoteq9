@@ -1,0 +1,3144 @@
+{
+ "schema": "devpiano-task39-2-a3-a5-readonly-closure-review-v1",
+ "created_utc": "2026-10-16T09:39:57.405432+00:00",
+ "review_verdict": "finite_responsibilities_and_parameter_draft_finalized_static_only_execution_blocked",
+ "scope": "仅源文本/既有JSON/AST和散列元数据处理及新草案写入，不导入研究模块，不运行CLI、测试、生成器、拟合、资格或任何PCM分析。",
+ "user_authorization_verbatim": "同意，按你的建议继续做 “原 A3 风险覆盖与 A5 门禁的一次只读闭合审查，并据此定稿新资格覆盖草案”。本轮不修改代码或启动执行。",
+ "not_full_product_or_ADR_audit": true,
+ "draft": {
+  "path": "pilot/method-qualification-a3-a5-v1.json",
+  "sha256": "669a3e55ecdb999649a22eb68db5c87856059357410a22820a7fdad0fe37afb4",
+  "qualification_cases": 84,
+  "design_clusters": 34,
+  "inactive_existing_development": 17,
+  "old_q_controls": 4,
+  "roles": {
+   "development": {
+    "cases": 17,
+    "required_admission": 8,
+    "conditional": 2,
+    "refused": 1,
+    "pairs": 2,
+    "repeats": 1,
+    "classes": {
+     "ambiguous": 1,
+     "negative": 1,
+     "nonstationary": 1,
+     "positive": 13,
+     "resolvable": 1
+    },
+    "rates": [
+     44100,
+     48000
+    ],
+    "boundary_kinds": [
+     "frames_boundary",
+     "invalid_timing_refused",
+     "release_boundary"
+    ]
+   },
+   "qualification": {
+    "cases": 84,
+    "required_admission": 48,
+    "conditional": 6,
+    "refused": 2,
+    "pairs": 10,
+    "repeats": 4,
+    "classes": {
+     "ambiguous": 8,
+     "negative": 4,
+     "nonstationary": 4,
+     "positive": 60,
+     "resolvable": 8
+    },
+    "rates": [
+     44100,
+     48000
+    ],
+    "boundary_kinds": [
+     "frames_boundary",
+     "invalid_timing_refused",
+     "release_boundary"
+    ]
+   }
+  },
+  "parameter_B_points": {
+   "minimum": 6.671e-05,
+   "maximum": 0.0042865
+  },
+  "all_new_execution_authorizations_false": true,
+  "actual_CLI_valid": null,
+  "registration_contract_ready": false,
+  "is_execution_seal": false
+ },
+ "A3_risk_coverage": [
+  {
+   "id": "A3-decay-single",
+   "original_risk": "单阶段衰减",
+   "existing_evidence": "旧资格/观察器回归已消费；当前新覆盖尚无实证",
+   "draft_cases": [
+    "a3a5q-expdecay-n56-r44100",
+    "a3a5q-expdecay-n56-r48000",
+    "a3a5q-short-decay-n23-r44100",
+    "a3a5q-short-decay-n23-r48000"
+   ],
+   "expected_duty": "正向指数衰减两窗频率/B/留出满足原预算；短衰减信息边界仅允许合法认证或明确弃权。",
+   "source": [
+    "meter-qualification.py:638-645",
+    "meter-qualification.py:788-945"
+   ],
+   "limit": "不是机械击槌起音或真实阻尼来源认证。"
+  },
+  {
+   "id": "A3-decay-double",
+   "original_risk": "双阶段衰减",
+   "existing_evidence": "已有同频双衰减回归和已消费资格，不能转记当前新资格",
+   "draft_cases": [
+    "a3a5q-twostage-n80-r44100",
+    "a3a5q-twostage-n80-r48000"
+   ],
+   "expected_duty": "同一频率双指数包络下两窗族、B和独立预测预算不变。",
+   "source": [
+    "meter-qualification.py:641-643",
+    "partial-observer.py:197-198"
+   ],
+   "limit": "不模拟每根弦独立包络、真实耦合能量交换。"
+  },
+  {
+   "id": "A3-AM",
+   "original_risk": "AM与静态可比量分离",
+   "existing_evidence": "AM子研究只证明条件解释；当前方法资格未完成",
+   "draft_cases": [
+    "a3a5q-am-n49-r44100",
+    "a3a5q-am-n49-r48000"
+   ],
+   "expected_duty": "允许明确弃权；若报静态标量须满足原区间/编号/B全部义务，不计硬性正向数。",
+   "source": [
+    "meter-qualification.py:646-649",
+    "meter-qualification.py:823-855",
+    "meter-qualification.py:1185-1195"
+   ],
+   "limit": "AM与相干三线可能等价，不能认证成因或把carrier补入B。"
+  },
+  {
+   "id": "A3-FM-drift",
+   "original_risk": "FM与漂移",
+   "existing_evidence": "旧已消费负例/回归，当前新点未观测",
+   "draft_cases": [
+    "a3a5q-drift-n74-r44100",
+    "a3a5q-drift-n74-r48000",
+    "a3a5q-fm-n42-r44100",
+    "a3a5q-fm-n42-r48000"
+   ],
+   "expected_duty": "非平稳负例不得误报静态标量/分量或获族准入。",
+   "source": [
+    "meter-qualification.py:616-625",
+    "meter-qualification.py:208-214",
+    "meter-qualification.py:864-891"
+   ],
+   "limit": "不承诺重建真实音高轨迹。"
+  },
+  {
+   "id": "A3-numbering",
+   "original_risk": "缺基频、稀疏/移位分音与错编号",
+   "existing_evidence": "meter-qualification-tests.py:190-196有错误编号反例；上轮runner开发回归已通过，非新资格",
+   "draft_cases": [
+    "a3a5q-missing-fundamental-n45-r44100",
+    "a3a5q-missing-fundamental-n45-r48000",
+    "a3a5q-sparse-numbering-n53-r44100",
+    "a3a5q-sparse-numbering-n53-r48000",
+    "a3a5q-displaced-n89-r44100",
+    "a3a5q-displaced-n89-r48000"
+   ],
+   "expected_duty": "实际申报编号逐线对照独立真值；缺失/移位编号按required联合与forbidden任一窗断言，不允许错误索引认证。",
+   "source": [
+    "meter-qualification.py:1015-1031",
+    "meter-qualification.py:1134-1170",
+    "meter-qualification-tests.py:190-196"
+   ],
+   "limit": "required不是逐窗全列表机械断言；不强迫从不可辨别的谱线恢复唯一物理标签。"
+  },
+  {
+   "id": "A3-neighbor",
+   "original_risk": "邻峰/附加模态",
+   "existing_evidence": "原A5有false_static_admission且已消费；修订已做开发验证",
+   "draft_cases": [
+    "a3a5q-extra-guard-n37-r44100",
+    "a3a5q-extra-guard-n37-r48000",
+    "a3a5q-extra-ambiguous-n94-r44100",
+    "a3a5q-extra-ambiguous-n94-r48000",
+    "a3a5q-extra-resolved-inside-n58-r44100",
+    "a3a5q-extra-resolved-inside-n58-r48000"
+   ],
+   "expected_duty": "带外相干/可分辨或未分辨多分量证据不能因删除编号后被干净子集覆盖；新负例需安全拒绝。",
+   "source": [
+    "pilot-partial-analysis.py:682-689",
+    "pilot-partial-analysis.py:760-789",
+    "validation-eval.py:435-443"
+   ],
+   "limit": "负例安全拒绝不自动证明每例由特定内部原因触发；本域不认证未匹配族外所有信号的缺失。"
+  },
+  {
+   "id": "A3-double",
+   "original_risk": "与分音编号相关的双弦有限合成混合",
+   "existing_evidence": "当前A5有双线声明及旧结果，当前方法新覆盖未观测",
+   "draft_cases": [
+    "a3a5q-double-resolvable-n48-r44100",
+    "a3a5q-double-resolvable-n48-r48000",
+    "a3a5q-double-ambiguous-n64-r44100",
+    "a3a5q-double-ambiguous-n64-r48000",
+    "a3a5q-double-phase-ratio-variant-n64-r44100",
+    "a3a5q-double-phase-ratio-variant-n64-r48000"
+   ],
+   "expected_duty": "cents随分音编号对应真实生成频率；可分辨/模糊混合均不作为单族静态B准入。",
+   "source": [
+    "meter-qualification.py:177-215",
+    "meter-qualification.py:218-251"
+   ],
+   "limit": "共同B/包络下的合成叠加，不是实际双弦身份或独立B参数。"
+  },
+  {
+   "id": "A3-triple",
+   "original_risk": "三弦有限合成混合",
+   "existing_evidence": "旧v3曾有三线，但当前A5资格66例无三线责任；必须补入新覆盖",
+   "draft_cases": [
+    "a3a5q-triple-resolvable-n62-r44100",
+    "a3a5q-triple-resolvable-n62-r48000",
+    "a3a5q-triple-ambiguous-n57-r44100",
+    "a3a5q-triple-ambiguous-n57-r48000"
+   ],
+   "expected_duty": "3分量单探针/模糊模型边界与整族拒绝，不得声称三弦中心线。",
+   "source": [
+    "meter-qualification.py:196-214",
+    "partial-observer.py:207-209",
+    "partial-observer.py:226-241"
+   ],
+   "limit": "每区最多3候选频率；不支持独立弦B、真实物理耦合或来源认证。"
+  },
+  {
+   "id": "A3-phase-ratio",
+   "original_risk": "弦间相位与幅比变化",
+   "existing_evidence": "旧A5缺少显式phase_deg/弦幅比成组责任；全球phase0改变不证明独立性",
+   "draft_cases": [
+    "a3a5q-double-ambiguous-n64-r44100",
+    "a3a5q-double-ambiguous-n64-r48000",
+    "a3a5q-double-phase-ratio-variant-n64-r44100",
+    "a3a5q-double-phase-ratio-variant-n64-r48000",
+    "a3a5q-double-resolvable-n48-r44100",
+    "a3a5q-double-resolvable-n48-r48000",
+    "a3a5q-triple-ambiguous-n57-r44100",
+    "a3a5q-triple-ambiguous-n57-r48000",
+    "a3a5q-triple-resolvable-n62-r44100",
+    "a3a5q-triple-resolvable-n62-r48000"
+   ],
+   "expected_duty": "per-string phase_deg/amp_db实际参与波形，含同簇相位/幅比变体；不把变体当独立统计重复。",
+   "source": [
+    "meter-qualification.py:195-214",
+    "meter-qualification.py:648-649"
+   ],
+   "limit": "相位不进入几何类别，静态标签不能证明实际可分辨或绝对声学相位。"
+  },
+  {
+   "id": "A3-SNR",
+   "original_risk": "SNR/噪声底/弱线",
+   "existing_evidence": "现A5主要统一tonal sigma及个别弱线，level本身不改变模拟SNR",
+   "draft_cases": [
+    "a3a5q-weak-visible-n67-r44100",
+    "a3a5q-weak-visible-n67-r48000",
+    "a3a5q-weak-boundary-n87-r44100",
+    "a3a5q-weak-boundary-n87-r48000",
+    "a3a5q-noise-low-n31-r44100",
+    "a3a5q-noise-low-n31-r48000",
+    "a3a5q-noise-high-n89-r44100",
+    "a3a5q-noise-high-n89-r48000"
+   ],
+   "expected_duty": "明确noise_sigma及相对线幅度变化，既有必须准入弱线，也有允许明确弃权的边界和纯噪声负例。",
+   "source": [
+    "meter-qualification.py:650-654",
+    "pilot-partial-analysis.py:421-453",
+    "pilot-partial-analysis.py:821-822"
+   ],
+   "limit": "高斯噪声及所列幅度条件，不认证有色噪声、混响或任意低SNR检测。"
+  },
+  {
+   "id": "A3-PCM",
+   "original_risk": "固定协议PCM/双率/量化压力",
+   "existing_evidence": "既有24-bit往返和双率开发证据不能代替新点",
+   "draft_cases": [
+    "a3a5q-stationary-n21-r44100-a",
+    "a3a5q-stationary-n21-r44100-b",
+    "a3a5q-stationary-n21-r48000-a",
+    "a3a5q-stationary-n21-r48000-b",
+    "a3a5q-stationary-n35-r44100-a",
+    "a3a5q-stationary-n35-r44100-b",
+    "a3a5q-stationary-n35-r48000-a",
+    "a3a5q-stationary-n35-r48000-b",
+    "a3a5q-stationary-n36-r44100-a",
+    "a3a5q-stationary-n36-r44100-b",
+    "a3a5q-stationary-n36-r48000-a",
+    "a3a5q-stationary-n36-r48000-b",
+    "a3a5q-stationary-n72-r44100-a",
+    "a3a5q-stationary-n72-r44100-b",
+    "a3a5q-stationary-n72-r48000-a",
+    "a3a5q-stationary-n72-r48000-b",
+    "a3a5q-stationary-n96-r44100-a",
+    "a3a5q-stationary-n96-r44100-b",
+    "a3a5q-stationary-n96-r48000-a",
+    "a3a5q-stationary-n96-r48000-b",
+    "a3a5q-repeat-n26-r44100-repeat0",
+    "a3a5q-repeat-n26-r44100-repeat1",
+    "a3a5q-repeat-n26-r48000-repeat0",
+    "a3a5q-repeat-n26-r48000-repeat1",
+    "a3a5q-repeat-n79-r44100-repeat0",
+    "a3a5q-repeat-n79-r44100-repeat1",
+    "a3a5q-repeat-n79-r48000-repeat0",
+    "a3a5q-repeat-n79-r48000-repeat1",
+    "a3a5q-floor-transition-n38-r44100",
+    "a3a5q-floor-transition-n38-r48000",
+    "a3a5q-floor-transition-n39-r44100",
+    "a3a5q-floor-transition-n39-r48000",
+    "a3a5q-floor-transition-n40-r44100",
+    "a3a5q-floor-transition-n40-r48000",
+    "a3a5q-expdecay-n56-r44100",
+    "a3a5q-expdecay-n56-r48000",
+    "a3a5q-twostage-n80-r44100",
+    "a3a5q-twostage-n80-r48000",
+    "a3a5q-missing-fundamental-n45-r44100",
+    "a3a5q-missing-fundamental-n45-r48000",
+    "a3a5q-sparse-numbering-n53-r44100",
+    "a3a5q-sparse-numbering-n53-r48000",
+    "a3a5q-displaced-n89-r44100",
+    "a3a5q-displaced-n89-r48000",
+    "a3a5q-weak-visible-n67-r44100",
+    "a3a5q-weak-visible-n67-r48000",
+    "a3a5q-pcm-low-level-n32-r44100",
+    "a3a5q-pcm-low-level-n32-r48000",
+    "a3a5q-am-n49-r44100",
+    "a3a5q-am-n49-r48000",
+    "a3a5q-weak-boundary-n87-r44100",
+    "a3a5q-weak-boundary-n87-r48000",
+    "a3a5q-short-decay-n23-r44100",
+    "a3a5q-short-decay-n23-r48000",
+    "a3a5q-double-resolvable-n48-r44100",
+    "a3a5q-double-resolvable-n48-r48000",
+    "a3a5q-double-ambiguous-n64-r44100",
+    "a3a5q-double-ambiguous-n64-r48000",
+    "a3a5q-triple-resolvable-n62-r44100",
+    "a3a5q-triple-resolvable-n62-r48000",
+    "a3a5q-triple-ambiguous-n57-r44100",
+    "a3a5q-triple-ambiguous-n57-r48000",
+    "a3a5q-double-phase-ratio-variant-n64-r44100",
+    "a3a5q-double-phase-ratio-variant-n64-r48000",
+    "a3a5q-extra-guard-n37-r44100",
+    "a3a5q-extra-guard-n37-r48000",
+    "a3a5q-extra-ambiguous-n94-r44100",
+    "a3a5q-extra-ambiguous-n94-r48000",
+    "a3a5q-extra-resolved-inside-n58-r44100",
+    "a3a5q-extra-resolved-inside-n58-r48000",
+    "a3a5q-drift-n74-r44100",
+    "a3a5q-drift-n74-r48000",
+    "a3a5q-fm-n42-r44100",
+    "a3a5q-fm-n42-r48000",
+    "a3a5q-noise-low-n31-r44100",
+    "a3a5q-noise-low-n31-r48000",
+    "a3a5q-noise-high-n89-r44100",
+    "a3a5q-noise-high-n89-r48000",
+    "a3a5q-release-boundary-n25-r44100",
+    "a3a5q-release-boundary-n25-r48000",
+    "a3a5q-frames-boundary-n83-r44100",
+    "a3a5q-frames-boundary-n83-r48000",
+    "a3a5q-invalid-timing-n52-r44100",
+    "a3a5q-invalid-timing-n52-r48000"
+   ],
+   "specific_stress_cases": [
+    "a3a5q-pcm-low-level-n32-r44100",
+    "a3a5q-pcm-low-level-n32-r48000"
+   ],
+   "expected_duty": "实际signed24写盘回读、双率、非零样本原点及低电平量化压力，保留逐文件与逐样本往返核验。",
+   "source": [
+    "meter-qualification.py:659-678",
+    "meter-qualification.py:1216-1234"
+   ],
+   "limit": "不支持16/32-bit或浮点WAV、96k/192k、独立通道时钟/拾音、削波归一化。"
+  },
+  {
+   "id": "A3-stiffness-domain",
+   "original_risk": "既有小/较大非谐性量级与正向可用性",
+   "existing_evidence": "旧v3/NoteOn有小B与0.004量级；不能只围绕新失败缩成容易的中等B",
+   "draft_cases": [
+    "a3a5q-stationary-n21-r44100-a",
+    "a3a5q-stationary-n21-r44100-b",
+    "a3a5q-stationary-n21-r48000-a",
+    "a3a5q-stationary-n21-r48000-b",
+    "a3a5q-stationary-n35-r44100-a",
+    "a3a5q-stationary-n35-r44100-b",
+    "a3a5q-stationary-n35-r48000-a",
+    "a3a5q-stationary-n35-r48000-b",
+    "a3a5q-stationary-n36-r44100-a",
+    "a3a5q-stationary-n36-r44100-b",
+    "a3a5q-stationary-n36-r48000-a",
+    "a3a5q-stationary-n36-r48000-b",
+    "a3a5q-stationary-n72-r44100-a",
+    "a3a5q-stationary-n72-r44100-b",
+    "a3a5q-stationary-n72-r48000-a",
+    "a3a5q-stationary-n72-r48000-b",
+    "a3a5q-stationary-n96-r44100-a",
+    "a3a5q-stationary-n96-r44100-b",
+    "a3a5q-stationary-n96-r48000-a",
+    "a3a5q-stationary-n96-r48000-b",
+    "a3a5q-repeat-n26-r44100-repeat0",
+    "a3a5q-repeat-n26-r44100-repeat1",
+    "a3a5q-repeat-n26-r48000-repeat0",
+    "a3a5q-repeat-n26-r48000-repeat1",
+    "a3a5q-repeat-n79-r44100-repeat0",
+    "a3a5q-repeat-n79-r44100-repeat1",
+    "a3a5q-repeat-n79-r48000-repeat0",
+    "a3a5q-repeat-n79-r48000-repeat1",
+    "a3a5q-floor-transition-n38-r44100",
+    "a3a5q-floor-transition-n38-r48000",
+    "a3a5q-floor-transition-n39-r44100",
+    "a3a5q-floor-transition-n39-r48000",
+    "a3a5q-floor-transition-n40-r44100",
+    "a3a5q-floor-transition-n40-r48000",
+    "a3a5q-expdecay-n56-r44100",
+    "a3a5q-expdecay-n56-r48000",
+    "a3a5q-twostage-n80-r44100",
+    "a3a5q-twostage-n80-r48000",
+    "a3a5q-missing-fundamental-n45-r44100",
+    "a3a5q-missing-fundamental-n45-r48000",
+    "a3a5q-sparse-numbering-n53-r44100",
+    "a3a5q-sparse-numbering-n53-r48000",
+    "a3a5q-displaced-n89-r44100",
+    "a3a5q-displaced-n89-r48000",
+    "a3a5q-weak-visible-n67-r44100",
+    "a3a5q-weak-visible-n67-r48000",
+    "a3a5q-pcm-low-level-n32-r44100",
+    "a3a5q-pcm-low-level-n32-r48000"
+   ],
+   "expected_duty": "48个必须准入条件均逐项通过原相对B及频率/留出预算；不靠全体弃权通过。",
+   "source": [
+    "meter-qualification.py:1024-1031",
+    "meter-qualification.py:1134-1170",
+    "meter-qualification.py:1456-1474"
+   ],
+   "limit": "只在列明正B点成立；B=0的相对误差不可按现runner定义，也不认证连续B区间或生产高音外推。"
+  }
+ ],
+ "A5_gate_review": [
+  {
+   "id": "A5-static-vs-runtime",
+   "classification": "implemented_static_shape_only_runtime_unverified",
+   "facts": "静态校验覆盖字段/几何/角色/组/精确比较预期，不能证明实际候选/SNR、拟合收敛、独立预测、检测、clipping或完整角色通过。",
+   "source": [
+    "meter-qualification.py:276-356",
+    "meter-qualification.py:359-611"
+   ],
+   "execution_blocker": "actual_preparation_CLI_not_run"
+  },
+  {
+   "id": "A5-family-and-comparison",
+   "classification": "implemented_with_explicit_finite_scope",
+   "facts": "每窗至少5个合格实际申报、独立训练/留出/原数值预算和结构证据共同制约；比较仅在两完整合格族后由唯一compare_analyses执行，MIDI21..35低阶策略与其余7/5/1保留。10新正向对有精确基准/候选/非基准义务。",
+   "source": [
+    "validation-eval.py:417-491",
+    "validation-eval.py:515-562",
+    "meter-qualification.py:1274-1340"
+   ]
+  },
+  {
+   "id": "A5-required-union",
+   "classification": "boundary_not_per_window_full_required_assertion",
+   "facts": "required_partials在两窗claimed联合集合检查，forbidden任一窗申报即拒绝；不是逐窗全部required。新草案按实际语义声明，不伪造更强门禁。",
+   "source": [
+    "meter-qualification.py:1136-1170"
+   ],
+   "if_stronger_requirement": "须另批代码修订，不能只写登记字段宣称实现。"
+  },
+  {
+   "id": "A5-negative-comparison-control",
+   "classification": "current_schema_limit_and_control_responsibility",
+   "facts": "当前pair只允许admitted同配方正向对，非对称/负向比较由既有数值回归控制，非新独立比较样本。",
+   "source": [
+    "meter-qualification.py:424-452",
+    "meter-qualification.py:488-503",
+    "validation-eval-tests.py:142-219"
+   ]
+  },
+  {
+   "id": "A5-consumption",
+   "classification": "mechanical_same_seal_procedural_cross_seal",
+   "facts": "六输入精确绑定及同路径.consumed独占机械执行；没有跨seal全局注册锁，另造seal/目录禁令由主会话单批授权负责。",
+   "source": [
+    "meter-qualification.py:1601-1637"
+   ],
+   "execution_blocker": "explicit_single_batch_and_unique_seal_output_controller_approval_absent"
+  },
+  {
+   "id": "A5-failure-stop",
+   "classification": "batch_complete_then_stop_not_first_failed_case_fail_fast",
+   "facts": "普通case失败后继续固定完整角色并最终not_qualified；中断/未捕获异常保留部分后aborted。回归先决失败不生成资格PCM。",
+   "source": [
+    "meter-qualification.py:1216-1259",
+    "meter-qualification.py:1669-1706"
+   ],
+   "decision_status": "explicitly_accepted_batch_complete_then_stop_no_execution_authorization",
+   "decision_record": "pilot/method-qualification-a3-a5-v1.json#/prospective_review/stop_semantics_decision"
+  },
+  {
+   "id": "A5-history",
+   "classification": "broader_review_than_runtime_tuple_check",
+   "facts": "运行时只检查全登记seed唯一和跨角色(kind,note,rate)；历史及声学参数独立性由本轮列明历史/种子/normalized-core/结构point排重承担，不称全机历史穷尽。",
+   "source": [
+    "meter-qualification.py:573-611"
+   ]
+  },
+  {
+   "id": "A5-authority",
+   "classification": "all_new_execution_permissions_false",
+   "facts": "新草案approval=false、development.authorized=false；保留的17开发声明和4旧q控制都不是新的未触碰资格。旧A5单次授权不适用新文件。",
+   "source": [
+    "meter-qualification.py:543-558",
+    "meter-qualification.py:1593-1624"
+   ]
+  },
+  {
+   "id": "A4-A6-A7",
+   "classification": "independent_downstream_blockers_unchanged",
+   "facts": "参考原点未认证、v3未冻结、真实矩阵未选；任何合成资格通过也不放行A6/A7。这不是合成方法资格前置条件，也不重复已结束原点调查或GUI诊断。",
+   "source": [
+    "pilot/input-render-contract-v3.json",
+    "pilot/validation-v3-preregistration.json:79-104",
+    "meter-qualification.py:525-541"
+   ]
+  }
+ ],
+ "parameter_geometry_review": {
+  "method": "Independent scalar parameter/JSON/AST source inspection only; no project functions or modules imported/executed. Not FFT, synthesis, fit or observed model adequacy.",
+  "effective_cases_checked": 105,
+  "errors": [],
+  "rows": [
+   {
+    "id": "a5d-stationary-n34-r44100-a",
+    "role": "development",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 294.3785646474387,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 58.55249387597839,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a5d-stationary-n34-r44100-b",
+    "role": "development",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 294.3785646474387,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 58.55249387597839,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a5d-stationary-n70-r48000-a",
+    "role": "development",
+    "derived_class": "positive",
+    "component_count": 9,
+    "region_count": 9,
+    "maximum_frequency_hz": 4367.889343167179,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 467.79682423426993,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a5d-stationary-n70-r48000-b",
+    "role": "development",
+    "derived_class": "positive",
+    "component_count": 9,
+    "region_count": 9,
+    "maximum_frequency_hz": 4367.889343167179,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 467.79682423426993,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a5d-stationary-n22-r44100-repeat0",
+    "role": "development",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 147.3681358617538,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 29.348232539447412,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a5d-stationary-n22-r44100-repeat1",
+    "role": "development",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 147.3681358617538,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 29.348232539447412,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a5d-stationary-n94-r44100",
+    "role": "development",
+    "derived_class": "positive",
+    "component_count": 7,
+    "region_count": 7,
+    "maximum_frequency_hz": 13460.505944348417,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 1872.2093169333814,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a5d-stationary-n97-r48000",
+    "role": "development",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 11266.846086214957,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 2226.642123891559,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a5d-amslow-n52-r44100",
+    "role": "development",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 1353.911229175192,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 165.40118251152472,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a5d-weak_harmonic-n84-r48000",
+    "role": "development",
+    "derived_class": "positive",
+    "component_count": 9,
+    "region_count": 9,
+    "maximum_frequency_hz": 9862.484506038529,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 1050.456518492214,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a5d-detuned_double_resolvable-n37-r44100",
+    "role": "development",
+    "derived_class": "resolvable",
+    "component_count": 18,
+    "region_count": 9,
+    "maximum_frequency_hz": 642.7118444278497,
+    "maximum_region_span_hz": 2.740000000000009,
+    "minimum_region_gap_hz": 66.86608370014231,
+    "probe_half_width_hz": 3.8,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a5d-detuned_double_ambiguous-n44-r48000",
+    "role": "development",
+    "derived_class": "ambiguous",
+    "component_count": 18,
+    "region_count": 9,
+    "maximum_frequency_hz": 963.3296912317484,
+    "maximum_region_span_hz": 0.42000000000007276,
+    "minimum_region_gap_hz": 103.81126269183041,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a5d-drift-n75-r44100",
+    "role": "development",
+    "derived_class": "nonstationary",
+    "component_count": 6,
+    "region_count": 6,
+    "maximum_frequency_hz": 3805.5983517845652,
+    "maximum_region_span_hz": 37.5534747263373,
+    "minimum_region_gap_hz": 613.0158392147173,
+    "probe_half_width_hz": 52.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a5d-noise-n24-r48000",
+    "role": "development",
+    "derived_class": "negative",
+    "component_count": 0,
+    "region_count": 0,
+    "maximum_frequency_hz": null,
+    "maximum_region_span_hz": 0,
+    "minimum_region_gap_hz": null,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a5d-release_boundary-n23-r44100",
+    "role": "development",
+    "derived_class": "positive",
+    "component_count": 6,
+    "region_count": 6,
+    "maximum_frequency_hz": 187.82046442613523,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 31.084500905431206,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a5d-frames_boundary-n85-r48000",
+    "role": "development",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 9204.06513661848,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 1112.947843934558,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a5d-invalid_timing_refused-n41-r44100",
+    "role": "development",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 715.1083001122618,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 87.6658978180246,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n21-r44100-a",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 138.62803905450932,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 27.708984642482523,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n21-r44100-b",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 138.62803905450932,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 27.708984642482523,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n21-r48000-a",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 138.62803905450932,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 27.708984642482523,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n21-r48000-b",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 138.62803905450932,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 27.708984642482523,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n35-r44100-a",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 311.1372165579231,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 62.01135102589105,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n35-r44100-b",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 311.1372165579231,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 62.01135102589105,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n35-r48000-a",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 311.1372165579231,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 62.01135102589105,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n35-r48000-b",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 311.1372165579231,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 62.01135102589105,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n36-r44100-a",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 9,
+    "region_count": 9,
+    "maximum_frequency_hz": 599.9511899970821,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 65.68979664917728,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n36-r44100-b",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 9,
+    "region_count": 9,
+    "maximum_frequency_hz": 599.9511899970821,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 65.68979664917728,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n36-r48000-a",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 9,
+    "region_count": 9,
+    "maximum_frequency_hz": 599.9511899970821,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 65.68979664917728,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n36-r48000-b",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 9,
+    "region_count": 9,
+    "maximum_frequency_hz": 599.9511899970821,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 65.68979664917728,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n72-r44100-a",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 7,
+    "region_count": 7,
+    "maximum_frequency_hz": 3745.2730610678273,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 524.9183364396517,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n72-r44100-b",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 7,
+    "region_count": 7,
+    "maximum_frequency_hz": 3745.2730610678273,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 524.9183364396517,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n72-r48000-a",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 7,
+    "region_count": 7,
+    "maximum_frequency_hz": 3745.2730610678273,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 524.9183364396517,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n72-r48000-b",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 7,
+    "region_count": 7,
+    "maximum_frequency_hz": 3745.2730610678273,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 524.9183364396517,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n96-r44100-a",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 10989.033035618142,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 2119.926524546174,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n96-r44100-b",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 10989.033035618142,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 2119.926524546174,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n96-r48000-a",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 10989.033035618142,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 2119.926524546174,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-stationary-n96-r48000-b",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 10989.033035618142,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 2119.926524546174,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-repeat-n26-r44100-repeat0",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 185.13303317178216,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 36.94135895143694,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-repeat-n26-r44100-repeat1",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 185.13303317178216,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 36.94135895143694,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-repeat-n26-r48000-repeat0",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 185.13303317178216,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 36.94135895143694,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-repeat-n26-r48000-repeat1",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 5,
+    "region_count": 5,
+    "maximum_frequency_hz": 185.13303317178216,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 36.94135895143694,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-repeat-n79-r44100-repeat0",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 6474.936321470927,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 786.6297716845427,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-repeat-n79-r44100-repeat1",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 6474.936321470927,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 786.6297716845427,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-repeat-n79-r48000-repeat0",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 6474.936321470927,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 786.6297716845427,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-repeat-n79-r48000-repeat1",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 6474.936321470927,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 786.6297716845427,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-floor-transition-n38-r44100",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 7,
+    "region_count": 7,
+    "maximum_frequency_hz": 520.6866725738247,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 73.71727718997936,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-floor-transition-n38-r48000",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 7,
+    "region_count": 7,
+    "maximum_frequency_hz": 520.6866725738247,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 73.71727718997936,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-floor-transition-n39-r44100",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 7,
+    "region_count": 7,
+    "maximum_frequency_hz": 551.755981341812,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 78.09224434570966,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-floor-transition-n39-r48000",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 7,
+    "region_count": 7,
+    "maximum_frequency_hz": 551.755981341812,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 78.09224434570966,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-floor-transition-n40-r44100",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 7,
+    "region_count": 7,
+    "maximum_frequency_hz": 584.6839408738562,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 82.72754919678165,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-floor-transition-n40-r48000",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 7,
+    "region_count": 7,
+    "maximum_frequency_hz": 584.6839408738562,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 82.72754919678165,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-expdecay-n56-r44100",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 9,
+    "region_count": 9,
+    "maximum_frequency_hz": 1922.272619197966,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 208.29374089635232,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-expdecay-n56-r48000",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 9,
+    "region_count": 9,
+    "maximum_frequency_hz": 1922.272619197966,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 208.29374089635232,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-twostage-n80-r44100",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 7248.71174597087,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 838.2926223107652,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-twostage-n80-r48000",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 7248.71174597087,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 838.2926223107652,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-missing-fundamental-n45-r44100",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 1012.9453023434858,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 110.73873258636266,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-missing-fundamental-n45-r48000",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 1012.9453023434858,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 110.73873258636266,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-sparse-numbering-n53-r44100",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 7,
+    "region_count": 7,
+    "maximum_frequency_hz": 1803.9760183612332,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 181.9510007414474,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-sparse-numbering-n53-r48000",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 7,
+    "region_count": 7,
+    "maximum_frequency_hz": 1803.9760183612332,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 181.9510007414474,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-displaced-n89-r44100",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 9,
+    "region_count": 9,
+    "maximum_frequency_hz": 14325.877071073544,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 1412.6919707371173,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-displaced-n89-r48000",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 9,
+    "region_count": 9,
+    "maximum_frequency_hz": 14325.877071073544,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 1412.6919707371173,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-weak-visible-n67-r44100",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 9,
+    "region_count": 9,
+    "maximum_frequency_hz": 3649.29283451268,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 393.2146896221807,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-weak-visible-n67-r48000",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 9,
+    "region_count": 9,
+    "maximum_frequency_hz": 3649.29283451268,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 393.2146896221807,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-pcm-low-level-n32-r44100",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 7,
+    "region_count": 7,
+    "maximum_frequency_hz": 367.86924532640546,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 52.175059419864716,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-pcm-low-level-n32-r48000",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 7,
+    "region_count": 7,
+    "maximum_frequency_hz": 367.86924532640546,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 52.175059419864716,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-am-n49-r44100",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 1131.0659847372408,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 139.0476272703482,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-am-n49-r48000",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 1131.0659847372408,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 139.0476272703482,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-weak-boundary-n87-r44100",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 9,
+    "region_count": 9,
+    "maximum_frequency_hz": 12702.564769916004,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 1258.0187029969118,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-weak-boundary-n87-r48000",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 9,
+    "region_count": 9,
+    "maximum_frequency_hz": 12702.564769916004,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 1258.0187029969118,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-short-decay-n23-r44100",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 6,
+    "region_count": 6,
+    "maximum_frequency_hz": 187.1575353398504,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 31.096323685482446,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-short-decay-n23-r48000",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 6,
+    "region_count": 6,
+    "maximum_frequency_hz": 187.1575353398504,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 31.096323685482446,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-double-resolvable-n48-r44100",
+    "role": "qualification",
+    "derived_class": "resolvable",
+    "component_count": 18,
+    "region_count": 9,
+    "maximum_frequency_hz": 1213.1209767507728,
+    "maximum_region_span_hz": 12.33966555504935,
+    "minimum_region_gap_hz": 127.03053706623461,
+    "probe_half_width_hz": 14.8,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-double-resolvable-n48-r48000",
+    "role": "qualification",
+    "derived_class": "resolvable",
+    "component_count": 18,
+    "region_count": 9,
+    "maximum_frequency_hz": 1213.1209767507728,
+    "maximum_region_span_hz": 12.33966555504935,
+    "minimum_region_gap_hz": 127.03053706623461,
+    "probe_half_width_hz": 14.8,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-double-ambiguous-n64-r44100",
+    "role": "qualification",
+    "derived_class": "ambiguous",
+    "component_count": 18,
+    "region_count": 9,
+    "maximum_frequency_hz": 3065.444634329278,
+    "maximum_region_span_hz": 2.6548550874013017,
+    "minimum_region_gap_hz": 330.2253587820877,
+    "probe_half_width_hz": 3.6,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-double-ambiguous-n64-r48000",
+    "role": "qualification",
+    "derived_class": "ambiguous",
+    "component_count": 18,
+    "region_count": 9,
+    "maximum_frequency_hz": 3065.444634329278,
+    "maximum_region_span_hz": 2.6548550874013017,
+    "minimum_region_gap_hz": 330.2253587820877,
+    "probe_half_width_hz": 3.6,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-triple-resolvable-n62-r44100",
+    "role": "qualification",
+    "derived_class": "resolvable",
+    "component_count": 27,
+    "region_count": 9,
+    "maximum_frequency_hz": 2740.536548566908,
+    "maximum_region_span_hz": 24.897550772565864,
+    "minimum_region_gap_hz": 288.7147063506113,
+    "probe_half_width_hz": 28.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-triple-resolvable-n62-r48000",
+    "role": "qualification",
+    "derived_class": "resolvable",
+    "component_count": 27,
+    "region_count": 9,
+    "maximum_frequency_hz": 2740.536548566908,
+    "maximum_region_span_hz": 24.897550772565864,
+    "minimum_region_gap_hz": 288.7147063506113,
+    "probe_half_width_hz": 28.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-triple-ambiguous-n57-r44100",
+    "role": "qualification",
+    "derived_class": "ambiguous",
+    "component_count": 27,
+    "region_count": 9,
+    "maximum_frequency_hz": 2039.0535912131381,
+    "maximum_region_span_hz": 2.236599186294825,
+    "minimum_region_gap_hz": 220.3379282534226,
+    "probe_half_width_hz": 3.4,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-triple-ambiguous-n57-r48000",
+    "role": "qualification",
+    "derived_class": "ambiguous",
+    "component_count": 27,
+    "region_count": 9,
+    "maximum_frequency_hz": 2039.0535912131381,
+    "maximum_region_span_hz": 2.236599186294825,
+    "minimum_region_gap_hz": 220.3379282534226,
+    "probe_half_width_hz": 3.4,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-double-phase-ratio-variant-n64-r44100",
+    "role": "qualification",
+    "derived_class": "ambiguous",
+    "component_count": 18,
+    "region_count": 9,
+    "maximum_frequency_hz": 3065.444634329278,
+    "maximum_region_span_hz": 2.6548550874013017,
+    "minimum_region_gap_hz": 330.2253587820877,
+    "probe_half_width_hz": 3.6,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-double-phase-ratio-variant-n64-r48000",
+    "role": "qualification",
+    "derived_class": "ambiguous",
+    "component_count": 18,
+    "region_count": 9,
+    "maximum_frequency_hz": 3065.444634329278,
+    "maximum_region_span_hz": 2.6548550874013017,
+    "minimum_region_gap_hz": 330.2253587820877,
+    "probe_half_width_hz": 3.6,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-extra-guard-n37-r44100",
+    "role": "qualification",
+    "derived_class": "resolvable",
+    "component_count": 10,
+    "region_count": 9,
+    "maximum_frequency_hz": 636.0073810774319,
+    "maximum_region_span_hz": 1.9300000000000068,
+    "minimum_region_gap_hz": 67.83915283616886,
+    "probe_half_width_hz": 3.8,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-extra-guard-n37-r48000",
+    "role": "qualification",
+    "derived_class": "resolvable",
+    "component_count": 10,
+    "region_count": 9,
+    "maximum_frequency_hz": 636.0073810774319,
+    "maximum_region_span_hz": 1.9300000000000068,
+    "minimum_region_gap_hz": 67.83915283616886,
+    "probe_half_width_hz": 3.8,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-extra-ambiguous-n94-r44100",
+    "role": "qualification",
+    "derived_class": "ambiguous",
+    "component_count": 8,
+    "region_count": 7,
+    "maximum_frequency_hz": 14291.777115154675,
+    "maximum_region_span_hz": 0.4700000000000273,
+    "minimum_region_gap_hz": 1887.4740495247333,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-extra-ambiguous-n94-r48000",
+    "role": "qualification",
+    "derived_class": "ambiguous",
+    "component_count": 8,
+    "region_count": 7,
+    "maximum_frequency_hz": 14291.777115154675,
+    "maximum_region_span_hz": 0.4700000000000273,
+    "minimum_region_gap_hz": 1887.4740495247333,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-extra-resolved-inside-n58-r44100",
+    "role": "qualification",
+    "derived_class": "resolvable",
+    "component_count": 10,
+    "region_count": 9,
+    "maximum_frequency_hz": 2160.0655545625364,
+    "maximum_region_span_hz": 1.579999999999984,
+    "minimum_region_gap_hz": 233.24248087411604,
+    "probe_half_width_hz": 3.5,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-extra-resolved-inside-n58-r48000",
+    "role": "qualification",
+    "derived_class": "resolvable",
+    "component_count": 10,
+    "region_count": 9,
+    "maximum_frequency_hz": 2160.0655545625364,
+    "maximum_region_span_hz": 1.579999999999984,
+    "minimum_region_gap_hz": 233.24248087411604,
+    "probe_half_width_hz": 3.5,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-drift-n74-r44100",
+    "role": "qualification",
+    "derived_class": "nonstationary",
+    "component_count": 6,
+    "region_count": 6,
+    "maximum_frequency_hz": 3584.271754658395,
+    "maximum_region_span_hz": 19.306124692177946,
+    "minimum_region_gap_hz": 584.4883594938274,
+    "probe_half_width_hz": 30.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-drift-n74-r48000",
+    "role": "qualification",
+    "derived_class": "nonstationary",
+    "component_count": 6,
+    "region_count": 6,
+    "maximum_frequency_hz": 3584.271754658395,
+    "maximum_region_span_hz": 19.306124692177946,
+    "minimum_region_gap_hz": 584.4883594938274,
+    "probe_half_width_hz": 30.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-fm-n42-r44100",
+    "role": "qualification",
+    "derived_class": "nonstationary",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 753.1609548670925,
+    "maximum_region_span_hz": 11.879765547979787,
+    "minimum_region_gap_hz": 85.40467480234975,
+    "probe_half_width_hz": 14.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-fm-n42-r48000",
+    "role": "qualification",
+    "derived_class": "nonstationary",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 753.1609548670925,
+    "maximum_region_span_hz": 11.879765547979787,
+    "minimum_region_gap_hz": 85.40467480234975,
+    "probe_half_width_hz": 14.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-noise-low-n31-r44100",
+    "role": "qualification",
+    "derived_class": "negative",
+    "component_count": 0,
+    "region_count": 0,
+    "maximum_frequency_hz": null,
+    "maximum_region_span_hz": 0,
+    "minimum_region_gap_hz": null,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-noise-low-n31-r48000",
+    "role": "qualification",
+    "derived_class": "negative",
+    "component_count": 0,
+    "region_count": 0,
+    "maximum_frequency_hz": null,
+    "maximum_region_span_hz": 0,
+    "minimum_region_gap_hz": null,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-noise-high-n89-r44100",
+    "role": "qualification",
+    "derived_class": "negative",
+    "component_count": 0,
+    "region_count": 0,
+    "maximum_frequency_hz": null,
+    "maximum_region_span_hz": 0,
+    "minimum_region_gap_hz": null,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-noise-high-n89-r48000",
+    "role": "qualification",
+    "derived_class": "negative",
+    "component_count": 0,
+    "region_count": 0,
+    "maximum_frequency_hz": null,
+    "maximum_region_span_hz": 0,
+    "minimum_region_gap_hz": null,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-release-boundary-n25-r44100",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 6,
+    "region_count": 6,
+    "maximum_frequency_hz": 210.05789671668705,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 34.885656394635156,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-release-boundary-n25-r48000",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 6,
+    "region_count": 6,
+    "maximum_frequency_hz": 210.05789671668705,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 34.885656394635156,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-frames-boundary-n83-r44100",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 8680.650535563695,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 997.6575802522447,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-frames-boundary-n83-r48000",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 8680.650535563695,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 997.6575802522447,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-invalid-timing-n52-r44100",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 1346.6754982198208,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 165.34448581045103,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "a3a5q-invalid-timing-n52-r48000",
+    "role": "qualification",
+    "derived_class": "positive",
+    "component_count": 8,
+    "region_count": 8,
+    "maximum_frequency_hz": 1346.6754982198208,
+    "maximum_region_span_hz": 0.0,
+    "minimum_region_gap_hz": 165.34448581045103,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "q34-unresolved_doublet-44100",
+    "role": "control",
+    "derived_class": "ambiguous",
+    "component_count": 24,
+    "region_count": 12,
+    "maximum_frequency_hz": 2403.101405455505,
+    "maximum_region_span_hz": 0.40000000000009095,
+    "minimum_region_gap_hz": 195.84128813886485,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "q35-unresolved_doublet-48000",
+    "role": "control",
+    "derived_class": "ambiguous",
+    "component_count": 24,
+    "region_count": 12,
+    "maximum_frequency_hz": 2403.9249687260717,
+    "maximum_region_span_hz": 0.40000000000009095,
+    "minimum_region_gap_hz": 195.90855289207678,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "q38-unresolved_doublet-44100",
+    "role": "control",
+    "derived_class": "ambiguous",
+    "component_count": 24,
+    "region_count": 12,
+    "maximum_frequency_hz": 4934.85243353163,
+    "maximum_region_span_hz": 0.40000000000009095,
+    "minimum_region_gap_hz": 392.4849647062571,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   },
+   {
+    "id": "q39-unresolved_doublet-48000",
+    "role": "control",
+    "derived_class": "ambiguous",
+    "component_count": 24,
+    "region_count": 12,
+    "maximum_frequency_hz": 4935.698258644539,
+    "maximum_region_span_hz": 0.40000000000009095,
+    "minimum_region_gap_hz": 392.55230996373183,
+    "probe_half_width_hz": 3.0,
+    "event_grid_matches": true,
+    "errors": []
+   }
+  ]
+ },
+ "historical_independence_review": {
+  "sources": [
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/method-qualification-v3.json",
+    "sha256": "426672da04b42cc36e1d6b87710fa691ecbbb8c472d8e2c3314793a39bc19744",
+    "role": "consumed_or_reserved_excluded_from_fresh_qualification",
+    "case_counts": {
+     "development": 27,
+     "qualification": 28,
+     "control": 4
+    }
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/method-qualification-noteon-v3.json",
+    "sha256": "21acc835b59401a8e4567c2a9c0b538d6659db0cac372d142143d53e9099653c",
+    "role": "consumed_or_reserved_excluded_from_fresh_qualification",
+    "case_counts": {
+     "development": 32,
+     "qualification": 31,
+     "control": 4
+    }
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/method-qualification-a5-v1.json",
+    "sha256": "948764004f05ee57ea65211a2922b1b05b68e9dff73d76940e6bfde240b741a8",
+    "role": "consumed_or_reserved_excluded_from_fresh_qualification",
+    "case_counts": {
+     "development": 17,
+     "qualification": 66,
+     "control": 4
+    }
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/am-envelope-preregistration.json",
+    "sha256": "0b0b90ec389d19f9a89c3ee7e6884061bc4459ce7d6e1e66fe6b57863e50366a",
+    "role": "consumed_AM_child_study_not_static_method_qualification",
+    "case_counts": {
+     "development": 13,
+     "qualification": 13
+    },
+    "scope": "Seeds and noise parameters excluded. AM single-carrier/equivalent-triplet formulas are a separate declared model, not transferred to the new >=5-partial static family."
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/a5-implementation-verification.json",
+    "sha256": "bec92d89311672aab9462c3756b869c0b5e4b8ec0dfa2d01f33eba1ef85c9001",
+    "role": "consumed_self_owned_development",
+    "recipe": {
+     "role": "development_regression_not_independent_qualification",
+     "note": 33,
+     "sample_rate": 48000,
+     "partials": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "B": 0.00033,
+     "first_partial_offset_hz": 0.12,
+     "seeds": [
+      521017,
+      521018
+     ],
+     "note_on_sample": 1247,
+     "note_off_seconds_after_note_on": 4.2,
+     "frames_seconds_after_note_on": 5.2,
+     "noise_sigma": 1e-06,
+     "purpose": "真实共享 analyze_samples 路径得到两份独立观察记录，再经同一比较器证明低阶候选的端到端行为；只做开发冒烟，不证明真实钢琴或商业来源。"
+    }
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/a5-candidate-structure-development-verification.json",
+    "sha256": "8ce0bed5bc79f883f8bdb6135dccfd1f3a47b01bdf8b5a3ace933a0fe9805acb",
+    "role": "consumed_deterministic_development_and_direct_regression",
+    "scope": "0.04/n independent regression waveform; compared by declared note/B/offset point, not misrepresented as the qualification generator amplitude model.",
+    "recipe": {
+     "role": "self_owned_development_regression_not_independent_qualification",
+     "producer": "独立复用现有PPA回归的tone/family_peaks信号构造，不调用PPA预测器作为oracle；不调用meter-qualification的任何角色或生成器。",
+     "model": "f_n=n*f1*sqrt((1+B*n*n)/(1+B)); left=sum((0.04/n)*cos(2*pi*f_n*t+0.37*n)); right=0.8*left",
+     "B": 0.0003,
+     "sample_rates": [
+      44100,
+      48000
+     ],
+     "note_on_sample": 0,
+     "note_off_seconds": 4.2,
+     "frames_seconds": 4.3,
+     "windows": {
+      "W1": [
+       0.08,
+       3.8
+      ],
+      "W2": [
+       0.5,
+       4.1
+      ]
+     },
+     "noise": "none; deterministic development signal, not an independence claim",
+     "cases": [
+      {
+       "id": "dev-low-A0",
+       "note": 21,
+       "first_hz": 27.5,
+       "partials": 5,
+       "expectation": "both windows ok, exact partials 1..5, original holdout/frequency/B budgets and reference_quality admission"
+      },
+      {
+       "id": "dev-guarded-C2",
+       "note": 36,
+       "first_hz": 65.40639132514966,
+       "partials": 9,
+       "companion_near_partial": 2,
+       "companion_offset_hz": 1.7,
+       "companion_amplitude": 0.014,
+       "companion_phase_rad": 0.6,
+       "expectation": "partial 2 retains explicit structural guard evidence; both windows inconclusive before observed-family-fit/prediction and whole family rejected"
+      }
+     ],
+     "complete_executions": 4,
+     "output_policy": "全新自有development目录，原始JSON输出和判定分别保存；不写新资格PCM/报告/seal，不覆盖原件。",
+     "stop_or_failure": "保留每次失败，不改预算/期望/配方翻绿；如需修正实现或已查明的测试构造错误，保留原记录且仅重跑受影响开发验证，不能据此恢复独立资格。"
+    }
+   }
+  ],
+  "regression_source_literal_exclusions": [
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/pilot-partial-analysis-tests.py",
+    "sha256": "db16d62d2226011948d30d1591d330e30df69f0c5124bf9e3fa36012664ee600",
+    "integer_literals_reserved_for_conservative_seed_exclusion": 65,
+    "scope": "Source literal exclusion only; not execution or reconstruction of arbitrary parameterized test waveforms."
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/partial-observer-tests.py",
+    "sha256": "342c9dd09393bf872a76c725b06495ff16e2972f114449dd725817190b512a26",
+    "integer_literals_reserved_for_conservative_seed_exclusion": 4,
+    "scope": "Source literal exclusion only; not execution or reconstruction of arbitrary parameterized test waveforms."
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/validation-eval-tests.py",
+    "sha256": "467f8d423ada2140ce715b3e78e7b16f264f565325e173b9ce12f9f4a9987098",
+    "integer_literals_reserved_for_conservative_seed_exclusion": 28,
+    "scope": "Source literal exclusion only; not execution or reconstruction of arbitrary parameterized test waveforms."
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification-tests.py",
+    "sha256": "1ec3a48acf8a0bd6d9f5a9797263bb83af8c86fe0d035dd061ff7a065e81243f",
+    "integer_literals_reserved_for_conservative_seed_exclusion": 18,
+    "scope": "Source literal exclusion only; not execution or reconstruction of arbitrary parameterized test waveforms."
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/am-envelope-tests.py",
+    "sha256": "4665914aeb0ea2f8a7824bae4ae4b00df66ebfee2e6cd41d8bb50cb6c0e95865",
+    "integer_literals_reserved_for_conservative_seed_exclusion": 5,
+    "scope": "Source literal exclusion only; not execution or reconstruction of arbitrary parameterized test waveforms."
+   }
+  ],
+  "reserved_seeds_and_literal_values": 307,
+  "fresh_qualification_conflicts": [],
+  "development_reuse": "Exact unchanged current A5 17-case inactive declaration, explicitly not fresh. No role authorization.",
+  "acoustic_core_rule": "Ignore IDs/labels/rate/origin/global gain/all phase conservatively; retain normalized line positions/amplitudes, envelope/modulation/AM and relative noise. Independently exclude all prior tone note/B/offset points.",
+  "cross_role_acoustic_core_overlap": 0,
+  "scope_limit": "Only enumerated registries, developer recipes and source literal controls. No private-history/all-machine completeness or IID probability claim."
+ },
+ "case_fingerprints": [
+  {
+   "id": "a3a5q-stationary-n21-r44100-a",
+   "seed": 202610160400,
+   "note_B_offset": [
+    21,
+    6.671e-05,
+    0.203441
+   ],
+   "acoustic_core_sha256": "1c5f17ed572967a05195b438a7dfcf20ee6acc7977b5362f02c0d71f9bb9ab45",
+   "design_cluster": "a3a5q-stationary-n21",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n21-r44100-b",
+   "seed": 202610160401,
+   "note_B_offset": [
+    21,
+    6.671e-05,
+    0.203441
+   ],
+   "acoustic_core_sha256": "1c5f17ed572967a05195b438a7dfcf20ee6acc7977b5362f02c0d71f9bb9ab45",
+   "design_cluster": "a3a5q-stationary-n21",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n21-r48000-a",
+   "seed": 202610160402,
+   "note_B_offset": [
+    21,
+    6.671e-05,
+    0.203441
+   ],
+   "acoustic_core_sha256": "1c5f17ed572967a05195b438a7dfcf20ee6acc7977b5362f02c0d71f9bb9ab45",
+   "design_cluster": "a3a5q-stationary-n21",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n21-r48000-b",
+   "seed": 202610160403,
+   "note_B_offset": [
+    21,
+    6.671e-05,
+    0.203441
+   ],
+   "acoustic_core_sha256": "1c5f17ed572967a05195b438a7dfcf20ee6acc7977b5362f02c0d71f9bb9ab45",
+   "design_cluster": "a3a5q-stationary-n21",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n35-r44100-a",
+   "seed": 202610160404,
+   "note_B_offset": [
+    35,
+    0.00038896,
+    0.203712
+   ],
+   "acoustic_core_sha256": "680523e27f33854f9cd96a3c997170f68b065e7dec4c1c45aa1e3d70f0699a58",
+   "design_cluster": "a3a5q-stationary-n35",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n35-r44100-b",
+   "seed": 202610160405,
+   "note_B_offset": [
+    35,
+    0.00038896,
+    0.203712
+   ],
+   "acoustic_core_sha256": "680523e27f33854f9cd96a3c997170f68b065e7dec4c1c45aa1e3d70f0699a58",
+   "design_cluster": "a3a5q-stationary-n35",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n35-r48000-a",
+   "seed": 202610160406,
+   "note_B_offset": [
+    35,
+    0.00038896,
+    0.203712
+   ],
+   "acoustic_core_sha256": "680523e27f33854f9cd96a3c997170f68b065e7dec4c1c45aa1e3d70f0699a58",
+   "design_cluster": "a3a5q-stationary-n35",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n35-r48000-b",
+   "seed": 202610160407,
+   "note_B_offset": [
+    35,
+    0.00038896,
+    0.203712
+   ],
+   "acoustic_core_sha256": "680523e27f33854f9cd96a3c997170f68b065e7dec4c1c45aa1e3d70f0699a58",
+   "design_cluster": "a3a5q-stationary-n35",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n36-r44100-a",
+   "seed": 202610160408,
+   "note_B_offset": [
+    36,
+    0.00040379,
+    0.203983
+   ],
+   "acoustic_core_sha256": "2d65aa5bc73e6ccf1f714f74ae0955a6ff089a25c8cd36dadd2881066c614279",
+   "design_cluster": "a3a5q-stationary-n36",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n36-r44100-b",
+   "seed": 202610160409,
+   "note_B_offset": [
+    36,
+    0.00040379,
+    0.203983
+   ],
+   "acoustic_core_sha256": "2d65aa5bc73e6ccf1f714f74ae0955a6ff089a25c8cd36dadd2881066c614279",
+   "design_cluster": "a3a5q-stationary-n36",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n36-r48000-a",
+   "seed": 202610160410,
+   "note_B_offset": [
+    36,
+    0.00040379,
+    0.203983
+   ],
+   "acoustic_core_sha256": "2d65aa5bc73e6ccf1f714f74ae0955a6ff089a25c8cd36dadd2881066c614279",
+   "design_cluster": "a3a5q-stationary-n36",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n36-r48000-b",
+   "seed": 202610160411,
+   "note_B_offset": [
+    36,
+    0.00040379,
+    0.203983
+   ],
+   "acoustic_core_sha256": "2d65aa5bc73e6ccf1f714f74ae0955a6ff089a25c8cd36dadd2881066c614279",
+   "design_cluster": "a3a5q-stationary-n36",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n72-r44100-a",
+   "seed": 202610160412,
+   "note_B_offset": [
+    72,
+    0.00093312,
+    0.204254
+   ],
+   "acoustic_core_sha256": "19827a0fe50ecbbfbe8b9d1519074993bb384063b85027a2d4a6125bbde48e1e",
+   "design_cluster": "a3a5q-stationary-n72",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n72-r44100-b",
+   "seed": 202610160413,
+   "note_B_offset": [
+    72,
+    0.00093312,
+    0.204254
+   ],
+   "acoustic_core_sha256": "19827a0fe50ecbbfbe8b9d1519074993bb384063b85027a2d4a6125bbde48e1e",
+   "design_cluster": "a3a5q-stationary-n72",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n72-r48000-a",
+   "seed": 202610160414,
+   "note_B_offset": [
+    72,
+    0.00093312,
+    0.204254
+   ],
+   "acoustic_core_sha256": "19827a0fe50ecbbfbe8b9d1519074993bb384063b85027a2d4a6125bbde48e1e",
+   "design_cluster": "a3a5q-stationary-n72",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n72-r48000-b",
+   "seed": 202610160415,
+   "note_B_offset": [
+    72,
+    0.00093312,
+    0.204254
+   ],
+   "acoustic_core_sha256": "19827a0fe50ecbbfbe8b9d1519074993bb384063b85027a2d4a6125bbde48e1e",
+   "design_cluster": "a3a5q-stationary-n72",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n96-r44100-a",
+   "seed": 202610160416,
+   "note_B_offset": [
+    96,
+    0.0042865,
+    0.204525
+   ],
+   "acoustic_core_sha256": "34fb269fd5c12ac8d160202cf82434068d5379c918d8416fcefe06df38cf894c",
+   "design_cluster": "a3a5q-stationary-n96",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n96-r44100-b",
+   "seed": 202610160417,
+   "note_B_offset": [
+    96,
+    0.0042865,
+    0.204525
+   ],
+   "acoustic_core_sha256": "34fb269fd5c12ac8d160202cf82434068d5379c918d8416fcefe06df38cf894c",
+   "design_cluster": "a3a5q-stationary-n96",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n96-r48000-a",
+   "seed": 202610160418,
+   "note_B_offset": [
+    96,
+    0.0042865,
+    0.204525
+   ],
+   "acoustic_core_sha256": "34fb269fd5c12ac8d160202cf82434068d5379c918d8416fcefe06df38cf894c",
+   "design_cluster": "a3a5q-stationary-n96",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-stationary-n96-r48000-b",
+   "seed": 202610160419,
+   "note_B_offset": [
+    96,
+    0.0042865,
+    0.204525
+   ],
+   "acoustic_core_sha256": "34fb269fd5c12ac8d160202cf82434068d5379c918d8416fcefe06df38cf894c",
+   "design_cluster": "a3a5q-stationary-n96",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-repeat-n26-r44100-repeat0",
+   "seed": 202610160420,
+   "note_B_offset": [
+    26,
+    0.00025718,
+    0.204796
+   ],
+   "acoustic_core_sha256": "fe429eaba709fe310fc004f785e1a218cfde024ceb4a065182ae000bc8400a8c",
+   "design_cluster": "a3a5q-repeat-n26",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-repeat-n26-r44100-repeat1",
+   "seed": 202610160421,
+   "note_B_offset": [
+    26,
+    0.00025718,
+    0.204796
+   ],
+   "acoustic_core_sha256": "fe429eaba709fe310fc004f785e1a218cfde024ceb4a065182ae000bc8400a8c",
+   "design_cluster": "a3a5q-repeat-n26",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-repeat-n26-r48000-repeat0",
+   "seed": 202610160422,
+   "note_B_offset": [
+    26,
+    0.00025718,
+    0.204796
+   ],
+   "acoustic_core_sha256": "fe429eaba709fe310fc004f785e1a218cfde024ceb4a065182ae000bc8400a8c",
+   "design_cluster": "a3a5q-repeat-n26",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-repeat-n26-r48000-repeat1",
+   "seed": 202610160423,
+   "note_B_offset": [
+    26,
+    0.00025718,
+    0.204796
+   ],
+   "acoustic_core_sha256": "fe429eaba709fe310fc004f785e1a218cfde024ceb4a065182ae000bc8400a8c",
+   "design_cluster": "a3a5q-repeat-n26",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-repeat-n79-r44100-repeat0",
+   "seed": 202610160424,
+   "note_B_offset": [
+    79,
+    0.00103641,
+    0.205067
+   ],
+   "acoustic_core_sha256": "c85b1aabe8be0db5d4c650f831c5a9da635413f8d848c294f49d0ed6126ffe55",
+   "design_cluster": "a3a5q-repeat-n79",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-repeat-n79-r44100-repeat1",
+   "seed": 202610160425,
+   "note_B_offset": [
+    79,
+    0.00103641,
+    0.205067
+   ],
+   "acoustic_core_sha256": "c85b1aabe8be0db5d4c650f831c5a9da635413f8d848c294f49d0ed6126ffe55",
+   "design_cluster": "a3a5q-repeat-n79",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-repeat-n79-r48000-repeat0",
+   "seed": 202610160426,
+   "note_B_offset": [
+    79,
+    0.00103641,
+    0.205067
+   ],
+   "acoustic_core_sha256": "c85b1aabe8be0db5d4c650f831c5a9da635413f8d848c294f49d0ed6126ffe55",
+   "design_cluster": "a3a5q-repeat-n79",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-repeat-n79-r48000-repeat1",
+   "seed": 202610160427,
+   "note_B_offset": [
+    79,
+    0.00103641,
+    0.205067
+   ],
+   "acoustic_core_sha256": "c85b1aabe8be0db5d4c650f831c5a9da635413f8d848c294f49d0ed6126ffe55",
+   "design_cluster": "a3a5q-repeat-n79",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-floor-transition-n38-r44100",
+   "seed": 202610160428,
+   "note_B_offset": [
+    38,
+    0.00043384,
+    0.205338
+   ],
+   "acoustic_core_sha256": "7e3b4eb993a38870bc515b5a2826907885f1f83394ea2087a03511e55bc357d8",
+   "design_cluster": "a3a5q-floor-transition-n38",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-floor-transition-n38-r48000",
+   "seed": 202610160429,
+   "note_B_offset": [
+    38,
+    0.00043384,
+    0.205338
+   ],
+   "acoustic_core_sha256": "7e3b4eb993a38870bc515b5a2826907885f1f83394ea2087a03511e55bc357d8",
+   "design_cluster": "a3a5q-floor-transition-n38",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-floor-transition-n39-r44100",
+   "seed": 202610160430,
+   "note_B_offset": [
+    39,
+    0.00044867,
+    0.205609
+   ],
+   "acoustic_core_sha256": "49cc76584983987c17cf9d2a60d0f0017d2b5c51ff7b8955ff6f837b164b7e57",
+   "design_cluster": "a3a5q-floor-transition-n39",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-floor-transition-n39-r48000",
+   "seed": 202610160431,
+   "note_B_offset": [
+    39,
+    0.00044867,
+    0.205609
+   ],
+   "acoustic_core_sha256": "49cc76584983987c17cf9d2a60d0f0017d2b5c51ff7b8955ff6f837b164b7e57",
+   "design_cluster": "a3a5q-floor-transition-n39",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-floor-transition-n40-r44100",
+   "seed": 202610160432,
+   "note_B_offset": [
+    40,
+    0.0004635,
+    0.20588
+   ],
+   "acoustic_core_sha256": "2f5a7e6badd4333b518c44b0eebbe73a37340692ed4bac71b6fccc9a8e5543b1",
+   "design_cluster": "a3a5q-floor-transition-n40",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-floor-transition-n40-r48000",
+   "seed": 202610160433,
+   "note_B_offset": [
+    40,
+    0.0004635,
+    0.20588
+   ],
+   "acoustic_core_sha256": "2f5a7e6badd4333b518c44b0eebbe73a37340692ed4bac71b6fccc9a8e5543b1",
+   "design_cluster": "a3a5q-floor-transition-n40",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-expdecay-n56-r44100",
+   "seed": 202610160434,
+   "note_B_offset": [
+    56,
+    0.00069883,
+    0.206151
+   ],
+   "acoustic_core_sha256": "9f88c4d9d7b97ada52e033720b83d20e49fdb037abd8a0fd4bf7d5a9560cada7",
+   "design_cluster": "a3a5q-expdecay-n56",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-expdecay-n56-r48000",
+   "seed": 202610160435,
+   "note_B_offset": [
+    56,
+    0.00069883,
+    0.206151
+   ],
+   "acoustic_core_sha256": "9f88c4d9d7b97ada52e033720b83d20e49fdb037abd8a0fd4bf7d5a9560cada7",
+   "design_cluster": "a3a5q-expdecay-n56",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-twostage-n80-r44100",
+   "seed": 202610160436,
+   "note_B_offset": [
+    80,
+    0.0030156,
+    0.206422
+   ],
+   "acoustic_core_sha256": "99014a408523fcb0e67c6efc8e2c5a2facdb67c9cdfeb4917a1d751f4e2831b7",
+   "design_cluster": "a3a5q-twostage-n80",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-twostage-n80-r48000",
+   "seed": 202610160437,
+   "note_B_offset": [
+    80,
+    0.0030156,
+    0.206422
+   ],
+   "acoustic_core_sha256": "99014a408523fcb0e67c6efc8e2c5a2facdb67c9cdfeb4917a1d751f4e2831b7",
+   "design_cluster": "a3a5q-twostage-n80",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-missing-fundamental-n45-r44100",
+   "seed": 202610160438,
+   "note_B_offset": [
+    45,
+    0.00053739,
+    0.206693
+   ],
+   "acoustic_core_sha256": "3cb2add43a5b26ebdee6b8bfda21b74da521efc4aa0a6f403a5627dfb449648e",
+   "design_cluster": "a3a5q-missing-fundamental-n45",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-missing-fundamental-n45-r48000",
+   "seed": 202610160439,
+   "note_B_offset": [
+    45,
+    0.00053739,
+    0.206693
+   ],
+   "acoustic_core_sha256": "3cb2add43a5b26ebdee6b8bfda21b74da521efc4aa0a6f403a5627dfb449648e",
+   "design_cluster": "a3a5q-missing-fundamental-n45",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-sparse-numbering-n53-r44100",
+   "seed": 202610160440,
+   "note_B_offset": [
+    53,
+    0.00065512,
+    0.206964
+   ],
+   "acoustic_core_sha256": "db35fec449a5fb9ba7bb1aa0c92791bbbc5bcc521781b172f047553672082888",
+   "design_cluster": "a3a5q-sparse-numbering-n53",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-sparse-numbering-n53-r48000",
+   "seed": 202610160441,
+   "note_B_offset": [
+    53,
+    0.00065512,
+    0.206964
+   ],
+   "acoustic_core_sha256": "db35fec449a5fb9ba7bb1aa0c92791bbbc5bcc521781b172f047553672082888",
+   "design_cluster": "a3a5q-sparse-numbering-n53",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-displaced-n89-r44100",
+   "seed": 202610160442,
+   "note_B_offset": [
+    89,
+    0.0037395,
+    0.207235
+   ],
+   "acoustic_core_sha256": "5ac066bf7ed28367347ee0874ce0ed95e9af1313e8a889a9a5c3ffe53da8fce5",
+   "design_cluster": "a3a5q-displaced-n89",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-displaced-n89-r48000",
+   "seed": 202610160443,
+   "note_B_offset": [
+    89,
+    0.0037395,
+    0.207235
+   ],
+   "acoustic_core_sha256": "5ac066bf7ed28367347ee0874ce0ed95e9af1313e8a889a9a5c3ffe53da8fce5",
+   "design_cluster": "a3a5q-displaced-n89",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-weak-visible-n67-r44100",
+   "seed": 202610160444,
+   "note_B_offset": [
+    67,
+    0.00086118,
+    0.207506
+   ],
+   "acoustic_core_sha256": "a5a0e046e10c429386ab1b9ba2aa5fd6b0b74378ada4316a68a706defa01aa42",
+   "design_cluster": "a3a5q-weak-visible-n67",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-weak-visible-n67-r48000",
+   "seed": 202610160445,
+   "note_B_offset": [
+    67,
+    0.00086118,
+    0.207506
+   ],
+   "acoustic_core_sha256": "a5a0e046e10c429386ab1b9ba2aa5fd6b0b74378ada4316a68a706defa01aa42",
+   "design_cluster": "a3a5q-weak-visible-n67",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-pcm-low-level-n32-r44100",
+   "seed": 202610160446,
+   "note_B_offset": [
+    32,
+    0.00034681,
+    0.207777
+   ],
+   "acoustic_core_sha256": "9b0d1b3fed43112a01663468322e741599821a740ed19670cea11fb1d281b759",
+   "design_cluster": "a3a5q-pcm-low-level-n32",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-pcm-low-level-n32-r48000",
+   "seed": 202610160447,
+   "note_B_offset": [
+    32,
+    0.00034681,
+    0.207777
+   ],
+   "acoustic_core_sha256": "9b0d1b3fed43112a01663468322e741599821a740ed19670cea11fb1d281b759",
+   "design_cluster": "a3a5q-pcm-low-level-n32",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-am-n49-r44100",
+   "seed": 202610160448,
+   "note_B_offset": [
+    49,
+    0.00059684,
+    0.208048
+   ],
+   "acoustic_core_sha256": "0f823e8bfd5377412e21768cfcbbd14dc8267af1842699ddc80b54bd2ca80094",
+   "design_cluster": "a3a5q-am-n49",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-am-n49-r48000",
+   "seed": 202610160449,
+   "note_B_offset": [
+    49,
+    0.00059684,
+    0.208048
+   ],
+   "acoustic_core_sha256": "0f823e8bfd5377412e21768cfcbbd14dc8267af1842699ddc80b54bd2ca80094",
+   "design_cluster": "a3a5q-am-n49",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-weak-boundary-n87-r44100",
+   "seed": 202610160450,
+   "note_B_offset": [
+    87,
+    0.0035847,
+    0.208319
+   ],
+   "acoustic_core_sha256": "6f76542c16d7eedb24169d6e5fbd935b067596d9f1a8424da794028cfc46f394",
+   "design_cluster": "a3a5q-weak-boundary-n87",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-weak-boundary-n87-r48000",
+   "seed": 202610160451,
+   "note_B_offset": [
+    87,
+    0.0035847,
+    0.208319
+   ],
+   "acoustic_core_sha256": "6f76542c16d7eedb24169d6e5fbd935b067596d9f1a8424da794028cfc46f394",
+   "design_cluster": "a3a5q-weak-boundary-n87",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-short-decay-n23-r44100",
+   "seed": 202610160452,
+   "note_B_offset": [
+    23,
+    0.0002149,
+    0.20859
+   ],
+   "acoustic_core_sha256": "c31e16ddd6819ac56546c4860a3e4ae544817074bad3e518817c14e335eb548c",
+   "design_cluster": "a3a5q-short-decay-n23",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-short-decay-n23-r48000",
+   "seed": 202610160453,
+   "note_B_offset": [
+    23,
+    0.0002149,
+    0.20859
+   ],
+   "acoustic_core_sha256": "c31e16ddd6819ac56546c4860a3e4ae544817074bad3e518817c14e335eb548c",
+   "design_cluster": "a3a5q-short-decay-n23",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-double-resolvable-n48-r44100",
+   "seed": 202610160454,
+   "note_B_offset": [
+    48,
+    0.00058253,
+    0.208861
+   ],
+   "acoustic_core_sha256": "84ca7c8ec72756ad31a2e68bf571a45bc4df55ec123baf1ddf7481a23a04a2f6",
+   "design_cluster": "a3a5q-double-resolvable-n48",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-double-resolvable-n48-r48000",
+   "seed": 202610160455,
+   "note_B_offset": [
+    48,
+    0.00058253,
+    0.208861
+   ],
+   "acoustic_core_sha256": "84ca7c8ec72756ad31a2e68bf571a45bc4df55ec123baf1ddf7481a23a04a2f6",
+   "design_cluster": "a3a5q-double-resolvable-n48",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-double-ambiguous-n64-r44100",
+   "seed": 202610160456,
+   "note_B_offset": [
+    64,
+    0.00081786,
+    0.209132
+   ],
+   "acoustic_core_sha256": "49adfe47be896854b3ec6c6c118c4b7e6dcd3f6d2e5e7b15cde0aaa70df7e65d",
+   "design_cluster": "a3a5q-double-ambiguous-n64",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-double-ambiguous-n64-r48000",
+   "seed": 202610160457,
+   "note_B_offset": [
+    64,
+    0.00081786,
+    0.209132
+   ],
+   "acoustic_core_sha256": "49adfe47be896854b3ec6c6c118c4b7e6dcd3f6d2e5e7b15cde0aaa70df7e65d",
+   "design_cluster": "a3a5q-double-ambiguous-n64",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-triple-resolvable-n62-r44100",
+   "seed": 202610160458,
+   "note_B_offset": [
+    62,
+    0.00078859,
+    0.209403
+   ],
+   "acoustic_core_sha256": "f3c0e0a6c023d2b451d9da509e56d6eefa866821a1a17a84bcae5d682b3b3dff",
+   "design_cluster": "a3a5q-triple-resolvable-n62",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-triple-resolvable-n62-r48000",
+   "seed": 202610160459,
+   "note_B_offset": [
+    62,
+    0.00078859,
+    0.209403
+   ],
+   "acoustic_core_sha256": "f3c0e0a6c023d2b451d9da509e56d6eefa866821a1a17a84bcae5d682b3b3dff",
+   "design_cluster": "a3a5q-triple-resolvable-n62",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-triple-ambiguous-n57-r44100",
+   "seed": 202610160460,
+   "note_B_offset": [
+    57,
+    0.00071522,
+    0.209674
+   ],
+   "acoustic_core_sha256": "fd0b9d1bb60a8ab38a50a35ddf8eded30facf4a10ffa76eafede34d63679e366",
+   "design_cluster": "a3a5q-triple-ambiguous-n57",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-triple-ambiguous-n57-r48000",
+   "seed": 202610160461,
+   "note_B_offset": [
+    57,
+    0.00071522,
+    0.209674
+   ],
+   "acoustic_core_sha256": "fd0b9d1bb60a8ab38a50a35ddf8eded30facf4a10ffa76eafede34d63679e366",
+   "design_cluster": "a3a5q-triple-ambiguous-n57",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-double-phase-ratio-variant-n64-r44100",
+   "seed": 202610160462,
+   "note_B_offset": [
+    64,
+    0.00081786,
+    0.209132
+   ],
+   "acoustic_core_sha256": "ecaf35deab870c04dbc06e773c1744cbcb444beab12c6cbd5c6519dfa0a233f7",
+   "design_cluster": "a3a5q-double-ambiguous-n64",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-double-phase-ratio-variant-n64-r48000",
+   "seed": 202610160463,
+   "note_B_offset": [
+    64,
+    0.00081786,
+    0.209132
+   ],
+   "acoustic_core_sha256": "ecaf35deab870c04dbc06e773c1744cbcb444beab12c6cbd5c6519dfa0a233f7",
+   "design_cluster": "a3a5q-double-ambiguous-n64",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-extra-guard-n37-r44100",
+   "seed": 202610160464,
+   "note_B_offset": [
+    37,
+    0.00042148,
+    0.210216
+   ],
+   "acoustic_core_sha256": "61631d1d68efbe430c422a82820d5cd050d2ddda82fd52b4b4e1a7d9c126e5f2",
+   "design_cluster": "a3a5q-extra-guard-n37",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-extra-guard-n37-r48000",
+   "seed": 202610160465,
+   "note_B_offset": [
+    37,
+    0.00042148,
+    0.210216
+   ],
+   "acoustic_core_sha256": "61631d1d68efbe430c422a82820d5cd050d2ddda82fd52b4b4e1a7d9c126e5f2",
+   "design_cluster": "a3a5q-extra-guard-n37",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-extra-ambiguous-n94-r44100",
+   "seed": 202610160466,
+   "note_B_offset": [
+    94,
+    0.0041551,
+    0.210487
+   ],
+   "acoustic_core_sha256": "bffdc429f716fe7a21fd9b32fe14d5da0d640a18a11525ed45f9dfb9098232ac",
+   "design_cluster": "a3a5q-extra-ambiguous-n94",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-extra-ambiguous-n94-r48000",
+   "seed": 202610160467,
+   "note_B_offset": [
+    94,
+    0.0041551,
+    0.210487
+   ],
+   "acoustic_core_sha256": "bffdc429f716fe7a21fd9b32fe14d5da0d640a18a11525ed45f9dfb9098232ac",
+   "design_cluster": "a3a5q-extra-ambiguous-n94",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-extra-resolved-inside-n58-r44100",
+   "seed": 202610160468,
+   "note_B_offset": [
+    58,
+    0.00073044,
+    0.210758
+   ],
+   "acoustic_core_sha256": "0d1d89ee76f9594a88b5219f5bf680b30573038de63422c37177eb76f9b42ffa",
+   "design_cluster": "a3a5q-extra-resolved-inside-n58",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-extra-resolved-inside-n58-r48000",
+   "seed": 202610160469,
+   "note_B_offset": [
+    58,
+    0.00073044,
+    0.210758
+   ],
+   "acoustic_core_sha256": "0d1d89ee76f9594a88b5219f5bf680b30573038de63422c37177eb76f9b42ffa",
+   "design_cluster": "a3a5q-extra-resolved-inside-n58",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-drift-n74-r44100",
+   "seed": 202610160470,
+   "note_B_offset": [
+    74,
+    0.00096577,
+    0.211029
+   ],
+   "acoustic_core_sha256": "dee0c4dd0bd1710e927bcb7d99aa0db476f432c4a9d91b6ce6474855e6fea8b0",
+   "design_cluster": "a3a5q-drift-n74",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-drift-n74-r48000",
+   "seed": 202610160471,
+   "note_B_offset": [
+    74,
+    0.00096577,
+    0.211029
+   ],
+   "acoustic_core_sha256": "dee0c4dd0bd1710e927bcb7d99aa0db476f432c4a9d91b6ce6474855e6fea8b0",
+   "design_cluster": "a3a5q-drift-n74",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-fm-n42-r44100",
+   "seed": 202610160472,
+   "note_B_offset": [
+    42,
+    0.0004955,
+    0.2113
+   ],
+   "acoustic_core_sha256": "95370ac137ec6f82876fe83c4336b70308c3d4bfa6467717b54f8d9ae5e3442a",
+   "design_cluster": "a3a5q-fm-n42",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-fm-n42-r48000",
+   "seed": 202610160473,
+   "note_B_offset": [
+    42,
+    0.0004955,
+    0.2113
+   ],
+   "acoustic_core_sha256": "95370ac137ec6f82876fe83c4336b70308c3d4bfa6467717b54f8d9ae5e3442a",
+   "design_cluster": "a3a5q-fm-n42",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-noise-low-n31-r44100",
+   "seed": 202610160474,
+   "note_B_offset": null,
+   "acoustic_core_sha256": "b2f0431c6a6424cc7f94fe61572ca6be500f08d79ef820ec8362e7fa648abb60",
+   "design_cluster": "a3a5q-noise-low-n31",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-noise-low-n31-r48000",
+   "seed": 202610160475,
+   "note_B_offset": null,
+   "acoustic_core_sha256": "b2f0431c6a6424cc7f94fe61572ca6be500f08d79ef820ec8362e7fa648abb60",
+   "design_cluster": "a3a5q-noise-low-n31",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-noise-high-n89-r44100",
+   "seed": 202610160476,
+   "note_B_offset": null,
+   "acoustic_core_sha256": "6fbdcd6df9146a7857e81fbdeb8181f3b66219d96cad7380f6f946ef69d1aae9",
+   "design_cluster": "a3a5q-noise-high-n89",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-noise-high-n89-r48000",
+   "seed": 202610160477,
+   "note_B_offset": null,
+   "acoustic_core_sha256": "6fbdcd6df9146a7857e81fbdeb8181f3b66219d96cad7380f6f946ef69d1aae9",
+   "design_cluster": "a3a5q-noise-high-n89",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-release-boundary-n25-r44100",
+   "seed": 202610160478,
+   "note_B_offset": [
+    25,
+    0.00024599,
+    0.212113
+   ],
+   "acoustic_core_sha256": "3849f6e3e67a8c683cc2ea355fd4ab63b85a652a62c8dae2ba0bf9e95a1526a9",
+   "design_cluster": "a3a5q-release-boundary-n25",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-release-boundary-n25-r48000",
+   "seed": 202610160479,
+   "note_B_offset": [
+    25,
+    0.00024599,
+    0.212113
+   ],
+   "acoustic_core_sha256": "3849f6e3e67a8c683cc2ea355fd4ab63b85a652a62c8dae2ba0bf9e95a1526a9",
+   "design_cluster": "a3a5q-release-boundary-n25",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-frames-boundary-n83-r44100",
+   "seed": 202610160480,
+   "note_B_offset": [
+    83,
+    0.0032842,
+    0.212384
+   ],
+   "acoustic_core_sha256": "0a02bb9bde6c5c00b4e30c6ece11b72126a45ad30bcd61b17ec633ae562dcff1",
+   "design_cluster": "a3a5q-frames-boundary-n83",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-frames-boundary-n83-r48000",
+   "seed": 202610160481,
+   "note_B_offset": [
+    83,
+    0.0032842,
+    0.212384
+   ],
+   "acoustic_core_sha256": "0a02bb9bde6c5c00b4e30c6ece11b72126a45ad30bcd61b17ec633ae562dcff1",
+   "design_cluster": "a3a5q-frames-boundary-n83",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-invalid-timing-n52-r44100",
+   "seed": 202610160482,
+   "note_B_offset": [
+    52,
+    0.00064315,
+    0.212655
+   ],
+   "acoustic_core_sha256": "a7a43759feef01af44d64b71a8fddba59a8d6fdd04acd83c75de73e70d3ddf4a",
+   "design_cluster": "a3a5q-invalid-timing-n52",
+   "state": "declared_only_no_PCM_or_observation"
+  },
+  {
+   "id": "a3a5q-invalid-timing-n52-r48000",
+   "seed": 202610160483,
+   "note_B_offset": [
+    52,
+    0.00064315,
+    0.212655
+   ],
+   "acoustic_core_sha256": "a7a43759feef01af44d64b71a8fddba59a8d6fdd04acd83c75de73e70d3ddf4a",
+   "design_cluster": "a3a5q-invalid-timing-n52",
+   "state": "declared_only_no_PCM_or_observation"
+  }
+ ],
+ "identity_before": {
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/method-qualification-v3.json": "426672da04b42cc36e1d6b87710fa691ecbbb8c472d8e2c3314793a39bc19744",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/method-qualification-noteon-v3.json": "21acc835b59401a8e4567c2a9c0b538d6659db0cac372d142143d53e9099653c",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/method-qualification-a5-v1.json": "948764004f05ee57ea65211a2922b1b05b68e9dff73d76940e6bfde240b741a8",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/am-envelope-preregistration.json": "0b0b90ec389d19f9a89c3ee7e6884061bc4459ce7d6e1e66fe6b57863e50366a",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/a5-implementation-verification.json": "bec92d89311672aab9462c3756b869c0b5e4b8ec0dfa2d01f33eba1ef85c9001",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/a5-candidate-structure-development-verification.json": "8ce0bed5bc79f883f8bdb6135dccfd1f3a47b01bdf8b5a3ace933a0fe9805acb",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/frequency-observable-contract-v3.json": "0977688b7911d6130d52b49577d748f91b96974ee9872192c3b390a91374f49e",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/input-render-contract-v3.json": "ac85ec117fa20466b801dc7e02327d8cf3db3014551c05509ba9d50f98f6b988",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/validation-v3-preregistration.json": "12e1e4e8de4e77a81af93b9e9d21494b15616774083863fdb1c4e38381e66b43",
+  "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/a5-candidate-structure-development-20261016-051007/final-development-identity.json": "6106dc1e72ae3a4d2e3184bf31028b974cd4ad0ba82bdda7acaa8bed5cc336dc",
+  "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/a5-candidate-structure-development-20261016-051007/verification-summary.json": "a4e2661ba5059062bc5242a9a63992cbe71b1b24ed0d5031637fe5ffcb71a122",
+  "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/a5-candidate-structure-development-20261016-051007/evidence-manifest.json": "d69d3fe800c6699b9bd2ce7d96c141f3a71ae741ed302e2b90cc0efb4afb4826",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification.py": "c3584777862f8ff3065cc7e8ce50462af705924d95d06339559368c4a73514f5",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/pilot-partial-analysis.py": "d260334e9e537d3a1ac09739bdcd06593a855f86c5d6e2724c0c4bcfab2b446a",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/partial-observer.py": "76d727a3780d9516d6d7cef6bd26665fd65776528148cac26117f3059e6e29e2",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/validation-eval.py": "4756071bc9db4e04a4682deab71d421509255ba5a3b23c6e6fc5843aea540603",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/validation-eval-tests.py": "467f8d423ada2140ce715b3e78e7b16f264f565325e173b9ce12f9f4a9987098",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/pilot-partial-analysis-tests.py": "db16d62d2226011948d30d1591d330e30df69f0c5124bf9e3fa36012664ee600"
+ },
+ "identity_after": {
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/method-qualification-v3.json": "426672da04b42cc36e1d6b87710fa691ecbbb8c472d8e2c3314793a39bc19744",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/method-qualification-noteon-v3.json": "21acc835b59401a8e4567c2a9c0b538d6659db0cac372d142143d53e9099653c",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/method-qualification-a5-v1.json": "948764004f05ee57ea65211a2922b1b05b68e9dff73d76940e6bfde240b741a8",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/am-envelope-preregistration.json": "0b0b90ec389d19f9a89c3ee7e6884061bc4459ce7d6e1e66fe6b57863e50366a",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/a5-implementation-verification.json": "bec92d89311672aab9462c3756b869c0b5e4b8ec0dfa2d01f33eba1ef85c9001",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/a5-candidate-structure-development-verification.json": "8ce0bed5bc79f883f8bdb6135dccfd1f3a47b01bdf8b5a3ace933a0fe9805acb",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/frequency-observable-contract-v3.json": "0977688b7911d6130d52b49577d748f91b96974ee9872192c3b390a91374f49e",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/input-render-contract-v3.json": "ac85ec117fa20466b801dc7e02327d8cf3db3014551c05509ba9d50f98f6b988",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/validation-v3-preregistration.json": "12e1e4e8de4e77a81af93b9e9d21494b15616774083863fdb1c4e38381e66b43",
+  "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/a5-candidate-structure-development-20261016-051007/final-development-identity.json": "6106dc1e72ae3a4d2e3184bf31028b974cd4ad0ba82bdda7acaa8bed5cc336dc",
+  "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/a5-candidate-structure-development-20261016-051007/verification-summary.json": "a4e2661ba5059062bc5242a9a63992cbe71b1b24ed0d5031637fe5ffcb71a122",
+  "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/a5-candidate-structure-development-20261016-051007/evidence-manifest.json": "d69d3fe800c6699b9bd2ce7d96c141f3a71ae741ed302e2b90cc0efb4afb4826",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification.py": "c3584777862f8ff3065cc7e8ce50462af705924d95d06339559368c4a73514f5",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/pilot-partial-analysis.py": "d260334e9e537d3a1ac09739bdcd06593a855f86c5d6e2724c0c4bcfab2b446a",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/partial-observer.py": "76d727a3780d9516d6d7cef6bd26665fd65776528148cac26117f3059e6e29e2",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/validation-eval.py": "4756071bc9db4e04a4682deab71d421509255ba5a3b23c6e6fc5843aea540603",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/validation-eval-tests.py": "467f8d423ada2140ce715b3e78e7b16f264f565325e173b9ce12f9f4a9987098",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/pilot-partial-analysis-tests.py": "db16d62d2226011948d30d1591d330e30df69f0c5124bf9e3fa36012664ee600"
+ },
+ "current_method_sources_match_recorded_development": true,
+ "previous_native_environment": {
+  "recorded": {
+   "python": "3.14.8 (main, Oct 14 2026, 01:07:21) [MSC v.1944 64 bit (AMD64)]",
+   "platform": "Windows-11-10.0.26300-SP0",
+   "numpy": "2.5.4",
+   "scipy": "1.18.1"
+  },
+  "reinspected_this_review": false
+ },
+ "not_covered_or_not_certified": [
+  "physical_string_identity_or_center_string",
+  "independent_string_B_or_independent_decay_models",
+  "real_hammer_soundboard_transient_detection",
+  "arbitrary_unmatched_out_of_family_signal_absence",
+  "alternate_PCM_bit_depth_or_float_format",
+  "other_rates_or_channel_clock_pathologies",
+  "B_zero_relative_error_or_continuous_B_interval",
+  "new_actual_CLI_acceptance_or_fit_or_qualification_result"
+ ],
+ "execution_readiness": false,
+ "checks_not_run": [
+  "check-registration CLI",
+  "check-plan CLI",
+  "tests/build/formatters",
+  "synthesis/PCM generation or analysis",
+  "any fitting/observation",
+  "development or qualification role",
+  "reference/GUI/RPC/capture"
+ ],
+ "old_A5_not_qualified_and_consumption_preserved": true,
+ "source_and_historical_registration_inputs_modified": false,
+ "alignment_updated_files": [
+  "pilot/method-qualification-a3-a5-v1.json",
+  "pilot/a3-a5-qualification-closure-review.json"
+ ],
+ "stop_semantics_alignment": {
+  "recorded_date_utc": "2026-10-16",
+  "decision_record": "pilot/method-qualification-a3-a5-v1.json#/prospective_review/stop_semantics_decision",
+  "status": "accepted_metadata_only_not_execution_approval",
+  "runner_source_changed": false,
+  "registered_case_parameters_and_numeric_budgets_changed": false,
+  "qualification_content_sha256": "05207f00b6224ba6517c7ca0e1f6810b61f4b76e9abfa805922e712d8cfc3412",
+  "preserved_previous_review": {
+   "path": "/mnt/g/tmp/devpiano-task39-2-stop-semantics-alignment-20261016-100346/before-closure-review.json",
+   "sha256": "13440c5102840bf50e47b2a359fb932076afb14a1de2dbb8725ff0066dfffbac"
+  },
+  "scope_and_identity_evidence": "/mnt/g/tmp/devpiano-task39-2-stop-semantics-alignment-20261016-100346/scope.json",
+  "metadata_edit_warning_evidence": {
+   "path": "/mnt/g/tmp/devpiano-task39-2-stop-semantics-alignment-20261016-100346/intermediate-invalid-draft.json",
+   "sha256": "3ca2339fef920a230f03d52cc0ce7d4f586cdcd5c42d1977f7636840c83eb1f7",
+   "cause": "A metadata edit omitted one JSON comma; the exact intermediate was retained and only the punctuation was corrected. No source, recipe, threshold or project execution was involved."
+  },
+  "verification_evidence": "/mnt/g/tmp/devpiano-task39-2-stop-semantics-alignment-20261016-100346/alignment-verification.json",
+  "preparation_authorized": false,
+  "development_authorized": false,
+  "qualification_authorized": false,
+  "seal_created": false
+ },
+ "next_recommended": "停止语义已经明确同意，不要求首个普通失败即停；下一步单独授权不生成PCM的实际准备CLI及身份/环境核验，本轮不执行。准备校验通过后再单独审批一次完整84例、4旧控制和同seal评估器回归；不得提前创建seal或放行A6/A7。"
+}

@@ -1,0 +1,48 @@
+{
+ "schema": "devpiano-task39-2-a5-implementation-verification-v1",
+ "registered_date": "2026-10-15",
+ "registered_before_source_changes_and_case_execution": true,
+ "scope": "同一评估器的资格实证分层核验与单弦低阶比较候选最小实现；只授权回归及自有合成 development 冒烟，不授权新独立资格或参考诊断。",
+ "authorization_record": "G:/tmp/devpiano-task39-2-a5-implementation-20261015-124111/authorization.json",
+ "source_files": ["pilot/tools/validation-eval.py", "pilot/tools/validation-eval-tests.py"],
+ "preserved": ["PPA 与共享观察器算法", "生产参数/B/DSP", "多弦分化区排除", "全部原始观察及混合整族拒绝", "现行时间窗与原点要求", "原误差/充分性预算", "历史登记、封印、已消费资格及判决"],
+ "existing_qualification": {
+  "canonical_batch": "G:/source/projects/devpiano-evidence/phase39/task39-2/noteon-qualification-20261015-082025",
+  "role": "原精确源码快照的已消费有限合成域资格实证，只读核验；不等于本次变更后整条链路获得新独立资格。",
+  "replay_authorized": false,
+  "new_independent_qualification_authorized": false
+ },
+ "obligations": [
+  {"id":"evidence-artifacts","requirement":"绑定的报告、manifest、原封印、消费标记、登记与五个源码快照身份一致；错误散列、缺失消费、伪角色、不完整或失败角色不得被标签翻绿。"},
+  {"id":"baseline-versus-current","requirement":"原快照实证有效与当前依赖变更分别报告；当前源码不匹配时不得升级为当前完整方法资格。"},
+  {"id":"method-versus-v3","requirement":"有效有限方法实证不替代 protocol/matrix/origin/输入/工具冻结和正式授权；当前参考认证仍不可用，v3 继续阻断。"},
+  {"id":"monochord-candidates","requirement":"依据冻结内置单弦设计，MIDI21..35 的共同合格低阶线可从第1分音提出比较候选；不是无条件准入。覆盖单弦边界及两侧不对称观测。"},
+  {"id":"multistring-exclusions","requirement":"MIDI36..71 仍从第7分音、72..95仍从第5、>=96仍从第1比较；不恢复双弦算术中心或三弦分化区侧/中心线。"},
+  {"id":"whole-family-preserved","requirement":"比较前两侧均须满足完整族/两窗/留出；任意保留或排除编号上的明确混合仍整族拒绝，不可删除混合编号后通过。"},
+  {"id":"normalization-and-accounting","requirement":"基准只归一化且不计误差；>=2非基准，RMS<=1/max<=3 cents；超差、弱、缺失、错误和拒绝完整分类。"}
+ ],
+ "execution": {
+  "existing_research_regressions": true,
+  "preparation_only_check_plan": true,
+  "self_owned_synthetic_development_smoke": true,
+  "new_or_replayed_independent_qualification": false,
+  "reference_or_GUI_or_fresh_RPC": false,
+  "real_reference_diagnostics_or_capture": false,
+  "formal_evaluation_or_v3_freeze": false
+ },
+ "synthetic_development_smoke": {
+  "role": "development_regression_not_independent_qualification",
+  "note": 33,
+  "sample_rate": 48000,
+  "partials": [1,2,3,4,5],
+  "B": 0.00033,
+  "first_partial_offset_hz": 0.12,
+  "seeds": [521017,521018],
+  "note_on_sample": 1247,
+  "note_off_seconds_after_note_on": 4.2,
+  "frames_seconds_after_note_on": 5.2,
+  "noise_sigma": 0.000001,
+  "purpose": "真实共享 analyze_samples 路径得到两份独立观察记录，再经同一比较器证明低阶候选的端到端行为；只做开发冒烟，不证明真实钢琴或商业来源。"
+ },
+ "limits": "源码改动后需按实际影响另行取得资格覆盖，不能把原31例已消费数据重放成新资格；本登记没有选择或授权新的独立资格/正式留出矩阵。"
+}

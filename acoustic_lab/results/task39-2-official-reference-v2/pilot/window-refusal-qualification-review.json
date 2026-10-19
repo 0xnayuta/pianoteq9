@@ -1,0 +1,673 @@
+{
+ "schema": "devpiano-task39-2-window-refusal-prospective-review-v1",
+ "created_utc": "2026-10-16T15:11:49.793380+00:00",
+ "batch": "window-refusal-qualification-registration-20261016-145445",
+ "user_authorization_verbatim": "同意，按照你的建议回到“前瞻登记新资格覆盖 → 只读审阅 → 单独审批完整执行”的路线。",
+ "scope": "Prospective registration and read-only source/JSON/AST/hash/scalar geometry/history review only, with one native Windows standard-library metadata reviewer invocation. No research module import, project CLI, tests, synthesis, FFT, fit, registered role, new reference or execution seal.",
+ "outcome": "prospective_registration_and_static_review_passed_execution_blocked",
+ "registration": {
+  "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/method-qualification-window-refusal-v1.json",
+  "path_win": "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\method-qualification-window-refusal-v1.json",
+  "sha256": "a7e1b02098a2aa3a00b0a721c19707c9bf89efa5e8f983f21ea9ac816a40f6b5",
+  "scientific_payload_sha256": "d104d630f942dd853c39a05c432379f131c95d8936a9bd0b44322ec6ac857118",
+  "scientific_payload_keys": [
+   "schema",
+   "status",
+   "timing_contract",
+   "generator",
+   "assessment",
+   "candidates",
+   "coverage_requirements",
+   "stop_policy",
+   "complete_plan_gates",
+   "cases",
+   "regression_controls",
+   "limits"
+  ],
+  "case_counts": {
+   "qualification": 88,
+   "design_clusters": 36,
+   "required_admitted": 50,
+   "conditional": 6,
+   "required_rejected": 30,
+   "whole_input_refused": 2,
+   "historical_controls": 4,
+   "inactive_development": 17
+  },
+  "repeat_groups": 4,
+  "positive_comparison_pairs": 10,
+  "all_cases_gating": true,
+  "qualification_execution_approval": false,
+  "development_authorized": false
+ },
+ "static_review": {
+  "passed": true,
+  "native_exit_code": 0,
+  "native_receipt": "native-review-receipt.json",
+  "native_receipt_sha256": "5e39b0c5b731b2630d105fc67e22f0d7a78188f0eb202fb3b0ff6d21d552a760",
+  "raw_result": "static-review-result.json",
+  "raw_result_sha256": "a00915799c0c79a4a034cf48205c3b7aefd656ed075311ee232d49f7d4b78202",
+  "review_script": "review-static.py",
+  "review_script_sha256": "1a127d25e294a8e11d379c266e2c5a3a14c97f46d44285089311bc3148be0da1",
+  "request": "review-request.json",
+  "request_sha256": "23175287855c539fd416269ed9957e612c7b0a6d433392311b270246575df6e9",
+  "effective_declarations_checked": 109,
+  "geometry_errors": [],
+  "roles": {
+   "development": {
+    "cases": 17,
+    "classes": {
+     "positive": 13,
+     "resolvable": 1,
+     "ambiguous": 1,
+     "nonstationary": 1,
+     "negative": 1
+    },
+    "admission_expectations": {
+     "admitted": 8,
+     "conditional": 2,
+     "rejected": 6,
+     "refused": 1
+    },
+    "rates": [
+     44100,
+     48000
+    ],
+    "repeat_groups": 1,
+    "comparison_pairs": 2
+   },
+   "qualification": {
+    "cases": 88,
+    "classes": {
+     "positive": 64,
+     "resolvable": 8,
+     "ambiguous": 8,
+     "nonstationary": 4,
+     "negative": 4
+    },
+    "admission_expectations": {
+     "admitted": 50,
+     "conditional": 6,
+     "rejected": 30,
+     "refused": 2
+    },
+    "rates": [
+     44100,
+     48000
+    ],
+    "repeat_groups": 4,
+    "comparison_pairs": 10
+   }
+  },
+  "all_bound_inputs_unchanged": true,
+  "project_preparation_CLI_acceptance": null,
+  "actual_observer_or_PPA_outputs_observed": false
+ },
+ "history_exclusion": {
+  "registrations": [
+   {
+    "path": "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\method-qualification-v3.json",
+    "sha256": "426672da04b42cc36e1d6b87710fa691ecbbb8c472d8e2c3314793a39bc19744",
+    "declared_cases": 59,
+    "normalized_cores_modeled": 55,
+    "other_schema_rows": 0
+   },
+   {
+    "path": "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\method-qualification-noteon-v3.json",
+    "sha256": "21acc835b59401a8e4567c2a9c0b538d6659db0cac372d142143d53e9099653c",
+    "declared_cases": 67,
+    "normalized_cores_modeled": 63,
+    "other_schema_rows": 0
+   },
+   {
+    "path": "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\method-qualification-a5-v1.json",
+    "sha256": "948764004f05ee57ea65211a2922b1b05b68e9dff73d76940e6bfde240b741a8",
+    "declared_cases": 87,
+    "normalized_cores_modeled": 84,
+    "other_schema_rows": 0
+   },
+   {
+    "path": "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\method-qualification-a3-a5-v1.json",
+    "sha256": "2efc7dbda325f2311b2a3debd70cfa11fd5a8a361c18b53ec249efebb77b387e",
+    "declared_cases": 105,
+    "normalized_cores_modeled": 100,
+    "other_schema_rows": 0
+   },
+   {
+    "path": "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\am-envelope-preregistration.json",
+    "sha256": "0b0b90ec389d19f9a89c3ee7e6884061bc4459ce7d6e1e66fe6b57863e50366a",
+    "declared_cases": 26,
+    "normalized_cores_modeled": 0,
+    "other_schema_rows": 26
+   }
+  ],
+  "additional_json_sources": [
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/a5-implementation-verification.json",
+    "sha256": "bec92d89311672aab9462c3756b869c0b5e4b8ec0dfa2d01f33eba1ef85c9001"
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/a5-candidate-structure-development-verification.json",
+    "sha256": "8ce0bed5bc79f883f8bdb6135dccfd1f3a47b01bdf8b5a3ace933a0fe9805acb"
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/observer-window-refusal-development-verification.json",
+    "sha256": "57e04f4a55e2641f127d6d3f0e78c5585b981b12dc6e272d4825a7258c36a61a"
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/observer-window-refusal-development-result.json",
+    "sha256": "fccbbd6ade1b83a634bc68d183cd5011c7845f56d02d3a97e493d2ab7c0fe2e0"
+   },
+   {
+    "path": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/observer-window-refusal-development-20261016-134009/smoke-metadata-correction/registered-development-cases.json",
+    "sha256": "f84957ef15cc23a4fcee34d8e12efe3629e0643f5969c16ff337a5c1abe575ce"
+   },
+   {
+    "path": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/observer-window-refusal-development-20261016-134009/registered-development-cases.json",
+    "sha256": "99e61520ec79711ce7205c773902203188e38adc06e159b97fb2cf05940e97db"
+   },
+   {
+    "path": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/observer-window-refusal-development-20261016-134009/development-plan-correction.json",
+    "sha256": "17febf85cf8e9fe7ab62962ab1112e66d843f149b79d6833ede2c4022d2acdfa"
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/a3-a5-qualification-verification.json",
+    "sha256": "ff46497d59fea32d13c19dc6497fb4c3845a1d982e7b6f14acc2a0ff107c38f4"
+   }
+  ],
+  "regression_sources": [
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification-tests.py",
+    "sha256": "ce4d3c1e4cb5600d51dde085dfcf685b518d0ca400f92278a0bd0d3c8f687d1b",
+    "scope": "AST numeric literal reservation and explicit waveform-source point review; no test/module execution, not an exhaustive reconstruction of arbitrary parameterized signals."
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/partial-observer-tests.py",
+    "sha256": "342c9dd09393bf872a76c725b06495ff16e2972f114449dd725817190b512a26",
+    "scope": "AST numeric literal reservation and explicit waveform-source point review; no test/module execution, not an exhaustive reconstruction of arbitrary parameterized signals."
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/pilot-partial-analysis-tests.py",
+    "sha256": "db16d62d2226011948d30d1591d330e30df69f0c5124bf9e3fa36012664ee600",
+    "scope": "AST numeric literal reservation and explicit waveform-source point review; no test/module execution, not an exhaustive reconstruction of arbitrary parameterized signals."
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/validation-eval-tests.py",
+    "sha256": "467f8d423ada2140ce715b3e78e7b16f264f565325e173b9ce12f9f4a9987098",
+    "scope": "AST numeric literal reservation and explicit waveform-source point review; no test/module execution, not an exhaustive reconstruction of arbitrary parameterized signals."
+   },
+   {
+    "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/am-envelope-tests.py",
+    "sha256": "4665914aeb0ea2f8a7824bae4ae4b00df66ebfee2e6cd41d8bb50cb6c0e95865",
+    "scope": "AST numeric literal reservation and explicit waveform-source point review; no test/module execution, not an exhaustive reconstruction of arbitrary parameterized signals."
+   }
+  ],
+  "reserved_seeds_and_integer_literals": 394,
+  "reserved_tonal_points": 141,
+  "modeled_tonal_cores": 151,
+  "reserved_noise_variances": [
+   0.001,
+   0.00123,
+   0.0017,
+   0.0018,
+   0.0019,
+   0.002,
+   0.00237
+  ],
+  "conflicts": [],
+  "scope_limit": "All enumerated old v3/NoteOn/66/84 and AM role declarations, reserved development, four canonical window-developer conditions, consumed explicit developer/PPA tone points, affected regression AST integer literals and static signal forms. Tonal cores ignore rate/origin/seed/gain/all phase, retain actual line positions, normalized relative amplitudes, envelope/modulation/AM and relative noise. Explicit points additionally exclude any reuse even with changed amplitudes/partials/phase. AM single-carrier/triplet study is a distinct declared model, all seeds reserved; no arbitrary parameterized helper execution/reconstruction, private-history/all-machine completeness or IID/physical identity claim. Pure-noise freshness is seed and declared variance condition only, never a pitched core.",
+  "AM_model_boundary": "The AM child study has its own single-carrier/equivalent-triplet model. All declared seeds are excluded; no false claim that the family generator reconstructs or authenticates those sources.",
+  "developer_initial_metadata_failure": "Retain the original malformed note text and correction record; it produced no measured condition/PCM before correction. Reserve the intended n33 point, original seeds and the four canonical measured developer records rather than inventing a new waveform.",
+  "freshness_is_not_unseen_pitch_or_statistical_independence": true
+ },
+ "window_input_contract": {
+  "original_requested_sample_bounds_retained": true,
+  "refusal_is_runner_input_not_observer_acoustic_abstention": true,
+  "only_declared_and_actual_frame_overrun_refused": true,
+  "refused_window_candidates_or_probes_or_acoustic_claims_forbidden": true,
+  "valid_window_errors_remain_hard_failures": true,
+  "W1_valid_and_PPA_original_boundary_rejection_remain_required": true,
+  "clipping_padding_or_omitting_W2_forbidden": true,
+  "prospective_edges": [
+   {
+    "id": "wrq-frames-boundary-n82-r44100",
+    "W2_stop_minus_frames": 7497,
+    "W1_observer_input": "input_accepted",
+    "W2_observer_input": "input_refused",
+    "expectation_only_not_observed": true
+   },
+   {
+    "id": "wrq-frames-boundary-n82-r48000",
+    "W2_stop_minus_frames": 8160,
+    "W1_observer_input": "input_accepted",
+    "W2_observer_input": "input_refused",
+    "expectation_only_not_observed": true
+   },
+   {
+    "id": "wrq-frames-exact-end-valid-n31-r44100",
+    "W2_stop_minus_frames": 0,
+    "W1_observer_input": "input_accepted",
+    "W2_observer_input": "input_accepted",
+    "expectation_only_not_observed": true
+   },
+   {
+    "id": "wrq-frames-one-sample-overrun-n84-r44100",
+    "W2_stop_minus_frames": 1,
+    "W1_observer_input": "input_accepted",
+    "W2_observer_input": "input_refused",
+    "expectation_only_not_observed": true
+   },
+   {
+    "id": "wrq-frames-exact-end-valid-n31-r48000",
+    "W2_stop_minus_frames": 0,
+    "W1_observer_input": "input_accepted",
+    "W2_observer_input": "input_accepted",
+    "expectation_only_not_observed": true
+   },
+   {
+    "id": "wrq-frames-one-sample-overrun-n84-r48000",
+    "W2_stop_minus_frames": 1,
+    "W1_observer_input": "input_accepted",
+    "W2_observer_input": "input_refused",
+    "expectation_only_not_observed": true
+   }
+  ],
+  "edge_states_are_declared_obligations_not_observed": true,
+  "inactive_historical_development_window_amendments": [
+   {
+    "id": "a5d-frames_boundary-n85-r48000",
+    "old_windows": null,
+    "new_windows": [
+     "W1",
+     "W2"
+    ],
+    "scientific_parameters_unchanged": true
+   }
+  ]
+ },
+ "risk_coverage": [
+  {
+   "risk": "A3-decay-single",
+   "duty": "正向指数衰减两窗频率/B/留出满足原预算；短衰减信息边界仅允许合法认证或明确弃权。",
+   "cases": [
+    "wrq-expdecay-n54-r44100",
+    "wrq-expdecay-n54-r48000",
+    "wrq-short-decay-n24-r44100",
+    "wrq-short-decay-n24-r48000"
+   ],
+   "limit": "不是机械击槌起音或真实阻尼来源认证。"
+  },
+  {
+   "risk": "A3-decay-double",
+   "duty": "同一频率双指数包络下两窗族、B和独立预测预算不变。",
+   "cases": [
+    "wrq-twostage-n78-r44100",
+    "wrq-twostage-n78-r48000"
+   ],
+   "limit": "不模拟每根弦独立包络、真实耦合能量交换。"
+  },
+  {
+   "risk": "A3-AM",
+   "duty": "允许明确弃权；若报静态标量须满足原区间/编号/B全部义务，不计硬性正向数。",
+   "cases": [
+    "wrq-am-n50-r44100",
+    "wrq-am-n50-r48000"
+   ],
+   "limit": "AM与相干三线可能等价，不能认证成因或把carrier补入B。"
+  },
+  {
+   "risk": "A3-FM-drift",
+   "duty": "非平稳负例不得误报静态标量/分量或获族准入。",
+   "cases": [
+    "wrq-drift-n76-r44100",
+    "wrq-drift-n76-r48000",
+    "wrq-fm-n43-r44100",
+    "wrq-fm-n43-r48000"
+   ],
+   "limit": "不承诺重建真实音高轨迹。"
+  },
+  {
+   "risk": "A3-numbering",
+   "duty": "实际申报编号逐线对照独立真值；缺失/移位编号按required联合与forbidden任一窗断言，不允许错误索引认证。",
+   "cases": [
+    "wrq-missing-fundamental-n46-r44100",
+    "wrq-missing-fundamental-n46-r48000",
+    "wrq-sparse-numbering-n51-r44100",
+    "wrq-sparse-numbering-n51-r48000",
+    "wrq-displaced-n90-r44100",
+    "wrq-displaced-n90-r48000"
+   ],
+   "limit": "required不是逐窗全列表机械断言；不强迫从不可辨别的谱线恢复唯一物理标签。"
+  },
+  {
+   "risk": "A3-neighbor",
+   "duty": "带外相干/可分辨或未分辨多分量证据不能因删除编号后被干净子集覆盖；新负例需安全拒绝。",
+   "cases": [
+    "wrq-extra-guard-n41-r44100",
+    "wrq-extra-guard-n41-r48000",
+    "wrq-extra-ambiguous-n92-r44100",
+    "wrq-extra-ambiguous-n92-r48000",
+    "wrq-extra-resolved-inside-n59-r44100",
+    "wrq-extra-resolved-inside-n59-r48000"
+   ],
+   "limit": "负例安全拒绝不自动证明每例由特定内部原因触发；本域不认证未匹配族外所有信号的缺失。"
+  },
+  {
+   "risk": "A3-double",
+   "duty": "cents随分音编号对应真实生成频率；可分辨/模糊混合均不作为单族静态B准入。",
+   "cases": [
+    "wrq-double-resolvable-n47-r44100",
+    "wrq-double-resolvable-n47-r48000",
+    "wrq-double-ambiguous-n63-r44100",
+    "wrq-double-ambiguous-n63-r48000",
+    "wrq-double-phase-ratio-variant-n63-r44100",
+    "wrq-double-phase-ratio-variant-n63-r48000"
+   ],
+   "limit": "共同B/包络下的合成叠加，不是实际双弦身份或独立B参数。"
+  },
+  {
+   "risk": "A3-triple",
+   "duty": "3分量单探针/模糊模型边界与整族拒绝，不得声称三弦中心线。",
+   "cases": [
+    "wrq-triple-resolvable-n63-r44100",
+    "wrq-triple-resolvable-n63-r48000",
+    "wrq-triple-ambiguous-n55-r44100",
+    "wrq-triple-ambiguous-n55-r48000"
+   ],
+   "limit": "每区最多3候选频率；不支持独立弦B、真实物理耦合或来源认证。"
+  },
+  {
+   "risk": "A3-phase-ratio",
+   "duty": "per-string phase_deg/amp_db实际参与波形，含同簇相位/幅比变体；不把变体当独立统计重复。",
+   "cases": [
+    "wrq-double-ambiguous-n63-r44100",
+    "wrq-double-ambiguous-n63-r48000",
+    "wrq-double-phase-ratio-variant-n63-r44100",
+    "wrq-double-phase-ratio-variant-n63-r48000",
+    "wrq-double-resolvable-n47-r44100",
+    "wrq-double-resolvable-n47-r48000",
+    "wrq-triple-ambiguous-n55-r44100",
+    "wrq-triple-ambiguous-n55-r48000",
+    "wrq-triple-resolvable-n63-r44100",
+    "wrq-triple-resolvable-n63-r48000"
+   ],
+   "limit": "相位不进入几何类别，静态标签不能证明实际可分辨或绝对声学相位。"
+  },
+  {
+   "risk": "A3-SNR",
+   "duty": "明确noise_sigma及相对线幅度变化，既有必须准入弱线，也有允许明确弃权的边界和纯噪声负例。",
+   "cases": [
+    "wrq-weak-visible-n65-r44100",
+    "wrq-weak-visible-n65-r48000",
+    "wrq-weak-boundary-n86-r44100",
+    "wrq-weak-boundary-n86-r48000",
+    "wrq-noise-low-n29-r44100",
+    "wrq-noise-low-n29-r48000",
+    "wrq-noise-high-n91-r44100",
+    "wrq-noise-high-n91-r48000"
+   ],
+   "limit": "高斯噪声及所列幅度条件，不认证有色噪声、混响或任意低SNR检测。"
+  },
+  {
+   "risk": "A3-PCM",
+   "duty": "实际signed24写盘回读、双率、非零样本原点及低电平量化压力，保留逐文件与逐样本往返核验。",
+   "cases": [
+    "wrq-stationary-n21-r44100-a",
+    "wrq-stationary-n21-r44100-b",
+    "wrq-stationary-n21-r48000-a",
+    "wrq-stationary-n21-r48000-b",
+    "wrq-stationary-n35-r44100-a",
+    "wrq-stationary-n35-r44100-b",
+    "wrq-stationary-n35-r48000-a",
+    "wrq-stationary-n35-r48000-b",
+    "wrq-stationary-n36-r44100-a",
+    "wrq-stationary-n36-r44100-b",
+    "wrq-stationary-n36-r48000-a",
+    "wrq-stationary-n36-r48000-b",
+    "wrq-stationary-n72-r44100-a",
+    "wrq-stationary-n72-r44100-b",
+    "wrq-stationary-n72-r48000-a",
+    "wrq-stationary-n72-r48000-b",
+    "wrq-stationary-n96-r44100-a",
+    "wrq-stationary-n96-r44100-b",
+    "wrq-stationary-n96-r48000-a",
+    "wrq-stationary-n96-r48000-b",
+    "wrq-repeat-n28-r44100-repeat0",
+    "wrq-repeat-n28-r44100-repeat1",
+    "wrq-repeat-n28-r48000-repeat0",
+    "wrq-repeat-n28-r48000-repeat1",
+    "wrq-repeat-n81-r44100-repeat0",
+    "wrq-repeat-n81-r44100-repeat1",
+    "wrq-repeat-n81-r48000-repeat0",
+    "wrq-repeat-n81-r48000-repeat1",
+    "wrq-floor-transition-n38-r44100",
+    "wrq-floor-transition-n38-r48000",
+    "wrq-floor-transition-n39-r44100",
+    "wrq-floor-transition-n39-r48000",
+    "wrq-floor-transition-n40-r44100",
+    "wrq-floor-transition-n40-r48000",
+    "wrq-expdecay-n54-r44100",
+    "wrq-expdecay-n54-r48000",
+    "wrq-twostage-n78-r44100",
+    "wrq-twostage-n78-r48000",
+    "wrq-missing-fundamental-n46-r44100",
+    "wrq-missing-fundamental-n46-r48000",
+    "wrq-sparse-numbering-n51-r44100",
+    "wrq-sparse-numbering-n51-r48000",
+    "wrq-displaced-n90-r44100",
+    "wrq-displaced-n90-r48000",
+    "wrq-weak-visible-n65-r44100",
+    "wrq-weak-visible-n65-r48000",
+    "wrq-pcm-low-level-n30-r44100",
+    "wrq-pcm-low-level-n30-r48000",
+    "wrq-am-n50-r44100",
+    "wrq-am-n50-r48000",
+    "wrq-weak-boundary-n86-r44100",
+    "wrq-weak-boundary-n86-r48000",
+    "wrq-short-decay-n24-r44100",
+    "wrq-short-decay-n24-r48000",
+    "wrq-double-resolvable-n47-r44100",
+    "wrq-double-resolvable-n47-r48000",
+    "wrq-double-ambiguous-n63-r44100",
+    "wrq-double-ambiguous-n63-r48000",
+    "wrq-triple-resolvable-n63-r44100",
+    "wrq-triple-resolvable-n63-r48000",
+    "wrq-triple-ambiguous-n55-r44100",
+    "wrq-triple-ambiguous-n55-r48000",
+    "wrq-double-phase-ratio-variant-n63-r44100",
+    "wrq-double-phase-ratio-variant-n63-r48000",
+    "wrq-extra-guard-n41-r44100",
+    "wrq-extra-guard-n41-r48000",
+    "wrq-extra-ambiguous-n92-r44100",
+    "wrq-extra-ambiguous-n92-r48000",
+    "wrq-extra-resolved-inside-n59-r44100",
+    "wrq-extra-resolved-inside-n59-r48000",
+    "wrq-drift-n76-r44100",
+    "wrq-drift-n76-r48000",
+    "wrq-fm-n43-r44100",
+    "wrq-fm-n43-r48000",
+    "wrq-noise-low-n29-r44100",
+    "wrq-noise-low-n29-r48000",
+    "wrq-noise-high-n91-r44100",
+    "wrq-noise-high-n91-r48000",
+    "wrq-release-boundary-n27-r44100",
+    "wrq-release-boundary-n27-r48000",
+    "wrq-frames-boundary-n82-r44100",
+    "wrq-frames-boundary-n82-r48000",
+    "wrq-invalid-timing-n57-r44100",
+    "wrq-invalid-timing-n57-r48000",
+    "wrq-frames-exact-end-valid-n31-r44100",
+    "wrq-frames-one-sample-overrun-n84-r44100",
+    "wrq-frames-exact-end-valid-n31-r48000",
+    "wrq-frames-one-sample-overrun-n84-r48000"
+   ],
+   "limit": "不支持16/32-bit或浮点WAV、96k/192k、独立通道时钟/拾音、削波归一化。"
+  },
+  {
+   "risk": "A3-stiffness-domain",
+   "duty": "48个必须准入条件均逐项通过原相对B及频率/留出预算；不靠全体弃权通过。",
+   "cases": [
+    "wrq-stationary-n21-r44100-a",
+    "wrq-stationary-n21-r44100-b",
+    "wrq-stationary-n21-r48000-a",
+    "wrq-stationary-n21-r48000-b",
+    "wrq-stationary-n35-r44100-a",
+    "wrq-stationary-n35-r44100-b",
+    "wrq-stationary-n35-r48000-a",
+    "wrq-stationary-n35-r48000-b",
+    "wrq-stationary-n36-r44100-a",
+    "wrq-stationary-n36-r44100-b",
+    "wrq-stationary-n36-r48000-a",
+    "wrq-stationary-n36-r48000-b",
+    "wrq-stationary-n72-r44100-a",
+    "wrq-stationary-n72-r44100-b",
+    "wrq-stationary-n72-r48000-a",
+    "wrq-stationary-n72-r48000-b",
+    "wrq-stationary-n96-r44100-a",
+    "wrq-stationary-n96-r44100-b",
+    "wrq-stationary-n96-r48000-a",
+    "wrq-stationary-n96-r48000-b",
+    "wrq-repeat-n28-r44100-repeat0",
+    "wrq-repeat-n28-r44100-repeat1",
+    "wrq-repeat-n28-r48000-repeat0",
+    "wrq-repeat-n28-r48000-repeat1",
+    "wrq-repeat-n81-r44100-repeat0",
+    "wrq-repeat-n81-r44100-repeat1",
+    "wrq-repeat-n81-r48000-repeat0",
+    "wrq-repeat-n81-r48000-repeat1",
+    "wrq-floor-transition-n38-r44100",
+    "wrq-floor-transition-n38-r48000",
+    "wrq-floor-transition-n39-r44100",
+    "wrq-floor-transition-n39-r48000",
+    "wrq-floor-transition-n40-r44100",
+    "wrq-floor-transition-n40-r48000",
+    "wrq-expdecay-n54-r44100",
+    "wrq-expdecay-n54-r48000",
+    "wrq-twostage-n78-r44100",
+    "wrq-twostage-n78-r48000",
+    "wrq-missing-fundamental-n46-r44100",
+    "wrq-missing-fundamental-n46-r48000",
+    "wrq-sparse-numbering-n51-r44100",
+    "wrq-sparse-numbering-n51-r48000",
+    "wrq-displaced-n90-r44100",
+    "wrq-displaced-n90-r48000",
+    "wrq-weak-visible-n65-r44100",
+    "wrq-weak-visible-n65-r48000",
+    "wrq-pcm-low-level-n30-r44100",
+    "wrq-pcm-low-level-n30-r48000"
+   ],
+   "limit": "只在列明正B点成立；B=0的相对误差不可按现runner定义，也不认证连续B区间或生产高音外推。"
+  },
+  {
+   "risk": "runner-window-input-refusal",
+   "duty": "W1合法真实观察；W2仅在预声明实际越界时独立输入拒绝，原界与可用帧数保留；完整PPA负例义务仍需满足，正常精确尾界不误拒。",
+   "cases": [
+    "wrq-frames-boundary-n82-r44100",
+    "wrq-frames-boundary-n82-r48000",
+    "wrq-frames-exact-end-valid-n31-r44100",
+    "wrq-frames-one-sample-overrun-n84-r44100",
+    "wrq-frames-exact-end-valid-n31-r48000",
+    "wrq-frames-one-sample-overrun-n84-r48000"
+   ],
+   "limit": "输入合法/拒绝不是声学状态；不放宽任何观察器/家族预算。"
+  }
+ ],
+ "analytic_runtime_risks": [
+  {
+   "id": "low_A0_initial_matching_margin",
+   "note": 21,
+   "offset_Hz": 0.317101,
+   "nominal_Hz": 27.5,
+   "nominal_relative_offset": 0.011530945454545456,
+   "stage_A_relative_tolerance": 0.015,
+   "nominal_first_line_margin_Hz": 0.09539899999999996,
+   "qualification": "Scalar first-line comparison only, not a margin guarantee for FFT peaks or all stiffness-seeded partials. Actual detection, convergence, observed intervals and positive admission remain untested; no empirical parameter tuning was performed."
+  }
+ ],
+ "unchanged_method_and_regression_sources": {
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification.py": "b566ca1b98fb5feec539e4b21d4511001e0dfa63464fb1985472b237340bc41e",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/pilot-partial-analysis.py": "d260334e9e537d3a1ac09739bdcd06593a855f86c5d6e2724c0c4bcfab2b446a",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/partial-observer.py": "76d727a3780d9516d6d7cef6bd26665fd65776528148cac26117f3059e6e29e2",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/validation-eval.py": "4756071bc9db4e04a4682deab71d421509255ba5a3b23c6e6fc5843aea540603",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/validation-eval-tests.py": "467f8d423ada2140ce715b3e78e7b16f264f565325e173b9ce12f9f4a9987098",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification-tests.py": "ce4d3c1e4cb5600d51dde085dfcf685b518d0ca400f92278a0bd0d3c8f687d1b",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/partial-observer-tests.py": "342c9dd09393bf872a76c725b06495ff16e2972f114449dd725817190b512a26",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/pilot-partial-analysis-tests.py": "db16d62d2226011948d30d1591d330e30df69f0c5124bf9e3fa36012664ee600",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/am-envelope-tests.py": "4665914aeb0ea2f8a7824bae4ae4b00df66ebfee2e6cd41d8bb50cb6c0e95865"
+ },
+ "protected_inputs": {
+  "checked": 455,
+  "changed": 0,
+  "missing": 0,
+  "passed": true,
+  "receipt": "protected-after.json",
+  "receipt_sha256": "9ca4ccf8a7080526feb614147f1c73aaab4a77d92ff7502eb8a3849ff56d6aed"
+ },
+ "historical_qualification": {
+  "old_66": "not_qualified; unchanged",
+  "old_84": {
+   "outcome": "not_qualified",
+   "identity": {
+    "approved_registration_sha256": "2efc7dbda325f2311b2a3debd70cfa11fd5a8a361c18b53ec249efebb77b387e",
+    "preauthorization_registration_sha256": "669a3e55ecdb999649a22eb68db5c87856059357410a22820a7fdad0fe37afb4",
+    "scientific_payload_sha256": "05207f00b6224ba6517c7ca0e1f6810b61f4b76e9abfa805922e712d8cfc3412",
+    "seal_sha256": "be4c1f30966818a109f3fad39c1690be94e346a9a5fb0f21e6735f4c80757a65",
+    "consumption_marker_sha256": "ba1458a4d482af9568d45e27a075facd4db930446a42959e7d4af139a6289bdd",
+    "report_sha256": "0fb2a2380a651cda4195209b223d024c7968199611919106bafdf599c5055a48",
+    "native_receipt_sha256": "d14fc473b75353357a7c17f51b9ced10c8f37fd7e5b877ea7f86dd32421a7410"
+   }
+  },
+  "consumed_seals_and_verdicts_unchanged": true,
+  "rerun_rescore_or_new_historical_fit": false
+ },
+ "actual_scope": {
+  "native_standard_library_metadata_review": true,
+  "actual_project_preparation_CLI": false,
+  "build_tests_or_formatter": false,
+  "registered_development_role": false,
+  "qualification_or_subset": false,
+  "new_PCM_synthesis_decode_or_fit": false,
+  "new_execution_seal_or_marker": false,
+  "GUI_RPC_capture": false,
+  "production_CPP_B_or_DSP_change": false,
+  "v3_freeze_A6_A7_or_formal_evaluation": false
+ },
+ "native_metadata_environment": {
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.14.8 (main, Oct 14 2026, 01:07:21) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Scripts\\python.exe",
+  "executable_sha256": "6a4abc1b690d92385d20f159446040d76f740e5736c94ef1fcd30056f98cdd6a",
+  "stdout_encoding": "utf-8",
+  "stderr_encoding": "utf-8"
+ },
+ "native_environment_limit": "Only the metadata reviewer Python/process encoding is observed; measurement NumPy/SciPy and a new dual-stream Unicode gate still require pre-execution verification.",
+ "current_method_independently_qualified": false,
+ "execution_ready": false,
+ "approval_candidate": {
+  "path": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/window-refusal-qualification-registration-20261016-145445/execution-approval-candidate.json",
+  "sha256": "7ffcd788355d83fb28627e381e88754ac9f5ac33b0342d1b470617279077a282",
+  "is_execution_seal": false,
+  "qualification_execution_authorized": false,
+  "actual_preparation_authorized": false
+ },
+ "evidence_locations": {
+  "root": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/window-refusal-qualification-registration-20261016-145445",
+  "root_win": "G:\\source\\projects\\devpiano-evidence\\phase39\\task39-2\\window-refusal-qualification-registration-20261016-145445",
+  "manifest": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/window-refusal-qualification-registration-20261016-145445/evidence-manifest.json",
+  "postcopy_verification": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/window-refusal-qualification-registration-20261016-145445/archive-verification.json",
+  "archival_completion_authority": "The archive manifest and postcopy receipt, not a self-assertion embedded in this report."
+ },
+ "direct_docs": {
+  "before": {
+   "devpiano/docs/roadmap/current-iteration.md": "98de14a127f193cf05c33e5bb0f4a0742b4fca62dd9d39c033add8a5c1e45177",
+   "devpiano/CHANGELOG.md": "5cf6a3247c630ef17543b76dd77c8d344e1ad52de99566e0f90e794c1b3d9218",
+   "research/pilot/runbook-validation-interp2.md": "13e2b254fa64b5a9818d6061ccbb4f9626b98c538c82abf46c68a71286e67549"
+  },
+  "after": {
+   "devpiano/docs/roadmap/current-iteration.md": "da7962ddf1a7cc8157a2bc5d9458fdf4d519c81632e8e7c8d4d7205ee5aca35e",
+   "devpiano/CHANGELOG.md": "56bf502c834aa78fe99d41a7631e054a824bef84874c6a54d872ab93cced6e0e",
+   "research/pilot/runbook-validation-interp2.md": "2c665511fb8d0b934cf7b9ed87229713f7fc24bad87ef052d5bf346b04e41389"
+  }
+ },
+ "next_recommended": "单独批准不生成PCM的实际准备校验：真实新登记--check-registration、输入身份、Windows测量依赖及UTF-8捕获、未授权入口拒绝与无输出。准备通过后再单独批准唯一完整88新条件、4旧控制与同seal评估器回归；不得提前创建seal或运行角色。参考origin、v3、A6/A7独立保持阻断。"
+}

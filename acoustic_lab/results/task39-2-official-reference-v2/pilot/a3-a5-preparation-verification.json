@@ -1,0 +1,175 @@
+{
+ "schema": "devpiano-task39-2-a3-a5-pcm-free-preparation-verification-v1",
+ "created_utc": "2026-10-16T10:31:41.938311+00:00",
+ "outcome": "native_preparation_checks_satisfied_with_retained_capture_decode_error",
+ "scope": "PCM-free actual preparation only. No new or replayed development/qualification role, fitting, synthesis, reference capture, seal or consumed marker.",
+ "authorization": {
+  "user_verbatim": "同意，批准继续进行",
+  "approved_scope": "单独授权不生成 PCM 的实际准备校验：登记/计划 CLI 校验、依赖与环境身份核验、文件保护检查。该授权不包含开发或资格角色、合成、拟合、创建 seal 或采集。准备校验通过并汇报后，再单独审批一次完整资格。",
+  "authorization_record": "authorization.json",
+  "qualification_execution_authorized": false
+ },
+ "input_identity": {
+  "draft": {
+   "path": "pilot/method-qualification-a3-a5-v1.json",
+   "sha256": "669a3e55ecdb999649a22eb68db5c87856059357410a22820a7fdad0fe37afb4"
+  },
+  "closure_review": {
+   "path": "pilot/a3-a5-qualification-closure-review.json",
+   "sha256": "0dba45083b1fa5d13feced598132c5521f61ba8b2bdefe348b22758a6c3efd6b"
+  },
+  "method_sources": {
+   "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification.py": "c3584777862f8ff3065cc7e8ce50462af705924d95d06339559368c4a73514f5",
+   "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/pilot-partial-analysis.py": "d260334e9e537d3a1ac09739bdcd06593a855f86c5d6e2724c0c4bcfab2b446a",
+   "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/partial-observer.py": "76d727a3780d9516d6d7cef6bd26665fd65776528148cac26117f3059e6e29e2",
+   "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/validation-eval.py": "4756071bc9db4e04a4682deab71d421509255ba5a3b23c6e6fc5843aea540603",
+   "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/validation-eval-tests.py": "467f8d423ada2140ce715b3e78e7b16f264f565325e173b9ce12f9f4a9987098"
+  },
+  "registration_parameters_unchanged": true,
+  "checked_input_bytes_unchanged": true,
+  "metadata_snapshot_policy": "The exact checked draft/review remain byte-for-byte unchanged, including their earlier pre-execution null/false runtime snapshot fields. Actual preparation outcomes are recorded here and bound to these exact SHA-256 values, not retroactively written into the checked input."
+ },
+ "native_environment": {
+  "python": "3.14.8 (main, Oct 14 2026, 01:07:21) [MSC v.1944 64 bit (AMD64)]",
+  "python_version": "3.14.8",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "os_name": "nt",
+  "sys_platform": "win32",
+  "executable": "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Scripts\\python.exe",
+  "base_prefix": "C:\\Users\\Admin\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none",
+  "prefix": "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment",
+  "cwd": "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337",
+  "python_executable_sha256": "6a4abc1b690d92385d20f159446040d76f740e5736c94ef1fcd30056f98cdd6a",
+  "packages": {
+   "numpy": {
+    "version": "2.5.4",
+    "module_file": "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Lib\\site-packages\\numpy\\__init__.py",
+    "module_sha256": "a6958cb364663b7acce81ccfd58eeb65a2b34d5376157f924777b97211a73be4",
+    "record_sha256": "387c2d437dbec00818e41ce67035905262151dd01e9ef5c73e120815cb39638e"
+   },
+   "scipy": {
+    "version": "1.18.1",
+    "module_file": "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Lib\\site-packages\\scipy\\__init__.py",
+    "module_sha256": "a11ad8a1eaf423d32a0d3dd6c9be6c7be86068321f043dacd2d555a49418b92f",
+    "record_sha256": "199658e4728381f2a27a74a97982b5b2b5ed7e9a095ced36d4e20ddd18562094"
+   }
+  }
+ },
+ "environment_identity_scope": "Actual native versions and executable/module/installed RECORD digests, not a complete inventory of the operating system or every shared native DLL.",
+ "environment_venv_retained_at": "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment",
+ "native_preparation": {
+  "registration": {
+   "invocations": 1,
+   "exit_code": 0,
+   "status": "valid",
+   "qualification_cases": 84,
+   "required_admission_cases": 48,
+   "conditional_cases": 6,
+   "rejected_cases": 28,
+   "timing_refused_cases": 2,
+   "inactive_development_declarations": 17,
+   "old_controls": 4,
+   "comparison_pairs": 10,
+   "repeat_groups": 4,
+   "acceptance_satisfied": true,
+   "evidence": [
+    "check-registration.intent.json",
+    "check-registration.receipt.json",
+    "check-registration.stdout",
+    "check-registration.stderr",
+    "check-registration.acceptance.json",
+    "registration-check.json"
+   ]
+  },
+  "plan": {
+   "invocations": 1,
+   "exit_code": 3,
+   "status": "blocked_as_predeclared",
+   "preparation_only": true,
+   "execution_allowed": false,
+   "readiness_or_freeze_asserted": false,
+   "acceptance_satisfied_after_read_only_raw_byte_recovery": true,
+   "blockers": [
+    "authorization:capture_authorized",
+    "authorization:formal_evaluation_authorized",
+    "authorization:freeze_authorized",
+    "authorization:matrix_approved",
+    "authorization:protocol_approved",
+    "entry_gate_not_frozen_before_rendering",
+    "matrix_not_selected",
+    "method_qualification:current_snapshot_changed",
+    "reference_origin:requires_authenticated_export_origin_before_v3_freeze",
+    "reference_timing_verifier_not_available",
+    "status:draft_pending_review",
+    "tool_identity_unbound:analysis_tool",
+    "tool_identity_unbound:evaluator",
+    "tool_identity_unbound:partial_observer",
+    "unresolved_prerequisites",
+    "v3_formal_method_not_ready"
+   ],
+   "completed_original_evidence_verified": true,
+   "current_snapshot_qualified": false,
+   "evidence": [
+    "check-plan.intent.json",
+    "check-plan.receipt.json",
+    "check-plan.stdout",
+    "check-plan.stderr",
+    "check-plan.cp936-decoded.stdout",
+    "check-plan.acceptance.json",
+    "plan-check.json"
+   ]
+  }
+ },
+ "capture_exception": {
+  "occurred": true,
+  "clean_exception_free_preparation_run": false,
+  "initial_error": {
+   "stage": "check-plan-output-parsing",
+   "reason": "JSONDecodeError: Invalid \\escape: line 161 column 11 (char 6936)",
+   "actual_native_exit_code": 3,
+   "registration_check_passed": true,
+   "plan_semantic_acceptance_completed": false,
+   "no_rerun_or_source_change": true
+  },
+  "native_execution_stopped": true,
+  "raw_bytes_preserved_in": "check-plan.receipt.json#/stdout_raw_base64",
+  "raw_stdout_sha256": "5b304e8ee91576798aed7d9aee18cb759bee16c1e62e05dcf066c6712f7d61b9",
+  "incorrect_UTF8_decode_derivative": "check-plan.stdout",
+  "strict_read_only_recovery_encoding": "cp936",
+  "original_bytes_SHA_verified": true,
+  "new_CLI_invocations_or_measurements_after_exception": 0,
+  "expectations_source_recipes_or_numeric_budgets_changed": false,
+  "failure_retained": "preparation-failure.json",
+  "recovery_evidence": "capture-recovery.json",
+  "future_capture_gate": "Use a Windows-native parent to set UTF-8 standard I/O before launching qualification; validate this before seal consumption. This changed capture setting was not re-exercised after the stopped preparation."
+ },
+ "file_protection": {
+  "passed": true,
+  "protected_inputs": 141,
+  "consumed_WAV_files_hashed_without_decoding": 105,
+  "hash_mismatches": [],
+  "owned_research_PCM_generated": false,
+  "seal_created": false,
+  "consumed_marker_created": false,
+  "draft_and_review_unchanged": true,
+  "evidence": [
+   "entry-and-protection-before.json",
+   "additional-contract-protection-before.json",
+   "file-protection-after.json"
+  ]
+ },
+ "readiness": {
+  "native_preparation_contract_checks_satisfied": true,
+  "current_method_independently_qualified": false,
+  "qualification_execution_authorized": false,
+  "execution_seal_exists": false,
+  "v3_execution_allowed": false,
+  "A6_A7_authorized": false,
+  "v3_blockers_are_not_synthetic_method_prerequisites": true,
+  "capture_exception_must_be_disclosed_before_new_approval": true
+ },
+ "evidence_root": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/a3-a5-preparation-20261016-101337",
+ "original_native_working_directory": "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337",
+ "not_an_execution_seal": true,
+ "next_recommended": "单独审批一次完整84个新条件、4旧控制及同seal评估器回归；批准时明确Windows原生UTF-8捕获，并在任何seal消费或资格PCM之前核验。批准后先记录新授权登记散列，再创建精确seal；本669a...准备散列不能冒充授权后的登记散列。不得把本准备结果、旧qualified基线或已消费失败批次改标为新独立资格。"
+}

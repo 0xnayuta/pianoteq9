@@ -18,7 +18,7 @@ from pathlib import Path
 
 import numpy as np
 
-BASE = "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2"
+BASE = Path(__file__).resolve().parents[2]
 spec = importlib.util.spec_from_file_location("pra", f"{BASE}/pilot/tools/partial-refinement-audit.py")
 pra = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(pra)

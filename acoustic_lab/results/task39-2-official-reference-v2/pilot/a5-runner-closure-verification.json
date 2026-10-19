@@ -1,0 +1,23 @@
+{
+ "schema":"devpiano-task39-2-a5-runner-closure-verification-v1",
+ "registered_date":"2026-10-16",
+ "registered_before_method_source_edits_and_regression_execution":true,
+ "authorization_record":"G:/tmp/devpiano-task39-2-a5-runner-closure-20261016-032120/authorization.json",
+ "scope":"两项获批最小runner契约闭合及其相关回归/准备验证；不授权新注册角色、PCM或执行seal。",
+ "source_files":["pilot/tools/meter-qualification.py","pilot/tools/meter-qualification-tests.py"],
+ "live_registration":"pilot/method-qualification-a5-v1.json",
+ "frozen_registration_before_sha256":"d1cf9a1676d3f555442cc5dcd010636ba984e895c0b73e247215e8e22a0086d5",
+ "preserved":["全部新/旧用例有效配方、种子、原点/窗口、角色/配对/重复身份和预期数值","PPA/观察器/评估器/生产源码","原完整族/重复/充分性/误差和时间预算","旧登记/已消费资格/封印/历史判决","单一compare_analyses与单弦策略，无新负向/不对称pair API"],
+ "behavior_obligations":[
+  {"id":"permission-decoupling","requirement":"静态检查接受authorized严格布尔false，拒绝缺失/非布尔；实际development仍在输出/加载/合成前拒绝，qualification仍独立要求显式approval和精确seal。"},
+  {"id":"complete-declarations","requirement":"复用现有prospective_review.policy_expectations，按role/pair唯一且完整对应全部正向对；缺失/重复/畸形/多余/错角色、成员、note或rate必须拒绝，不建立旧登记执行兼容分支。"},
+  {"id":"exact-output-obligations","requirement":"调用唯一compare_analyses后保留真实state/计数；只有comparison_passed且整数base_partial/comparable_partials/nonbase_count与原登记逐项一致，才满足pair义务。错误或缺失输出记既有comparison_pair_not_passed，完整方法不得qualified。"},
+  {"id":"existing-guard-retention","requirement":"两侧完整族、混合/后窗/留出拒绝、共同编号、非基准充分性、重复、完整角色/控制/组和回归日志门禁保持。"}
+ ],
+ "regressions":["pilot/tools/meter-qualification-tests.py","pilot/tools/validation-eval-tests.py"],
+ "numeric_test_inputs":"只用旧NoteOn登记中已经消费的回归配方或专用内存家族/证据夹具。新A5登记可静态读取/验证，禁止将其任一角色、子集或用例传给synthesize/run_case/analyze_samples以预试。",
+ "before_proof":{"permission":"引用已归档真实exit1，不为复核重跑已知失败","output_contract":"用已消费dev-compare-83-48000控制的内存家族与真实比较器证明错误base预期仍被旧runner放过；不生成PCM，不执行角色。"},
+ "preparation_smoke":["真实--check-registration对live false/false登记退出0，不生成输出或消费角色","真实development/qualification未授权入口提前拒绝，保留真实退出与零自有输出","真实--check-plan仍退出3：原实证verified/qualified、当前源码未获新资格、v3/origin仍阻断","用已消费内存控制通过共享比较器及runner证明正确计数通过、错误预期不获方法资格","复核原新登记的科学payload与所有固定源/历史身份未变，记录定稿源码和环境身份（非seal）"],
+ "execution":{"relevant_regressions":true,"preparation_only":true,"registered_development_or_qualification":false,"fresh_role_PCM_or_MIDI":false,"new_execution_seal":false,"reference_GUI_RPC_or_capture":false,"formal_or_v3_freeze":false},
+ "after_outcome":"保留全部初始失败、修订及实际命令证据；本轮实现/回归通过不代替新独立资格。完成后单独提交定稿身份供一次完整qualification审批，不自动执行。"
+}

@@ -1,0 +1,79 @@
+{
+ "schema": "devpiano-task39-2-a5-candidate-structure-development-verification-v1",
+ "registered_date": "2026-10-16",
+ "registered_before_source_changes_and_execution": true,
+ "authorization_record": "G:/tmp/devpiano-task39-2-a5-candidate-structure-development-20261016-051007/authorization.json",
+ "user_authorization_verbatim": "同意，批准候选频段与结构性异常传播的最小修订及开发验证。",
+ "scope": "候选频段覆盖低音、明确结构性异常不因筛掉编号而绕过整族拒绝；只做实现、相关回归与自有合成development冒烟，不授予方法独立资格。",
+ "source_files": [
+  "pilot/tools/pilot-partial-analysis.py",
+  "pilot/tools/validation-eval.py",
+  "pilot/tools/pilot-partial-analysis-tests.py",
+  "pilot/tools/validation-eval-tests.py"
+ ],
+ "approved_changes": {
+  "candidate_band": "lower=min(40.0,0.5*theory), upper=20000.0；只在低音需要时降低下界，不改变较高音区原搜索范围。",
+  "shared_family_policy": "PPA定义一个实际由PPA与reference_quality共用的观察阻断判据；resolved_components，或ambiguous且明确记录coherent_structure_outside_component_search_bounds / multiple_component_alternative_unresolved时整族拒绝。普通低信息/缺失/区间弃权不被一概冒称混合。",
+  "unchanged_observer": "不改partial-observer.py的拟合、种子、区间、探针宽度或状态语义。"
+ },
+ "failure_before_evidence": {
+  "batch": "G:/source/projects/devpiano-evidence/phase39/task39-2/a5-qualification-20261016-040725",
+  "report_sha256": "feaa7ab8013dadd1279d50eb6e763afa2b8a4d6b248377b96981629a29e39938",
+  "outcome": "not_qualified",
+  "readonly_localization": "G:/tmp/devpiano-task39-2-a5-readonly-localization-20261016-045523/readonly-findings.json",
+  "use": "保留既有改前失败与只读源码定位，不为再次确认而重跑资格、子集、合成或拟合。"
+ },
+ "preserved": [
+  "全部已消费qualification及其原登记、源码快照、报告、seal和消费标记",
+  "当前A5登记中的development.authorized=false及未执行角色",
+  "生产Piano88KeyTable/PianoSynthVoice的B及DSP参数",
+  "原始频率/区间/B/充分性/留出/窗间/重复误差预算",
+  "现行B模型、匹配种子、SNR、匹配与留出容差、窗格及NoteOn整数样本契约",
+  "唯一比较器、多弦排除、基准归一化与最少非基准数量",
+  "reference origin未认证、v3正式授权及冻结门禁"
+ ],
+ "regressions": {
+  "scripts": ["pilot-partial-analysis-tests.py", "validation-eval-tests.py", "meter-qualification-tests.py"],
+  "behavior_obligations": [
+   "最低音只有五个有效分音时仍能完成两窗识别与原独立留出门禁，分音编号和误差不放宽。",
+   "探针带外强相干结构即使对应编号被排除且其余分音足够，仍停止静态子集拟合并拒绝整族。",
+   "明确多分量、未分辨竞争解释和结构性保护带理由均在排除编号上保留并阻断族/重复/比较入口。",
+   "非结构性低信息弃权或缺失编号不能单凭ambiguous标签冒称物理混合；其余正常充分性与误差要求保持。"
+  ]
+ },
+ "development_smoke": {
+  "role": "self_owned_development_regression_not_independent_qualification",
+  "producer": "独立复用现有PPA回归的tone/family_peaks信号构造，不调用PPA预测器作为oracle；不调用meter-qualification的任何角色或生成器。",
+  "model": "f_n=n*f1*sqrt((1+B*n*n)/(1+B)); left=sum((0.04/n)*cos(2*pi*f_n*t+0.37*n)); right=0.8*left",
+  "B": 0.0003,
+  "sample_rates": [44100, 48000],
+  "note_on_sample": 0,
+  "note_off_seconds": 4.2,
+  "frames_seconds": 4.3,
+  "windows": {"W1": [0.08, 3.8], "W2": [0.5, 4.1]},
+  "noise": "none; deterministic development signal, not an independence claim",
+  "cases": [
+   {"id": "dev-low-A0", "note": 21, "first_hz": 27.5, "partials": 5, "expectation": "both windows ok, exact partials 1..5, original holdout/frequency/B budgets and reference_quality admission"},
+   {"id": "dev-guarded-C2", "note": 36, "first_hz": 65.40639132514966, "partials": 9, "companion_near_partial": 2, "companion_offset_hz": 1.7, "companion_amplitude": 0.014, "companion_phase_rad": 0.6, "expectation": "partial 2 retains explicit structural guard evidence; both windows inconclusive before observed-family-fit/prediction and whole family rejected"}
+  ],
+  "complete_executions": 4,
+  "output_policy": "全新自有development目录，原始JSON输出和判定分别保存；不写新资格PCM/报告/seal，不覆盖原件。",
+  "stop_or_failure": "保留每次失败，不改预算/期望/配方翻绿；如需修正实现或已查明的测试构造错误，保留原记录且仅重跑受影响开发验证，不能据此恢复独立资格。"
+ },
+ "execution": {
+  "existing_regressions": true,
+  "bounded_self_owned_development": true,
+  "read_only_preparation_check": true,
+  "qualification_role_or_subset": false,
+  "registered_A5_development_role": false,
+  "new_execution_seal": false,
+  "reference_GUI_RPC_capture": false,
+  "formal_evaluation_or_v3_freeze": false,
+  "production_change": false
+ },
+ "api_authority": [
+  "https://numpy.org/doc/stable/user/how-to-partition.html",
+  "https://numpy.org/doc/stable/reference/generated/numpy.cos.html"
+ ],
+ "limits": "开发回归与冒烟只证明受改动路径的行为，不是新的有限方法资格或真实物理B认证。已消费66例矩阵及旧判决不重放、不重封印、不重标；后续资格必须另行前瞻登记未触碰覆盖并单独明确批准。"
+}

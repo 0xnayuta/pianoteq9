@@ -1,0 +1,1233 @@
+{
+ "schema": "devpiano-task39-2-method-qualification-v3",
+ "date": "2026-10-14",
+ "status": "research_design_not_v3_acceptance_protocol",
+ "purpose": "A3 方法资格研究设计：独立生成器 + 固定互斥播种的 24-bit 双声道 PCM 用例，在共享观测器通道与端到端 analyze_window/reference_quality 通道上事后核验。研究设计，非 v3 验收协议。",
+ "role_semantics": {
+  "development": "可反复执行调试实现；结果不得改标为资格证据。",
+  "qualification": "只在最终方法/源码快照后首次执行；报告记录全部依赖散列；失败结果原样保留。"
+ },
+ "supersedes": "meter-qualification.py 的 devpiano-bounded-meter-qualification-v1 合并矩阵；归档回执不动，q34/q35/q38/q39 保留为回归对照。",
+ "generator": {
+  "duration_s": 4.2,
+  "rates_hz": [
+   44100,
+   48000
+  ],
+  "windows": {
+   "W1": [
+    0.08,
+    3.8
+   ],
+   "W2": [
+    0.5,
+    4.1
+   ],
+   "WD": [
+    0.08,
+    1.2
+   ]
+  },
+  "case_defaults": {
+   "obligation": "gating",
+   "admission_expectation": "admitted",
+   "strings": [
+    {
+     "cents": 0.0
+    }
+   ],
+   "extra_modes": [],
+   "skip_partials": [],
+   "partial_offsets": {},
+   "amp_overrides": {},
+   "envelope": {
+    "model": "none"
+   },
+   "modulation": null,
+   "am": null,
+   "noise_sigma": 1e-05,
+   "level": 1.0,
+   "partials": 12,
+   "windows": [
+    "W1"
+   ],
+   "required_partials": [],
+   "forbidden_partials": [],
+   "string_phase_mode": "indexed",
+   "probe_half_width_hz": 3.0,
+   "f1_offset_hz": 0.0,
+   "phase0": 0.0
+  },
+  "model": "f(n,s)=n*(f1+Δf1)*2^((cents_s+Δcents)/1200)*sqrt((1+b*n*n)/(1+b)) + hz_s+Δhz；a(n,s)=(0.05/n**0.8)*10^(amp_db/20)；φ(n,s)=phase0+0.41n+0.63s（indexed）或 phase0+0.41n（shared）+phase_deg；附加模态 φ=phase0+0.41n+1.1+0.37i；包络 none|exp(-t/τ)（n>=from_partial）|w*exp(-t/τf)+(1-w)*exp(-t/τs)；调制 am: 幅度×(1+depth*cos(2πf_m t))；drift_linear: f(t)=fc+span/T*(t-T/2)；fm_sinusoidal: f(t)=fc+depth*sin(2πf_m t)（漂移/调频的相位按解析积分）；噪声：default_rng(seed) 每声道独立高斯（先左后右）",
+  "pcm": "round-to-nearest sample*8388608；24-bit signed 双声道；无归一化；非有限或峰值>=0.95 即用例失败",
+  "truth_role": "本文件内的独立实现在观测后核验；不 import PPA 预测、不读生产 B 或任何参考数据；真值从不传入观测器或门禁"
+ },
+ "assessment": {
+  "region_classification": {
+   "resolvable_separation_hz": 1.2,
+   "max_level_span_db": 20.0,
+   "order": "先判非平稳，再判单分量，再按最小两两分离与电平跨度判 resolved/ambiguous",
+   "rationale": "1.2 Hz 是本设计声明的有限工程支持阈，不是普适分辨率律：整簇最小两两分离 >=1.2 Hz 且电平跨度 <=20 dB 才要求分辨；否则声明为 ambiguous，只要求不错误单线认证或正确分辨。",
+   "probe_coverage": "分区全部分量跨度<=probe_half_width_hz（探针以任一分量为心都看到整簇）；相邻分区间隔>=2*probe_half_width_hz"
+  },
+  "tolerances": {
+   "single_cents": 0.05,
+   "single_floor_hz": 0.005,
+   "component_cents": 1.0,
+   "component_floor_hz": 0.01,
+   "b_relative": 0.02,
+   "note": "single 容差沿用原 max(0.005 Hz, 0.05 cents-in-Hz)；resolved 分量容差 max(0.01 Hz, 1 cent)；ambiguous 分区上的分量声明额外放宽到半个真实最小分离（分离>1 cent 时），避免把已正确分辨但精度略低当成伪造。"
+  },
+  "observer_obligations": [
+   "候选只从实际 PCM 的 Hann 窗频谱导出（工具内独立实现）：rel>=rel_power_floor 且局部 SNR>=min_local_snr_db 的局部极大，并强制包含最强 force_top 个峰，最多 max_candidates 个；候选中心与 half_width 是探针参数，不是真值。",
+   "每个分区必须被至少一个探针窗口覆盖；region_not_probed 即失败，不允许靠未探测通过。",
+   "single 类分区：至少一次 single_component_adequate，频率在 max(0.005 Hz, 0.05 cents) 内，其 interval_hz 包含真值且以报告频率为中心的最坏半宽不大于同一预算；记录区间覆盖与宽度。缺少/非法 interval、未匹配声明、多分量/非平稳分区的 single 声明都计错误准入。",
+   "resolved 类分区：必须有一次调用以 resolved_components 给出与真值一一对应的全部分量（每个在 max(0.01 Hz, 1 cent) 内）；多报、少报、错报均失败。",
+   "ambiguous 类分区：不得出现 single_component_adequate（正确分辨或弃权均可）；nonstationary 类分区只能弃权，任何单线或分量声明都计错误。",
+   "negative（无真实分量）用例：任何 single 或 resolved 声明都计为错误准入。",
+   "观测器异常或未知状态字按界面失败记录，不当作弃权；positive 分区的 single 认证是硬性义务，blanket abstention 结构上不可能通过。声明的 WD 短窗只用于两个用例的观测器跨窗覆盖，不在端到端门禁中替代冻结 W1/W2。"
+  ],
+  "ppa_obligations": [
+   "逐窗调用冻结 analyze_window（注册声明的真实 W1/W2 边界；theory=名义频率；seeds 与局部 SNR 按冻结音符阈值规则）；不复制 W1 冒充 W2，不改模块全局，不传真值。",
+   "admitted 期望用例：reference_quality 必须准入；准入时本工具独立复核每窗 status=ok、identified>=5、holdout>=2、每条被认证线频率在 max(0.005 Hz, 0.05 cents) 内且编号与真值族线一致（缺失/位移编号的声称即错误索引准入）、拟合 B 相对误差<=0.02、required_partials 全部出现、forbidden_partials 不得出现；任一不过即相应 _out_of_tolerance / wrong_index_claim / gate_incoherent_window 违例。",
+   "rejected 期望用例（未分辨/可分辨混合族、漂移/调频、纯噪声）：不得准入；准入即 false_static_admission。",
+   "集成规则（只把 single_component_adequate 族线计入认证与拟合，resolved/ambiguous 只保留记录）由门禁与完整 analysis_record 复核；本工具只做事后真值核验，不重复门禁内部检查。",
+   "回归对照 q34/q35/q38/q39 按 v1 配方与种子重建：rejected 期望且观测器不得单线认证；违反即整体不获资格。"
+  ]
+ },
+ "candidates": {
+  "rel_power_floor": 1e-11,
+  "min_local_snr_db": 10.0,
+  "max_candidates": 48,
+  "force_top": 3,
+  "band_low_factor": 0.5,
+  "band_high_factor": 0.98,
+  "rationale": "rel 下限需低于最弱声明阳性（−75 dB 幅度、第九分音，约 −90 dB 相对功率）且高于安静用例的噪声峰（约 −119 dB）；SNR 下限排除纯噪声峰；force_top 保证纯噪声用例也被实际探测。"
+ },
+ "cases": {
+  "development": [
+   {
+    "id": "dev-stationary-55-44100",
+    "kind": "stationary",
+    "note": 55,
+    "rate": 44100,
+    "seed": 393100,
+    "b": 0.0003,
+    "f1_offset_hz": 0.067,
+    "windows": [
+     "W1",
+     "W2",
+     "WD"
+    ],
+    "expected_class": "positive",
+    "purpose": "基准刚性族：12 分音、三窗（W1/W2/短窗 WD）覆盖，相位 0"
+   },
+   {
+    "id": "dev-stationary-67-44100-snr1e4",
+    "kind": "stationary",
+    "note": 67,
+    "rate": 44100,
+    "seed": 393101,
+    "b": 0.0007,
+    "f1_offset_hz": 0.083,
+    "phase0": 0.7,
+    "noise_sigma": 0.0001,
+    "expected_class": "positive",
+    "purpose": "基准刚性族 + 中等噪声（SNR 跨度）"
+   },
+   {
+    "id": "dev-stationary-67-48000-snr3e4",
+    "kind": "stationary",
+    "note": 67,
+    "rate": 48000,
+    "seed": 393102,
+    "b": 0.0007,
+    "f1_offset_hz": 0.117,
+    "phase0": 1.9,
+    "noise_sigma": 0.0003,
+    "expected_class": "positive",
+    "purpose": "基准刚性族 + 较高噪声，48 kHz"
+   },
+   {
+    "id": "dev-expdecay-67-44100",
+    "kind": "expdecay",
+    "note": 67,
+    "rate": 44100,
+    "seed": 393103,
+    "b": 0.0007,
+    "f1_offset_hz": 0.071,
+    "phase0": 1.5707963267948966,
+    "envelope": {
+     "model": "exponential",
+     "tau_s": 0.35,
+     "from_partial": 7
+    },
+    "expected_class": "positive",
+    "purpose": "高分音指数衰减 τ=0.35s（W2 起点 0.5s）+ 短窗诊断"
+   },
+   {
+    "id": "dev-expdecay-55-48000",
+    "kind": "expdecay",
+    "note": 55,
+    "rate": 48000,
+    "seed": 393104,
+    "b": 0.0003,
+    "f1_offset_hz": 0.109,
+    "phase0": 2.6,
+    "envelope": {
+     "model": "exponential",
+     "tau_s": 0.5,
+     "from_partial": 5
+    },
+    "expected_class": "positive",
+    "purpose": "低音区指数衰减 τ=0.5s 自第 5 分音"
+   },
+   {
+    "id": "dev-twostage-55-44100",
+    "kind": "twostage",
+    "note": 55,
+    "rate": 44100,
+    "seed": 393105,
+    "b": 0.0003,
+    "f1_offset_hz": 0.061,
+    "phase0": 0.35,
+    "envelope": {
+     "model": "two_stage",
+     "fast_tau_s": 0.12,
+     "slow_tau_s": 2.5,
+     "fast_weight": 0.6
+    },
+    "expected_class": "positive",
+    "purpose": "同频两级幅度包络（快速 0.12s + 慢 2.5s）：不得误判为额外物理弦"
+   },
+   {
+    "id": "dev-twostage-67-48000",
+    "kind": "twostage",
+    "note": 67,
+    "rate": 48000,
+    "seed": 393106,
+    "b": 0.0007,
+    "f1_offset_hz": 0.127,
+    "phase0": 1.1,
+    "envelope": {
+     "model": "two_stage",
+     "fast_tau_s": 0.2,
+     "slow_tau_s": 3.0,
+     "fast_weight": 0.45
+    },
+    "expected_class": "positive",
+    "purpose": "同频两级包络（0.2s/3.0s，权重 0.45）"
+   },
+   {
+    "id": "dev-amslow-67-44100",
+    "kind": "amslow",
+    "note": 67,
+    "rate": 44100,
+    "seed": 393107,
+    "b": 0.0007,
+    "f1_offset_hz": 0.093,
+    "phase0": 2.2,
+    "am": {
+     "freq_hz": 0.35,
+     "depth": 0.5
+    },
+    "expected_class": "positive",
+    "purpose": "慢幅调制 0.35 Hz、深度 0.5（低于窗分辨率，按包络而非新分量处理）"
+   },
+   {
+    "id": "dev-amslow-55-48000",
+    "kind": "amslow",
+    "note": 55,
+    "rate": 48000,
+    "seed": 393108,
+    "b": 0.0003,
+    "f1_offset_hz": 0.151,
+    "phase0": 0.55,
+    "am": {
+     "freq_hz": 0.2,
+     "depth": 0.3
+    },
+    "expected_class": "positive",
+    "purpose": "慢幅调制 0.2 Hz、深度 0.3"
+   },
+   {
+    "id": "dev-weak9-67-44100-m55",
+    "kind": "weak_harmonic",
+    "note": 67,
+    "rate": 44100,
+    "seed": 393109,
+    "b": 0.0007,
+    "f1_offset_hz": 0.077,
+    "phase0": 0.2,
+    "partials": 9,
+    "amp_overrides": {
+     "9": -55.0
+    },
+    "expected_class": "positive",
+    "purpose": "弱第九分音 -55 dB（动态范围阳性支持）"
+   },
+   {
+    "id": "dev-weak9-67-44100-m75",
+    "kind": "weak_harmonic",
+    "note": 67,
+    "rate": 44100,
+    "seed": 393110,
+    "b": 0.0007,
+    "f1_offset_hz": 0.103,
+    "phase0": 1.6,
+    "partials": 9,
+    "amp_overrides": {
+     "9": -75.0
+    },
+    "expected_class": "positive",
+    "purpose": "弱第九分音 -75 dB（近支持边界，仍需单线认证）"
+   },
+   {
+    "id": "dev-weak9-67-48000-m65",
+    "kind": "weak_harmonic",
+    "note": 67,
+    "rate": 48000,
+    "seed": 393111,
+    "b": 0.0007,
+    "f1_offset_hz": 0.089,
+    "phase0": 2.8,
+    "partials": 9,
+    "amp_overrides": {
+     "9": -65.0
+    },
+    "expected_class": "positive",
+    "purpose": "弱第九分音 -65 dB，48 kHz"
+   },
+   {
+    "id": "dev-weakfund-55-44100",
+    "kind": "weak_fundamental",
+    "note": 55,
+    "rate": 44100,
+    "seed": 393112,
+    "b": 0.0003,
+    "f1_offset_hz": 0.119,
+    "phase0": 0.9,
+    "amp_overrides": {
+     "1": -25.0
+    },
+    "expected_class": "positive",
+    "purpose": "第一分音 -25 dB（基频弱、高次主导）"
+   },
+   {
+    "id": "dev-double-res-55-44100",
+    "kind": "detuned_double_resolvable",
+    "note": 55,
+    "rate": 44100,
+    "seed": 393113,
+    "b": 0.0003,
+    "f1_offset_hz": 0.073,
+    "phase0": 0.15,
+    "partials": 6,
+    "strings": [
+     {
+      "cents": 8.0
+     },
+     {
+      "cents": -8.0
+     }
+    ],
+    "probe_half_width_hz": 12.0,
+    "admission_expectation": "rejected",
+    "expected_class": "resolvable",
+    "purpose": "物理索引双弦 ±8 音分：逐分音分离 ≥1.81 Hz，必须分辨为两条线"
+   },
+   {
+    "id": "dev-double-res-67-48000",
+    "kind": "detuned_double_resolvable",
+    "note": 67,
+    "rate": 48000,
+    "seed": 393114,
+    "b": 0.0007,
+    "f1_offset_hz": 0.097,
+    "phase0": 1.35,
+    "partials": 6,
+    "strings": [
+     {
+      "cents": 8.0
+     },
+     {
+      "cents": -8.0
+     }
+    ],
+    "probe_half_width_hz": 23.0,
+    "admission_expectation": "rejected",
+    "expected_class": "resolvable",
+    "purpose": "物理索引双弦 ±8 音分，48 kHz（逐分音分离 ≥3.6 Hz）"
+   },
+   {
+    "id": "dev-double-amb-67-44100",
+    "kind": "detuned_double_ambiguous",
+    "note": 67,
+    "rate": 44100,
+    "seed": 393115,
+    "b": 0.0007,
+    "f1_offset_hz": 0.081,
+    "phase0": 0.6,
+    "partials": 3,
+    "string_phase_mode": "shared",
+    "strings": [
+     {
+      "cents": 0.4
+     },
+     {
+      "cents": -0.4
+     }
+    ],
+    "admission_expectation": "rejected",
+    "expected_class": "ambiguous",
+    "purpose": "同相 0.4 音分双弦（分离 ≤0.55 Hz）：必须弃权或正确分辨，不得单线认证"
+   },
+   {
+    "id": "dev-double-amb-55-48000",
+    "kind": "detuned_double_ambiguous",
+    "note": 55,
+    "rate": 48000,
+    "seed": 393116,
+    "b": 0.0003,
+    "f1_offset_hz": 0.113,
+    "phase0": 1.45,
+    "partials": 3,
+    "string_phase_mode": "shared",
+    "strings": [
+     {
+      "cents": 0.4
+     },
+     {
+      "cents": -0.4,
+      "phase_deg": 180.0
+     }
+    ],
+    "admission_expectation": "rejected",
+    "expected_class": "ambiguous",
+    "purpose": "反相 0.4 音分双弦（相位敏感负例）"
+   },
+   {
+    "id": "dev-triple-67-44100",
+    "kind": "detuned_triple_resolvable",
+    "note": 67,
+    "rate": 44100,
+    "seed": 393117,
+    "b": 0.0007,
+    "f1_offset_hz": 0.069,
+    "phase0": 2.45,
+    "partials": 6,
+    "strings": [
+     {
+      "cents": -8.0
+     },
+     {
+      "cents": 1.0,
+      "amp_db": -6.0
+     },
+     {
+      "cents": 9.0,
+      "amp_db": -3.0
+     }
+    ],
+    "probe_half_width_hz": 50.0,
+    "admission_expectation": "rejected",
+    "expected_class": "resolvable",
+    "purpose": "三弦 −8/+1/+9 音分、电平 0/−6/−3 dB：一次调用需分辨三条线"
+   },
+   {
+    "id": "dev-extra-mode-67-44100",
+    "kind": "extra_mode_resolvable",
+    "note": 67,
+    "rate": 44100,
+    "seed": 393118,
+    "b": 0.0007,
+    "f1_offset_hz": 0.091,
+    "phase0": 0.05,
+    "partials": 9,
+    "extra_modes": [
+     {
+      "near_partial": 9,
+      "offset_hz": 1.7,
+      "amp_db": 6.0
+     }
+    ],
+    "expected_class": "resolvable",
+    "purpose": "第九分音旁 +1.7 Hz 附加模态（+6 dB 更强）：必须分辨且不得顶替族线"
+   },
+   {
+    "id": "dev-extra-mode-67-48000",
+    "kind": "extra_mode_ambiguous",
+    "note": 67,
+    "rate": 48000,
+    "seed": 393119,
+    "b": 0.0007,
+    "f1_offset_hz": 0.121,
+    "phase0": 1.75,
+    "partials": 9,
+    "extra_modes": [
+     {
+      "near_partial": 9,
+      "offset_hz": 0.9,
+      "amp_db": -15.0
+     }
+    ],
+    "expected_class": "ambiguous",
+    "purpose": "第九分音旁 +0.9 Hz 附加模态（−15 dB）：分离低于分辨门限，不得单线认证"
+   },
+   {
+    "id": "dev-missing-55-44100",
+    "kind": "missing_partial",
+    "note": 55,
+    "rate": 44100,
+    "seed": 393120,
+    "b": 0.0003,
+    "f1_offset_hz": 0.105,
+    "phase0": 2.1,
+    "partials": 7,
+    "skip_partials": [
+     4
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     5,
+     6,
+     7
+    ],
+    "expected_class": "positive",
+    "purpose": "缺失第 4 分音的稀疏族：不得凭空生成该编号线"
+   },
+   {
+    "id": "dev-displaced-67-48000",
+    "kind": "displaced_partial",
+    "note": 67,
+    "rate": 48000,
+    "seed": 393122,
+    "b": 0.0007,
+    "f1_offset_hz": 0.099,
+    "phase0": 1.25,
+    "partials": 6,
+    "partial_offsets": {
+     "5": {
+      "cents": 17.3
+     }
+    },
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     6
+    ],
+    "forbidden_partials": [
+     5
+    ],
+    "expected_class": "positive",
+    "purpose": "第 5 分音位移 +17.3 音分：不得把位移线认证为该编号族线"
+   },
+   {
+    "id": "dev-drift-55-44100",
+    "kind": "drift",
+    "note": 55,
+    "rate": 44100,
+    "seed": 393123,
+    "b": 0.0003,
+    "f1_offset_hz": 0.079,
+    "phase0": 0.4,
+    "partials": 6,
+    "modulation": {
+     "model": "drift_linear",
+     "span_cents": 12.0
+    },
+    "probe_half_width_hz": 9.0,
+    "admission_expectation": "rejected",
+    "expected_class": "nonstationary",
+    "purpose": "线性漂移 12 音分：非平稳，必须弃权且不得静态准入"
+   },
+   {
+    "id": "dev-fm-67-44100",
+    "kind": "fm",
+    "note": 67,
+    "rate": 44100,
+    "seed": 393124,
+    "b": 0.0007,
+    "f1_offset_hz": 0.087,
+    "phase0": 1.15,
+    "partials": 6,
+    "modulation": {
+     "model": "fm_sinusoidal",
+     "depth_cents": 8.0,
+     "freq_hz": 0.45
+    },
+    "probe_half_width_hz": 23.0,
+    "admission_expectation": "rejected",
+    "expected_class": "nonstationary",
+    "purpose": "正弦调频 8 音分 @0.45 Hz：非平稳，必须弃权且不得静态准入"
+   },
+   {
+    "id": "dev-noise-55-44100",
+    "kind": "noise",
+    "note": 55,
+    "rate": 44100,
+    "seed": 393125,
+    "b": 0.0003,
+    "partials": 0,
+    "noise_sigma": 0.001,
+    "admission_expectation": "rejected",
+    "expected_class": "negative",
+    "purpose": "纯噪声 σ=1e-3 负例（无任何真实分音）"
+   },
+   {
+    "id": "dev-noise-67-48000",
+    "kind": "noise",
+    "note": 67,
+    "rate": 48000,
+    "seed": 393126,
+    "b": 0.0007,
+    "partials": 0,
+    "noise_sigma": 0.002,
+    "admission_expectation": "rejected",
+    "expected_class": "negative",
+    "purpose": "纯噪声 σ=2e-3 负例"
+   },
+   {
+    "id": "dev-pcm-55-44100-low",
+    "kind": "pcm_level",
+    "note": 55,
+    "rate": 44100,
+    "seed": 393127,
+    "b": 0.0003,
+    "f1_offset_hz": 0.111,
+    "phase0": 2.35,
+    "level": 0.02,
+    "expected_class": "positive",
+    "purpose": "低电平 0.02 倍 24-bit PCM 往返（量化跨度）"
+   }
+  ],
+  "qualification": [
+   {
+    "id": "qual-stationary-29-44100",
+    "kind": "stationary",
+    "note": 29,
+    "rate": 44100,
+    "seed": 393600,
+    "b": 8e-05,
+    "f1_offset_hz": 0.074,
+    "phase0": 0.3,
+    "expected_class": "positive",
+    "purpose": "F1 基准刚性族 12 分音（搜索下界 40 Hz 附近的低音区）"
+   },
+   {
+    "id": "qual-stationary-29-48000",
+    "kind": "stationary",
+    "note": 29,
+    "rate": 48000,
+    "seed": 393601,
+    "b": 8e-05,
+    "f1_offset_hz": 0.096,
+    "phase0": 1.2,
+    "noise_sigma": 0.0001,
+    "windows": [
+     "W1",
+     "W2",
+     "WD"
+    ],
+    "expected_class": "positive",
+    "purpose": "F1 基准刚性族 + 中等噪声、三窗覆盖"
+   },
+   {
+    "id": "qual-stationary-88-48000",
+    "kind": "stationary",
+    "note": 88,
+    "rate": 48000,
+    "seed": 393602,
+    "b": 0.004,
+    "f1_offset_hz": 0.088,
+    "phase0": 2.1,
+    "noise_sigma": 0.0003,
+    "expected_class": "positive",
+    "purpose": "E6 基准刚性族 12 分音（局部 SNR 通道域）+ 较高噪声"
+   },
+   {
+    "id": "qual-expdecay-88-44100",
+    "kind": "expdecay",
+    "note": 88,
+    "rate": 44100,
+    "seed": 393603,
+    "b": 0.004,
+    "f1_offset_hz": 0.069,
+    "phase0": 0.75,
+    "envelope": {
+     "model": "exponential",
+     "tau_s": 0.3,
+     "from_partial": 6
+    },
+    "expected_class": "positive",
+    "purpose": "E6 高分音指数衰减 τ=0.3s"
+   },
+   {
+    "id": "qual-expdecay-29-48000",
+    "kind": "expdecay",
+    "note": 29,
+    "rate": 48000,
+    "seed": 393604,
+    "b": 8e-05,
+    "f1_offset_hz": 0.107,
+    "phase0": 1.9,
+    "envelope": {
+     "model": "exponential",
+     "tau_s": 0.6,
+     "from_partial": 6
+    },
+    "expected_class": "positive",
+    "purpose": "F1 指数衰减 τ=0.6s 自第 6 分音（长时窗适用域）"
+   },
+   {
+    "id": "qual-twostage-29-44100",
+    "kind": "twostage",
+    "note": 29,
+    "rate": 44100,
+    "seed": 393605,
+    "b": 8e-05,
+    "f1_offset_hz": 0.083,
+    "phase0": 2.5,
+    "envelope": {
+     "model": "two_stage",
+     "fast_tau_s": 0.1,
+     "slow_tau_s": 2.8,
+     "fast_weight": 0.6
+    },
+    "expected_class": "positive",
+    "purpose": "F1 同频两级包络 0.1s/2.8s：不得当作额外物理弦"
+   },
+   {
+    "id": "qual-twostage-88-48000",
+    "kind": "twostage",
+    "note": 88,
+    "rate": 48000,
+    "seed": 393606,
+    "b": 0.004,
+    "f1_offset_hz": 0.131,
+    "phase0": 0.45,
+    "partials": 9,
+    "envelope": {
+     "model": "two_stage",
+     "fast_tau_s": 0.15,
+     "slow_tau_s": 3.2,
+     "fast_weight": 0.5
+    },
+    "expected_class": "positive",
+    "purpose": "E6 同频两级包络 0.15s/3.2s（9 分音）"
+   },
+   {
+    "id": "qual-amslow-29-44100",
+    "kind": "amslow",
+    "note": 29,
+    "rate": 44100,
+    "seed": 393607,
+    "b": 8e-05,
+    "f1_offset_hz": 0.065,
+    "phase0": 1.55,
+    "am": {
+     "freq_hz": 0.4,
+     "depth": 0.45
+    },
+    "expected_class": "positive",
+    "purpose": "F1 慢幅调制 0.4 Hz、深度 0.45"
+   },
+   {
+    "id": "qual-amslow-88-48000",
+    "kind": "amslow",
+    "note": 88,
+    "rate": 48000,
+    "seed": 393608,
+    "b": 0.004,
+    "f1_offset_hz": 0.093,
+    "phase0": 2.75,
+    "am": {
+     "freq_hz": 0.25,
+     "depth": 0.35
+    },
+    "expected_class": "positive",
+    "purpose": "E6 慢幅调制 0.25 Hz、深度 0.35"
+   },
+   {
+    "id": "qual-weak9-88-44100-m55",
+    "kind": "weak_harmonic",
+    "note": 88,
+    "rate": 44100,
+    "seed": 393609,
+    "b": 0.004,
+    "f1_offset_hz": 0.077,
+    "phase0": 0.1,
+    "partials": 9,
+    "amp_overrides": {
+     "9": -55.0
+    },
+    "expected_class": "positive",
+    "purpose": "E6 弱第九分音 -55 dB（44.1 kHz）"
+   },
+   {
+    "id": "qual-weak9-88-44100-m75",
+    "kind": "weak_harmonic",
+    "note": 88,
+    "rate": 44100,
+    "seed": 393610,
+    "b": 0.004,
+    "f1_offset_hz": 0.101,
+    "phase0": 1.35,
+    "partials": 9,
+    "amp_overrides": {
+     "9": -75.0
+    },
+    "expected_class": "positive",
+    "purpose": "E6 弱第九分音 -75 dB（44.1 kHz 近支持边界）"
+   },
+   {
+    "id": "qual-weak9-88-48000-m65",
+    "kind": "weak_harmonic",
+    "note": 88,
+    "rate": 48000,
+    "seed": 393611,
+    "b": 0.004,
+    "f1_offset_hz": 0.089,
+    "phase0": 2.3,
+    "partials": 9,
+    "amp_overrides": {
+     "9": -65.0
+    },
+    "expected_class": "positive",
+    "purpose": "E6 弱第九分音 -65 dB（48 kHz）"
+   },
+   {
+    "id": "qual-weak9-88-48000-m85",
+    "kind": "weak_harmonic",
+    "note": 88,
+    "rate": 48000,
+    "seed": 393612,
+    "b": 0.004,
+    "f1_offset_hz": 0.113,
+    "phase0": 0.95,
+    "partials": 9,
+    "amp_overrides": {
+     "9": -85.0
+    },
+    "obligation": "diagnostic",
+    "expected_class": "positive",
+    "purpose": "E6 弱第九分音 -85 dB：声明为灵敏度诊断（不参与资格判定）"
+   },
+   {
+    "id": "qual-weakfund-88-44100",
+    "kind": "weak_fundamental",
+    "note": 88,
+    "rate": 44100,
+    "seed": 393613,
+    "b": 0.004,
+    "f1_offset_hz": 0.121,
+    "phase0": 1.7,
+    "amp_overrides": {
+     "1": -25.0
+    },
+    "expected_class": "positive",
+    "purpose": "E6 第一分音 -25 dB（基频弱、高次主导）"
+   },
+   {
+    "id": "qual-double-res-29-44100",
+    "kind": "detuned_double_resolvable",
+    "note": 29,
+    "rate": 44100,
+    "seed": 393614,
+    "b": 8e-05,
+    "f1_offset_hz": 0.071,
+    "phase0": 0.25,
+    "partials": 8,
+    "strings": [
+     {
+      "hz": 1.5
+     },
+     {
+      "hz": -1.5
+     }
+    ],
+    "probe_half_width_hz": 4.0,
+    "admission_expectation": "rejected",
+    "expected_class": "resolvable",
+    "purpose": "F1 物理索引双弦 ±1.5 Hz（cents 在此不可分辨，故用 Hz 索引并声明）：必须分辨"
+   },
+   {
+    "id": "qual-double-res-88-48000",
+    "kind": "detuned_double_resolvable",
+    "note": 88,
+    "rate": 48000,
+    "seed": 393615,
+    "b": 0.004,
+    "f1_offset_hz": 0.097,
+    "phase0": 1.05,
+    "partials": 6,
+    "string_phase_mode": "shared",
+    "strings": [
+     {
+      "cents": 8.0
+     },
+     {
+      "cents": -8.0,
+      "phase_deg": 180.0
+     }
+    ],
+    "probe_half_width_hz": 80.0,
+    "admission_expectation": "rejected",
+    "expected_class": "resolvable",
+    "purpose": "E6 物理索引双弦 ±8 音分（反相变体）：必须分辨"
+   },
+   {
+    "id": "qual-double-amb-29-48000",
+    "kind": "detuned_double_ambiguous",
+    "note": 29,
+    "rate": 48000,
+    "seed": 393616,
+    "b": 8e-05,
+    "f1_offset_hz": 0.109,
+    "phase0": 2.15,
+    "partials": 8,
+    "string_phase_mode": "shared",
+    "strings": [
+     {
+      "hz": 0.15
+     },
+     {
+      "hz": -0.15
+     }
+    ],
+    "admission_expectation": "rejected",
+    "expected_class": "ambiguous",
+    "purpose": "F1 同相 ±0.15 Hz 双弦（分离 0.30 Hz）：弃权或正确分辨，不得单线认证"
+   },
+   {
+    "id": "qual-double-amb-88-44100",
+    "kind": "detuned_double_ambiguous",
+    "note": 88,
+    "rate": 44100,
+    "seed": 393617,
+    "b": 0.004,
+    "f1_offset_hz": 0.079,
+    "phase0": 0.6,
+    "partials": 3,
+    "string_phase_mode": "shared",
+    "strings": [
+     {
+      "cents": 0.1
+     },
+     {
+      "cents": -0.1,
+      "phase_deg": 180.0
+     }
+    ],
+    "admission_expectation": "rejected",
+    "expected_class": "ambiguous",
+    "purpose": "E6 反相 0.1 音分双弦（最大分离 0.46 Hz）"
+   },
+   {
+    "id": "qual-triple-88-48000",
+    "kind": "detuned_triple_resolvable",
+    "note": 88,
+    "rate": 48000,
+    "seed": 393618,
+    "b": 0.004,
+    "f1_offset_hz": 0.067,
+    "phase0": 1.85,
+    "partials": 4,
+    "strings": [
+     {
+      "cents": -8.0
+     },
+     {
+      "cents": 1.0,
+      "amp_db": -6.0
+     },
+     {
+      "cents": 9.0,
+      "amp_db": -3.0
+     }
+    ],
+    "probe_half_width_hz": 160.0,
+    "admission_expectation": "rejected",
+    "expected_class": "resolvable",
+    "purpose": "E6 三弦 −8/+1/+9 音分、电平 0/−6/−3 dB（大跨度探针界）"
+   },
+   {
+    "id": "qual-extra-mode-88-44100",
+    "kind": "extra_mode_resolvable",
+    "note": 88,
+    "rate": 44100,
+    "seed": 393619,
+    "b": 0.004,
+    "f1_offset_hz": 0.089,
+    "phase0": 2.65,
+    "partials": 9,
+    "extra_modes": [
+     {
+      "near_partial": 9,
+      "offset_hz": 1.7,
+      "amp_db": 6.0
+     }
+    ],
+    "expected_class": "resolvable",
+    "purpose": "E6 第九分音旁 +1.7 Hz 附加模态（+6 dB）：分辨且不得顶替族线"
+   },
+   {
+    "id": "qual-extra-mode-88-48000",
+    "kind": "extra_mode_ambiguous",
+    "note": 88,
+    "rate": 48000,
+    "seed": 393620,
+    "b": 0.004,
+    "f1_offset_hz": 0.127,
+    "phase0": 0.35,
+    "partials": 9,
+    "extra_modes": [
+     {
+      "near_partial": 9,
+      "offset_hz": 0.9,
+      "amp_db": -15.0
+     }
+    ],
+    "expected_class": "ambiguous",
+    "purpose": "E6 第九分音旁 +0.9 Hz 附加模态（−15 dB）：不得单线认证"
+   },
+   {
+    "id": "qual-missing-88-48000",
+    "kind": "missing_partial",
+    "note": 88,
+    "rate": 48000,
+    "seed": 393621,
+    "b": 0.004,
+    "f1_offset_hz": 0.073,
+    "phase0": 1.5,
+    "partials": 7,
+    "skip_partials": [
+     4
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     5,
+     6,
+     7
+    ],
+    "expected_class": "positive",
+    "purpose": "E6 缺失第 4 分音的稀疏族：不得凭空生成该编号线"
+   },
+   {
+    "id": "qual-displaced-88-44100",
+    "kind": "displaced_partial",
+    "note": 88,
+    "rate": 44100,
+    "seed": 393622,
+    "b": 0.004,
+    "f1_offset_hz": 0.101,
+    "phase0": 2.95,
+    "partials": 6,
+    "partial_offsets": {
+     "5": {
+      "cents": 17.3
+     }
+    },
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     6
+    ],
+    "forbidden_partials": [
+     5
+    ],
+    "expected_class": "positive",
+    "purpose": "E6 第 5 分音位移 +17.3 音分：不得把位移线认证为该编号族线"
+   },
+   {
+    "id": "qual-drift-88-48000",
+    "kind": "drift",
+    "note": 88,
+    "rate": 48000,
+    "seed": 393623,
+    "b": 0.004,
+    "f1_offset_hz": 0.085,
+    "phase0": 0.5,
+    "partials": 4,
+    "modulation": {
+     "model": "drift_linear",
+     "span_cents": 16.0
+    },
+    "probe_half_width_hz": 100.0,
+    "admission_expectation": "rejected",
+    "expected_class": "nonstationary",
+    "purpose": "E6 线性漂移 16 音分：非平稳，弃权且不得静态准入"
+   },
+   {
+    "id": "qual-fm-29-48000",
+    "kind": "fm",
+    "note": 29,
+    "rate": 48000,
+    "seed": 393624,
+    "b": 8e-05,
+    "f1_offset_hz": 0.119,
+    "phase0": 1.65,
+    "partials": 8,
+    "modulation": {
+     "model": "fm_sinusoidal",
+     "depth_cents": 10.0,
+     "freq_hz": 0.5
+    },
+    "probe_half_width_hz": 6.0,
+    "admission_expectation": "rejected",
+    "expected_class": "nonstationary",
+    "purpose": "F1 正弦调频 10 音分 @0.5 Hz：非平稳，弃权且不得静态准入"
+   },
+   {
+    "id": "qual-noise-29-44100",
+    "kind": "noise",
+    "note": 29,
+    "rate": 44100,
+    "seed": 393625,
+    "b": 8e-05,
+    "partials": 0,
+    "noise_sigma": 0.001,
+    "admission_expectation": "rejected",
+    "expected_class": "negative",
+    "purpose": "F1 纯噪声 σ=1e-3 负例"
+   },
+   {
+    "id": "qual-noise-88-48000",
+    "kind": "noise",
+    "note": 88,
+    "rate": 48000,
+    "seed": 393626,
+    "b": 0.004,
+    "partials": 0,
+    "noise_sigma": 0.002,
+    "admission_expectation": "rejected",
+    "expected_class": "negative",
+    "purpose": "E6 纯噪声 σ=2e-3 负例"
+   },
+   {
+    "id": "qual-pcm-29-44100-low",
+    "kind": "pcm_level",
+    "note": 29,
+    "rate": 44100,
+    "seed": 393627,
+    "b": 8e-05,
+    "f1_offset_hz": 0.091,
+    "phase0": 2.4,
+    "level": 0.05,
+    "expected_class": "positive",
+    "purpose": "F1 低电平 0.05 倍 24-bit PCM 往返"
+   }
+  ]
+ },
+ "regression_controls": [
+  {
+   "id": "q34-unresolved_doublet-44100",
+   "kind": "unresolved_doublet_control",
+   "note": 55,
+   "rate": 44100,
+   "seed": 392034,
+   "b": 0.0003,
+   "f1_offset_hz": 0.06720430107526881,
+   "phase0": 1.5707963267948966,
+   "string_phase_mode": "shared",
+   "strings": [
+    {
+     "hz": 0.0
+    },
+    {
+     "hz": 0.4
+    }
+   ],
+   "admission_expectation": "rejected",
+   "obligation": "control",
+   "expected_class": "ambiguous",
+   "purpose": "v1 矩阵冻结混合族回归对照（逐分音 +0.4 Hz，同相）；同一配方/种子，违反即停"
+  },
+  {
+   "id": "q35-unresolved_doublet-48000",
+   "kind": "unresolved_doublet_control",
+   "note": 55,
+   "rate": 48000,
+   "seed": 392035,
+   "b": 0.0003,
+   "f1_offset_hz": 0.13440860215053763,
+   "phase0": 2.356194490192345,
+   "string_phase_mode": "shared",
+   "strings": [
+    {
+     "hz": 0.0
+    },
+    {
+     "hz": 0.4
+    }
+   ],
+   "admission_expectation": "rejected",
+   "obligation": "control",
+   "expected_class": "ambiguous",
+   "purpose": "v1 矩阵冻结混合族回归对照（逐分音 +0.4 Hz，同相）；同一配方/种子，违反即停"
+  },
+  {
+   "id": "q38-unresolved_doublet-44100",
+   "kind": "unresolved_doublet_control",
+   "note": 67,
+   "rate": 44100,
+   "seed": 392038,
+   "b": 0.0007,
+   "f1_offset_hz": 0.06720430107526881,
+   "phase0": 1.5707963267948966,
+   "string_phase_mode": "shared",
+   "strings": [
+    {
+     "hz": 0.0
+    },
+    {
+     "hz": 0.4
+    }
+   ],
+   "admission_expectation": "rejected",
+   "obligation": "control",
+   "expected_class": "ambiguous",
+   "purpose": "v1 矩阵冻结混合族回归对照（逐分音 +0.4 Hz，同相）；同一配方/种子，违反即停"
+  },
+  {
+   "id": "q39-unresolved_doublet-48000",
+   "kind": "unresolved_doublet_control",
+   "note": 67,
+   "rate": 48000,
+   "seed": 392039,
+   "b": 0.0007,
+   "f1_offset_hz": 0.13440860215053763,
+   "phase0": 2.356194490192345,
+   "string_phase_mode": "shared",
+   "strings": [
+    {
+     "hz": 0.0
+    },
+    {
+     "hz": 0.4
+    }
+   ],
+   "admission_expectation": "rejected",
+   "obligation": "control",
+   "expected_class": "ambiguous",
+   "purpose": "v1 矩阵冻结混合族回归对照（逐分音 +0.4 Hz，同相）；同一配方/种子，违反即停"
+  }
+ ],
+ "limits": [
+  "合成域限定：通过只说明方法在声明合成域内满足声明义务，不建立真实弦身份、中心弦归属或与商业算法等价。",
+  "B 是合成常量；B 相对误差达标不认证物理 B，也不替代真实参考分辨率。",
+  "共享观测器是新实现：按契约接口评估；本设计不使用（也不验证）任何固定 R2/宽度/2 dB 类规则。",
+  "24-bit PCM 往返 + 高斯噪声 + 单一非谐性模型；不含真实钢琴包络、共鸣耦合或双/三弦物理参数分布。",
+  "四项回归对照只检查旧的已演示假阳性模式是否复现，不构成新资格证据。",
+  "本设计不是 v3 最终验收协议；不授权新采集、生产 B 变更或历史判决重判。",
+  "WD 短窗只在声明的两个用例中作观测器跨窗覆盖，不替代冻结 W1/W2，也不进入端到端门禁。"
+ ]
+}

@@ -1,0 +1,425 @@
+{
+ "schema": "devpiano-task39-2-observer-window-refusal-development-result-v1",
+ "created_utc": "2026-10-16T14:23:57.203524+00:00",
+ "batch": "observer-window-refusal-development-20261016-134009",
+ "user_authorization_verbatim": "同意，我批准 runner 窗级输入拒绝契约的最小修订及针对性开发验证",
+ "scope": "Only runner window input refusal, cross-lane registration validation and scoring, directly related controls and four bounded real-API developer conditions. Not independent qualification.",
+ "initial_plan_sha256": "2569af9f7d593e3a18691776dcd6cc59f9600c2a83d8dcc8e159f55914b53455",
+ "corrected_plan_sha256": "57e04f4a55e2641f127d6d3f0e78c5585b981b12dc6e272d4825a7258c36a61a",
+ "plan_correction_evidence": "development-plan-correction.json",
+ "source_before": {
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification.py": "c3584777862f8ff3065cc7e8ce50462af705924d95d06339559368c4a73514f5",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification-tests.py": "1ec3a48acf8a0bd6d9f5a9797263bb83af8c86fe0d035dd061ff7a065e81243f"
+ },
+ "source_after": {
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification.py": "b566ca1b98fb5feec539e4b21d4511001e0dfa63464fb1985472b237340bc41e",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification-tests.py": "ce4d3c1e4cb5600d51dde085dfcf685b518d0ca400f92278a0bd0d3c8f687d1b"
+ },
+ "source_contract": {
+  "schema": "devpiano-task39-2-window-refusal-source-scope-v1",
+  "before": {
+   "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification.py": "c3584777862f8ff3065cc7e8ce50462af705924d95d06339559368c4a73514f5",
+   "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification-tests.py": "1ec3a48acf8a0bd6d9f5a9797263bb83af8c86fe0d035dd061ff7a065e81243f"
+  },
+  "after": {
+   "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification.py": "b566ca1b98fb5feec539e4b21d4511001e0dfa63464fb1985472b237340bc41e",
+   "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification-tests.py": "ce4d3c1e4cb5600d51dde085dfcf685b518d0ca400f92278a0bd0d3c8f687d1b"
+  },
+  "changed_existing_functions": [
+   "check_case_design",
+   "run_observer_lane",
+   "spectral_candidates"
+  ],
+  "new_contract_helpers": [
+   "check_observer_windows",
+   "observer_window_refusal_expected"
+  ],
+  "CLI_main_change": "Registration help text only; executable main AST otherwise identical.",
+  "module_doc_change": "Window refusal description and removal of obsolete consumed-registration examples.",
+  "all_other_AST_nodes_unchanged": true,
+  "unchanged_existing_functions": [
+   "sha256_file",
+   "load_module",
+   "nominal",
+   "finite",
+   "json_ready",
+   "llround",
+   "tolerance_hz",
+   "describe",
+   "merged_case",
+   "load_registration",
+   "half_width_of",
+   "component_frequency",
+   "enumerate_components",
+   "build_regions",
+   "case_class",
+   "family_lines_of",
+   "expected_binding",
+   "check_generator",
+   "check_timing_contract",
+   "check_coverage_requirements",
+   "comparison_expectations",
+   "check_cross_case_groups",
+   "check_complete_plan_gates",
+   "check_execution",
+   "check_stop_policy",
+   "validate_registration",
+   "phase_argument",
+   "synthesize",
+   "write_pcm",
+   "read_pcm",
+   "truth_payload",
+   "exact_seconds",
+   "extract_claims",
+   "match_claim",
+   "conditional_band_match",
+   "assess_observer_case",
+   "ppa_settings",
+   "check_holdout",
+   "assess_family_window",
+   "check_timing_retention",
+   "check_windows",
+   "run_ppa_lane",
+   "build_timing",
+   "run_case",
+   "min_comparable_for",
+   "evaluate_group_gates",
+   "run_evaluator_regression",
+   "summarize",
+   "check_registration_summary",
+   "prepare_ppa",
+   "main"
+  ],
+  "shared_observer_PPA_evaluator_generator_budgets_and_stop_logic_unchanged": true,
+  "qualification_executed": false
+ },
+ "regressions": {
+  "passed": true,
+  "native_Windows": true,
+  "suites": [
+   {
+    "name": "meter-regressions",
+    "command": [
+     "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Scripts\\python.exe",
+     "-B",
+     "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\meter-qualification-tests.py"
+    ],
+    "exit_code": 0,
+    "inputs_unchanged": true,
+    "receipt": "runs/meter-regressions.receipt.json"
+   },
+   {
+    "name": "observer-regressions",
+    "command": [
+     "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Scripts\\python.exe",
+     "-B",
+     "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\partial-observer-tests.py"
+    ],
+    "exit_code": 0,
+    "inputs_unchanged": true,
+    "receipt": "runs/observer-regressions.receipt.json"
+   },
+   {
+    "name": "evaluator-regressions",
+    "command": [
+     "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Scripts\\python.exe",
+     "-B",
+     "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\validation-eval-tests.py"
+    ],
+    "exit_code": 0,
+    "inputs_unchanged": true,
+    "receipt": "runs/evaluator-regressions.receipt.json"
+   },
+   {
+    "name": "PPA-timing-regressions",
+    "command": [
+     "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Scripts\\python.exe",
+     "-B",
+     "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\pilot-partial-analysis-tests.py",
+     "TimingContract",
+     "SampleGrid",
+     "ReleaseBoundary"
+    ],
+    "exit_code": 0,
+    "inputs_unchanged": true,
+    "receipt": "runs/PPA-timing-regressions.receipt.json"
+   }
+  ],
+  "PPA_scope": "TimingContract, SampleGrid and ReleaseBoundary only; not the full PPA test suite.",
+  "existing_observer_API_strict_refusal_unchanged": true
+ },
+ "real_API_development": {
+  "passed": true,
+  "registered_conditions": 4,
+  "executed_conditions": 4,
+  "conditions": [
+   {
+    "id": "dev-window-normal-n33-r44100",
+    "passed": true,
+    "record_verdict": "passed",
+    "window_contract_satisfied": true,
+    "observer_windows": {
+     "W1": {
+      "bounds_s": [
+       0.08,
+       3.8
+      ],
+      "start_sample": 4907,
+      "stop_sample": 168959,
+      "samples": 164052,
+      "frames": 230699,
+      "coordinate": "note_on_relative",
+      "evidence_role": "synthetic_fixture",
+      "source": "runner_window_bounds",
+      "status": "input_accepted",
+      "stage": "input",
+      "reason": null
+     },
+     "W2": {
+      "bounds_s": [
+       0.5,
+       4.1
+      ],
+      "start_sample": 23429,
+      "stop_sample": 182189,
+      "samples": 158760,
+      "frames": 230699,
+      "coordinate": "note_on_relative",
+      "evidence_role": "synthetic_fixture",
+      "source": "runner_window_bounds",
+      "status": "input_accepted",
+      "stage": "input",
+      "reason": null
+     }
+    },
+    "observer_probes_by_window": {
+     "W1": 5,
+     "W2": 5
+    },
+    "observer_verdict": "passed",
+    "observer_violations": [],
+    "ppa_branch": "required_admitted",
+    "ppa_violations": [],
+    "error": null
+   },
+   {
+    "id": "dev-window-normal-n33-r48000",
+    "passed": true,
+    "record_verdict": "passed",
+    "window_contract_satisfied": true,
+    "observer_windows": {
+     "W1": {
+      "bounds_s": [
+       0.08,
+       3.8
+      ],
+      "start_sample": 5483,
+      "stop_sample": 184043,
+      "samples": 178560,
+      "frames": 251243,
+      "coordinate": "note_on_relative",
+      "evidence_role": "synthetic_fixture",
+      "source": "runner_window_bounds",
+      "status": "input_accepted",
+      "stage": "input",
+      "reason": null
+     },
+     "W2": {
+      "bounds_s": [
+       0.5,
+       4.1
+      ],
+      "start_sample": 25643,
+      "stop_sample": 198443,
+      "samples": 172800,
+      "frames": 251243,
+      "coordinate": "note_on_relative",
+      "evidence_role": "synthetic_fixture",
+      "source": "runner_window_bounds",
+      "status": "input_accepted",
+      "stage": "input",
+      "reason": null
+     }
+    },
+    "observer_probes_by_window": {
+     "W1": 5,
+     "W2": 5
+    },
+    "observer_verdict": "passed",
+    "observer_violations": [],
+    "ppa_branch": "required_admitted",
+    "ppa_violations": [],
+    "error": null
+   },
+   {
+    "id": "dev-window-frames-n33-r44100",
+    "passed": true,
+    "record_verdict": "passed",
+    "window_contract_satisfied": true,
+    "observer_windows": {
+     "W1": {
+      "bounds_s": [
+       0.08,
+       3.8
+      ],
+      "start_sample": 4907,
+      "stop_sample": 168959,
+      "samples": 164052,
+      "frames": 174692,
+      "coordinate": "note_on_relative",
+      "evidence_role": "synthetic_fixture",
+      "source": "runner_window_bounds",
+      "status": "input_accepted",
+      "stage": "input",
+      "reason": null
+     },
+     "W2": {
+      "bounds_s": [
+       0.5,
+       4.1
+      ],
+      "start_sample": 23429,
+      "stop_sample": 182189,
+      "samples": 158760,
+      "frames": 174692,
+      "coordinate": "note_on_relative",
+      "evidence_role": "synthetic_fixture",
+      "source": "runner_window_bounds",
+      "status": "input_refused",
+      "stage": "input",
+      "reason": "window_exceeds_available_samples"
+     }
+    },
+    "observer_probes_by_window": {
+     "W1": 5,
+     "W2": 0
+    },
+    "observer_verdict": "passed",
+    "observer_violations": [],
+    "ppa_branch": "required_rejected",
+    "ppa_violations": [],
+    "error": null
+   },
+   {
+    "id": "dev-window-frames-n33-r48000",
+    "passed": true,
+    "record_verdict": "passed",
+    "window_contract_satisfied": true,
+    "observer_windows": {
+     "W1": {
+      "bounds_s": [
+       0.08,
+       3.8
+      ],
+      "start_sample": 5483,
+      "stop_sample": 184043,
+      "samples": 178560,
+      "frames": 190283,
+      "coordinate": "note_on_relative",
+      "evidence_role": "synthetic_fixture",
+      "source": "runner_window_bounds",
+      "status": "input_accepted",
+      "stage": "input",
+      "reason": null
+     },
+     "W2": {
+      "bounds_s": [
+       0.5,
+       4.1
+      ],
+      "start_sample": 25643,
+      "stop_sample": 198443,
+      "samples": 172800,
+      "frames": 190283,
+      "coordinate": "note_on_relative",
+      "evidence_role": "synthetic_fixture",
+      "source": "runner_window_bounds",
+      "status": "input_refused",
+      "stage": "input",
+      "reason": "window_exceeds_available_samples"
+     }
+    },
+    "observer_probes_by_window": {
+     "W1": 5,
+     "W2": 0
+    },
+    "observer_verdict": "passed",
+    "observer_violations": [],
+    "ppa_branch": "required_rejected",
+    "ppa_violations": [],
+    "error": null
+   }
+  ],
+  "report": "smoke-metadata-correction/development-smoke-report.json",
+  "raw_cases": "smoke-metadata-correction/development-cases/",
+  "native_receipt": "smoke-metadata-correction/runs/real-API-development-corrected-metadata.receipt.json"
+ },
+ "retained_initial_smoke_failure": {
+  "occurred": true,
+  "native_exit_code": 1,
+  "phase": "prepare_ppa before any output directory, synthesis, fit or run_case",
+  "cause": "A duplicate note metadata key overwrote numeric 33 with provenance text.",
+  "first_receipt": "runs/real-API-development.receipt.json",
+  "first_stderr": "runs/real-API-development.stderr",
+  "original_plan": "registered-development-plan.json",
+  "original_invalid_case_metadata": "registered-development-cases.json",
+  "conditions_measured_before_correction": 0,
+  "correction": "Restore the already intended consumed parameter-point note=33; move the explanation to provenance_note. All B/offset/seeds/phases/levels/timing/expected outcomes unchanged.",
+  "only_failed_smoke_retried": true,
+  "successful_regressions_repeated": false,
+  "runner_or_test_sources_changed_after_regressions": false
+ },
+ "input_window_contract": {
+  "normal_status": "input_accepted indicates only a complete legal requested sample interval, not an acoustic pass.",
+  "negative_status": "input_refused is a runner pre-candidate input record, not observer ambiguity or a model/interval claim.",
+  "refusal_scope": "Only declared rejected frames_boundary not_ok windows whose original requested stop actually exceeds the registered and actual frame count.",
+  "original_boundaries_retained": true,
+  "clipping_or_padding": false,
+  "candidate_or_observer_calls_for_refused_window": 0,
+  "normal_observer_exceptions_still_failed": true,
+  "missing_or_forged_refusal_records_still_failed": true
+ },
+ "protected_inputs": {
+  "passed": true,
+  "checked": 381,
+  "changed": 0,
+  "missing": 0,
+  "evidence": "protected-after.json"
+ },
+ "original_consumed_qualification": {
+  "batch": "a3-a5-qualification-20261016-105446",
+  "outcome": "not_qualified",
+  "case_count": 84,
+  "passed": 82,
+  "failed": [
+   "a3a5q-frames-boundary-n83-r44100",
+   "a3a5q-frames-boundary-n83-r48000"
+  ],
+  "report_sha256": "0fb2a2380a651cda4195209b223d024c7968199611919106bafdf599c5055a48",
+  "seal_sha256": "be4c1f30966818a109f3fad39c1690be94e346a9a5fb0f21e6735f4c80757a65",
+  "marker_sha256": "ba1458a4d482af9568d45e27a075facd4db930446a42959e7d4af139a6289bdd",
+  "rerun_rescore_or_reverdict": false
+ },
+ "current_method_independently_qualified": false,
+ "registered_development_role_executed": false,
+ "qualification_role_or_subset_executed": false,
+ "new_execution_seal_or_marker_created": false,
+ "reference_GUI_RPC_capture_or_v3_release": false,
+ "production_CPP_or_DSP_edited": false,
+ "archive_directory": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/observer-window-refusal-development-20261016-134009",
+ "next_recommended": "先前瞻登记并只读审阅修订后未触碰的新资格覆盖，把旧66、旧84、所有已消费资格、当前四个自有开发条件及相关回归纳入历史排重；明确窗级输入拒绝义务后再单独批准一次完整资格。不得重跑或重评分旧84恢复资格，A6/A7和参考原点门禁仍独立阻断。",
+ "archival": {
+  "evidence_root": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/observer-window-refusal-development-20261016-134009",
+  "evidence_root_win": "G:\\source\\projects\\devpiano-evidence\\phase39\\task39-2\\observer-window-refusal-development-20261016-134009",
+  "evidence_manifest_sha256": "7031b60bb1da2291adc2f62aaad321afa0da07a97af960bfd00dbcffa9aa94c3",
+  "files": 68,
+  "bytes": 7219273,
+  "verified": 68,
+  "missing": 0,
+  "mismatch": 0,
+  "core_bindings_verified": 18,
+  "verification_receipt": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/observer-window-refusal-development-20261016-134009/archive-verification.json"
+ },
+ "independent_qualification_execution_authorized": false,
+ "not_an_execution_seal": true
+}

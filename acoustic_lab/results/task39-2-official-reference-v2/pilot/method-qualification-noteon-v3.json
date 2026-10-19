@@ -1,0 +1,1911 @@
+{
+ "schema": "devpiano-task39-2-method-qualification-noteon-v3",
+ "date": "2026-10-15",
+ "status": "complete_finite_registration_not_v3_acceptance_protocol",
+ "purpose": "A3 完整有限方法资格登记（NoteOn 相对坐标版）：独立生成器 + 固定互斥播种/配方的 24-bit 双声道 PCM 用例，端到端只经共享入口 analyze_samples(..., timing=note_on_relative) 与 reference_quality 事后核验，并复用冻结门禁函数核验角色内重复稳定性（repeat_quality）与归一化可比量（compare_analyses）。是完整有限登记，不是 v3 验收协议，也不替代 v3 六态回归；本次由用户显式批准一次完整独立 qualification，仍须外部封印精确绑定登记与五个执行源码，执行即消费，全部失败保留后停止。",
+ "supersedes": "沿用并替换 meter-qualification.py 的旧 method-qualification-v3.json 执行路径（旧注册与旧结果不动，不作兼容路径）；v1 已消费资格复现与回执留在证据归档。",
+ "role_semantics": {
+  "development": "可反复执行调试实现；结果不得改标为资格证据，也不得用开发通过替代任何资格义务。",
+  "qualification": "仅在显式 approval + 外部 --seal 精确绑定本注册与源码后执行一次完整角色；全部失败原样保留并停止，无子集/重试/调参/替换。qualified 只表示登记合成域内的完整方法资格：观测器、相对坐标、静态族、重复、归一化比较与六态回归全部通过；不认证参考原点，也不等于真实采集或正式验收通过。"
+ },
+ "timing_contract": {
+  "coordinate": "note_on_relative",
+  "evidence_role": "synthetic_fixture",
+  "required_keyword": "analyze_samples(left, right, rate, note, timing=...) / analyze_unit(path, note, timing=...) 必须显式关键字 timing；无默认原点、无别名回退",
+  "sample_mapping": "W1=[0.08,3.8], W2=[0.5,4.1] 相对 NoteOn；样本界 = note_on_sample + llround(relative_seconds*rate)，llround 半远离零；禁止 int(float*rate) 截断（4.1*44100=180809.99999999997 会丢 1 样本）",
+  "event_binding_constraints": "0 < note_on_sample < note_off_sample <= frames；违者整体拒绝（不产生窗口结论），不得裁剪/伪造 note_off",
+  "window_record_keys": [
+   "bounds_s",
+   "start_sample",
+   "stop_sample",
+   "samples",
+   "coordinate",
+   "evidence_role"
+  ],
+  "window_failure_semantics": "每窗独立失败并保留：stop>note_off 且仍在帧内 → stage='bounds'/release_boundary_exceeded；stop>frames → stage='spectrum'；不得提升 W2、不得裁剪",
+  "timing_retention": "analysis['timing'] 必须原样保留传入的全部键；窗口记录在任何 status 下都带相对 bounds_s 与整数 start/stop",
+  "load_timing_report": "仅服务 A4 dev/render 独立验证（evidence_role=dev_render_verification）；合成用例不使用，reference 原点认证在本登记内不支持"
+ },
+ "generator": {
+  "duration_s": 4.2,
+  "rates_hz": [
+   44100,
+   48000
+  ],
+  "windows": {
+   "W1": [
+    0.08,
+    3.8
+   ],
+   "W2": [
+    0.5,
+    4.1
+   ]
+  },
+  "note_on_offsets": "逐例显式整数 note_on_sample>0（非零 MIDI 原点偏移，逐例取值不同；用于暴露默认原点/文件绝对窗错误）",
+  "release_model": "tone 只在 [note_on_sample, note_off_sample) 内合成，前导与之后为静音+噪声；正常注册下 W1/W2 完全位于 release 之前",
+  "case_defaults": {
+   "obligation": "gating",
+   "admission_expectation": "admitted",
+   "strings": [
+    {
+     "cents": 0.0
+    }
+   ],
+   "extra_modes": [],
+   "skip_partials": [],
+   "partial_offsets": {},
+   "amp_overrides": {},
+   "envelope": {
+    "model": "none"
+   },
+   "modulation": null,
+   "am": null,
+   "conditional": null,
+   "boundary": null,
+   "noise_sigma": 1e-05,
+   "level": 1.0,
+   "partials": 12,
+   "windows": [
+    "W1"
+   ],
+   "required_partials": [],
+   "forbidden_partials": [],
+   "string_phase_mode": "indexed",
+   "probe_half_width_hz": 3.0,
+   "f1_offset_hz": 0.0,
+   "phase0": 0.0,
+   "note_off_seconds_after_note_on": 4.2,
+   "frames_seconds_after_note_on": 5.2
+  },
+  "model": "f(n,s)=n*(f1+Δf1)*2^((cents_s+Δcents)/1200)*sqrt((1+b*n*n)/(1+b)) + hz_s+Δhz；a(n,s)=(0.05/n**0.8)*10^(amp_db/20)；φ(n,s)=phase0+0.41n+0.63s（indexed）或 phase0+0.41n（shared）+phase_deg；附加模态 φ=phase0+0.41n+1.1+0.37i；包络 none|exp(-t/τ)（n>=from_partial）|w*exp(-t/τf)+(1-w)*exp(-t/τs)，t 相对 NoteOn；am: 幅度×(1+depth*cos(2πf_m t))；drift_linear: f(t)=fc+span/T*(t-T/2)；fm_sinusoidal: f(t)=fc+depth*sin(2πf_m t)（相位按解析积分）；噪声：default_rng(seed) 每声道独立高斯（先左后右）",
+  "pcm": "round-to-nearest sample*8388608；24-bit signed 双声道；无归一化；非有限或峰值>=0.95 即用例失败；写盘后回读核验实际整数24往返",
+  "truth_role": "本文件内的独立实现在观测后核验；不 import PPA 预测、不读生产 B 或任何参考数据；真值从不传入观测器、门禁或 analyze_samples"
+ },
+ "assessment": {
+  "region_classification": {
+   "resolvable_separation_hz": 1.2,
+   "max_level_span_db": 20.0,
+   "order": "先判非平稳，再判单分量，再按最小两两分离与电平跨度判 resolved/ambiguous",
+   "rationale": "1.2 Hz 是本登记声明的有限工程支持阈，不是普适分辨率律。",
+   "probe_coverage": "分区全部分量跨度<=probe_half_width_hz；相邻分区间隔>=2*probe_half_width_hz"
+  },
+  "tolerances": {
+   "single_cents": 0.05,
+   "single_floor_hz": 0.005,
+   "component_cents": 1.0,
+   "component_floor_hz": 0.01,
+   "b_relative": 0.02,
+   "note": "沿用短契约预算：single=max(0.005 Hz,0.05 cents-in-Hz)；resolved 分量=max(0.01 Hz,1 cent)；区间必须包含真值且最坏半宽不超同一预算；B 相对误差<=0.02"
+  },
+  "sufficiency": {
+   "minimum_identified_partials": 5,
+   "minimum_training_partials": 3,
+   "minimum_independently_reidentified_holdouts": 2,
+   "independent_prediction_rms_cents_max": 1.0,
+   "independent_prediction_max_cents_max": 3.0,
+   "window_frequency_spread_cents_max": 1.0,
+   "window_B_relative_spread_max": 0.1,
+   "note": "短契约频率/区间/B/误差/充分性预算原样保留；本执行器独立复核（不只依赖门禁结论）"
+  },
+  "observer_obligations": [
+   "候选只从实际 PCM 的 Hann 窗频谱导出（整数样本界）：rel>=rel_power_floor 且局部 SNR>=min_local_snr_db 的局部极大，并强制包含最强 force_top 个峰；候选中心与 half_width 是探针参数，不是真值。",
+   "每个分区必须被至少一个探针窗口覆盖；region_not_probed 即失败。",
+   "single 类分区：至少一次 single_component_adequate，频率在 max(0.005 Hz,0.05 cents) 内，interval_hz 包含真值且最坏半宽不超预算；缺 interval/超宽/未匹配/多分量分区 single 声明都计错误准入。",
+   "resolved 类分区：必须有一次调用以 resolved_components 给出与真值一一对应的全部分量（每个在 max(0.01 Hz,1 cent) 内）；多报、少报、错报均失败；跨探针凑分量不算。",
+   "ambiguous 类分区：不得出现 single_component_adequate 声明（正确分辨的分量声明只作记录、不构成认证；弃权亦可）；nonstationary 类分区只能弃权；negative（无真实分量）用例任何 single/resolved 声明都计错误准入。",
+   "条件域（conditional_am / conditional_weak_boundary）分区：静态单线声明须满足与 single 相同的频率/区间义务；否则可明确拒绝静态认证（ambiguous 或只报诊断的 resolved_components，无标量认证）。诊断分量必须有限且在事前声明的条件带内，完整保留但不计静态认证、精度覆盖或正向准入数；可分辨分量的精度另由独立 resolved 用例核验。任何超预算标量声明都失败，不能由另一正确探针掩盖。",
+   "观测器异常或未知状态字按界面失败记录，不当作弃权；required-single 正例必须认证，条件域诊断不能补足硬性正向覆盖。不允许全局通过率或全体弃权通过。"
+  ],
+  "ppa_obligations": [
+   "家族通道只调用共享入口 ppa.analyze_samples(left, right, rate, note, timing={coordinate:'note_on_relative', sample_rate, frames, note_on_sample, note_off_sample, evidence_role:'synthetic_fixture'})；本执行器不自行重建窗口、不复制 W1 冒充 W2、不传真值；theory 按名义频率写入 ppa.NOTES，seeds/局部 SNR 用模块冻结规则（不改阈值）。",
+   "独立复核 timing 原样保留、逐窗 bounds_s/start_sample/stop_sample/samples/coordinate/evidence_role 与注册整数样本界一致、window_failures 恰为 status!=ok 的窗口；status=ok 的窗口其 stop_sample 必须 <= note_off_sample 且 <= frames（不静默包含 release、不跨界拼接）。",
+   "admitted 期望用例：reference_quality 必须准入；本执行器另独立复核每窗 status=ok、identified>=5、独立留出 status=ok/training>=3/holdout>=2/明细齐全且 rms<=1.0、max<=3.0 cents、每条认证线频率在 max(0.005 Hz,0.05 cents) 内且编号与真值族线一致（缺失/位移编号即错误索引准入）、拟合 B 相对误差<=0.02、required_partials 全部出现、forbidden_partials 不得出现、跨窗 f1 展开<=1.0 cent、B 展开<=0.1。任一不过即相应违例。",
+   "rejected 期望用例（未分辨/可分辨混合族、漂移/调频、纯噪声、边界负例）：不得准入；准入即 false_static_admission。",
+   "conditional 期望用例（AM/弱边界）：准入 ⟺ 完整义务通过（同 admitted 的全部独立复核），任一义务失败即 false_conditional_static_admission；拒绝且理由非空即显式弃权的合法条件结果；拒绝但无理由/无记录即 incomplete_conditional_accounting 违例。AM carrier 输出不得进入 B（B 相对误差复核即该约束的检查）。",
+   "refused 期望用例（非法事件绑定 note_off_sample > frames）：analyze_samples 必须整体拒绝（抛错），不产生窗口结论；未拒绝即 invalid_timing_not_refused。禁止为迁就测试裁剪/伪造 note_off。",
+   "边界负例：release_boundary 要求 W1 status=ok、W2 status!=ok 且 failure stage='bounds'（release_boundary_exceeded），window_failures 只列 W2；frames_boundary 要求 W1 ok、W2 非 ok 且 stage='spectrum'；两者都必须保留逐窗记录、不裁剪、不提升、不跨窗拼接。",
+   "回归对照 q34/q35/q38/q39 按 v1 配方与种子重建：rejected 期望且观测器不得单线认证；违反即整体不获资格（只作已消费回归）。",
+   "所有用例均为 gating 义务：不存在 diagnostic 非门禁用例，失败不得下移为忽略诊断；无全局通过率、无阈值放宽。",
+   "跨用例义务（角色内，复用冻结门禁）：repeat_group 成员经 gate.repeat_quality 核验重复稳定性；comparison_pair 成员经 gate.compare_analyses 核验归一化可比量（base 排除、>=2 非基准、RMS<=1.0/max<=3.0 cents，掩码沿用短契约 midi_below_72=7 / 72_through_95=5 / 96_and_above=1）。任何组/对不满足即相应 repeat_group_not_admitted / comparison_pair_not_passed 违例。"
+  ],
+  "repeat_obligation": {
+   "members_per_group": 2,
+   "f1_spread_cents_max": 1.0,
+   "b_relative_spread_max": 0.1,
+   "gate_function": "validation-eval.py:repeat_quality",
+   "obligation": "同配方、仅噪声种子不同的重复组：两名成员都必须 reference_quality 准入（W1/W2 完整），且 W1 f1 展开 <=1.0 cent、B 相对展开 <=0.1；组不完整、成员被拒或超预算即整组违例（复用冻结门禁函数，不另建评估器）。"
+  },
+  "comparison": {
+   "metric": "1200*log2((dev_n/dev_m)/(ref_n/ref_m))",
+   "base": "最低共同可比较分音：仅用于归一化并被排除",
+   "minimum_nonbase_partials": 2,
+   "rms_cents_max": 1.0,
+   "max_cents_max": 3.0,
+   "existing_mask_unchanged": {
+    "midi_below_72": 7,
+    "midi_72_through_95": 5,
+    "midi_96_and_above": 1
+   },
+   "gate_function": "validation-eval.py:compare_analyses",
+   "obligation": "可比对必须来自同一真值的两个准入分析（合成域用不同 producer 条件：电平与噪声种子不同）：base 排除、至少 2 个非基准分音、norm_rms<=1.0 且 norm_max<=3.0 cents；不足（insufficient_comparable）或超预算即违例，不得算通过。"
+  }
+ },
+ "candidates": {
+  "rel_power_floor": 1e-11,
+  "min_local_snr_db": 10.0,
+  "max_candidates": 48,
+  "force_top": 3,
+  "band_low_factor": 0.5,
+  "band_high_factor": 0.98,
+  "rationale": "rel 下限低于最弱声明阳性且高于安静用例噪声峰；SNR 下限排除纯噪声峰；force_top 保证纯噪声用例也被实际探测。"
+ },
+ "coverage_requirements": {
+  "roles": [
+   "development",
+   "qualification"
+  ],
+  "required_expected_classes_per_role": [
+   "positive",
+   "resolvable",
+   "ambiguous",
+   "nonstationary",
+   "negative"
+  ],
+  "minimum_required_admission_cases_per_role": 8,
+  "required_rates_per_role": [
+   44100,
+   48000
+  ],
+  "minimum_conditional_cases_per_role": 2,
+  "required_boundary_kinds_per_role": [
+   "release_boundary",
+   "frames_boundary",
+   "invalid_timing_refused"
+  ],
+  "required_observer_window_names": [
+   "W1",
+   "W2"
+  ],
+  "note": "硬性正向准入覆盖：每个角色的 required-admission 用例数不少于下限，且执行时实际准入数不得低于该下限；不允许靠条件弃权或全局通过率补足。",
+  "minimum_repeat_groups_per_role": 1,
+  "minimum_comparison_pairs_per_role": 1
+ },
+ "execution": {
+  "approval": true,
+  "approval_note": "2026-10-15 用户明确批准，原文：同意，批准进行一次完整独立qualification，先将授权写入登记，再封印登记与五个执行源码的精确散列，按一次性停止规则执行。本授权仅用于 noteon-qualification-20261015-082025 批次的一次完整独立角色；授权原文与修改前登记保存在该批次 authorization.json 与 pre-authorization/。不授权重试、调参、替换用例、GUI、参考采集、正式评估或生产变更；执行器不自行改写本字段。",
+  "development": {
+   "authorized": true,
+   "repeatable": true,
+   "evidence_role": "synthetic_fixture",
+   "reporting": "development 运行结果不得作为独立资格证据。"
+  },
+  "qualification": {
+   "seal_required": true,
+   "seal_convention": "外部 --seal JSON：{'role':'method_qualification_noteon_v3','files':{<resolved path>: sha256}}；files 必须精确绑定本注册文件与 meter-qualification.py / pilot-partial-analysis.py / partial-observer.py / validation-eval.py / validation-eval-tests.py 的实际散列，逐项相等才可执行。",
+   "consumption": "封印对应一轮完整角色：执行开始即在封印旁以固定命名 <seal>.consumed 独占创建消费标记；已消费封印不得再次用于 qualification（无子集/重试/换目录重跑）。",
+   "requires": [
+    "approval=true（显式批准，非执行器改写）",
+    "seal 精确绑定注册与五个源码的实际 sha256",
+    "全新 --out 目录；完整角色一次执行",
+    "所有失败原样保留；随后停止"
+   ],
+   "on_failure": "任何用例失败、中断、异常或角色不完整都记为 not_qualified/aborted 并停止；不得因已有行通过而降级为 qualified，不得重试或替换用例。"
+  },
+  "evaluator_regression": {
+   "required": true,
+   "script": "pilot/tools/validation-eval-tests.py",
+   "timeout_seconds": 120,
+   "obligation": "完整角色执行时，在合成前运行同一封印绑定的评估器回归，验证六态分类、阈值/充分性、错误与完整记账。失败/异常/超时均禁止方法资格通过，并保留原始 stdout/stderr；这不是对真实留出数据的正式评估。"
+  }
+ },
+ "stop_policy": {
+  "clauses": {
+   "approval_gates_execution": "approval=false 硬性阻断 qualification；执行器在创建输出目录与加载任何模块之前拒绝。",
+   "seal_binds_registration_and_sources": "执行要求外部封印与注册文件及五个源码的精确 sha256 完全一致；注册自身散列由封印绑定，避免自引用。",
+   "seal_consumed_by_one_complete_role": "封印对应一轮完整角色，执行即消费（封印旁 <seal>.consumed 独占标记）；已消费封印不得重跑，换输出目录也不构成独立资格。",
+   "all_failures_retained_then_stop": "任何失败、中断、异常或角色不完整一律保留证据并停止；不得因已有行通过而 qualified。",
+   "no_subset_retry_tuning_replacement": "无子集执行、无重试、无调参、无用例替换；失败用例不得改名/换种子重来。",
+   "development_never_qualification": "development 可反复执行，但永不作为独立资格证据。",
+   "prior_verdicts_and_archives_unchanged": "旧 registration/结果/v1 已消费资格与回执不动；旧复现属于证据归档，不是本执行器的兼容路径。",
+   "no_diagnostic_waiver": "无 diagnostic 非门禁义务；所有用例（含条件域与边界）按声明的真实结果门禁，失败不得下移为忽略诊断。"
+  },
+  "enforced_by_runner": [
+   "approval_gates_execution",
+   "seal_binds_registration_and_sources",
+   "seal_consumed_by_one_complete_role",
+   "all_failures_retained_then_stop",
+   "no_subset_retry_tuning_replacement",
+   "development_never_qualification",
+   "no_diagnostic_waiver"
+  ]
+ },
+ "cases": {
+  "development": [
+   {
+    "id": "dev-stationary-29-44100",
+    "kind": "stationary",
+    "note": 29,
+    "rate": 44100,
+    "seed": 394100,
+    "b": 8e-05,
+    "note_on_sample": 1631,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 186851,
+    "frames": 230951,
+    "expected_class": "positive",
+    "f1_offset_hz": 0.074,
+    "phase0": 0.3,
+    "windows": [
+     "W1",
+     "W2"
+    ]
+   },
+   {
+    "id": "dev-stationary-55-48000",
+    "kind": "stationary",
+    "note": 55,
+    "rate": 48000,
+    "seed": 394101,
+    "b": 0.0003,
+    "note_on_sample": 2772,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 204372,
+    "frames": 252372,
+    "expected_class": "positive",
+    "noise_sigma": 1e-05,
+    "f1_offset_hz": 0.096,
+    "phase0": 1.2,
+    "windows": [
+     "W1"
+    ]
+   },
+   {
+    "id": "dev-stationary-67-44100-snr1e4",
+    "kind": "stationary",
+    "note": 67,
+    "rate": 44100,
+    "seed": 394102,
+    "b": 0.0007,
+    "note_on_sample": 9261,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 194481,
+    "frames": 238581,
+    "expected_class": "positive",
+    "noise_sigma": 0.0001,
+    "f1_offset_hz": 0.088,
+    "phase0": 2.1,
+    "windows": [
+     "W1",
+     "W2"
+    ]
+   },
+   {
+    "id": "dev-expdecay-55-44100",
+    "kind": "expdecay",
+    "note": 55,
+    "rate": 44100,
+    "seed": 394103,
+    "b": 0.0003,
+    "note_on_sample": 5292,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 190512,
+    "frames": 234612,
+    "expected_class": "positive",
+    "envelope": {
+     "model": "exponential",
+     "tau_s": 0.5,
+     "from_partial": 5
+    },
+    "f1_offset_hz": 0.071,
+    "phase0": 1.5707963267948966
+   },
+   {
+    "id": "dev-expdecay-67-48000",
+    "kind": "expdecay",
+    "note": 67,
+    "rate": 48000,
+    "seed": 394104,
+    "b": 0.0007,
+    "note_on_sample": 3600,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 205200,
+    "frames": 253200,
+    "expected_class": "positive",
+    "envelope": {
+     "model": "exponential",
+     "tau_s": 0.35,
+     "from_partial": 7
+    },
+    "f1_offset_hz": 0.109,
+    "phase0": 2.6
+   },
+   {
+    "id": "dev-twostage-29-44100",
+    "kind": "twostage",
+    "note": 29,
+    "rate": 44100,
+    "seed": 394105,
+    "b": 8e-05,
+    "note_on_sample": 2205,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 187425,
+    "frames": 231525,
+    "expected_class": "positive",
+    "envelope": {
+     "model": "two_stage",
+     "fast_tau_s": 0.12,
+     "slow_tau_s": 2.5,
+     "fast_weight": 0.6
+    },
+    "f1_offset_hz": 0.061,
+    "phase0": 0.35
+   },
+   {
+    "id": "dev-twostage-67-48000",
+    "kind": "twostage",
+    "note": 67,
+    "rate": 48000,
+    "seed": 394106,
+    "b": 0.0007,
+    "note_on_sample": 4800,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 206400,
+    "frames": 254400,
+    "expected_class": "positive",
+    "envelope": {
+     "model": "two_stage",
+     "fast_tau_s": 0.2,
+     "slow_tau_s": 3.0,
+     "fast_weight": 0.45
+    },
+    "f1_offset_hz": 0.127,
+    "phase0": 1.1
+   },
+   {
+    "id": "dev-weak9-55-44100-m55",
+    "kind": "weak_harmonic",
+    "note": 55,
+    "rate": 44100,
+    "seed": 394107,
+    "b": 0.0003,
+    "note_on_sample": 7056,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 192276,
+    "frames": 236376,
+    "expected_class": "positive",
+    "amp_overrides": {
+     "9": -55.0
+    },
+    "partials": 9,
+    "f1_offset_hz": 0.077,
+    "phase0": 0.2
+   },
+   {
+    "id": "dev-weak9-67-44100-m65",
+    "kind": "weak_harmonic",
+    "note": 67,
+    "rate": 44100,
+    "seed": 394108,
+    "b": 0.0007,
+    "note_on_sample": 2646,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 187866,
+    "frames": 231966,
+    "expected_class": "positive",
+    "amp_overrides": {
+     "9": -65.0
+    },
+    "partials": 9,
+    "f1_offset_hz": 0.103,
+    "phase0": 1.6
+   },
+   {
+    "id": "dev-weakfund-29-48000",
+    "kind": "weak_fundamental",
+    "note": 29,
+    "rate": 48000,
+    "seed": 394109,
+    "b": 8e-05,
+    "note_on_sample": 3120,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 204720,
+    "frames": 252720,
+    "expected_class": "positive",
+    "amp_overrides": {
+     "1": -25.0
+    },
+    "f1_offset_hz": 0.119,
+    "phase0": 0.9
+   },
+   {
+    "id": "dev-missing-55-44100",
+    "kind": "missing_partial",
+    "note": 55,
+    "rate": 44100,
+    "seed": 394110,
+    "b": 0.0003,
+    "note_on_sample": 3087,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 188307,
+    "frames": 232407,
+    "expected_class": "positive",
+    "required_partials": [
+     1,
+     2,
+     3,
+     5,
+     6,
+     7
+    ],
+    "skip_partials": [
+     4
+    ],
+    "partials": 7,
+    "f1_offset_hz": 0.105,
+    "phase0": 2.1
+   },
+   {
+    "id": "dev-displaced-67-48000",
+    "kind": "displaced_partial",
+    "note": 67,
+    "rate": 48000,
+    "seed": 394111,
+    "b": 0.0007,
+    "note_on_sample": 5199,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 206799,
+    "frames": 254799,
+    "expected_class": "positive",
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     6
+    ],
+    "forbidden_partials": [
+     5
+    ],
+    "partial_offsets": {
+     "5": {
+      "cents": 17.3
+     }
+    },
+    "partials": 6,
+    "f1_offset_hz": 0.099,
+    "phase0": 1.25
+   },
+   {
+    "id": "dev-amslow-55-44100",
+    "kind": "amslow",
+    "note": 55,
+    "rate": 44100,
+    "seed": 394112,
+    "b": 0.0003,
+    "note_on_sample": 6174,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 191394,
+    "frames": 235494,
+    "expected_class": "positive",
+    "admission_expectation": "conditional",
+    "am": {
+     "freq_hz": 0.35,
+     "depth": 0.5
+    },
+    "conditional": {
+     "domain": "conditional_am",
+     "band_hz": 0.35,
+     "meaning": "AM 积在有限域内不唯一：静态单线只是条件近似；接受需全部独立义务通过，否则显式弃权有效；AM carrier 不得进入 B"
+    },
+    "f1_offset_hz": 0.093,
+    "phase0": 2.2,
+    "windows": [
+     "W1",
+     "W2"
+    ]
+   },
+   {
+    "id": "dev-amslow-67-48000",
+    "kind": "amslow",
+    "note": 67,
+    "rate": 48000,
+    "seed": 394113,
+    "b": 0.0007,
+    "note_on_sample": 7392,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 208992,
+    "frames": 256992,
+    "expected_class": "positive",
+    "admission_expectation": "conditional",
+    "am": {
+     "freq_hz": 0.2,
+     "depth": 0.3
+    },
+    "conditional": {
+     "domain": "conditional_am",
+     "band_hz": 0.2,
+     "meaning": "AM 积在有限域内不唯一：静态单线只是条件近似；接受需全部独立义务通过，否则显式弃权有效；AM carrier 不得进入 B"
+    },
+    "f1_offset_hz": 0.151,
+    "phase0": 0.55,
+    "windows": [
+     "W1"
+    ]
+   },
+   {
+    "id": "dev-weak9-88-44100-m75",
+    "kind": "weak_harmonic",
+    "note": 88,
+    "rate": 44100,
+    "seed": 394114,
+    "b": 0.004,
+    "note_on_sample": 8379,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 193599,
+    "frames": 237699,
+    "expected_class": "positive",
+    "admission_expectation": "conditional",
+    "amp_overrides": {
+     "9": -75.0
+    },
+    "partials": 9,
+    "conditional": {
+     "domain": "conditional_weak_boundary",
+     "band_hz": 0.0,
+     "meaning": "弱分音条件域：可辨识即需全部义务通过，否则显式弃权有效；不得伪造该线"
+    },
+    "f1_offset_hz": 0.077,
+    "phase0": 0.1
+   },
+   {
+    "id": "dev-double-res-55-44100",
+    "kind": "detuned_double_resolvable",
+    "note": 55,
+    "rate": 44100,
+    "seed": 394115,
+    "b": 0.0003,
+    "note_on_sample": 4116,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 189336,
+    "frames": 233436,
+    "expected_class": "resolvable",
+    "admission_expectation": "rejected",
+    "strings": [
+     {
+      "cents": 8.0
+     },
+     {
+      "cents": -8.0
+     }
+    ],
+    "probe_half_width_hz": 12.0,
+    "partials": 6,
+    "f1_offset_hz": 0.073,
+    "phase0": 0.15
+   },
+   {
+    "id": "dev-double-res-67-48000",
+    "kind": "detuned_double_resolvable",
+    "note": 67,
+    "rate": 48000,
+    "seed": 394116,
+    "b": 0.0007,
+    "note_on_sample": 2880,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 204480,
+    "frames": 252480,
+    "expected_class": "resolvable",
+    "admission_expectation": "rejected",
+    "strings": [
+     {
+      "cents": 8.0
+     },
+     {
+      "cents": -8.0
+     }
+    ],
+    "probe_half_width_hz": 23.0,
+    "partials": 6,
+    "f1_offset_hz": 0.097,
+    "phase0": 1.35
+   },
+   {
+    "id": "dev-extra-mode-67-44100",
+    "kind": "extra_mode_resolvable",
+    "note": 67,
+    "rate": 44100,
+    "seed": 394117,
+    "b": 0.0007,
+    "note_on_sample": 9702,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 194922,
+    "frames": 239022,
+    "expected_class": "resolvable",
+    "admission_expectation": "rejected",
+    "extra_modes": [
+     {
+      "near_partial": 9,
+      "offset_hz": 1.7,
+      "amp_db": 6.0
+     }
+    ],
+    "partials": 9,
+    "f1_offset_hz": 0.091,
+    "phase0": 0.05
+   },
+   {
+    "id": "dev-double-amb-67-44100",
+    "kind": "detuned_double_ambiguous",
+    "note": 67,
+    "rate": 44100,
+    "seed": 394118,
+    "b": 0.0007,
+    "note_on_sample": 7938,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 193158,
+    "frames": 237258,
+    "expected_class": "ambiguous",
+    "admission_expectation": "rejected",
+    "strings": [
+     {
+      "cents": 0.4
+     },
+     {
+      "cents": -0.4
+     }
+    ],
+    "partials": 3,
+    "string_phase_mode": "shared",
+    "f1_offset_hz": 0.081,
+    "phase0": 0.6
+   },
+   {
+    "id": "dev-extra-mode-67-48000",
+    "kind": "extra_mode_ambiguous",
+    "note": 67,
+    "rate": 48000,
+    "seed": 394119,
+    "b": 0.0007,
+    "note_on_sample": 6240,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 207840,
+    "frames": 255840,
+    "expected_class": "ambiguous",
+    "admission_expectation": "rejected",
+    "extra_modes": [
+     {
+      "near_partial": 9,
+      "offset_hz": 0.9,
+      "amp_db": -15.0
+     }
+    ],
+    "partials": 9,
+    "f1_offset_hz": 0.121,
+    "phase0": 1.75
+   },
+   {
+    "id": "dev-drift-55-44100",
+    "kind": "drift",
+    "note": 55,
+    "rate": 44100,
+    "seed": 394120,
+    "b": 0.0003,
+    "note_on_sample": 3307,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 188527,
+    "frames": 232627,
+    "expected_class": "nonstationary",
+    "admission_expectation": "rejected",
+    "modulation": {
+     "model": "drift_linear",
+     "span_cents": 12.0
+    },
+    "probe_half_width_hz": 9.0,
+    "partials": 6,
+    "f1_offset_hz": 0.079,
+    "phase0": 0.4
+   },
+   {
+    "id": "dev-fm-67-44100",
+    "kind": "fm",
+    "note": 67,
+    "rate": 44100,
+    "seed": 394121,
+    "b": 0.0007,
+    "note_on_sample": 8820,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 194040,
+    "frames": 238140,
+    "expected_class": "nonstationary",
+    "admission_expectation": "rejected",
+    "modulation": {
+     "model": "fm_sinusoidal",
+     "depth_cents": 8.0,
+     "freq_hz": 0.45
+    },
+    "probe_half_width_hz": 23.0,
+    "partials": 6,
+    "f1_offset_hz": 0.087,
+    "phase0": 1.15
+   },
+   {
+    "id": "dev-noise-55-44100",
+    "kind": "noise",
+    "note": 55,
+    "rate": 44100,
+    "seed": 394122,
+    "b": 0.0003,
+    "note_on_sample": 5733,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 190953,
+    "frames": 235053,
+    "expected_class": "negative",
+    "admission_expectation": "rejected",
+    "noise_sigma": 0.001,
+    "partials": 0
+   },
+   {
+    "id": "dev-noise-67-48000",
+    "kind": "noise",
+    "note": 67,
+    "rate": 48000,
+    "seed": 394123,
+    "b": 0.0007,
+    "note_on_sample": 2064,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 203664,
+    "frames": 251664,
+    "expected_class": "negative",
+    "admission_expectation": "rejected",
+    "noise_sigma": 0.002,
+    "partials": 0
+   },
+   {
+    "id": "dev-release-55-44100",
+    "kind": "release_boundary",
+    "note": 55,
+    "rate": 44100,
+    "seed": 394124,
+    "b": 0.0003,
+    "note_on_sample": 4851,
+    "note_off_seconds_after_note_on": 3.9,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 176841,
+    "frames": 234171,
+    "expected_class": "positive",
+    "admission_expectation": "rejected",
+    "partials": 8,
+    "boundary": {
+     "kind": "release_boundary",
+     "expected_windows": {
+      "W1": "ok",
+      "W2": "not_ok"
+     },
+     "expected_stage": "bounds",
+     "expected_reason": "release_boundary_exceeded",
+     "obligation": "W2 名义窗跨越首个 release 样本：window_failures 只列 W2，W1 仍完整分析；不得裁剪到 note_off 冒充 W2"
+    },
+    "f1_offset_hz": 0.083,
+    "phase0": 0.7,
+    "windows": [
+     "W1"
+    ]
+   },
+   {
+    "id": "dev-frames-67-48000",
+    "kind": "frames_boundary",
+    "note": 67,
+    "rate": 48000,
+    "seed": 394125,
+    "b": 0.0007,
+    "note_on_sample": 4416,
+    "note_off_seconds_after_note_on": 4.05,
+    "frames_seconds_after_note_on": 4.05,
+    "note_off_sample": 198816,
+    "frames": 198816,
+    "expected_class": "positive",
+    "admission_expectation": "rejected",
+    "partials": 8,
+    "boundary": {
+     "kind": "frames_boundary",
+     "expected_windows": {
+      "W1": "ok",
+      "W2": "not_ok"
+     },
+     "expected_stage": "spectrum",
+     "expected_reason": "analysis window exceeds available samples or has invalid bounds",
+     "obligation": "文件样本止于 note_off：W2 名义窗超出可用样本，逐窗保留失败；不得提升 W2、不得跨窗拼接"
+    },
+    "f1_offset_hz": 0.093,
+    "phase0": 1.9,
+    "windows": [
+     "W1"
+    ]
+   },
+   {
+    "id": "dev-invalid-timing-29-44100",
+    "kind": "invalid_timing_refused",
+    "note": 29,
+    "rate": 44100,
+    "seed": 394126,
+    "b": 8e-05,
+    "note_on_sample": 3381,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 3.85,
+    "note_off_sample": 188601,
+    "frames": 173166,
+    "expected_class": "positive",
+    "admission_expectation": "refused",
+    "partials": 8,
+    "boundary": {
+     "kind": "invalid_timing_refused",
+     "obligation": "note_off_sample > frames 的非法事件绑定必须整体拒绝（analyze_samples 抛错），不产生任何窗口结论、不得裁剪/伪造 note_off 或改称 W1/W2 结果"
+    },
+    "f1_offset_hz": 0.091,
+    "phase0": 2.4,
+    "windows": []
+   },
+   {
+    "id": "dev-pcm-55-44100-low",
+    "kind": "pcm_level",
+    "note": 55,
+    "rate": 44100,
+    "seed": 394127,
+    "b": 0.0003,
+    "note_on_sample": 3528,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 188748,
+    "frames": 232848,
+    "expected_class": "positive",
+    "level": 0.02,
+    "f1_offset_hz": 0.111,
+    "phase0": 2.35,
+    "windows": [
+     "W1"
+    ]
+   },
+   {
+    "id": "dev-repeat-71-48000-a",
+    "kind": "stationary",
+    "note": 71,
+    "rate": 48000,
+    "seed": 394130,
+    "b": 0.0006,
+    "note_on_sample": 2304,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 203904,
+    "frames": 251904,
+    "expected_class": "positive",
+    "f1_offset_hz": 0.085,
+    "phase0": 0.45,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "repeat_group": {
+     "group": "dev-repeat-71-48000",
+     "repeat": 0
+    }
+   },
+   {
+    "id": "dev-repeat-71-48000-b",
+    "kind": "stationary",
+    "note": 71,
+    "rate": 48000,
+    "seed": 394131,
+    "b": 0.0006,
+    "note_on_sample": 2304,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 203904,
+    "frames": 251904,
+    "expected_class": "positive",
+    "f1_offset_hz": 0.085,
+    "phase0": 0.45,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "repeat_group": {
+     "group": "dev-repeat-71-48000",
+     "repeat": 1
+    }
+   },
+   {
+    "id": "dev-compare-83-48000-a",
+    "kind": "stationary",
+    "note": 83,
+    "rate": 48000,
+    "seed": 394132,
+    "b": 0.0015,
+    "note_on_sample": 3072,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 204672,
+    "frames": 252672,
+    "expected_class": "positive",
+    "f1_offset_hz": 0.079,
+    "phase0": 0.65,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "level": 1.0,
+    "comparison_pair": {
+     "pair": "dev-compare-83-48000",
+     "producer": "a"
+    }
+   },
+   {
+    "id": "dev-compare-83-48000-b",
+    "kind": "stationary",
+    "note": 83,
+    "rate": 48000,
+    "seed": 394133,
+    "b": 0.0015,
+    "note_on_sample": 3072,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 204672,
+    "frames": 252672,
+    "expected_class": "positive",
+    "f1_offset_hz": 0.079,
+    "phase0": 0.65,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "level": 0.35,
+    "comparison_pair": {
+     "pair": "dev-compare-83-48000",
+     "producer": "b"
+    }
+   }
+  ],
+  "qualification": [
+   {
+    "id": "qual-stationary-29-48000",
+    "kind": "stationary",
+    "note": 29,
+    "rate": 48000,
+    "seed": 394200,
+    "b": 8e-05,
+    "note_on_sample": 2450,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 204050,
+    "frames": 252050,
+    "expected_class": "positive",
+    "f1_offset_hz": 0.074,
+    "phase0": 0.3,
+    "windows": [
+     "W1",
+     "W2"
+    ]
+   },
+   {
+    "id": "qual-stationary-88-44100",
+    "kind": "stationary",
+    "note": 88,
+    "rate": 44100,
+    "seed": 394201,
+    "b": 0.004,
+    "note_on_sample": 3969,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 189189,
+    "frames": 233289,
+    "expected_class": "positive",
+    "noise_sigma": 1e-05,
+    "f1_offset_hz": 0.088,
+    "phase0": 2.1,
+    "windows": [
+     "W1"
+    ]
+   },
+   {
+    "id": "qual-expdecay-88-48000",
+    "kind": "expdecay",
+    "note": 88,
+    "rate": 48000,
+    "seed": 394202,
+    "b": 0.004,
+    "note_on_sample": 2745,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 204345,
+    "frames": 252345,
+    "expected_class": "positive",
+    "envelope": {
+     "model": "exponential",
+     "tau_s": 0.3,
+     "from_partial": 6
+    },
+    "f1_offset_hz": 0.069,
+    "phase0": 0.75
+   },
+   {
+    "id": "qual-expdecay-29-44100",
+    "kind": "expdecay",
+    "note": 29,
+    "rate": 44100,
+    "seed": 394203,
+    "b": 8e-05,
+    "note_on_sample": 7000,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 192220,
+    "frames": 236320,
+    "expected_class": "positive",
+    "envelope": {
+     "model": "exponential",
+     "tau_s": 0.6,
+     "from_partial": 6
+    },
+    "f1_offset_hz": 0.107,
+    "phase0": 1.9
+   },
+   {
+    "id": "qual-twostage-88-44100",
+    "kind": "twostage",
+    "note": 88,
+    "rate": 44100,
+    "seed": 394204,
+    "b": 0.004,
+    "note_on_sample": 15435,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 200655,
+    "frames": 244755,
+    "expected_class": "positive",
+    "envelope": {
+     "model": "two_stage",
+     "fast_tau_s": 0.1,
+     "slow_tau_s": 2.8,
+     "fast_weight": 0.6
+    },
+    "f1_offset_hz": 0.083,
+    "phase0": 2.5
+   },
+   {
+    "id": "qual-twostage-29-48000",
+    "kind": "twostage",
+    "note": 29,
+    "rate": 48000,
+    "seed": 394205,
+    "b": 8e-05,
+    "note_on_sample": 6864,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 208464,
+    "frames": 256464,
+    "expected_class": "positive",
+    "envelope": {
+     "model": "two_stage",
+     "fast_tau_s": 0.15,
+     "slow_tau_s": 3.2,
+     "fast_weight": 0.5
+    },
+    "partials": 9,
+    "f1_offset_hz": 0.131,
+    "phase0": 0.45
+   },
+   {
+    "id": "qual-weak9-29-44100-m55",
+    "kind": "weak_harmonic",
+    "note": 29,
+    "rate": 44100,
+    "seed": 394206,
+    "b": 8e-05,
+    "note_on_sample": 6174,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 191394,
+    "frames": 235494,
+    "expected_class": "positive",
+    "amp_overrides": {
+     "9": -55.0
+    },
+    "partials": 9,
+    "f1_offset_hz": 0.077,
+    "phase0": 0.1
+   },
+   {
+    "id": "qual-weak9-88-48000-m65",
+    "kind": "weak_harmonic",
+    "note": 88,
+    "rate": 48000,
+    "seed": 394207,
+    "b": 0.004,
+    "note_on_sample": 5037,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 206637,
+    "frames": 254637,
+    "expected_class": "positive",
+    "amp_overrides": {
+     "9": -65.0
+    },
+    "partials": 9,
+    "f1_offset_hz": 0.089,
+    "phase0": 2.3
+   },
+   {
+    "id": "qual-weakfund-88-48000",
+    "kind": "weak_fundamental",
+    "note": 88,
+    "rate": 48000,
+    "seed": 394208,
+    "b": 0.004,
+    "note_on_sample": 9312,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 210912,
+    "frames": 258912,
+    "expected_class": "positive",
+    "amp_overrides": {
+     "1": -25.0
+    },
+    "f1_offset_hz": 0.121,
+    "phase0": 1.7
+   },
+   {
+    "id": "qual-missing-88-48000",
+    "kind": "missing_partial",
+    "note": 88,
+    "rate": 48000,
+    "seed": 394209,
+    "b": 0.004,
+    "note_on_sample": 3360,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 204960,
+    "frames": 252960,
+    "expected_class": "positive",
+    "required_partials": [
+     1,
+     2,
+     3,
+     5,
+     6,
+     7
+    ],
+    "skip_partials": [
+     4
+    ],
+    "partials": 7,
+    "f1_offset_hz": 0.073,
+    "phase0": 1.5
+   },
+   {
+    "id": "qual-displaced-88-44100",
+    "kind": "displaced_partial",
+    "note": 88,
+    "rate": 44100,
+    "seed": 394210,
+    "b": 0.004,
+    "note_on_sample": 8379,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 193599,
+    "frames": 237699,
+    "expected_class": "positive",
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     6
+    ],
+    "forbidden_partials": [
+     5
+    ],
+    "partial_offsets": {
+     "5": {
+      "cents": 17.3
+     }
+    },
+    "partials": 6,
+    "f1_offset_hz": 0.101,
+    "phase0": 2.95
+   },
+   {
+    "id": "qual-amslow-29-44100",
+    "kind": "amslow",
+    "note": 29,
+    "rate": 44100,
+    "seed": 394211,
+    "b": 8e-05,
+    "note_on_sample": 4116,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 189336,
+    "frames": 233436,
+    "expected_class": "positive",
+    "admission_expectation": "conditional",
+    "am": {
+     "freq_hz": 0.4,
+     "depth": 0.45
+    },
+    "conditional": {
+     "domain": "conditional_am",
+     "band_hz": 0.4,
+     "meaning": "AM 积在有限域内不唯一：静态单线只是条件近似；接受需全部独立义务通过，否则显式弃权有效；AM carrier 不得进入 B"
+    },
+    "f1_offset_hz": 0.065,
+    "phase0": 1.55,
+    "windows": [
+     "W1",
+     "W2"
+    ]
+   },
+   {
+    "id": "qual-amslow-88-48000",
+    "kind": "amslow",
+    "note": 88,
+    "rate": 48000,
+    "seed": 394212,
+    "b": 0.004,
+    "note_on_sample": 8256,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 209856,
+    "frames": 257856,
+    "expected_class": "positive",
+    "admission_expectation": "conditional",
+    "am": {
+     "freq_hz": 0.25,
+     "depth": 0.35
+    },
+    "conditional": {
+     "domain": "conditional_am",
+     "band_hz": 0.25,
+     "meaning": "AM 积在有限域内不唯一：静态单线只是条件近似；接受需全部独立义务通过，否则显式弃权有效；AM carrier 不得进入 B"
+    },
+    "f1_offset_hz": 0.093,
+    "phase0": 2.75,
+    "windows": [
+     "W1"
+    ]
+   },
+   {
+    "id": "qual-weak9-29-48000-m75",
+    "kind": "weak_harmonic",
+    "note": 29,
+    "rate": 48000,
+    "seed": 394213,
+    "b": 8e-05,
+    "note_on_sample": 5775,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 207375,
+    "frames": 255375,
+    "expected_class": "positive",
+    "admission_expectation": "conditional",
+    "amp_overrides": {
+     "9": -75.0
+    },
+    "partials": 9,
+    "conditional": {
+     "domain": "conditional_weak_boundary",
+     "band_hz": 0.0,
+     "meaning": "弱分音条件域：可辨识即需全部义务通过，否则显式弃权有效；不得伪造该线"
+    },
+    "f1_offset_hz": 0.113,
+    "phase0": 0.95
+   },
+   {
+    "id": "qual-double-res-29-44100",
+    "kind": "detuned_double_resolvable",
+    "note": 29,
+    "rate": 44100,
+    "seed": 394214,
+    "b": 8e-05,
+    "note_on_sample": 5292,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 190512,
+    "frames": 234612,
+    "expected_class": "resolvable",
+    "admission_expectation": "rejected",
+    "strings": [
+     {
+      "hz": 1.5
+     },
+     {
+      "hz": -1.5
+     }
+    ],
+    "probe_half_width_hz": 4.0,
+    "partials": 8,
+    "f1_offset_hz": 0.071,
+    "phase0": 0.25
+   },
+   {
+    "id": "qual-double-res-88-48000",
+    "kind": "detuned_double_resolvable",
+    "note": 88,
+    "rate": 48000,
+    "seed": 394215,
+    "b": 0.004,
+    "note_on_sample": 4320,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 205920,
+    "frames": 253920,
+    "expected_class": "resolvable",
+    "admission_expectation": "rejected",
+    "strings": [
+     {
+      "cents": 8.0
+     },
+     {
+      "cents": -8.0,
+      "phase_deg": 180.0
+     }
+    ],
+    "probe_half_width_hz": 80.0,
+    "partials": 6,
+    "string_phase_mode": "shared",
+    "f1_offset_hz": 0.097,
+    "phase0": 1.05
+   },
+   {
+    "id": "qual-extra-mode-88-44100",
+    "kind": "extra_mode_resolvable",
+    "note": 88,
+    "rate": 44100,
+    "seed": 394216,
+    "b": 0.004,
+    "note_on_sample": 10290,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 195510,
+    "frames": 239610,
+    "expected_class": "resolvable",
+    "admission_expectation": "rejected",
+    "extra_modes": [
+     {
+      "near_partial": 9,
+      "offset_hz": 1.7,
+      "amp_db": 6.0
+     }
+    ],
+    "partials": 9,
+    "f1_offset_hz": 0.089,
+    "phase0": 2.65
+   },
+   {
+    "id": "qual-double-amb-29-48000",
+    "kind": "detuned_double_ambiguous",
+    "note": 29,
+    "rate": 48000,
+    "seed": 394217,
+    "b": 8e-05,
+    "note_on_sample": 3600,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 205200,
+    "frames": 253200,
+    "expected_class": "ambiguous",
+    "admission_expectation": "rejected",
+    "strings": [
+     {
+      "hz": 0.15
+     },
+     {
+      "hz": -0.15
+     }
+    ],
+    "partials": 8,
+    "string_phase_mode": "shared",
+    "f1_offset_hz": 0.109,
+    "phase0": 2.15
+   },
+   {
+    "id": "qual-extra-mode-88-48000",
+    "kind": "extra_mode_ambiguous",
+    "note": 88,
+    "rate": 48000,
+    "seed": 394218,
+    "b": 0.004,
+    "note_on_sample": 6048,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 207648,
+    "frames": 255648,
+    "expected_class": "ambiguous",
+    "admission_expectation": "rejected",
+    "extra_modes": [
+     {
+      "near_partial": 9,
+      "offset_hz": 0.9,
+      "amp_db": -15.0
+     }
+    ],
+    "partials": 9,
+    "f1_offset_hz": 0.127,
+    "phase0": 0.35
+   },
+   {
+    "id": "qual-drift-88-48000",
+    "kind": "drift",
+    "note": 88,
+    "rate": 48000,
+    "seed": 394219,
+    "b": 0.004,
+    "note_on_sample": 7200,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 208800,
+    "frames": 256800,
+    "expected_class": "nonstationary",
+    "admission_expectation": "rejected",
+    "modulation": {
+     "model": "drift_linear",
+     "span_cents": 16.0
+    },
+    "probe_half_width_hz": 100.0,
+    "partials": 4,
+    "f1_offset_hz": 0.085,
+    "phase0": 0.5
+   },
+   {
+    "id": "qual-fm-29-48000",
+    "kind": "fm",
+    "note": 29,
+    "rate": 48000,
+    "seed": 394220,
+    "b": 8e-05,
+    "note_on_sample": 2160,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 203760,
+    "frames": 251760,
+    "expected_class": "nonstationary",
+    "admission_expectation": "rejected",
+    "modulation": {
+     "model": "fm_sinusoidal",
+     "depth_cents": 10.0,
+     "freq_hz": 0.5
+    },
+    "probe_half_width_hz": 6.0,
+    "partials": 8,
+    "f1_offset_hz": 0.119,
+    "phase0": 1.65
+   },
+   {
+    "id": "qual-noise-29-44100",
+    "kind": "noise",
+    "note": 29,
+    "rate": 44100,
+    "seed": 394221,
+    "b": 8e-05,
+    "note_on_sample": 6615,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 191835,
+    "frames": 235935,
+    "expected_class": "negative",
+    "admission_expectation": "rejected",
+    "noise_sigma": 0.001,
+    "partials": 0
+   },
+   {
+    "id": "qual-noise-88-48000",
+    "kind": "noise",
+    "note": 88,
+    "rate": 48000,
+    "seed": 394222,
+    "b": 0.004,
+    "note_on_sample": 1152,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 202752,
+    "frames": 250752,
+    "expected_class": "negative",
+    "admission_expectation": "rejected",
+    "noise_sigma": 0.002,
+    "partials": 0
+   },
+   {
+    "id": "qual-release-29-44100",
+    "kind": "release_boundary",
+    "note": 29,
+    "rate": 44100,
+    "seed": 394223,
+    "b": 8e-05,
+    "note_on_sample": 3381,
+    "note_off_seconds_after_note_on": 3.9,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 175371,
+    "frames": 232701,
+    "expected_class": "positive",
+    "admission_expectation": "rejected",
+    "partials": 8,
+    "boundary": {
+     "kind": "release_boundary",
+     "expected_windows": {
+      "W1": "ok",
+      "W2": "not_ok"
+     },
+     "expected_stage": "bounds",
+     "expected_reason": "release_boundary_exceeded",
+     "obligation": "W2 名义窗跨越首个 release 样本：window_failures 只列 W2，W1 仍完整分析；不得裁剪到 note_off 冒充 W2"
+    },
+    "f1_offset_hz": 0.091,
+    "phase0": 2.4,
+    "windows": [
+     "W1"
+    ]
+   },
+   {
+    "id": "qual-frames-88-48000",
+    "kind": "frames_boundary",
+    "note": 88,
+    "rate": 48000,
+    "seed": 394224,
+    "b": 0.004,
+    "note_on_sample": 3888,
+    "note_off_seconds_after_note_on": 4.05,
+    "frames_seconds_after_note_on": 4.05,
+    "note_off_sample": 198288,
+    "frames": 198288,
+    "expected_class": "positive",
+    "admission_expectation": "rejected",
+    "partials": 8,
+    "boundary": {
+     "kind": "frames_boundary",
+     "expected_windows": {
+      "W1": "ok",
+      "W2": "not_ok"
+     },
+     "expected_stage": "spectrum",
+     "expected_reason": "analysis window exceeds available samples or has invalid bounds",
+     "obligation": "文件样本止于 note_off：W2 名义窗超出可用样本，逐窗保留失败；不得提升 W2、不得跨窗拼接"
+    },
+    "f1_offset_hz": 0.079,
+    "phase0": 0.6,
+    "windows": [
+     "W1"
+    ]
+   },
+   {
+    "id": "qual-invalid-timing-55-44100",
+    "kind": "invalid_timing_refused",
+    "note": 55,
+    "rate": 44100,
+    "seed": 394225,
+    "b": 0.0003,
+    "note_on_sample": 1764,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 3.85,
+    "note_off_sample": 186984,
+    "frames": 171549,
+    "expected_class": "positive",
+    "admission_expectation": "refused",
+    "partials": 8,
+    "boundary": {
+     "kind": "invalid_timing_refused",
+     "obligation": "note_off_sample > frames 的非法事件绑定必须整体拒绝（analyze_samples 抛错），不产生任何窗口结论、不得裁剪/伪造 note_off 或改称 W1/W2 结果"
+    },
+    "f1_offset_hz": 0.067,
+    "phase0": 1.2,
+    "windows": []
+   },
+   {
+    "id": "qual-pcm-29-44100-low",
+    "kind": "pcm_level",
+    "note": 29,
+    "rate": 44100,
+    "seed": 394226,
+    "b": 8e-05,
+    "note_on_sample": 4410,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 189630,
+    "frames": 233730,
+    "expected_class": "positive",
+    "level": 0.05,
+    "f1_offset_hz": 0.091,
+    "phase0": 2.4,
+    "windows": [
+     "W1"
+    ]
+   },
+   {
+    "id": "qual-repeat-76-44100-a",
+    "kind": "stationary",
+    "note": 76,
+    "rate": 44100,
+    "seed": 394230,
+    "b": 0.001,
+    "note_on_sample": 3087,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 188307,
+    "frames": 232407,
+    "expected_class": "positive",
+    "f1_offset_hz": 0.097,
+    "phase0": 1.15,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "repeat_group": {
+     "group": "qual-repeat-76-44100",
+     "repeat": 0
+    }
+   },
+   {
+    "id": "qual-repeat-76-44100-b",
+    "kind": "stationary",
+    "note": 76,
+    "rate": 44100,
+    "seed": 394231,
+    "b": 0.001,
+    "note_on_sample": 3087,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 188307,
+    "frames": 232407,
+    "expected_class": "positive",
+    "f1_offset_hz": 0.097,
+    "phase0": 1.15,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "repeat_group": {
+     "group": "qual-repeat-76-44100",
+     "repeat": 1
+    }
+   },
+   {
+    "id": "qual-compare-90-44100-a",
+    "kind": "stationary",
+    "note": 90,
+    "rate": 44100,
+    "seed": 394232,
+    "b": 0.002,
+    "note_on_sample": 3528,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 188748,
+    "frames": 232848,
+    "expected_class": "positive",
+    "f1_offset_hz": 0.083,
+    "phase0": 1.35,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "level": 1.0,
+    "comparison_pair": {
+     "pair": "qual-compare-90-44100",
+     "producer": "a"
+    }
+   },
+   {
+    "id": "qual-compare-90-44100-b",
+    "kind": "stationary",
+    "note": 90,
+    "rate": 44100,
+    "seed": 394233,
+    "b": 0.002,
+    "note_on_sample": 3528,
+    "note_off_seconds_after_note_on": 4.2,
+    "frames_seconds_after_note_on": 5.2,
+    "note_off_sample": 188748,
+    "frames": 232848,
+    "expected_class": "positive",
+    "f1_offset_hz": 0.083,
+    "phase0": 1.35,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "level": 0.4,
+    "comparison_pair": {
+     "pair": "qual-compare-90-44100",
+     "producer": "b"
+    }
+   }
+  ]
+ },
+ "regression_controls": [
+  {
+   "id": "q34-unresolved_doublet-44100",
+   "kind": "unresolved_doublet_control",
+   "note": 55,
+   "rate": 44100,
+   "seed": 392034,
+   "b": 0.0003,
+   "note_on_sample": 4410,
+   "note_off_seconds_after_note_on": 4.2,
+   "frames_seconds_after_note_on": 5.2,
+   "note_off_sample": 189630,
+   "frames": 233730,
+   "expected_class": "ambiguous",
+   "admission_expectation": "rejected",
+   "obligation": "control",
+   "strings": [
+    {
+     "hz": 0.0
+    },
+    {
+     "hz": 0.4
+    }
+   ],
+   "string_phase_mode": "shared",
+   "f1_offset_hz": 0.06720430107526881,
+   "phase0": 1.5707963267948966,
+   "purpose": "v1 矩阵冻结混合族回归对照（逐分音 +0.4 Hz，同相）；same recipe/seed, 违反即整体不获资格；只作已消费回归，不构成新资格证据"
+  },
+  {
+   "id": "q35-unresolved_doublet-48000",
+   "kind": "unresolved_doublet_control",
+   "note": 55,
+   "rate": 48000,
+   "seed": 392035,
+   "b": 0.0003,
+   "note_on_sample": 4800,
+   "note_off_seconds_after_note_on": 4.2,
+   "frames_seconds_after_note_on": 5.2,
+   "note_off_sample": 206400,
+   "frames": 254400,
+   "expected_class": "ambiguous",
+   "admission_expectation": "rejected",
+   "obligation": "control",
+   "strings": [
+    {
+     "hz": 0.0
+    },
+    {
+     "hz": 0.4
+    }
+   ],
+   "string_phase_mode": "shared",
+   "f1_offset_hz": 0.13440860215053763,
+   "phase0": 2.356194490192345,
+   "purpose": "v1 矩阵冻结混合族回归对照（逐分音 +0.4 Hz，同相）；same recipe/seed, 违反即整体不获资格；只作已消费回归，不构成新资格证据"
+  },
+  {
+   "id": "q38-unresolved_doublet-44100",
+   "kind": "unresolved_doublet_control",
+   "note": 67,
+   "rate": 44100,
+   "seed": 392038,
+   "b": 0.0007,
+   "note_on_sample": 4410,
+   "note_off_seconds_after_note_on": 4.2,
+   "frames_seconds_after_note_on": 5.2,
+   "note_off_sample": 189630,
+   "frames": 233730,
+   "expected_class": "ambiguous",
+   "admission_expectation": "rejected",
+   "obligation": "control",
+   "strings": [
+    {
+     "hz": 0.0
+    },
+    {
+     "hz": 0.4
+    }
+   ],
+   "string_phase_mode": "shared",
+   "f1_offset_hz": 0.06720430107526881,
+   "phase0": 1.5707963267948966,
+   "purpose": "v1 矩阵冻结混合族回归对照（逐分音 +0.4 Hz，同相）；same recipe/seed, 违反即整体不获资格；只作已消费回归，不构成新资格证据"
+  },
+  {
+   "id": "q39-unresolved_doublet-48000",
+   "kind": "unresolved_doublet_control",
+   "note": 67,
+   "rate": 48000,
+   "seed": 392039,
+   "b": 0.0007,
+   "note_on_sample": 4800,
+   "note_off_seconds_after_note_on": 4.2,
+   "frames_seconds_after_note_on": 5.2,
+   "note_off_sample": 206400,
+   "frames": 254400,
+   "expected_class": "ambiguous",
+   "admission_expectation": "rejected",
+   "obligation": "control",
+   "strings": [
+    {
+     "hz": 0.0
+    },
+    {
+     "hz": 0.4
+    }
+   ],
+   "string_phase_mode": "shared",
+   "f1_offset_hz": 0.13440860215053763,
+   "phase0": 2.356194490192345,
+   "purpose": "v1 矩阵冻结混合族回归对照（逐分音 +0.4 Hz，同相）；same recipe/seed, 违反即整体不获资格；只作已消费回归，不构成新资格证据"
+  }
+ ],
+ "limits": [
+  "合成域限定：通过只说明方法在声明合成域内满足声明义务，不建立真实弦身份、中心弦归属、AM 唯一来源或与商业算法等价。",
+  "方法资格覆盖登记合成域的观测、坐标、静态族、重复、归一化比较及评估器六态回归。参考原点、真实采集与正式评估是后续独立放行门禁，不是方法资格的前置条件，也不由方法资格替代。",
+  "B 是合成常量；B 相对误差达标不认证物理 B，也不替代真实参考分辨率、原点认证或真实渲染。",
+  "AM 条件域：AM 积与相干三线在有限观测下不可区分；单线/条件结论从不是唯一来源认证，AM carrier 输出不得进入 B。",
+  "24-bit PCM 往返 + 高斯噪声 + 单一非谐性模型；不含真实钢琴包络、共鸣耦合或双/三弦物理参数分布。",
+  "四项回归对照只检查旧的已演示假阳性模式是否复现，不构成新资格证据。",
+  "本登记不是 v3 最终验收协议；不授权新采集、生产 B 变更或历史判决重判；reference 原点认证在本登记内不支持。",
+  "qualification 本次已由用户显式批准，但授权仅对外部封印对应的这一轮完整角色有效；封印执行即消费，全部失败保留后停止，不允许重试、调参或替换用例。"
+ ],
+ "complete_plan_gates": {
+  "scope_note": "验证可复核的完整有限方法，而不是预先要求真实验收通过。以下 covered_by_registration 仅声明覆盖责任，不是任何已运行或已通过结果。",
+  "required": [
+   {
+    "gate": "repeat_quality",
+    "domain": "合成重复组复用 validation-eval.py:repeat_quality",
+    "covered_by_registration": true
+   },
+   {
+    "gate": "compare_analyses",
+    "domain": "合成可比对复用 validation-eval.py:compare_analyses；base 排除、>=2 非基准、RMS<=1/max<=3 cents",
+    "covered_by_registration": true
+   },
+   {
+    "gate": "six_state_regression",
+    "domain": "完整角色开始时运行封印绑定的 validation-eval-tests.py；原始日志和退出状态作为必需证据，不以真实采集作为前提",
+    "covered_by_registration": true
+   }
+  ],
+  "downstream_not_method_prerequisites": [
+   "reference_origin_authentication",
+   "real_capture_and_formal_evaluation"
+  ]
+ }
+}

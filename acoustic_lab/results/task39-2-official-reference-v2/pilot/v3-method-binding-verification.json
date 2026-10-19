@@ -1,0 +1,136 @@
+{
+ "schema": "devpiano-task39-2-v3-method-binding-verification-v1",
+ "created_utc": "2026-10-17T07:01:40.807260+00:00",
+ "batch": "v3-method-binding-20261017-065353",
+ "outcome": "method_evidence_bound_v3_still_blocked",
+ "role": "PCM-free preparation verification; not new method qualification or formal evaluation",
+ "user_authorization_verbatim": "同意，批准最小元数据对齐及无 PCM 的真实 --check-plan 复核",
+ "metadata_alignment": {
+  "preregistration": "pilot/validation-v3-preregistration.json",
+  "preregistration_sha256": "5988ee8cec9bc8233ea1e67c9bea28677ec765863b288a78355a130d9a7e11ce",
+  "frequency_contract": "pilot/frequency-observable-contract-v3.json",
+  "frequency_contract_sha256": "1636db532c1a748063d46192f55d06fcf7933d8bb59115103142e5176b61859b",
+  "completed_method_evidence": {
+   "canonical_report": "G:/source/projects/devpiano-evidence/phase39/task39-2/window-refusal-qualification-20261016-163340/qualification/method-qualification-report.json",
+   "report_sha256": "547dcdd3d6ca6e3ef008b0d5a5bd12f28fea5be46ce0796dd1c5c86667b44c21",
+   "manifest_sha256": "e648363ab55f8fbb726b297e90d47d09f3ab1ca3a6a106a76ae941997774a99a",
+   "seal_sha256": "65a2b27758ace72060ddf5ed328ff8c31b755556f19cd0da0594ef4ede2e64fc",
+   "consumption_marker_sha256": "cfb62252e0986206744b1c0a679cbd1b3dd7e1399c1f81782f35c401d66537d7"
+  },
+  "registration_path": "pilot/method-qualification-window-refusal-v1.json",
+  "registration_sha256": "72fc0d109a20811b9de700ec378b4346c7105b59d0a337ed8d6212dce0da155e",
+  "removed_only_satisfied_prerequisite": "method_qualification",
+  "remaining_prerequisites": [
+   "reference_origin",
+   "data_roles_and_matrix",
+   "capture_and_stop_rules",
+   "freeze_and_tool_binding"
+  ],
+  "other_fields_budgets_and_formal_authorizations_unchanged": true
+ },
+ "actual_native_verification": {
+  "passed": true,
+  "command": [
+   "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Scripts\\python.exe",
+   "-B",
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\validation-eval.py",
+   "--check-plan",
+   "--preregistration",
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\validation-v3-preregistration.json"
+  ],
+  "child_exit_code": 3,
+  "method_qualification": {
+   "completed_evidence": {
+    "verified": true,
+    "outcome": "qualified",
+    "scope": "complete_method_in_registered_synthetic_domain",
+    "reasons": [],
+    "current_sources_match": true,
+    "identity_differences": []
+   },
+   "current_snapshot_qualified": true
+  },
+  "execution_allowed": false,
+  "status": "draft_pending_review",
+  "blockers": [
+   "authorization:capture_authorized",
+   "authorization:formal_evaluation_authorized",
+   "authorization:freeze_authorized",
+   "authorization:matrix_approved",
+   "authorization:protocol_approved",
+   "entry_gate_not_frozen_before_rendering",
+   "matrix_not_selected",
+   "reference_origin:requires_authenticated_export_origin_before_v3_freeze",
+   "reference_timing_verifier_not_available",
+   "status:draft_pending_review",
+   "tool_identity_unbound:analysis_tool",
+   "tool_identity_unbound:evaluator",
+   "tool_identity_unbound:partial_observer",
+   "unresolved_prerequisites",
+   "v3_formal_method_not_ready"
+  ],
+  "cross_check": {
+   "declared_reference_origin_status": "requires_authenticated_export_origin_before_v3_freeze",
+   "contract_reference_origin_status": "requires_authenticated_export_origin_before_v3_freeze",
+   "contract_formal_readiness": false,
+   "contract_v3_formal_method_ready": false
+  },
+  "reference_timing_verifier_available": false,
+  "raw_stdout_sha256": "3ea5d035909fb4ce26704515d99c05e4e230e29608e4890b4ee98412cbb77bef",
+  "raw_stderr_sha256": "5b6dd73a551f6cfaea56a0c0b758106d9c8ba99f318a3b42cf938c4ff323901a",
+  "plan_report_sha256": "a391aa286f72de133e9abd5a2221347e2db179c5a4712e9366f01faf83a74ce6",
+  "check_plan_invocations": 1
+ },
+ "native_environment": {
+  "python": "3.14.8",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "packages": {
+   "numpy": "2.5.4",
+   "scipy": "1.18.1"
+  },
+  "pinned_interpreter_module_and_RECORD_identities_match": true,
+  "both_streams_lossless_UTF8_with_non_ASCII_probe": true,
+  "receipt_sha256": "c2431f2bb425a2549e9c95fbdb85552644c733c00e7aaf717426aed33ee93aa1"
+ },
+ "protected_inputs": {
+  "checked_non_audio_files": 923,
+  "changed": 0,
+  "missing": 0,
+  "audio_entries_stat_only": 378,
+  "audio_content_opened": false,
+  "audio_metadata_changes": 0,
+  "six_sealed_inputs_unchanged": true,
+  "protected_after_sha256": "824174c44887e574f8ef161f424a0dd9d633b50fc545c1eadb890d1c4a490a4f"
+ },
+ "not_executed": {
+  "measurement": true,
+  "fitting": true,
+  "qualification_or_development_role": true,
+  "reference_GUI_RPC_or_capture": true,
+  "new_seal": true,
+  "formal_evaluation": true,
+  "A6_A7": true,
+  "production_changes": true,
+  "historical_reverdict": true
+ },
+ "retained_auxiliary_failure": {
+  "path": "metadata-check-initial-failure.json",
+  "scope": "A pre-native auxiliary check initially accessed an absent optional freeze key; corrected with get without adding the field or changing project code. No native stage was repeated."
+ },
+ "evidence_locations": {
+  "temporary_root": "G:\\tmp\\devpiano-task39-2-v3-method-binding-20261017-065353",
+  "archive_root": "G:\\source\\projects\\devpiano-evidence\\phase39\\task39-2\\v3-method-binding-20261017-065353",
+  "summary": "G:\\source\\projects\\devpiano-evidence\\phase39\\task39-2\\v3-method-binding-20261017-065353\\verification-summary.json",
+  "raw_stdout": "G:\\source\\projects\\devpiano-evidence\\phase39\\task39-2\\v3-method-binding-20261017-065353\\check-plan.stdout",
+  "raw_stderr": "G:\\source\\projects\\devpiano-evidence\\phase39\\task39-2\\v3-method-binding-20261017-065353\\check-plan.stderr",
+  "manifest": "G:\\source\\projects\\devpiano-evidence\\phase39\\task39-2\\v3-method-binding-20261017-065353\\evidence-manifest.json",
+  "postcopy_verification": "G:\\source\\projects\\devpiano-evidence\\phase39\\task39-2\\v3-method-binding-20261017-065353\\archive-verification.json",
+  "archival_completion_authority": "The per-file manifest and separate postcopy receipt, not a self-asserted copy claim in this summary."
+ },
+ "limits": [
+  "Current-source qualification remains limited to the registered finite synthetic domain; not physical string identity, reference-origin authentication or full v3 acceptance.",
+  "No historical verdict, consumed seal or approved sealed registration was rewritten.",
+  "A future change to any of the five code inputs or the registration invalidates current snapshot matching; this batch cannot qualify the changed code by declaration."
+ ],
+ "next_recommended": "保持本次方法资格与生产表冻结；先审议具备独立MIDI事件—帧映射证据的参考方案。原点认证及参考时序验证角色、数据矩阵、正式授权和冻结仍缺；不重开既有原点调查、不再运行资格、不启动A6/A7。"
+}

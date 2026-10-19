@@ -1,0 +1,3217 @@
+{
+ "schema": "devpiano-task39-2-method-qualification-noteon-v3",
+ "date": "2026-10-16",
+ "status": "complete_finite_registration_not_v3_acceptance_protocol",
+ "purpose": "A5 变更方法的前瞻独立资格覆盖登记；完整有效配方和原策略预期保持不变，批准前未生成或检视新资格数据。两项最小runner契约及准备验证已闭合，定稿登记、五个方法源码和Windows环境已按审批身份核对。用户另行明确批准批次a5-qualification-20261016-040725的一次完整qualification：66个新用例、4个旧控制及同封印评估器回归；development保持未授权。仅写授权及相关说明，记录新登记散列后再生成精确seal；任何失败、缺失或中断均保留后停止，不调参或补批。授权不等于方法qualified，不开放参考采集或正式评估。",
+ "supersedes": "none; 新登记不覆盖或改写 method-qualification-noteon-v3.json、旧 v3/AM/A5 开发记录、已消费封印及历史判决。",
+ "role_semantics": {
+  "development": "仅为现有双角色 schema 所需的互斥配方保留；尚未执行或授权，不作开发预试、不据此调整 qualification。不存在仅因声明此角色而获得运行权限。",
+  "qualification": "新的未触碰有限合成角色；须另批入口修订并核验后，再由用户单独批准一次完整执行并绑定精确封印。全部失败/遗漏/异常/中断保留后停止；不调参、不换种子、不补批、不重封印或改名重跑。新域只证明登记合成条件的方法，不认证物理弦、真实 B、AM 来源、参考原点或正式验收。"
+ },
+ "timing_contract": {
+  "coordinate": "note_on_relative",
+  "evidence_role": "synthetic_fixture",
+  "required_keyword": "analyze_samples(left, right, rate, note, timing=...) / analyze_unit(path, note, timing=...) 必须显式关键字 timing；无默认原点、无别名回退",
+  "sample_mapping": "W1=[0.08,3.8], W2=[0.5,4.1] 相对 NoteOn；样本界 = note_on_sample + llround(relative_seconds*rate)，llround 半远离零；禁止 int(float*rate) 截断（4.1*44100=180809.99999999997 会丢 1 样本）",
+  "event_binding_constraints": "0 < note_on_sample < note_off_sample <= frames；违者整体拒绝（不产生窗口结论），不得裁剪/伪造 note_off",
+  "window_record_keys": [
+   "bounds_s",
+   "start_sample",
+   "stop_sample",
+   "samples",
+   "coordinate",
+   "evidence_role"
+  ],
+  "window_failure_semantics": "每窗独立失败并保留：stop>note_off 且仍在帧内 → stage='bounds'/release_boundary_exceeded；stop>frames → stage='spectrum'；不得提升 W2、不得裁剪",
+  "timing_retention": "analysis['timing'] 必须原样保留传入的全部键；窗口记录在任何 status 下都带相对 bounds_s 与整数 start/stop",
+  "load_timing_report": "仅服务 A4 dev/render 独立验证（evidence_role=dev_render_verification）；合成用例不使用，reference 原点认证在本登记内不支持"
+ },
+ "generator": {
+  "duration_s": 4.2,
+  "rates_hz": [
+   44100,
+   48000
+  ],
+  "windows": {
+   "W1": [
+    0.08,
+    3.8
+   ],
+   "W2": [
+    0.5,
+    4.1
+   ]
+  },
+  "note_on_offsets": "逐例显式整数 note_on_sample>0（非零 MIDI 原点偏移，逐例取值不同；用于暴露默认原点/文件绝对窗错误）",
+  "release_model": "tone 只在 [note_on_sample, note_off_sample) 内合成，前导与之后为静音+噪声；正常注册下 W1/W2 完全位于 release 之前",
+  "case_defaults": {
+   "obligation": "gating",
+   "admission_expectation": "admitted",
+   "strings": [
+    {
+     "cents": 0.0
+    }
+   ],
+   "extra_modes": [],
+   "skip_partials": [],
+   "partial_offsets": {},
+   "amp_overrides": {},
+   "envelope": {
+    "model": "none"
+   },
+   "modulation": null,
+   "am": null,
+   "conditional": null,
+   "boundary": null,
+   "noise_sigma": 1e-05,
+   "level": 1.0,
+   "partials": 12,
+   "windows": [
+    "W1"
+   ],
+   "required_partials": [],
+   "forbidden_partials": [],
+   "string_phase_mode": "indexed",
+   "probe_half_width_hz": 3.0,
+   "f1_offset_hz": 0.0,
+   "phase0": 0.0,
+   "note_off_seconds_after_note_on": 4.2,
+   "frames_seconds_after_note_on": 5.2
+  },
+  "model": "f(n,s)=n*(f1+Δf1)*2^((cents_s+Δcents)/1200)*sqrt((1+b*n*n)/(1+b)) + hz_s+Δhz；a(n,s)=(0.05/n**0.8)*10^(amp_db/20)；φ(n,s)=phase0+0.41n+0.63s（indexed）或 phase0+0.41n（shared）+phase_deg；附加模态 φ=phase0+0.41n+1.1+0.37i；包络 none|exp(-t/τ)（n>=from_partial）|w*exp(-t/τf)+(1-w)*exp(-t/τs)，t 相对 NoteOn；am: 幅度×(1+depth*cos(2πf_m t))；drift_linear: f(t)=fc+span/T*(t-T/2)；fm_sinusoidal: f(t)=fc+depth*sin(2πf_m t)（相位按解析积分）；噪声：default_rng(seed) 每声道独立高斯（先左后右）",
+  "pcm": "round-to-nearest sample*8388608；24-bit signed 双声道；无归一化；非有限或峰值>=0.95 即用例失败；写盘后回读核验实际整数24往返",
+  "truth_role": "本文件内的独立实现在观测后核验；不 import PPA 预测、不读生产 B 或任何参考数据；真值从不传入观测器、门禁或 analyze_samples"
+ },
+ "assessment": {
+  "region_classification": {
+   "resolvable_separation_hz": 1.2,
+   "max_level_span_db": 20.0,
+   "order": "先判非平稳，再判单分量，再按最小两两分离与电平跨度判 resolved/ambiguous",
+   "rationale": "1.2 Hz 是本登记声明的有限工程支持阈，不是普适分辨率律。",
+   "probe_coverage": "分区全部分量跨度<=probe_half_width_hz；相邻分区间隔>=2*probe_half_width_hz"
+  },
+  "tolerances": {
+   "single_cents": 0.05,
+   "single_floor_hz": 0.005,
+   "component_cents": 1.0,
+   "component_floor_hz": 0.01,
+   "b_relative": 0.02,
+   "note": "沿用短契约预算：single=max(0.005 Hz,0.05 cents-in-Hz)；resolved 分量=max(0.01 Hz,1 cent)；区间必须包含真值且最坏半宽不超同一预算；B 相对误差<=0.02"
+  },
+  "sufficiency": {
+   "minimum_identified_partials": 5,
+   "minimum_training_partials": 3,
+   "minimum_independently_reidentified_holdouts": 2,
+   "independent_prediction_rms_cents_max": 1.0,
+   "independent_prediction_max_cents_max": 3.0,
+   "window_frequency_spread_cents_max": 1.0,
+   "window_B_relative_spread_max": 0.1,
+   "note": "短契约频率/区间/B/误差/充分性预算原样保留；本执行器独立复核（不只依赖门禁结论）"
+  },
+  "observer_obligations": [
+   "候选只从实际 PCM 的 Hann 窗频谱导出（整数样本界）：rel>=rel_power_floor 且局部 SNR>=min_local_snr_db 的局部极大，并强制包含最强 force_top 个峰；候选中心与 half_width 是探针参数，不是真值。",
+   "每个分区必须被至少一个探针窗口覆盖；region_not_probed 即失败。",
+   "single 类分区：至少一次 single_component_adequate，频率在 max(0.005 Hz,0.05 cents) 内，interval_hz 包含真值且最坏半宽不超预算；缺 interval/超宽/未匹配/多分量分区 single 声明都计错误准入。",
+   "resolved 类分区：必须有一次调用以 resolved_components 给出与真值一一对应的全部分量（每个在 max(0.01 Hz,1 cent) 内）；多报、少报、错报均失败；跨探针凑分量不算。",
+   "ambiguous 类分区：不得出现 single_component_adequate 声明（正确分辨的分量声明只作记录、不构成认证；弃权亦可）；nonstationary 类分区只能弃权；negative（无真实分量）用例任何 single/resolved 声明都计错误准入。",
+   "条件域（conditional_am / conditional_weak_boundary）分区：静态单线声明须满足与 single 相同的频率/区间义务；否则可明确拒绝静态认证（ambiguous 或只报诊断的 resolved_components，无标量认证）。诊断分量必须有限且在事前声明的条件带内，完整保留但不计静态认证、精度覆盖或正向准入数；可分辨分量的精度另由独立 resolved 用例核验。任何超预算标量声明都失败，不能由另一正确探针掩盖。",
+   "观测器异常或未知状态字按界面失败记录，不当作弃权；required-single 正例必须认证，条件域诊断不能补足硬性正向覆盖。不允许全局通过率或全体弃权通过。"
+  ],
+  "ppa_obligations": [
+   "家族通道只调用共享入口 ppa.analyze_samples(left, right, rate, note, timing={coordinate:'note_on_relative', sample_rate, frames, note_on_sample, note_off_sample, evidence_role:'synthetic_fixture'})；本执行器不自行重建窗口、不复制 W1 冒充 W2、不传真值；theory 按名义频率写入 ppa.NOTES，seeds/局部 SNR 用模块冻结规则（不改阈值）。",
+   "独立复核 timing 原样保留、逐窗 bounds_s/start_sample/stop_sample/samples/coordinate/evidence_role 与注册整数样本界一致、window_failures 恰为 status!=ok 的窗口；status=ok 的窗口其 stop_sample 必须 <= note_off_sample 且 <= frames（不静默包含 release、不跨界拼接）。",
+   "admitted 期望用例：reference_quality 必须准入；本执行器另独立复核每窗 status=ok、identified>=5、独立留出 status=ok/training>=3/holdout>=2/明细齐全且 rms<=1.0、max<=3.0 cents、每条认证线频率在 max(0.005 Hz,0.05 cents) 内且编号与真值族线一致（缺失/位移编号即错误索引准入）、拟合 B 相对误差<=0.02、required_partials 全部出现、forbidden_partials 不得出现、跨窗 f1 展开<=1.0 cent、B 展开<=0.1。任一不过即相应违例。",
+   "rejected 期望用例（未分辨/可分辨混合族、漂移/调频、纯噪声、边界负例）：不得准入；准入即 false_static_admission。",
+   "conditional 期望用例（AM/弱边界）：准入 ⟺ 完整义务通过（同 admitted 的全部独立复核），任一义务失败即 false_conditional_static_admission；拒绝且理由非空即显式弃权的合法条件结果；拒绝但无理由/无记录即 incomplete_conditional_accounting 违例。AM carrier 输出不得进入 B（B 相对误差复核即该约束的检查）。",
+   "refused 期望用例（非法事件绑定 note_off_sample > frames）：analyze_samples 必须整体拒绝（抛错），不产生窗口结论；未拒绝即 invalid_timing_not_refused。禁止为迁就测试裁剪/伪造 note_off。",
+   "边界负例：release_boundary 要求 W1 status=ok、W2 status!=ok 且 failure stage='bounds'（release_boundary_exceeded），window_failures 只列 W2；frames_boundary 要求 W1 ok、W2 非 ok 且 stage='spectrum'；两者都必须保留逐窗记录、不裁剪、不提升、不跨窗拼接。",
+   "回归对照 q34/q35/q38/q39 按 v1 配方与种子重建：rejected 期望且观测器不得单线认证；违反即整体不获资格（只作已消费回归）。",
+   "所有用例均为 gating 义务：不存在 diagnostic 非门禁用例，失败不得下移为忽略诊断；无全局通过率、无阈值放宽。",
+   "角色内重复组与同配方正向比较对复用冻结 repeat_quality/compare_analyses；任何不满足仍整体失败。键号仅触发候选策略，不能把多弦音区合成单线解释为真实多弦中心或物理资格。新负向/不对称比较不在当前 pair schema 能力内，严格交由列明的已消费回归控制；不是新独立数据。"
+  ],
+  "repeat_obligation": {
+   "members_per_group": 2,
+   "f1_spread_cents_max": 1.0,
+   "b_relative_spread_max": 0.1,
+   "gate_function": "validation-eval.py:repeat_quality",
+   "obligation": "同配方、仅噪声种子不同的重复组：两名成员都必须 reference_quality 准入（W1/W2 完整），且 W1 f1 展开 <=1.0 cent、B 相对展开 <=0.1；组不完整、成员被拒或超预算即整组违例（复用冻结门禁函数，不另建评估器）。"
+  },
+  "comparison": {
+   "metric": "1200*log2((dev_n/dev_m)/(ref_n/ref_m))",
+   "base": "最低共同可比较分音：仅用于归一化并被排除",
+   "minimum_nonbase_partials": 2,
+   "rms_cents_max": 1.0,
+   "max_cents_max": 3.0,
+   "existing_mask_unchanged": {
+    "midi_below_72": 7,
+    "midi_72_through_95": 5,
+    "midi_96_and_above": 1
+   },
+   "gate_function": "validation-eval.py:compare_analyses",
+   "obligation": "同配方正向对仅允许seed/level/身份不同；唯一compare_analyses先要求两侧完整族，再输出原单弦/多弦策略结果，原数值预算不变。runner按prospective_review.policy_expectations核对完整唯一的role/pair/成员/键号/采样率绑定及正整数基准、候选和非基准数量；comparison_passed不豁免任何不匹配，违例进入原比较失败链。负向/不对称比较和证据反例仍仅由已消费控制覆盖。",
+   "candidate_policy": "builtin_monochord_low_partials_v1"
+  }
+ },
+ "candidates": {
+  "rel_power_floor": 1e-11,
+  "min_local_snr_db": 10.0,
+  "max_candidates": 48,
+  "force_top": 3,
+  "band_low_factor": 0.5,
+  "band_high_factor": 0.98,
+  "rationale": "rel 下限低于最弱声明阳性且高于安静用例噪声峰；SNR 下限排除纯噪声峰；force_top 保证纯噪声用例也被实际探测。"
+ },
+ "coverage_requirements": {
+  "roles": [
+   "development",
+   "qualification"
+  ],
+  "required_expected_classes_per_role": [
+   "positive",
+   "resolvable",
+   "ambiguous",
+   "nonstationary",
+   "negative"
+  ],
+  "minimum_required_admission_cases_per_role": 8,
+  "required_rates_per_role": [
+   44100,
+   48000
+  ],
+  "minimum_conditional_cases_per_role": 2,
+  "required_boundary_kinds_per_role": [
+   "release_boundary",
+   "frames_boundary",
+   "invalid_timing_refused"
+  ],
+  "required_observer_window_names": [
+   "W1",
+   "W2"
+  ],
+  "note": "硬性正向准入覆盖：每个角色的 required-admission 用例数不少于下限，且执行时实际准入数不得低于该下限；不允许靠条件弃权或全局通过率补足。",
+  "minimum_repeat_groups_per_role": 1,
+  "minimum_comparison_pairs_per_role": 1
+ },
+ "execution": {
+  "approval": true,
+  "approval_note": "2026-10-16用户明确授权原文：同意，批准 一次完整 qualification——66 个新用例、4 个旧控制及同封印评估器回归，先写明确授权及相关说明、记录新登记散列，再生成精确 seal；任何失败、缺失或中断均保留后停止，不调参或补批。仅限批次a5-qualification-20261016-040725的一次完整qualification，精确绑定审批包341bd1c85b236f7590207ff0283d540ce2ec18bc7d078104cd7b0cf79eb029d0中的定稿源码与环境；development.authorized仍为false。外部seal执行即消费，不准重试、子集、替换或第二封印；结果只作本有限合成域资格，v3/origin与生产门禁不变。",
+  "development": {
+   "authorized": false,
+   "repeatable": true,
+   "evidence_role": "synthetic_fixture",
+   "reporting": "当前仅保留互斥未生成配方，禁止 --role development；任何日后开发结果都不能升级为独立资格。"
+  },
+  "qualification": {
+   "seal_required": true,
+   "seal_convention": "外部 --seal JSON：{'role':'method_qualification_noteon_v3','files':{<resolved path>: sha256}}；files 必须精确绑定本注册文件与 meter-qualification.py / pilot-partial-analysis.py / partial-observer.py / validation-eval.py / validation-eval-tests.py 的实际散列，逐项相等才可执行。",
+   "consumption": "封印对应一轮完整角色：执行开始即在封印旁以固定命名 <seal>.consumed 独占创建消费标记；已消费封印不得再次用于 qualification（无子集/重试/换目录重跑）。",
+   "requires": [
+    "approval=true（显式批准，非执行器改写）",
+    "seal 精确绑定注册与五个源码的实际 sha256",
+    "全新 --out 目录；完整角色一次执行",
+    "所有失败原样保留；随后停止"
+   ],
+   "on_failure": "任何用例失败、中断、异常或角色不完整都记为 not_qualified/aborted 并停止；不得因已有行通过而降级为 qualified，不得重试或替换用例。"
+  },
+  "evaluator_regression": {
+   "required": true,
+   "script": "pilot/tools/validation-eval-tests.py",
+   "timeout_seconds": 120,
+   "obligation": "完整角色执行时，在合成前运行同一封印绑定的评估器回归，验证六态分类、阈值/充分性、错误与完整记账。失败/异常/超时均禁止方法资格通过，并保留原始 stdout/stderr；这不是对真实留出数据的正式评估。"
+  }
+ },
+ "stop_policy": {
+  "clauses": {
+   "approval_gates_execution": "approval=false 硬性阻断 qualification；执行器在创建输出目录与加载任何模块之前拒绝。",
+   "seal_binds_registration_and_sources": "执行要求外部封印与注册文件及五个源码的精确 sha256 完全一致；注册自身散列由封印绑定，避免自引用。",
+   "seal_consumed_by_one_complete_role": "封印对应一轮完整角色，执行即消费（封印旁 <seal>.consumed 独占标记）；已消费封印不得重跑，换输出目录也不构成独立资格。",
+   "all_failures_retained_then_stop": "任何失败、中断、异常或角色不完整一律保留证据并停止；不得因已有行通过而 qualified。",
+   "no_subset_retry_tuning_replacement": "无子集执行、无重试、无调参、无用例替换；失败用例不得改名/换种子重来。",
+   "development_never_qualification": "本登记当前不授权 development；仅保留现有 schema 所需配方。将来如另批开发，任何已生成/检视的数据都失去独立资格身份，不能改标签升级。",
+   "prior_verdicts_and_archives_unchanged": "旧 registration/结果/v1 已消费资格与回执不动；旧复现属于证据归档，不是本执行器的兼容路径。",
+   "no_diagnostic_waiver": "无 diagnostic 非门禁义务；所有用例（含条件域与边界）按声明的真实结果门禁，失败不得下移为忽略诊断。"
+  },
+  "enforced_by_runner": [
+   "approval_gates_execution",
+   "seal_binds_registration_and_sources",
+   "seal_consumed_by_one_complete_role",
+   "all_failures_retained_then_stop",
+   "no_subset_retry_tuning_replacement",
+   "development_never_qualification",
+   "no_diagnostic_waiver"
+  ]
+ },
+ "cases": {
+  "development": [
+   {
+    "noise_sigma": 1.3e-05,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.17382,
+    "phase0": 0.8062,
+    "id": "a5d-stationary-n34-r44100-a",
+    "kind": "stationary",
+    "note": 34,
+    "rate": 44100,
+    "seed": 202610160100,
+    "b": 0.0006178,
+    "note_on_sample": 17389,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5d-compare-n34-r44100",
+     "producer": "a"
+    },
+    "note_off_sample": 202609,
+    "frames": 246709
+   },
+   {
+    "noise_sigma": 1.3e-05,
+    "level": 0.31,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.17382,
+    "phase0": 0.8062,
+    "id": "a5d-stationary-n34-r44100-b",
+    "kind": "stationary",
+    "note": 34,
+    "rate": 44100,
+    "seed": 202610160101,
+    "b": 0.0006178,
+    "note_on_sample": 17389,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5d-compare-n34-r44100",
+     "producer": "b"
+    },
+    "note_off_sample": 202609,
+    "frames": 246709
+   },
+   {
+    "noise_sigma": 1.3e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "f1_offset_hz": 0.1821,
+    "phase0": 1.249,
+    "id": "a5d-stationary-n70-r48000-a",
+    "kind": "stationary",
+    "note": 70,
+    "rate": 48000,
+    "seed": 202610160102,
+    "b": 0.001039,
+    "note_on_sample": 17663,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5d-compare-n70-r48000",
+     "producer": "a"
+    },
+    "note_off_sample": 219263,
+    "frames": 267263
+   },
+   {
+    "noise_sigma": 1.3e-05,
+    "level": 0.31,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "f1_offset_hz": 0.1821,
+    "phase0": 1.249,
+    "id": "a5d-stationary-n70-r48000-b",
+    "kind": "stationary",
+    "note": 70,
+    "rate": 48000,
+    "seed": 202610160103,
+    "b": 0.001039,
+    "note_on_sample": 17663,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5d-compare-n70-r48000",
+     "producer": "b"
+    },
+    "note_off_sample": 219263,
+    "frames": 267263
+   },
+   {
+    "noise_sigma": 1.3e-05,
+    "level": 0.73,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.17106,
+    "phase0": 0.6586,
+    "id": "a5d-stationary-n22-r44100-repeat0",
+    "kind": "stationary",
+    "note": 22,
+    "rate": 44100,
+    "seed": 202610160104,
+    "b": 0.0004774,
+    "note_on_sample": 17937,
+    "expected_class": "positive",
+    "repeat_group": {
+     "group": "a5d-repeat-n22-r44100",
+     "repeat": 0
+    },
+    "note_off_sample": 203157,
+    "frames": 247257
+   },
+   {
+    "noise_sigma": 1.3e-05,
+    "level": 0.73,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.17106,
+    "phase0": 0.6586,
+    "id": "a5d-stationary-n22-r44100-repeat1",
+    "kind": "stationary",
+    "note": 22,
+    "rate": 44100,
+    "seed": 202610160105,
+    "b": 0.0004774,
+    "note_on_sample": 17937,
+    "expected_class": "positive",
+    "repeat_group": {
+     "group": "a5d-repeat-n22-r44100",
+     "repeat": 1
+    },
+    "note_off_sample": 203157,
+    "frames": 247257
+   },
+   {
+    "noise_sigma": 1.3e-05,
+    "partials": 7,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.18762,
+    "phase0": 1.5442,
+    "id": "a5d-stationary-n94-r44100",
+    "kind": "stationary",
+    "note": 94,
+    "rate": 44100,
+    "seed": 202610160106,
+    "b": 0.0013198,
+    "note_on_sample": 18211,
+    "expected_class": "positive",
+    "note_off_sample": 203431,
+    "frames": 247531
+   },
+   {
+    "noise_sigma": 1.3e-05,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.18831,
+    "phase0": 1.5811,
+    "id": "a5d-stationary-n97-r48000",
+    "kind": "stationary",
+    "note": 97,
+    "rate": 48000,
+    "seed": 202610160107,
+    "b": 0.0013549,
+    "note_on_sample": 18348,
+    "expected_class": "positive",
+    "note_off_sample": 219948,
+    "frames": 267948
+   },
+   {
+    "admission_expectation": "conditional",
+    "am": {
+     "depth": 0.23,
+     "freq_hz": 0.93
+    },
+    "conditional": {
+     "domain": "conditional_am",
+     "band_hz": 0.93,
+     "meaning": "保留条件域；未授权运行。"
+    },
+    "noise_sigma": 1.3e-05,
+    "partials": 8,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.17796,
+    "phase0": 1.0276,
+    "id": "a5d-amslow-n52-r44100",
+    "kind": "amslow",
+    "note": 52,
+    "rate": 44100,
+    "seed": 202610160108,
+    "b": 0.0008284,
+    "note_on_sample": 18485,
+    "expected_class": "positive",
+    "note_off_sample": 203705,
+    "frames": 247805
+   },
+   {
+    "admission_expectation": "conditional",
+    "amp_overrides": {
+     "9": -74.0
+    },
+    "conditional": {
+     "domain": "conditional_weak_boundary",
+     "band_hz": 0.0,
+     "meaning": "保留弱域；未授权运行。"
+    },
+    "noise_sigma": 1.3e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.18532,
+    "phase0": 1.4212,
+    "id": "a5d-weak_harmonic-n84-r48000",
+    "kind": "weak_harmonic",
+    "note": 84,
+    "rate": 48000,
+    "seed": 202610160109,
+    "b": 0.0012028,
+    "note_on_sample": 18622,
+    "expected_class": "positive",
+    "note_off_sample": 220222,
+    "frames": 268222
+   },
+   {
+    "admission_expectation": "rejected",
+    "strings": [
+     {
+      "hz": -1.37
+     },
+     {
+      "hz": 1.37
+     }
+    ],
+    "noise_sigma": 1.3e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "probe_half_width_hz": 3.8,
+    "f1_offset_hz": 0.17451,
+    "phase0": 0.8431,
+    "id": "a5d-detuned_double_resolvable-n37-r44100",
+    "kind": "detuned_double_resolvable",
+    "note": 37,
+    "rate": 44100,
+    "seed": 202610160110,
+    "b": 0.0006529,
+    "note_on_sample": 18759,
+    "expected_class": "resolvable",
+    "note_off_sample": 203979,
+    "frames": 248079
+   },
+   {
+    "admission_expectation": "rejected",
+    "strings": [
+     {
+      "hz": -0.21
+     },
+     {
+      "hz": 0.21
+     }
+    ],
+    "noise_sigma": 1.3e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "string_phase_mode": "shared",
+    "f1_offset_hz": 0.17612,
+    "phase0": 0.9292,
+    "id": "a5d-detuned_double_ambiguous-n44-r48000",
+    "kind": "detuned_double_ambiguous",
+    "note": 44,
+    "rate": 48000,
+    "seed": 202610160111,
+    "b": 0.0007348,
+    "note_on_sample": 18896,
+    "expected_class": "ambiguous",
+    "note_off_sample": 220496,
+    "frames": 268496
+   },
+   {
+    "admission_expectation": "rejected",
+    "modulation": {
+     "model": "drift_linear",
+     "span_cents": 17.0
+    },
+    "noise_sigma": 1.3e-05,
+    "partials": 6,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "probe_half_width_hz": 52.0,
+    "f1_offset_hz": 0.18325,
+    "phase0": 1.3105,
+    "id": "a5d-drift-n75-r44100",
+    "kind": "drift",
+    "note": 75,
+    "rate": 44100,
+    "seed": 202610160112,
+    "b": 0.0010975,
+    "note_on_sample": 19033,
+    "expected_class": "nonstationary",
+    "note_off_sample": 204253,
+    "frames": 248353
+   },
+   {
+    "admission_expectation": "rejected",
+    "noise_sigma": 0.0018,
+    "partials": 0,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.17152,
+    "phase0": 0.6832,
+    "id": "a5d-noise-n24-r48000",
+    "kind": "noise",
+    "note": 24,
+    "rate": 48000,
+    "seed": 202610160113,
+    "b": 0.0005008,
+    "note_on_sample": 19170,
+    "expected_class": "negative",
+    "note_off_sample": 220770,
+    "frames": 268770
+   },
+   {
+    "admission_expectation": "rejected",
+    "boundary": {
+     "kind": "release_boundary",
+     "expected_windows": {
+      "W1": "ok",
+      "W2": "not_ok"
+     },
+     "expected_stage": "bounds",
+     "expected_reason": "release_boundary_exceeded"
+    },
+    "noise_sigma": 1.3e-05,
+    "partials": 6,
+    "f1_offset_hz": 0.17129,
+    "phase0": 0.6709,
+    "note_off_seconds_after_note_on": 3.94,
+    "id": "a5d-release_boundary-n23-r44100",
+    "kind": "release_boundary",
+    "note": 23,
+    "rate": 44100,
+    "seed": 202610160114,
+    "b": 0.0004891,
+    "note_on_sample": 19307,
+    "expected_class": "positive",
+    "note_off_sample": 193061,
+    "frames": 248627
+   },
+   {
+    "admission_expectation": "rejected",
+    "boundary": {
+     "kind": "frames_boundary",
+     "expected_windows": {
+      "W1": "ok",
+      "W2": "not_ok"
+     },
+     "expected_stage": "spectrum",
+     "expected_reason": "analysis window exceeds available samples or has invalid bounds"
+    },
+    "noise_sigma": 1.3e-05,
+    "partials": 8,
+    "f1_offset_hz": 0.18555,
+    "phase0": 1.4335,
+    "note_off_seconds_after_note_on": 4.01,
+    "frames_seconds_after_note_on": 4.01,
+    "id": "a5d-frames_boundary-n85-r48000",
+    "kind": "frames_boundary",
+    "note": 85,
+    "rate": 48000,
+    "seed": 202610160115,
+    "b": 0.0012145,
+    "note_on_sample": 19444,
+    "expected_class": "positive",
+    "note_off_sample": 211924,
+    "frames": 211924
+   },
+   {
+    "admission_expectation": "refused",
+    "boundary": {
+     "kind": "invalid_timing_refused",
+     "obligation": "保留非法事件负例；未授权运行。"
+    },
+    "noise_sigma": 1.3e-05,
+    "partials": 8,
+    "windows": [],
+    "f1_offset_hz": 0.17543,
+    "phase0": 0.8923,
+    "frames_seconds_after_note_on": 3.89,
+    "id": "a5d-invalid_timing_refused-n41-r44100",
+    "kind": "invalid_timing_refused",
+    "note": 41,
+    "rate": 44100,
+    "seed": 202610160116,
+    "b": 0.0006997,
+    "note_on_sample": 19581,
+    "expected_class": "positive",
+    "note_off_sample": 204801,
+    "frames": 191130
+   }
+  ],
+  "qualification": [
+   {
+    "noise_sigma": 1.1e-05,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.15183,
+    "phase0": 0.5293,
+    "id": "a5q-stationary-n21-r44100-a",
+    "kind": "stationary",
+    "note": 21,
+    "rate": 44100,
+    "seed": 202610160200,
+    "b": 0.0004427,
+    "note_on_sample": 22963,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n21-r44100",
+     "producer": "a"
+    },
+    "note_off_sample": 208183,
+    "frames": 252283
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.31,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.15183,
+    "phase0": 0.5293,
+    "id": "a5q-stationary-n21-r44100-b",
+    "kind": "stationary",
+    "note": 21,
+    "rate": 44100,
+    "seed": 202610160201,
+    "b": 0.0004427,
+    "note_on_sample": 22963,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n21-r44100",
+     "producer": "b"
+    },
+    "note_off_sample": 208183,
+    "frames": 252283
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.15183,
+    "phase0": 0.5293,
+    "id": "a5q-stationary-n21-r48000-a",
+    "kind": "stationary",
+    "note": 21,
+    "rate": 48000,
+    "seed": 202610160202,
+    "b": 0.0004427,
+    "note_on_sample": 23237,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n21-r48000",
+     "producer": "a"
+    },
+    "note_off_sample": 224837,
+    "frames": 272837
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.31,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.15183,
+    "phase0": 0.5293,
+    "id": "a5q-stationary-n21-r48000-b",
+    "kind": "stationary",
+    "note": 21,
+    "rate": 48000,
+    "seed": 202610160203,
+    "b": 0.0004427,
+    "note_on_sample": 23237,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n21-r48000",
+     "producer": "b"
+    },
+    "note_off_sample": 224837,
+    "frames": 272837
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.15505,
+    "phase0": 0.7015,
+    "id": "a5q-stationary-n35-r44100-a",
+    "kind": "stationary",
+    "note": 35,
+    "rate": 44100,
+    "seed": 202610160204,
+    "b": 0.0006065,
+    "note_on_sample": 23511,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n35-r44100",
+     "producer": "a"
+    },
+    "note_off_sample": 208731,
+    "frames": 252831
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.31,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.15505,
+    "phase0": 0.7015,
+    "id": "a5q-stationary-n35-r44100-b",
+    "kind": "stationary",
+    "note": 35,
+    "rate": 44100,
+    "seed": 202610160205,
+    "b": 0.0006065,
+    "note_on_sample": 23511,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n35-r44100",
+     "producer": "b"
+    },
+    "note_off_sample": 208731,
+    "frames": 252831
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.15505,
+    "phase0": 0.7015,
+    "id": "a5q-stationary-n35-r48000-a",
+    "kind": "stationary",
+    "note": 35,
+    "rate": 48000,
+    "seed": 202610160206,
+    "b": 0.0006065,
+    "note_on_sample": 23785,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n35-r48000",
+     "producer": "a"
+    },
+    "note_off_sample": 225385,
+    "frames": 273385
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.31,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.15505,
+    "phase0": 0.7015,
+    "id": "a5q-stationary-n35-r48000-b",
+    "kind": "stationary",
+    "note": 35,
+    "rate": 48000,
+    "seed": 202610160207,
+    "b": 0.0006065,
+    "note_on_sample": 23785,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n35-r48000",
+     "producer": "b"
+    },
+    "note_off_sample": 225385,
+    "frames": 273385
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "f1_offset_hz": 0.15528,
+    "phase0": 0.7138,
+    "id": "a5q-stationary-n36-r44100-a",
+    "kind": "stationary",
+    "note": 36,
+    "rate": 44100,
+    "seed": 202610160208,
+    "b": 0.0006182,
+    "note_on_sample": 24059,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n36-r44100",
+     "producer": "a"
+    },
+    "note_off_sample": 209279,
+    "frames": 253379
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.31,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "f1_offset_hz": 0.15528,
+    "phase0": 0.7138,
+    "id": "a5q-stationary-n36-r44100-b",
+    "kind": "stationary",
+    "note": 36,
+    "rate": 44100,
+    "seed": 202610160209,
+    "b": 0.0006182,
+    "note_on_sample": 24059,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n36-r44100",
+     "producer": "b"
+    },
+    "note_off_sample": 209279,
+    "frames": 253379
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "f1_offset_hz": 0.15528,
+    "phase0": 0.7138,
+    "id": "a5q-stationary-n36-r48000-a",
+    "kind": "stationary",
+    "note": 36,
+    "rate": 48000,
+    "seed": 202610160210,
+    "b": 0.0006182,
+    "note_on_sample": 24333,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n36-r48000",
+     "producer": "a"
+    },
+    "note_off_sample": 225933,
+    "frames": 273933
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.31,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "f1_offset_hz": 0.15528,
+    "phase0": 0.7138,
+    "id": "a5q-stationary-n36-r48000-b",
+    "kind": "stationary",
+    "note": 36,
+    "rate": 48000,
+    "seed": 202610160211,
+    "b": 0.0006182,
+    "note_on_sample": 24333,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n36-r48000",
+     "producer": "b"
+    },
+    "note_off_sample": 225933,
+    "frames": 273933
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "f1_offset_hz": 0.16333,
+    "phase0": 1.1443,
+    "id": "a5q-stationary-n71-r44100-a",
+    "kind": "stationary",
+    "note": 71,
+    "rate": 44100,
+    "seed": 202610160212,
+    "b": 0.0010277,
+    "note_on_sample": 24607,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n71-r44100",
+     "producer": "a"
+    },
+    "note_off_sample": 209827,
+    "frames": 253927
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.31,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "f1_offset_hz": 0.16333,
+    "phase0": 1.1443,
+    "id": "a5q-stationary-n71-r44100-b",
+    "kind": "stationary",
+    "note": 71,
+    "rate": 44100,
+    "seed": 202610160213,
+    "b": 0.0010277,
+    "note_on_sample": 24607,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n71-r44100",
+     "producer": "b"
+    },
+    "note_off_sample": 209827,
+    "frames": 253927
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "f1_offset_hz": 0.16333,
+    "phase0": 1.1443,
+    "id": "a5q-stationary-n71-r48000-a",
+    "kind": "stationary",
+    "note": 71,
+    "rate": 48000,
+    "seed": 202610160214,
+    "b": 0.0010277,
+    "note_on_sample": 24881,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n71-r48000",
+     "producer": "a"
+    },
+    "note_off_sample": 226481,
+    "frames": 274481
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.31,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "f1_offset_hz": 0.16333,
+    "phase0": 1.1443,
+    "id": "a5q-stationary-n71-r48000-b",
+    "kind": "stationary",
+    "note": 71,
+    "rate": 48000,
+    "seed": 202610160215,
+    "b": 0.0010277,
+    "note_on_sample": 24881,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n71-r48000",
+     "producer": "b"
+    },
+    "note_off_sample": 226481,
+    "frames": 274481
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "partials": 7,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "f1_offset_hz": 0.16356,
+    "phase0": 1.1566,
+    "id": "a5q-stationary-n72-r44100-a",
+    "kind": "stationary",
+    "note": 72,
+    "rate": 44100,
+    "seed": 202610160216,
+    "b": 0.0010394,
+    "note_on_sample": 25155,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n72-r44100",
+     "producer": "a"
+    },
+    "note_off_sample": 210375,
+    "frames": 254475
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.31,
+    "partials": 7,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "f1_offset_hz": 0.16356,
+    "phase0": 1.1566,
+    "id": "a5q-stationary-n72-r44100-b",
+    "kind": "stationary",
+    "note": 72,
+    "rate": 44100,
+    "seed": 202610160217,
+    "b": 0.0010394,
+    "note_on_sample": 25155,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n72-r44100",
+     "producer": "b"
+    },
+    "note_off_sample": 210375,
+    "frames": 254475
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "partials": 7,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "f1_offset_hz": 0.16356,
+    "phase0": 1.1566,
+    "id": "a5q-stationary-n72-r48000-a",
+    "kind": "stationary",
+    "note": 72,
+    "rate": 48000,
+    "seed": 202610160218,
+    "b": 0.0010394,
+    "note_on_sample": 25429,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n72-r48000",
+     "producer": "a"
+    },
+    "note_off_sample": 227029,
+    "frames": 275029
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.31,
+    "partials": 7,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "f1_offset_hz": 0.16356,
+    "phase0": 1.1566,
+    "id": "a5q-stationary-n72-r48000-b",
+    "kind": "stationary",
+    "note": 72,
+    "rate": 48000,
+    "seed": 202610160219,
+    "b": 0.0010394,
+    "note_on_sample": 25429,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n72-r48000",
+     "producer": "b"
+    },
+    "note_off_sample": 227029,
+    "frames": 275029
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "partials": 7,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "f1_offset_hz": 0.16885,
+    "phase0": 1.4395,
+    "id": "a5q-stationary-n95-r44100-a",
+    "kind": "stationary",
+    "note": 95,
+    "rate": 44100,
+    "seed": 202610160220,
+    "b": 0.0013085,
+    "note_on_sample": 25703,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n95-r44100",
+     "producer": "a"
+    },
+    "note_off_sample": 210923,
+    "frames": 255023
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.31,
+    "partials": 7,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "f1_offset_hz": 0.16885,
+    "phase0": 1.4395,
+    "id": "a5q-stationary-n95-r44100-b",
+    "kind": "stationary",
+    "note": 95,
+    "rate": 44100,
+    "seed": 202610160221,
+    "b": 0.0013085,
+    "note_on_sample": 25703,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n95-r44100",
+     "producer": "b"
+    },
+    "note_off_sample": 210923,
+    "frames": 255023
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "partials": 7,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "f1_offset_hz": 0.16885,
+    "phase0": 1.4395,
+    "id": "a5q-stationary-n95-r48000-a",
+    "kind": "stationary",
+    "note": 95,
+    "rate": 48000,
+    "seed": 202610160222,
+    "b": 0.0013085,
+    "note_on_sample": 25977,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n95-r48000",
+     "producer": "a"
+    },
+    "note_off_sample": 227577,
+    "frames": 275577
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.31,
+    "partials": 7,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "f1_offset_hz": 0.16885,
+    "phase0": 1.4395,
+    "id": "a5q-stationary-n95-r48000-b",
+    "kind": "stationary",
+    "note": 95,
+    "rate": 48000,
+    "seed": 202610160223,
+    "b": 0.0013085,
+    "note_on_sample": 25977,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n95-r48000",
+     "producer": "b"
+    },
+    "note_off_sample": 227577,
+    "frames": 275577
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.16908,
+    "phase0": 1.4518,
+    "id": "a5q-stationary-n96-r44100-a",
+    "kind": "stationary",
+    "note": 96,
+    "rate": 44100,
+    "seed": 202610160224,
+    "b": 0.0013202,
+    "note_on_sample": 26251,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n96-r44100",
+     "producer": "a"
+    },
+    "note_off_sample": 211471,
+    "frames": 255571
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.31,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.16908,
+    "phase0": 1.4518,
+    "id": "a5q-stationary-n96-r44100-b",
+    "kind": "stationary",
+    "note": 96,
+    "rate": 44100,
+    "seed": 202610160225,
+    "b": 0.0013202,
+    "note_on_sample": 26251,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n96-r44100",
+     "producer": "b"
+    },
+    "note_off_sample": 211471,
+    "frames": 255571
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.16908,
+    "phase0": 1.4518,
+    "id": "a5q-stationary-n96-r48000-a",
+    "kind": "stationary",
+    "note": 96,
+    "rate": 48000,
+    "seed": 202610160226,
+    "b": 0.0013202,
+    "note_on_sample": 26525,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n96-r48000",
+     "producer": "a"
+    },
+    "note_off_sample": 228125,
+    "frames": 276125
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.31,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.16908,
+    "phase0": 1.4518,
+    "id": "a5q-stationary-n96-r48000-b",
+    "kind": "stationary",
+    "note": 96,
+    "rate": 48000,
+    "seed": 202610160227,
+    "b": 0.0013202,
+    "note_on_sample": 26525,
+    "expected_class": "positive",
+    "comparison_pair": {
+     "pair": "a5q-compare-n96-r48000",
+     "producer": "b"
+    },
+    "note_off_sample": 228125,
+    "frames": 276125
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.73,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.15413,
+    "phase0": 0.6523,
+    "id": "a5q-stationary-n31-r44100-repeat0",
+    "kind": "stationary",
+    "note": 31,
+    "rate": 44100,
+    "seed": 202610160228,
+    "b": 0.0005597,
+    "note_on_sample": 26799,
+    "expected_class": "positive",
+    "repeat_group": {
+     "group": "a5q-repeat-n31-r44100",
+     "repeat": 0
+    },
+    "note_off_sample": 212019,
+    "frames": 256119
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.73,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.15413,
+    "phase0": 0.6523,
+    "id": "a5q-stationary-n31-r44100-repeat1",
+    "kind": "stationary",
+    "note": 31,
+    "rate": 44100,
+    "seed": 202610160229,
+    "b": 0.0005597,
+    "note_on_sample": 26799,
+    "expected_class": "positive",
+    "repeat_group": {
+     "group": "a5q-repeat-n31-r44100",
+     "repeat": 1
+    },
+    "note_off_sample": 212019,
+    "frames": 256119
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.73,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.15413,
+    "phase0": 0.6523,
+    "id": "a5q-stationary-n31-r48000-repeat0",
+    "kind": "stationary",
+    "note": 31,
+    "rate": 48000,
+    "seed": 202610160230,
+    "b": 0.0005597,
+    "note_on_sample": 27073,
+    "expected_class": "positive",
+    "repeat_group": {
+     "group": "a5q-repeat-n31-r48000",
+     "repeat": 0
+    },
+    "note_off_sample": 228673,
+    "frames": 276673
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.73,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "f1_offset_hz": 0.15413,
+    "phase0": 0.6523,
+    "id": "a5q-stationary-n31-r48000-repeat1",
+    "kind": "stationary",
+    "note": 31,
+    "rate": 48000,
+    "seed": 202610160231,
+    "b": 0.0005597,
+    "note_on_sample": 27073,
+    "expected_class": "positive",
+    "repeat_group": {
+     "group": "a5q-repeat-n31-r48000",
+     "repeat": 1
+    },
+    "note_off_sample": 228673,
+    "frames": 276673
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.73,
+    "partials": 8,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ],
+    "f1_offset_hz": 0.16471,
+    "phase0": 1.2181,
+    "id": "a5q-stationary-n77-r48000-repeat0",
+    "kind": "stationary",
+    "note": 77,
+    "rate": 48000,
+    "seed": 202610160232,
+    "b": 0.0010979,
+    "note_on_sample": 27347,
+    "expected_class": "positive",
+    "repeat_group": {
+     "group": "a5q-repeat-n77-r48000",
+     "repeat": 0
+    },
+    "note_off_sample": 228947,
+    "frames": 276947
+   },
+   {
+    "noise_sigma": 1.1e-05,
+    "level": 0.73,
+    "partials": 8,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+    ],
+    "f1_offset_hz": 0.16471,
+    "phase0": 1.2181,
+    "id": "a5q-stationary-n77-r48000-repeat1",
+    "kind": "stationary",
+    "note": 77,
+    "rate": 48000,
+    "seed": 202610160233,
+    "b": 0.0010979,
+    "note_on_sample": 27347,
+    "expected_class": "positive",
+    "repeat_group": {
+     "group": "a5q-repeat-n77-r48000",
+     "repeat": 1
+    },
+    "note_off_sample": 228947,
+    "frames": 276947
+   },
+   {
+    "envelope": {
+     "model": "exponential",
+     "tau_s": 0.43,
+     "from_partial": 5
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.15942,
+    "phase0": 0.9352,
+    "id": "a5q-expdecay-n54-r44100",
+    "kind": "expdecay",
+    "note": 54,
+    "rate": 44100,
+    "seed": 202610160234,
+    "b": 0.0008288,
+    "note_on_sample": 27621,
+    "expected_class": "positive",
+    "note_off_sample": 212841,
+    "frames": 256941
+   },
+   {
+    "envelope": {
+     "model": "two_stage",
+     "fast_weight": 0.39,
+     "fast_tau_s": 0.27,
+     "slow_tau_s": 1.9
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 8,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.16563,
+    "phase0": 1.2673,
+    "id": "a5q-twostage-n81-r44100",
+    "kind": "twostage",
+    "note": 81,
+    "rate": 44100,
+    "seed": 202610160235,
+    "b": 0.0011447,
+    "note_on_sample": 27758,
+    "expected_class": "positive",
+    "note_off_sample": 212978,
+    "frames": 257078
+   },
+   {
+    "skip_partials": [
+     1
+    ],
+    "noise_sigma": 1.1e-05,
+    "partials": 8,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "f1_offset_hz": 0.15758,
+    "phase0": 0.8368,
+    "id": "a5q-missing_fundamental-n46-r44100",
+    "kind": "missing_fundamental",
+    "note": 46,
+    "rate": 44100,
+    "seed": 202610160236,
+    "b": 0.0007352,
+    "note_on_sample": 27895,
+    "expected_class": "positive",
+    "note_off_sample": 213115,
+    "frames": 257215
+   },
+   {
+    "amp_overrides": {
+     "9": -32.0
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.16264,
+    "phase0": 1.1074,
+    "id": "a5q-weak_harmonic-n68-r44100",
+    "kind": "weak_harmonic",
+    "note": 68,
+    "rate": 44100,
+    "seed": 202610160237,
+    "b": 0.0009926,
+    "note_on_sample": 28032,
+    "expected_class": "positive",
+    "note_off_sample": 213252,
+    "frames": 257352
+   },
+   {
+    "admission_expectation": "conditional",
+    "am": {
+     "depth": 0.21,
+     "freq_hz": 0.87
+    },
+    "conditional": {
+     "domain": "conditional_am",
+     "band_hz": 0.87,
+     "meaning": "同原静态预算；可合法弃权，不计硬正向覆盖，不认证AM来源或以carrier替代B。"
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 8,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.15873,
+    "phase0": 0.8983,
+    "id": "a5q-amslow-n51-r44100",
+    "kind": "amslow",
+    "note": 51,
+    "rate": 44100,
+    "seed": 202610160238,
+    "b": 0.0007937,
+    "note_on_sample": 28169,
+    "expected_class": "positive",
+    "note_off_sample": 213389,
+    "frames": 257489
+   },
+   {
+    "admission_expectation": "conditional",
+    "amp_overrides": {
+     "9": -72.0
+    },
+    "conditional": {
+     "domain": "conditional_weak_boundary",
+     "band_hz": 0.0,
+     "meaning": "仅在原完整预算满足时准入；否则保留明确拒绝，不伪造弱线。"
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.16586,
+    "phase0": 1.2796,
+    "id": "a5q-weak_harmonic-n82-r44100",
+    "kind": "weak_harmonic",
+    "note": 82,
+    "rate": 44100,
+    "seed": 202610160239,
+    "b": 0.0011564,
+    "note_on_sample": 28306,
+    "expected_class": "positive",
+    "note_off_sample": 213526,
+    "frames": 257626
+   },
+   {
+    "admission_expectation": "rejected",
+    "strings": [
+     {
+      "hz": -1.41
+     },
+     {
+      "hz": 1.41
+     }
+    ],
+    "noise_sigma": 1.1e-05,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "probe_half_width_hz": 3.8,
+    "f1_offset_hz": 0.15505,
+    "phase0": 0.7015,
+    "id": "a5q-detuned_double_resolvable-n35-r44100",
+    "kind": "detuned_double_resolvable",
+    "note": 35,
+    "rate": 44100,
+    "seed": 202610160240,
+    "b": 0.0006065,
+    "note_on_sample": 28443,
+    "expected_class": "resolvable",
+    "note_off_sample": 213663,
+    "frames": 257763
+   },
+   {
+    "admission_expectation": "rejected",
+    "extra_modes": [
+     {
+      "near_partial": 2,
+      "offset_hz": 1.67,
+      "amp_db": -3.5
+     }
+    ],
+    "noise_sigma": 1.1e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "probe_half_width_hz": 3.8,
+    "f1_offset_hz": 0.15528,
+    "phase0": 0.7138,
+    "id": "a5q-extra_mode_resolvable-n36-r44100",
+    "kind": "extra_mode_resolvable",
+    "note": 36,
+    "rate": 44100,
+    "seed": 202610160241,
+    "b": 0.0006182,
+    "note_on_sample": 28580,
+    "expected_class": "resolvable",
+    "note_off_sample": 213800,
+    "frames": 257900
+   },
+   {
+    "admission_expectation": "rejected",
+    "strings": [
+     {
+      "hz": -0.19
+     },
+     {
+      "hz": 0.19
+     }
+    ],
+    "noise_sigma": 1.1e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "string_phase_mode": "shared",
+    "f1_offset_hz": 0.15689,
+    "phase0": 0.7999,
+    "id": "a5q-detuned_double_ambiguous-n43-r44100",
+    "kind": "detuned_double_ambiguous",
+    "note": 43,
+    "rate": 44100,
+    "seed": 202610160242,
+    "b": 0.0007001,
+    "note_on_sample": 28717,
+    "expected_class": "ambiguous",
+    "note_off_sample": 213937,
+    "frames": 258037
+   },
+   {
+    "admission_expectation": "rejected",
+    "extra_modes": [
+     {
+      "near_partial": 1,
+      "offset_hz": 0.63,
+      "amp_db": -9.0
+     }
+    ],
+    "noise_sigma": 1.1e-05,
+    "partials": 7,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.16885,
+    "phase0": 1.4395,
+    "id": "a5q-extra_mode_ambiguous-n95-r44100",
+    "kind": "extra_mode_ambiguous",
+    "note": 95,
+    "rate": 44100,
+    "seed": 202610160243,
+    "b": 0.0013085,
+    "note_on_sample": 28854,
+    "expected_class": "ambiguous",
+    "note_off_sample": 214074,
+    "frames": 258174
+   },
+   {
+    "admission_expectation": "rejected",
+    "modulation": {
+     "model": "drift_linear",
+     "span_cents": 14.5
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 6,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "probe_half_width_hz": 52.0,
+    "f1_offset_hz": 0.16402,
+    "phase0": 1.1812,
+    "id": "a5q-drift-n74-r44100",
+    "kind": "drift",
+    "note": 74,
+    "rate": 44100,
+    "seed": 202610160244,
+    "b": 0.0010628,
+    "note_on_sample": 28991,
+    "expected_class": "nonstationary",
+    "note_off_sample": 214211,
+    "frames": 258311
+   },
+   {
+    "admission_expectation": "rejected",
+    "modulation": {
+     "model": "fm_sinusoidal",
+     "depth_cents": 12.7,
+     "freq_hz": 0.71
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 8,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "probe_half_width_hz": 14.0,
+    "f1_offset_hz": 0.15666,
+    "phase0": 0.7876,
+    "id": "a5q-fm-n42-r44100",
+    "kind": "fm",
+    "note": 42,
+    "rate": 44100,
+    "seed": 202610160245,
+    "b": 0.0006884,
+    "note_on_sample": 29128,
+    "expected_class": "nonstationary",
+    "note_off_sample": 214348,
+    "frames": 258448
+   },
+   {
+    "admission_expectation": "rejected",
+    "noise_sigma": 0.0017,
+    "partials": 0,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.15436,
+    "phase0": 0.6646,
+    "id": "a5q-noise-n32-r44100",
+    "kind": "noise",
+    "note": 32,
+    "rate": 44100,
+    "seed": 202610160246,
+    "b": 0.0005714,
+    "note_on_sample": 29265,
+    "expected_class": "negative",
+    "note_off_sample": 214485,
+    "frames": 258585
+   },
+   {
+    "admission_expectation": "rejected",
+    "boundary": {
+     "kind": "release_boundary",
+     "expected_windows": {
+      "W1": "ok",
+      "W2": "not_ok"
+     },
+     "expected_stage": "bounds",
+     "expected_reason": "release_boundary_exceeded",
+     "obligation": "W1完整、W2跨release按bounds失败，窗口失败只列W2；不裁剪或升级。"
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 6,
+    "f1_offset_hz": 0.1539,
+    "phase0": 0.64,
+    "note_off_seconds_after_note_on": 3.93,
+    "id": "a5q-release_boundary-n30-r44100",
+    "kind": "release_boundary",
+    "note": 30,
+    "rate": 44100,
+    "seed": 202610160247,
+    "b": 0.000548,
+    "note_on_sample": 29402,
+    "expected_class": "positive",
+    "note_off_sample": 202715,
+    "frames": 258722
+   },
+   {
+    "admission_expectation": "rejected",
+    "boundary": {
+     "kind": "frames_boundary",
+     "expected_windows": {
+      "W1": "ok",
+      "W2": "not_ok"
+     },
+     "expected_stage": "spectrum",
+     "expected_reason": "analysis window exceeds available samples or has invalid bounds",
+     "obligation": "W1完整，W2超帧按spectrum失败，保留原整数界。"
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 8,
+    "f1_offset_hz": 0.16609,
+    "phase0": 1.2919,
+    "note_off_seconds_after_note_on": 4.02,
+    "frames_seconds_after_note_on": 4.02,
+    "id": "a5q-frames_boundary-n83-r44100",
+    "kind": "frames_boundary",
+    "note": 83,
+    "rate": 44100,
+    "seed": 202610160248,
+    "b": 0.0011681,
+    "note_on_sample": 29539,
+    "expected_class": "positive",
+    "note_off_sample": 206821,
+    "frames": 206821
+   },
+   {
+    "admission_expectation": "refused",
+    "boundary": {
+     "kind": "invalid_timing_refused",
+     "obligation": "note_off>frames时整体拒绝，不产生窗口结论，不伪造或裁剪事件。"
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 8,
+    "windows": [],
+    "f1_offset_hz": 0.1562,
+    "phase0": 0.763,
+    "frames_seconds_after_note_on": 3.87,
+    "id": "a5q-invalid_timing_refused-n40-r44100",
+    "kind": "invalid_timing_refused",
+    "note": 40,
+    "rate": 44100,
+    "seed": 202610160249,
+    "b": 0.000665,
+    "note_on_sample": 29676,
+    "expected_class": "positive",
+    "note_off_sample": 214896,
+    "frames": 200343
+   },
+   {
+    "envelope": {
+     "model": "exponential",
+     "tau_s": 0.43,
+     "from_partial": 5
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.15942,
+    "phase0": 0.9352,
+    "id": "a5q-expdecay-n54-r48000",
+    "kind": "expdecay",
+    "note": 54,
+    "rate": 48000,
+    "seed": 202610160250,
+    "b": 0.0008288,
+    "note_on_sample": 29813,
+    "expected_class": "positive",
+    "note_off_sample": 231413,
+    "frames": 279413
+   },
+   {
+    "envelope": {
+     "model": "two_stage",
+     "fast_weight": 0.39,
+     "fast_tau_s": 0.27,
+     "slow_tau_s": 1.9
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 8,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.16563,
+    "phase0": 1.2673,
+    "id": "a5q-twostage-n81-r48000",
+    "kind": "twostage",
+    "note": 81,
+    "rate": 48000,
+    "seed": 202610160251,
+    "b": 0.0011447,
+    "note_on_sample": 29950,
+    "expected_class": "positive",
+    "note_off_sample": 231550,
+    "frames": 279550
+   },
+   {
+    "skip_partials": [
+     1
+    ],
+    "noise_sigma": 1.1e-05,
+    "partials": 8,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "required_partials": [
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "f1_offset_hz": 0.15758,
+    "phase0": 0.8368,
+    "id": "a5q-missing_fundamental-n46-r48000",
+    "kind": "missing_fundamental",
+    "note": 46,
+    "rate": 48000,
+    "seed": 202610160252,
+    "b": 0.0007352,
+    "note_on_sample": 30087,
+    "expected_class": "positive",
+    "note_off_sample": 231687,
+    "frames": 279687
+   },
+   {
+    "amp_overrides": {
+     "9": -32.0
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.16264,
+    "phase0": 1.1074,
+    "id": "a5q-weak_harmonic-n68-r48000",
+    "kind": "weak_harmonic",
+    "note": 68,
+    "rate": 48000,
+    "seed": 202610160253,
+    "b": 0.0009926,
+    "note_on_sample": 30224,
+    "expected_class": "positive",
+    "note_off_sample": 231824,
+    "frames": 279824
+   },
+   {
+    "admission_expectation": "conditional",
+    "am": {
+     "depth": 0.21,
+     "freq_hz": 0.87
+    },
+    "conditional": {
+     "domain": "conditional_am",
+     "band_hz": 0.87,
+     "meaning": "同原静态预算；可合法弃权，不计硬正向覆盖，不认证AM来源或以carrier替代B。"
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 8,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.15873,
+    "phase0": 0.8983,
+    "id": "a5q-amslow-n51-r48000",
+    "kind": "amslow",
+    "note": 51,
+    "rate": 48000,
+    "seed": 202610160254,
+    "b": 0.0007937,
+    "note_on_sample": 30361,
+    "expected_class": "positive",
+    "note_off_sample": 231961,
+    "frames": 279961
+   },
+   {
+    "admission_expectation": "conditional",
+    "amp_overrides": {
+     "9": -72.0
+    },
+    "conditional": {
+     "domain": "conditional_weak_boundary",
+     "band_hz": 0.0,
+     "meaning": "仅在原完整预算满足时准入；否则保留明确拒绝，不伪造弱线。"
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.16586,
+    "phase0": 1.2796,
+    "id": "a5q-weak_harmonic-n82-r48000",
+    "kind": "weak_harmonic",
+    "note": 82,
+    "rate": 48000,
+    "seed": 202610160255,
+    "b": 0.0011564,
+    "note_on_sample": 30498,
+    "expected_class": "positive",
+    "note_off_sample": 232098,
+    "frames": 280098
+   },
+   {
+    "admission_expectation": "rejected",
+    "strings": [
+     {
+      "hz": -1.41
+     },
+     {
+      "hz": 1.41
+     }
+    ],
+    "noise_sigma": 1.1e-05,
+    "partials": 5,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "probe_half_width_hz": 3.8,
+    "f1_offset_hz": 0.15505,
+    "phase0": 0.7015,
+    "id": "a5q-detuned_double_resolvable-n35-r48000",
+    "kind": "detuned_double_resolvable",
+    "note": 35,
+    "rate": 48000,
+    "seed": 202610160256,
+    "b": 0.0006065,
+    "note_on_sample": 30635,
+    "expected_class": "resolvable",
+    "note_off_sample": 232235,
+    "frames": 280235
+   },
+   {
+    "admission_expectation": "rejected",
+    "extra_modes": [
+     {
+      "near_partial": 2,
+      "offset_hz": 1.67,
+      "amp_db": -3.5
+     }
+    ],
+    "noise_sigma": 1.1e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "probe_half_width_hz": 3.8,
+    "f1_offset_hz": 0.15528,
+    "phase0": 0.7138,
+    "id": "a5q-extra_mode_resolvable-n36-r48000",
+    "kind": "extra_mode_resolvable",
+    "note": 36,
+    "rate": 48000,
+    "seed": 202610160257,
+    "b": 0.0006182,
+    "note_on_sample": 30772,
+    "expected_class": "resolvable",
+    "note_off_sample": 232372,
+    "frames": 280372
+   },
+   {
+    "admission_expectation": "rejected",
+    "strings": [
+     {
+      "hz": -0.19
+     },
+     {
+      "hz": 0.19
+     }
+    ],
+    "noise_sigma": 1.1e-05,
+    "partials": 9,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "string_phase_mode": "shared",
+    "f1_offset_hz": 0.15689,
+    "phase0": 0.7999,
+    "id": "a5q-detuned_double_ambiguous-n43-r48000",
+    "kind": "detuned_double_ambiguous",
+    "note": 43,
+    "rate": 48000,
+    "seed": 202610160258,
+    "b": 0.0007001,
+    "note_on_sample": 30909,
+    "expected_class": "ambiguous",
+    "note_off_sample": 232509,
+    "frames": 280509
+   },
+   {
+    "admission_expectation": "rejected",
+    "extra_modes": [
+     {
+      "near_partial": 1,
+      "offset_hz": 0.63,
+      "amp_db": -9.0
+     }
+    ],
+    "noise_sigma": 1.1e-05,
+    "partials": 7,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.16885,
+    "phase0": 1.4395,
+    "id": "a5q-extra_mode_ambiguous-n95-r48000",
+    "kind": "extra_mode_ambiguous",
+    "note": 95,
+    "rate": 48000,
+    "seed": 202610160259,
+    "b": 0.0013085,
+    "note_on_sample": 31046,
+    "expected_class": "ambiguous",
+    "note_off_sample": 232646,
+    "frames": 280646
+   },
+   {
+    "admission_expectation": "rejected",
+    "modulation": {
+     "model": "drift_linear",
+     "span_cents": 14.5
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 6,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "probe_half_width_hz": 52.0,
+    "f1_offset_hz": 0.16402,
+    "phase0": 1.1812,
+    "id": "a5q-drift-n74-r48000",
+    "kind": "drift",
+    "note": 74,
+    "rate": 48000,
+    "seed": 202610160260,
+    "b": 0.0010628,
+    "note_on_sample": 31183,
+    "expected_class": "nonstationary",
+    "note_off_sample": 232783,
+    "frames": 280783
+   },
+   {
+    "admission_expectation": "rejected",
+    "modulation": {
+     "model": "fm_sinusoidal",
+     "depth_cents": 12.7,
+     "freq_hz": 0.71
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 8,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "probe_half_width_hz": 14.0,
+    "f1_offset_hz": 0.15666,
+    "phase0": 0.7876,
+    "id": "a5q-fm-n42-r48000",
+    "kind": "fm",
+    "note": 42,
+    "rate": 48000,
+    "seed": 202610160261,
+    "b": 0.0006884,
+    "note_on_sample": 31320,
+    "expected_class": "nonstationary",
+    "note_off_sample": 232920,
+    "frames": 280920
+   },
+   {
+    "admission_expectation": "rejected",
+    "noise_sigma": 0.0019,
+    "partials": 0,
+    "windows": [
+     "W1",
+     "W2"
+    ],
+    "f1_offset_hz": 0.15436,
+    "phase0": 0.6646,
+    "id": "a5q-noise-n32-r48000",
+    "kind": "noise",
+    "note": 32,
+    "rate": 48000,
+    "seed": 202610160262,
+    "b": 0.0005714,
+    "note_on_sample": 31457,
+    "expected_class": "negative",
+    "note_off_sample": 233057,
+    "frames": 281057
+   },
+   {
+    "admission_expectation": "rejected",
+    "boundary": {
+     "kind": "release_boundary",
+     "expected_windows": {
+      "W1": "ok",
+      "W2": "not_ok"
+     },
+     "expected_stage": "bounds",
+     "expected_reason": "release_boundary_exceeded",
+     "obligation": "W1完整、W2跨release按bounds失败，窗口失败只列W2；不裁剪或升级。"
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 6,
+    "f1_offset_hz": 0.1539,
+    "phase0": 0.64,
+    "note_off_seconds_after_note_on": 3.93,
+    "id": "a5q-release_boundary-n30-r48000",
+    "kind": "release_boundary",
+    "note": 30,
+    "rate": 48000,
+    "seed": 202610160263,
+    "b": 0.000548,
+    "note_on_sample": 31594,
+    "expected_class": "positive",
+    "note_off_sample": 220234,
+    "frames": 281194
+   },
+   {
+    "admission_expectation": "rejected",
+    "boundary": {
+     "kind": "frames_boundary",
+     "expected_windows": {
+      "W1": "ok",
+      "W2": "not_ok"
+     },
+     "expected_stage": "spectrum",
+     "expected_reason": "analysis window exceeds available samples or has invalid bounds",
+     "obligation": "W1完整，W2超帧按spectrum失败，保留原整数界。"
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 8,
+    "f1_offset_hz": 0.16609,
+    "phase0": 1.2919,
+    "note_off_seconds_after_note_on": 4.02,
+    "frames_seconds_after_note_on": 4.02,
+    "id": "a5q-frames_boundary-n83-r48000",
+    "kind": "frames_boundary",
+    "note": 83,
+    "rate": 48000,
+    "seed": 202610160264,
+    "b": 0.0011681,
+    "note_on_sample": 31731,
+    "expected_class": "positive",
+    "note_off_sample": 224691,
+    "frames": 224691
+   },
+   {
+    "admission_expectation": "refused",
+    "boundary": {
+     "kind": "invalid_timing_refused",
+     "obligation": "note_off>frames时整体拒绝，不产生窗口结论，不伪造或裁剪事件。"
+    },
+    "noise_sigma": 1.1e-05,
+    "partials": 8,
+    "windows": [],
+    "f1_offset_hz": 0.1562,
+    "phase0": 0.763,
+    "frames_seconds_after_note_on": 3.87,
+    "id": "a5q-invalid_timing_refused-n40-r48000",
+    "kind": "invalid_timing_refused",
+    "note": 40,
+    "rate": 48000,
+    "seed": 202610160265,
+    "b": 0.000665,
+    "note_on_sample": 31868,
+    "expected_class": "positive",
+    "note_off_sample": 233468,
+    "frames": 217628
+   }
+  ]
+ },
+ "regression_controls": [
+  {
+   "id": "q34-unresolved_doublet-44100",
+   "kind": "unresolved_doublet_control",
+   "note": 55,
+   "rate": 44100,
+   "seed": 392034,
+   "b": 0.0003,
+   "note_on_sample": 4410,
+   "note_off_seconds_after_note_on": 4.2,
+   "frames_seconds_after_note_on": 5.2,
+   "note_off_sample": 189630,
+   "frames": 233730,
+   "expected_class": "ambiguous",
+   "admission_expectation": "rejected",
+   "obligation": "control",
+   "strings": [
+    {
+     "hz": 0.0
+    },
+    {
+     "hz": 0.4
+    }
+   ],
+   "string_phase_mode": "shared",
+   "f1_offset_hz": 0.06720430107526881,
+   "phase0": 1.5707963267948966,
+   "purpose": "v1 矩阵冻结混合族回归对照（逐分音 +0.4 Hz，同相）；same recipe/seed, 违反即整体不获资格；只作已消费回归，不构成新资格证据"
+  },
+  {
+   "id": "q35-unresolved_doublet-48000",
+   "kind": "unresolved_doublet_control",
+   "note": 55,
+   "rate": 48000,
+   "seed": 392035,
+   "b": 0.0003,
+   "note_on_sample": 4800,
+   "note_off_seconds_after_note_on": 4.2,
+   "frames_seconds_after_note_on": 5.2,
+   "note_off_sample": 206400,
+   "frames": 254400,
+   "expected_class": "ambiguous",
+   "admission_expectation": "rejected",
+   "obligation": "control",
+   "strings": [
+    {
+     "hz": 0.0
+    },
+    {
+     "hz": 0.4
+    }
+   ],
+   "string_phase_mode": "shared",
+   "f1_offset_hz": 0.13440860215053763,
+   "phase0": 2.356194490192345,
+   "purpose": "v1 矩阵冻结混合族回归对照（逐分音 +0.4 Hz，同相）；same recipe/seed, 违反即整体不获资格；只作已消费回归，不构成新资格证据"
+  },
+  {
+   "id": "q38-unresolved_doublet-44100",
+   "kind": "unresolved_doublet_control",
+   "note": 67,
+   "rate": 44100,
+   "seed": 392038,
+   "b": 0.0007,
+   "note_on_sample": 4410,
+   "note_off_seconds_after_note_on": 4.2,
+   "frames_seconds_after_note_on": 5.2,
+   "note_off_sample": 189630,
+   "frames": 233730,
+   "expected_class": "ambiguous",
+   "admission_expectation": "rejected",
+   "obligation": "control",
+   "strings": [
+    {
+     "hz": 0.0
+    },
+    {
+     "hz": 0.4
+    }
+   ],
+   "string_phase_mode": "shared",
+   "f1_offset_hz": 0.06720430107526881,
+   "phase0": 1.5707963267948966,
+   "purpose": "v1 矩阵冻结混合族回归对照（逐分音 +0.4 Hz，同相）；same recipe/seed, 违反即整体不获资格；只作已消费回归，不构成新资格证据"
+  },
+  {
+   "id": "q39-unresolved_doublet-48000",
+   "kind": "unresolved_doublet_control",
+   "note": 67,
+   "rate": 48000,
+   "seed": 392039,
+   "b": 0.0007,
+   "note_on_sample": 4800,
+   "note_off_seconds_after_note_on": 4.2,
+   "frames_seconds_after_note_on": 5.2,
+   "note_off_sample": 206400,
+   "frames": 254400,
+   "expected_class": "ambiguous",
+   "admission_expectation": "rejected",
+   "obligation": "control",
+   "strings": [
+    {
+     "hz": 0.0
+    },
+    {
+     "hz": 0.4
+    }
+   ],
+   "string_phase_mode": "shared",
+   "f1_offset_hz": 0.13440860215053763,
+   "phase0": 2.356194490192345,
+   "purpose": "v1 矩阵冻结混合族回归对照（逐分音 +0.4 Hz，同相）；same recipe/seed, 违反即整体不获资格；只作已消费回归，不构成新资格证据"
+  }
+ ],
+ "limits": [
+  "合成域限定：通过只说明方法在声明合成域内满足声明义务，不建立真实弦身份、中心弦归属、AM 唯一来源或与商业算法等价。",
+  "方法资格覆盖登记合成域的观测、坐标、静态族、重复、归一化比较及评估器六态回归。参考原点、真实采集与正式评估是后续独立放行门禁，不是方法资格的前置条件，也不由方法资格替代。",
+  "B 是合成常量；B 相对误差达标不认证物理 B，也不替代真实参考分辨率、原点认证或真实渲染。",
+  "AM 条件域：AM 积与相干三线在有限观测下不可区分；单线/条件结论从不是唯一来源认证，AM carrier 输出不得进入 B。",
+  "24-bit PCM 往返 + 高斯噪声 + 单一非谐性模型；不含真实钢琴包络、共鸣耦合或双/三弦物理参数分布。",
+  "四项回归对照只检查旧的已演示假阳性模式是否复现，不构成新资格证据。",
+  "本登记不是 v3 最终验收协议；不授权新采集、生产 B 变更或历史判决重判；reference 原点认证在本登记内不支持。",
+  "仅execution.approval按用户明确授权改为true，限批次a5-qualification-20261016-040725的一次完整qualification、4项旧控制及同封印评估器回归；development仍未授权。新登记散列先记录再封印，执行即独占消费；任何失败、缺失或中断保留后停止，不调参、补批或重封印。准备有效及执行授权均不等于方法qualified，独立结果以唯一批次原始报告为准。",
+  "未触碰指新登记的完整合成配方/随机实现未经生成或检视，不指未见过键号、物理模型族或全机所有私有历史的零遗漏认证。历史去重以列明登记/回执/脚本边界为准。",
+  "双角色形状只因当前验证器实际要求而保留，不预先授权第二次执行；执行修订不得借机改 PPA/观察器/评估器/物理参数或数值/时间预算。"
+ ],
+ "complete_plan_gates": {
+  "scope_note": "covered_by_registration 仅声明前瞻责任，不是运行或通过结论。fresh 合成观测/族/重复/正向比较与同封印回归控制分开记账；入口缺口和精确候选断言未闭合前不得报批执行或qualified。",
+  "required": [
+   {
+    "gate": "repeat_quality",
+    "domain": "合成重复组复用 validation-eval.py:repeat_quality",
+    "covered_by_registration": true
+   },
+   {
+    "gate": "compare_analyses",
+    "domain": "合成可比对复用 validation-eval.py:compare_analyses；base 排除、>=2 非基准、RMS<=1/max<=3 cents",
+    "covered_by_registration": true
+   },
+   {
+    "gate": "six_state_regression",
+    "domain": "完整角色开始时运行封印绑定的 validation-eval-tests.py；原始日志和退出状态作为必需证据，不以真实采集作为前提",
+    "covered_by_registration": true
+   }
+  ],
+  "downstream_not_method_prerequisites": [
+   "reference_origin_authentication",
+   "real_capture_and_formal_evaluation"
+  ]
+ },
+ "prospective_review": {
+  "status": "runner_contract_closed_registered_data_unexecuted",
+  "authorization_record": "G:/tmp/devpiano-task39-2-a5-prospective-coverage-20261016-024127/authorization.json",
+  "source_change_authorized": true,
+  "source_closure_verification": "pilot/a5-runner-closure-verification.json",
+  "source_closure_authorization_record": "G:/tmp/devpiano-task39-2-a5-runner-closure-20261016-032120/authorization.json",
+  "all_new_PCM_unproduced_unviewed": true,
+  "runner_entry_gaps": [
+   {
+    "id": "development_permission_coupled",
+    "source": "pilot/tools/meter-qualification.py:check_execution/main",
+    "fact_at_registration": "旧只读检查强制development.authorized=true，诚实的false被拒绝；原失败保留在初始审阅归档。",
+    "resolution": "静态校验接受严格布尔false；实际development/qualification仍在输出/加载/合成前分别检查执行权限。",
+    "status": "closed_by_approved_runner_contract"
+   },
+   {
+    "id": "exact_candidate_policy_obligations_not_enforced",
+    "source": "pilot/tools/meter-qualification.py:comparison_expectations/check_cross_case_groups/evaluate_group_gates",
+    "fact_at_registration": "旧runner只检查comparison_passed，不能证明登记基准和候选计数义务。",
+    "resolution": "完整唯一预期在执行前绑定成员；真实比较输出的基准/候选/非基准数量逐项核对，任何违例禁止方法资格通过；不复制比较或掩码算法。",
+    "status": "closed_by_approved_runner_contract"
+   }
+  ],
+  "existing_capability_limits": [
+   {
+    "id": "positive_same_recipe_pairs_only",
+    "source": "pilot/tools/meter-qualification.py:check_cross_case_groups/evaluate_group_gates",
+    "disposition": "不扩展schema；fresh pair只验证同配方正向域。负向/不对称逻辑属于已消费同封印回归控制。"
+   },
+   {
+    "id": "both_role_designs_required",
+    "source": "pilot/tools/meter-qualification.py:check_coverage_requirements/check_cross_case_groups/validate_registration",
+    "disposition": "保留17个互斥配套development设计，不删双角色校验、不创建空壳；该角色未授权且不运行。"
+   },
+   {
+    "id": "comparison_policy_single_source",
+    "source": "pilot/tools/validation-eval.py:compare_analyses; pilot/tools/meter-qualification.py:min_comparable_for",
+    "disposition": "低阶单弦策略只在现有compare_analyses实现；不在runner的min_comparable_for重复一次，原7/5/1仍作为多弦fallback。"
+   }
+  ],
+  "policy_expectations": [
+   {
+    "role": "qualification",
+    "pair": "a5q-compare-n21-r44100",
+    "note": 21,
+    "rate": 44100,
+    "members": [
+     "a5q-stationary-n21-r44100-a",
+     "a5q-stationary-n21-r44100-b"
+    ],
+    "expected_state": "comparison_passed",
+    "expected_base_partial": 1,
+    "expected_comparable_partials": 5,
+    "expected_nonbase_count": 4,
+    "obligation": "实际报告的基准、候选和非基准数量必须与本登记逐项一致；comparison_passed不豁免数量或身份违例，失败保留后停止。"
+   },
+   {
+    "role": "qualification",
+    "pair": "a5q-compare-n21-r48000",
+    "note": 21,
+    "rate": 48000,
+    "members": [
+     "a5q-stationary-n21-r48000-a",
+     "a5q-stationary-n21-r48000-b"
+    ],
+    "expected_state": "comparison_passed",
+    "expected_base_partial": 1,
+    "expected_comparable_partials": 5,
+    "expected_nonbase_count": 4,
+    "obligation": "实际报告的基准、候选和非基准数量必须与本登记逐项一致；comparison_passed不豁免数量或身份违例，失败保留后停止。"
+   },
+   {
+    "role": "qualification",
+    "pair": "a5q-compare-n35-r44100",
+    "note": 35,
+    "rate": 44100,
+    "members": [
+     "a5q-stationary-n35-r44100-a",
+     "a5q-stationary-n35-r44100-b"
+    ],
+    "expected_state": "comparison_passed",
+    "expected_base_partial": 1,
+    "expected_comparable_partials": 5,
+    "expected_nonbase_count": 4,
+    "obligation": "实际报告的基准、候选和非基准数量必须与本登记逐项一致；comparison_passed不豁免数量或身份违例，失败保留后停止。"
+   },
+   {
+    "role": "qualification",
+    "pair": "a5q-compare-n35-r48000",
+    "note": 35,
+    "rate": 48000,
+    "members": [
+     "a5q-stationary-n35-r48000-a",
+     "a5q-stationary-n35-r48000-b"
+    ],
+    "expected_state": "comparison_passed",
+    "expected_base_partial": 1,
+    "expected_comparable_partials": 5,
+    "expected_nonbase_count": 4,
+    "obligation": "实际报告的基准、候选和非基准数量必须与本登记逐项一致；comparison_passed不豁免数量或身份违例，失败保留后停止。"
+   },
+   {
+    "role": "qualification",
+    "pair": "a5q-compare-n36-r44100",
+    "note": 36,
+    "rate": 44100,
+    "members": [
+     "a5q-stationary-n36-r44100-a",
+     "a5q-stationary-n36-r44100-b"
+    ],
+    "expected_state": "comparison_passed",
+    "expected_base_partial": 7,
+    "expected_comparable_partials": 3,
+    "expected_nonbase_count": 2,
+    "obligation": "实际报告的基准、候选和非基准数量必须与本登记逐项一致；comparison_passed不豁免数量或身份违例，失败保留后停止。"
+   },
+   {
+    "role": "qualification",
+    "pair": "a5q-compare-n36-r48000",
+    "note": 36,
+    "rate": 48000,
+    "members": [
+     "a5q-stationary-n36-r48000-a",
+     "a5q-stationary-n36-r48000-b"
+    ],
+    "expected_state": "comparison_passed",
+    "expected_base_partial": 7,
+    "expected_comparable_partials": 3,
+    "expected_nonbase_count": 2,
+    "obligation": "实际报告的基准、候选和非基准数量必须与本登记逐项一致；comparison_passed不豁免数量或身份违例，失败保留后停止。"
+   },
+   {
+    "role": "qualification",
+    "pair": "a5q-compare-n71-r44100",
+    "note": 71,
+    "rate": 44100,
+    "members": [
+     "a5q-stationary-n71-r44100-a",
+     "a5q-stationary-n71-r44100-b"
+    ],
+    "expected_state": "comparison_passed",
+    "expected_base_partial": 7,
+    "expected_comparable_partials": 3,
+    "expected_nonbase_count": 2,
+    "obligation": "实际报告的基准、候选和非基准数量必须与本登记逐项一致；comparison_passed不豁免数量或身份违例，失败保留后停止。"
+   },
+   {
+    "role": "qualification",
+    "pair": "a5q-compare-n71-r48000",
+    "note": 71,
+    "rate": 48000,
+    "members": [
+     "a5q-stationary-n71-r48000-a",
+     "a5q-stationary-n71-r48000-b"
+    ],
+    "expected_state": "comparison_passed",
+    "expected_base_partial": 7,
+    "expected_comparable_partials": 3,
+    "expected_nonbase_count": 2,
+    "obligation": "实际报告的基准、候选和非基准数量必须与本登记逐项一致；comparison_passed不豁免数量或身份违例，失败保留后停止。"
+   },
+   {
+    "role": "qualification",
+    "pair": "a5q-compare-n72-r44100",
+    "note": 72,
+    "rate": 44100,
+    "members": [
+     "a5q-stationary-n72-r44100-a",
+     "a5q-stationary-n72-r44100-b"
+    ],
+    "expected_state": "comparison_passed",
+    "expected_base_partial": 5,
+    "expected_comparable_partials": 3,
+    "expected_nonbase_count": 2,
+    "obligation": "实际报告的基准、候选和非基准数量必须与本登记逐项一致；comparison_passed不豁免数量或身份违例，失败保留后停止。"
+   },
+   {
+    "role": "qualification",
+    "pair": "a5q-compare-n72-r48000",
+    "note": 72,
+    "rate": 48000,
+    "members": [
+     "a5q-stationary-n72-r48000-a",
+     "a5q-stationary-n72-r48000-b"
+    ],
+    "expected_state": "comparison_passed",
+    "expected_base_partial": 5,
+    "expected_comparable_partials": 3,
+    "expected_nonbase_count": 2,
+    "obligation": "实际报告的基准、候选和非基准数量必须与本登记逐项一致；comparison_passed不豁免数量或身份违例，失败保留后停止。"
+   },
+   {
+    "role": "qualification",
+    "pair": "a5q-compare-n95-r44100",
+    "note": 95,
+    "rate": 44100,
+    "members": [
+     "a5q-stationary-n95-r44100-a",
+     "a5q-stationary-n95-r44100-b"
+    ],
+    "expected_state": "comparison_passed",
+    "expected_base_partial": 5,
+    "expected_comparable_partials": 3,
+    "expected_nonbase_count": 2,
+    "obligation": "实际报告的基准、候选和非基准数量必须与本登记逐项一致；comparison_passed不豁免数量或身份违例，失败保留后停止。"
+   },
+   {
+    "role": "qualification",
+    "pair": "a5q-compare-n95-r48000",
+    "note": 95,
+    "rate": 48000,
+    "members": [
+     "a5q-stationary-n95-r48000-a",
+     "a5q-stationary-n95-r48000-b"
+    ],
+    "expected_state": "comparison_passed",
+    "expected_base_partial": 5,
+    "expected_comparable_partials": 3,
+    "expected_nonbase_count": 2,
+    "obligation": "实际报告的基准、候选和非基准数量必须与本登记逐项一致；comparison_passed不豁免数量或身份违例，失败保留后停止。"
+   },
+   {
+    "role": "qualification",
+    "pair": "a5q-compare-n96-r44100",
+    "note": 96,
+    "rate": 44100,
+    "members": [
+     "a5q-stationary-n96-r44100-a",
+     "a5q-stationary-n96-r44100-b"
+    ],
+    "expected_state": "comparison_passed",
+    "expected_base_partial": 1,
+    "expected_comparable_partials": 5,
+    "expected_nonbase_count": 4,
+    "obligation": "实际报告的基准、候选和非基准数量必须与本登记逐项一致；comparison_passed不豁免数量或身份违例，失败保留后停止。"
+   },
+   {
+    "role": "qualification",
+    "pair": "a5q-compare-n96-r48000",
+    "note": 96,
+    "rate": 48000,
+    "members": [
+     "a5q-stationary-n96-r48000-a",
+     "a5q-stationary-n96-r48000-b"
+    ],
+    "expected_state": "comparison_passed",
+    "expected_base_partial": 1,
+    "expected_comparable_partials": 5,
+    "expected_nonbase_count": 4,
+    "obligation": "实际报告的基准、候选和非基准数量必须与本登记逐项一致；comparison_passed不豁免数量或身份违例，失败保留后停止。"
+   },
+   {
+    "role": "development",
+    "pair": "a5d-compare-n34-r44100",
+    "note": 34,
+    "rate": 44100,
+    "members": [
+     "a5d-stationary-n34-r44100-a",
+     "a5d-stationary-n34-r44100-b"
+    ],
+    "expected_state": "comparison_passed",
+    "expected_base_partial": 1,
+    "expected_comparable_partials": 5,
+    "expected_nonbase_count": 4,
+    "obligation": "实际报告的基准、候选和非基准数量必须与本登记逐项一致；comparison_passed不豁免数量或身份违例，失败保留后停止。"
+   },
+   {
+    "role": "development",
+    "pair": "a5d-compare-n70-r48000",
+    "note": 70,
+    "rate": 48000,
+    "members": [
+     "a5d-stationary-n70-r48000-a",
+     "a5d-stationary-n70-r48000-b"
+    ],
+    "expected_state": "comparison_passed",
+    "expected_base_partial": 7,
+    "expected_comparable_partials": 3,
+    "expected_nonbase_count": 2,
+    "obligation": "实际报告的基准、候选和非基准数量必须与本登记逐项一致；comparison_passed不豁免数量或身份违例，失败保留后停止。"
+   }
+  ],
+  "known_regression_controls": [
+   {
+    "scope": "证据散列/同字节解析/缺失消费/伪角色/不完整证明/改动快照与v3分层/冻结权限/提前拒绝",
+    "source": "pilot/tools/validation-eval-tests.py",
+    "data_role": "已消费的确定性行为回归，封印绑定后只作控制，不算新的独立数值样本"
+   },
+   {
+    "scope": "双侧/排除编号混合整族拒绝、后窗/留出充分性、非共同编号求交集、零/一个非基准不足、非基准与阈值记账",
+    "source": "pilot/tools/validation-eval-tests.py",
+    "data_role": "已消费回归控制；不宣称由当前same-recipe positive pair独立覆盖"
+   },
+   {
+    "scope": "历史未分辨双峰假阳性",
+    "source": "regression_controls q34/q35/q38/q39",
+    "data_role": "保持原完整有效配方/种子，只作旧控制；不计新样本或新物理域"
+   }
+  ],
+  "fresh_independence_requirements": {
+   "excluded_labels": [
+    "id",
+    "seed",
+    "kind",
+    "obligation",
+    "role",
+    "purpose",
+    "repeat_group",
+    "comparison_pair",
+    "expected_class",
+    "admission_expectation",
+    "boundary",
+    "conditional",
+    "windows",
+    "probe_half_width_hz",
+    "required_partials",
+    "forbidden_partials"
+   ],
+   "ignore_absolute_origin_shift": true,
+   "ignore_gain_and_global_phase_only_changes": true,
+   "structural_note_B_offset_disjoint_from_prior_tone_roles": true,
+   "seed_disjoint_from_all_audited_prior_roles": true,
+   "within_role_pair_repeat_and_cross_rate_members_are_design_clusters_not_independent_replications": true,
+   "noise_only_scope": "新预声明噪声级/随机实现，不声称新噪声模型或未见音高；以噪声级、相对长度和种子核对历史。",
+   "scope_limit": "仅核对明确列出的历史登记/回执/受影响测试和A5开发源；不宣称全机/私人未登记工作零遗漏。"
+  },
+  "execution_readiness": false,
+  "registration_contract_ready": true,
+  "qualification_executed": false,
+  "development_executed": false,
+  "seal_created": false,
+  "v3_formal_method_ready": false,
+  "approval_sequence": [
+   "前瞻数据登记与只读审阅已完成，原科学payload和全部执行false保持",
+   "两项最小runner契约已按单独批准修订并完成相关回归；真实准备验证及定稿身份单独留证，不触碰新PCM",
+   "复核定稿登记、源码及环境后，用户再单独批准一次完整qualification并生成精确执行seal",
+   "执行完整新qualification+旧控制+同封印回归；失败/遗漏/异常/中断保留后停止；之后只读复核"
+  ]
+ }
+}

@@ -20,46 +20,31 @@ from pathlib import Path
 
 import numpy as np
 
-BASE = "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2"
+BASE = Path(__file__).resolve().parents[2]
 spec = importlib.util.spec_from_file_location("ppa", f"{BASE}/pilot/tools/pilot-partial-analysis.py")
 ppa = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(ppa)
 
 
 def analyze_variant(path, note, refined_enabled):
-    """复现 analyze_unit 主路径，按开关决定是否执行并采用 nearest 精化轮。"""
-    rate, frames, left, right = ppa.read_wav_stereo(path)
-    theory = ppa.NOTES[note]
-    min_snr = ppa.SNR_ADMISSION_DB if (ppa.SNR_ADMISSION_DB is not None
-                                       and note >= ppa.SNR_MIN_NOTE) else None
-    seeds = ppa.EXTENDED_SEEDS if note >= ppa.SNR_MIN_NOTE else ppa.DEFAULT_SEEDS
-    output = {}
-    for name, window in ppa.WINDOWS.items():
-        frequency, power = ppa.power_spectrum(left, right, rate, window)
-        peaks, rel, snr = ppa.spectral_peaks(frequency, power, ppa.LOW_FREQ, ppa.MAX_FREQ)
-        first, stiffness, numbers, observed = ppa.staged_match_multi(
-            peaks, rel, snr, theory, seeds=seeds, min_snr=min_snr)
-        adopted = "ab"
-        if refined_enabled:
-            rn, ro = ppa.match_partials(peaks, rel, snr, first, stiffness,
-                                        ppa.STAGE_B_TOL, ppa.NEAREST_REL,
-                                        mode="nearest", min_snr=min_snr,
-                                        guard_db=getattr(ppa, "REFINEMENT_GUARD_DB", None))
-            if len(rn) >= 5:
-                solution = ppa.fit(ro, rn, first, stiffness)
-                rf, rs = float(solution.x[0]), float(solution.x[1])
-                current = float(np.max(np.abs(1200 * np.log2(
-                    observed / ppa.partial_prediction([first, stiffness], numbers)))))
-                refined = float(np.max(np.abs(1200 * np.log2(
-                    ro / ppa.partial_prediction([rf, rs], rn)))))
-                if refined <= current:
-                    first, stiffness, numbers, observed = rf, rs, rn, ro
-                    adopted = "refined"
-        output[name] = {"f1": first, "B": stiffness,
-                        "numbers": [int(v) for v in numbers],
-                        "observed": [float(v) for v in observed],
-                        "adopted": adopted}
-    return output
+    """复用共同窗口分析器，禁用精化只影响候选搜索，不绕过观察器。
+
+    消费数据诊断域：显式 file_absolute 绝对秒窗（无 NoteOn 原点，不做相对化改写）。
+    """
+    previous = ppa.NEAREST_REL
+    try:
+        if not refined_enabled:
+            ppa.NEAREST_REL = float("inf")
+        analysis = ppa.analyze_unit(path, note, timing={"coordinate": ppa.COORDINATE_FILE_ABSOLUTE})
+    finally:
+        ppa.NEAREST_REL = previous
+    if analysis["status"] != "ok":
+        raise ValueError(f"window failure: {analysis['window_failures']}")
+    return {name: {"f1": row["f1_Hz"], "B": row["effective_B"],
+                   "numbers": row["partial_numbers"], "observed": row["observed_peak_Hz"],
+                   "adopted": ("refined" if any(stage["stage"] == "refinement" and stage["status"] == "selected"
+                                               for stage in row["stages"]) else "ab")}
+            for name, row in analysis["windows"].items()}
 
 
 def main():

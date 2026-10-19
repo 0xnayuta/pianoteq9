@@ -1,0 +1,225 @@
+{
+ "schema": "devpiano-task39-2-window-refusal-pcm-free-preparation-verification-v1",
+ "created_utc": "2026-10-16T16:10:29.740969+00:00",
+ "batch": "window-refusal-preparation-20261016-160255",
+ "user_authorization_verbatim": "同意，批准“不生成 PCM 的实际准备校验”：核验新登记的真实 --check-registration 接受性、输入身份、Windows 测量依赖与 UTF-8 捕获、未授权入口拒绝及无输出。",
+ "outcome": "actual_PCM_free_preparation_passed_qualification_not_authorized",
+ "scope": "Only approved actual preparation: bound registration/source identity, native measurement dependency identity and lossless dual-stream Unicode capture, real --check-registration acceptance and unauthorized qualification/development entry refusal. No role body, tests, PCM, fitting, reference or seal.",
+ "preparation_passed": true,
+ "actual_check_registration_accepted": true,
+ "registration": {
+  "path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/method-qualification-window-refusal-v1.json",
+  "path_win": "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\method-qualification-window-refusal-v1.json",
+  "sha256": "a7e1b02098a2aa3a00b0a721c19707c9bf89efa5e8f983f21ea9ac816a40f6b5",
+  "scientific_payload_sha256": "d104d630f942dd853c39a05c432379f131c95d8936a9bd0b44322ec6ac857118",
+  "complete_qualification_cases": 88,
+  "design_clusters": 36,
+  "required_admitted": 50,
+  "conditional": 6,
+  "required_rejected": 30,
+  "whole_input_refused": 2,
+  "old_controls": 4,
+  "inactive_development": 17
+ },
+ "unchanged_method_and_regression_sources": {
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification.py": "b566ca1b98fb5feec539e4b21d4511001e0dfa63464fb1985472b237340bc41e",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/pilot-partial-analysis.py": "d260334e9e537d3a1ac09739bdcd06593a855f86c5d6e2724c0c4bcfab2b446a",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/partial-observer.py": "76d727a3780d9516d6d7cef6bd26665fd65776528148cac26117f3059e6e29e2",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/validation-eval.py": "4756071bc9db4e04a4682deab71d421509255ba5a3b23c6e6fc5843aea540603",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/validation-eval-tests.py": "467f8d423ada2140ce715b3e78e7b16f264f565325e173b9ce12f9f4a9987098",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/meter-qualification-tests.py": "ce4d3c1e4cb5600d51dde085dfcf685b518d0ca400f92278a0bd0d3c8f687d1b",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/partial-observer-tests.py": "342c9dd09393bf872a76c725b06495ff16e2972f114449dd725817190b512a26",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/pilot-partial-analysis-tests.py": "db16d62d2226011948d30d1591d330e30df69f0c5124bf9e3fa36012664ee600",
+  "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/tools/am-envelope-tests.py": "4665914aeb0ea2f8a7824bae4ae4b00df66ebfee2e6cd41d8bb50cb6c0e95865"
+ },
+ "native_measurement_environment": {
+  "python": "3.14.8 (main, Oct 14 2026, 01:07:21) [MSC v.1944 64 bit (AMD64)]",
+  "python_version": "3.14.8",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "os_name": "nt",
+  "sys_platform": "win32",
+  "executable": "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Scripts\\python.exe",
+  "base_prefix": "C:\\Users\\Admin\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none",
+  "prefix": "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment",
+  "cwd": "G:\\tmp\\devpiano-task39-2-window-refusal-preparation-20261016-160255",
+  "python_executable_sha256": "6a4abc1b690d92385d20f159446040d76f740e5736c94ef1fcd30056f98cdd6a",
+  "packages": {
+   "numpy": {
+    "version": "2.5.4",
+    "module_file": "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Lib\\site-packages\\numpy\\__init__.py",
+    "module_sha256": "a6958cb364663b7acce81ccfd58eeb65a2b34d5376157f924777b97211a73be4",
+    "record_sha256": "387c2d437dbec00818e41ce67035905262151dd01e9ef5c73e120815cb39638e"
+   },
+   "scipy": {
+    "version": "1.18.1",
+    "module_file": "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Lib\\site-packages\\scipy\\__init__.py",
+    "module_sha256": "a11ad8a1eaf423d32a0d3dd6c9be6c7be86068321f043dacd2d555a49418b92f",
+    "record_sha256": "199658e4728381f2a27a74a97982b5b2b5ed7e9a095ced36d4e20ddd18562094"
+   }
+  },
+  "module_versions": {
+   "numpy": "2.5.4",
+   "scipy": "1.18.1"
+  },
+  "stdout_encoding": "utf-8",
+  "stderr_encoding": "utf-8",
+  "probe": "中文Ω→𝄞",
+  "environment": {
+   "PYTHONIOENCODING": "utf-8",
+   "PYTHONDONTWRITEBYTECODE": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "OMP_NUM_THREADS": "1"
+  }
+ },
+ "environment_identity_and_UTF8": {
+  "passed": true,
+  "checks": {
+   "native_dependency_identities": true,
+   "metadata_and_imported_versions_agree": true,
+   "stdout_utf8": true,
+   "stderr_utf8": true,
+   "stdout_non_ASCII_roundtrip": true,
+   "stderr_non_ASCII_roundtrip": true,
+   "native_private_cwd": true,
+   "fixed_parent_environment_inherited": true
+  },
+  "receipt": {
+   "path": "environment-utf8.json",
+   "sha256": "5f4e4f506d16eb981e977b971f174d6999bbf1f8b8ff03a53509478b61bf65f8"
+  },
+  "raw_stdout": "runs/environment-utf8.stdout",
+  "raw_stderr": "runs/environment-utf8.stderr",
+  "parent_sets_UTF8_before_child_launch": true,
+  "raw_binary_capture_strict_decode_and_roundtrip": true,
+  "probe_scope": "Non-ASCII BMP and supplementary-plane scalars in both stdout/stderr, not ASCII-only JSON evidence.",
+  "no_pip_install_or_global_environment_change": true
+ },
+ "actual_CLI": {
+  "check_registration": {
+   "exit_code": 0,
+   "status": "valid",
+   "receipt": "check-registration.json",
+   "receipt_sha256": "af7ddf4493f8c99db605e200a9610f6d47245e5a245832c5719cef5e1306df47",
+   "raw_stdout": "runs/check-registration.stdout",
+   "raw_stderr": "runs/check-registration.stderr",
+   "checks": {
+    "registration_identity": true,
+    "status_valid": true,
+    "full_qualification_88": true,
+    "inactive_development_17": true,
+    "old_controls_4": true,
+    "positive_50_conditional_6_refused_2": true,
+    "dual_rates": true,
+    "complete_groups": true,
+    "all_cases_gating": true,
+    "all_roles_closed": true,
+    "no_PCM_or_role_consumed": true
+   }
+  },
+  "unauthorized_entries": [
+   {
+    "role": "qualification",
+    "child_exit_code": 1,
+    "checks": {
+     "expected_refusal_exit_1": true,
+     "permission_refusal_not_other_error": true,
+     "no_success_report": true,
+     "target_output_absent": true,
+     "no_acoustic_output_or_marker": true
+    },
+    "target": "G:\\tmp\\devpiano-task39-2-window-refusal-preparation-20261016-160255\\qualification-denied",
+    "supplied_seal": false,
+    "role_body_executed": false
+   },
+   {
+    "role": "development",
+    "child_exit_code": 1,
+    "checks": {
+     "expected_refusal_exit_1": true,
+     "permission_refusal_not_other_error": true,
+     "no_success_report": true,
+     "target_output_absent": true,
+     "no_acoustic_output_or_marker": true
+    },
+    "target": "G:\\tmp\\devpiano-task39-2-window-refusal-preparation-20261016-160255\\development-denied",
+    "supplied_seal": false,
+    "role_body_executed": false
+   }
+  ],
+  "refusal_receipt": "unauthorized-entries.json",
+  "refusal_receipt_sha256": "8d4d5a7ba4a913233e3351b4dd3acc68785b5c313297f683d7190d1f376993d2",
+  "refusal_raw_streams": {
+   "qualification_stdout": "runs/qualification-denied.stdout",
+   "qualification_stderr": "runs/qualification-denied.stderr",
+   "development_stdout": "runs/development-denied.stdout",
+   "development_stderr": "runs/development-denied.stderr"
+  }
+ },
+ "output_absence": {
+  "qualification_target": "G:\\tmp\\devpiano-task39-2-window-refusal-preparation-20261016-160255\\qualification-denied",
+  "development_target": "G:\\tmp\\devpiano-task39-2-window-refusal-preparation-20261016-160255\\development-denied",
+  "both_targets_absent": true,
+  "private_preparation_root_no_PCM_or_marker": true,
+  "project_file_set_unchanged": true,
+  "project_file_count": 180
+ },
+ "protected_inputs": {
+  "passed": true,
+  "checked": 460,
+  "changed": 0,
+  "missing": 0,
+  "receipt": "protected-after.json",
+  "receipt_sha256": "feb5c11497473f24b232ccb9738160414746f9a5e87fe4e1588e5929318afc5f"
+ },
+ "core_evidence": {
+  "path": "preparation-core.json",
+  "sha256": "6b757297e552e85039e850d76fd4123ab171e430f35601a0e28e708180fb590b"
+ },
+ "authority": {
+  "preparation_authorized_and_completed": true,
+  "qualification_execution_authorized": false,
+  "registered_development_role_authorized": false,
+  "new_execution_seal_or_marker": false,
+  "new_PCM_synthesis_decode_analysis_or_fit": false,
+  "ordinary_project_tests_executed": false,
+  "reference_GUI_RPC_capture": false,
+  "production_CPP_B_or_DSP_change": false,
+  "v3_freeze_or_A6_A7_release": false
+ },
+ "historical_verdicts": {
+  "old_66": "not_qualified; unchanged",
+  "old_84": "not_qualified; unchanged",
+  "all_consumed_seals_and_markers_preserved": true,
+  "rerun_rescore_or_relabel": false
+ },
+ "current_method_independently_qualified": false,
+ "ready_for_separate_full_execution_approval": true,
+ "execution_approval_candidate": {
+  "path": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/window-refusal-preparation-20261016-160255/execution-approval-candidate.json",
+  "path_win": "G:\\source\\projects\\devpiano-evidence\\phase39\\task39-2\\window-refusal-preparation-20261016-160255\\execution-approval-candidate.json",
+  "sha256": "bca196a574c69a10cb68f95dcde96bebd23aec7b53fd3dc3aa4beca8b4359df5",
+  "not_an_execution_seal": true,
+  "currently_authorized": false
+ },
+ "evidence_locations": {
+  "root": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/window-refusal-preparation-20261016-160255",
+  "root_win": "G:\\source\\projects\\devpiano-evidence\\phase39\\task39-2\\window-refusal-preparation-20261016-160255",
+  "manifest": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/window-refusal-preparation-20261016-160255/evidence-manifest.json",
+  "postcopy_verification": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/window-refusal-preparation-20261016-160255/archive-verification.json",
+  "archival_completion_authority": "The archive manifest and postcopy receipt, not a self-assertion embedded in this report."
+ },
+ "direct_docs": {
+  "before": {
+   "devpiano/docs/roadmap/current-iteration.md": "da7962ddf1a7cc8157a2bc5d9458fdf4d519c81632e8e7c8d4d7205ee5aca35e",
+   "devpiano/CHANGELOG.md": "56bf502c834aa78fe99d41a7631e054a824bef84874c6a54d872ab93cced6e0e",
+   "research/pilot/runbook-validation-interp2.md": "2c665511fb8d0b934cf7b9ed87229713f7fc24bad87ef052d5bf346b04e41389"
+  },
+  "after": {
+   "devpiano/docs/roadmap/current-iteration.md": "b71f79b4b58109bdb4f8ac71ccab85c08a64214d92b87afea0076b3d046c2459",
+   "devpiano/CHANGELOG.md": "5e6bd5a32f6a5facfc6d71b4072957f74eaf4ed93a2fdbd7313fab8eea2c3842",
+   "research/pilot/runbook-validation-interp2.md": "9df404fb89ef0bca92e2f02a66c29962634c74fa15a814e1db1f982cc81a4fab"
+  }
+ },
+ "snapshot_semantics": "The earlier registration and static-review readiness booleans remain their unchanged premeasurement snapshot. This separate report is the observed actual preparation outcome, not a writeback into frozen inputs.",
+ "next_recommended": "单独批准唯一完整88新条件、4旧控制及同seal评估器回归，development保持false。获批后复核本准备身份及环境，只更新批准元数据并记录批准后登记SHA-256；消费前再次核验本批Windows原生UTF-8捕获，绑定精确六输入seal后仅执行一次完整角色。普通failed保留并完成唯一固定批次后汇总not_qualified停止，异常/中断保留部分aborted；不调参、不补批、不重跑或另造seal。参考origin、v3、真实验证矩阵和A6/A7继续独立阻断。"
+}

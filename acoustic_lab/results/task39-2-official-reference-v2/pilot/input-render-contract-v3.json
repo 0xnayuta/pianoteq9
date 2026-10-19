@@ -1,0 +1,168 @@
+{
+ "schema": "devpiano-task39-2-input-render-contract-v3",
+ "status": "frozen_before_validation_rendering_or_inspection",
+ "midi": {
+  "format": 0,
+  "tracks": 1,
+  "ppq": 480,
+  "tempo_us_per_quarter": 500000,
+  "channel": 1,
+  "note_on_velocity": "integer 1..127 mapped to velocity/127",
+  "note_off_velocity": 0,
+  "events": [
+   {
+    "kind": "tempo",
+    "tick": 0,
+    "microseconds": 0
+   },
+   {
+    "kind": "cc64",
+    "value": 0,
+    "tick": 0,
+    "microseconds": 0
+   },
+   {
+    "kind": "cc66",
+    "value": 0,
+    "tick": 0,
+    "microseconds": 0
+   },
+   {
+    "kind": "cc67",
+    "value": 0,
+    "tick": 0,
+    "microseconds": 0
+   },
+   {
+    "kind": "note_on",
+    "tick": 96,
+    "microseconds": 100000
+   },
+   {
+    "kind": "note_off",
+    "tick": 4032,
+    "microseconds": 4200000
+   },
+   {
+    "kind": "end_of_track",
+    "tick": 4992,
+    "microseconds": 5200000
+   }
+  ],
+  "authenticated_control": {
+   "note": 69,
+   "velocity": 70,
+   "sha256": "9e4827ed6ca1f69cf9d7ab4bd438fbe2b9fd897fe6d3264ea1604c5a04ba1462"
+  },
+  "missing_note_off_policy": "Reject; never auto-create events.",
+  "extra_or_reordered_events_policy": "Reject in this fixed preparation domain."
+ },
+ "dev_render": {
+  "sample_rates_hz": [
+   44100,
+   48000
+  ],
+  "channels": 2,
+  "pcm_bits": 24,
+  "main_block_size": 512,
+  "diagnostic_block_size": 257,
+  "sample_rounding": "llround(seconds*sample_rate), nonnegative half-away-from-zero",
+  "wav_origin": "MIDI tick0 at WAV sample0; preserve pre-NoteOn silence and full EOT duration.",
+  "normalization": false,
+  "cropping": false,
+  "fresh_synth_per_render": true,
+  "parameters": "Use unchanged former static render controls and record all applied values.",
+  "outputs": [
+   "render.wav",
+   "render-receipt.json"
+  ],
+  "existing_output": "Reject without overwriting any previous files.",
+  "note_on_samples": {
+   "44100": 4410,
+   "48000": 4800
+  },
+  "note_off_samples": {
+   "44100": 185220,
+   "48000": 201600
+  },
+  "end_samples": {
+   "44100": 229320,
+   "48000": 249600
+  },
+  "observation": "Record actual first/last nonzero output and NoteOff/key/voice observations; first sound is not assumed to equal the input event sample."
+ },
+ "analysis_windows": {
+  "coordinate": "Seconds after MIDI NoteOn; half-open sample ranges.",
+  "W1": [
+   0.08,
+   3.8
+  ],
+  "W2": [
+   0.5,
+   4.1
+  ],
+  "dev_absolute_seconds": {
+   "W1": [
+    0.18,
+    3.9
+   ],
+   "W2": [
+    0.6,
+    4.2
+   ]
+  },
+  "note_off_boundary": "W2 ends at NoteOff; do not silently include release samples.",
+  "sample_mapping": "note_on_sample + llround(relative_seconds*rate); note_on_sample is independently bound to this WAV before resolving a window",
+  "old_PPA_behavior": "Current consumed-data diagnosis explicitly selects file_absolute with its original absolute-window truncation; it is not v3 evidence or a fallback for a missing NoteOn.",
+  "analysis_api": "analyze_samples(left,right,rate,note,*,timing) and analyze_unit(path,note,*,timing); timing is mandatory.",
+  "relative_timing_fields": [
+   "coordinate=note_on_relative",
+   "sample_rate",
+   "frames",
+   "note_on_sample",
+   "note_off_sample",
+   "evidence_role"
+  ],
+  "supported_evidence_roles": [
+   "synthetic_fixture",
+   "dev_render_verification"
+  ],
+  "reference_evidence_policy": "Reference authentication is not implemented by a flag or this contract; an A4 dev report must never authorize a reference input.",
+  "reported_bounds": "Each window retains relative seconds, actual start_sample/stop_sample, coordinate and timing evidence role. Reject a release-crossing or unavailable window without clipping or promoting another window."
+ },
+ "reference_origin": {
+  "status": "authenticated",
+  "contract": "pilot/input-render-contract-v3.json",
+  "requirement": "Bind MIDI timing to actual reference export origin using independent recorded evidence.",
+  "evidence": "pilot/origin-certificate-v1.json",
+  "evidence_sha256": "192bac2a5192f5551cc649fc064cae57f7bfab3baeb0eb0cefcbb8e3bec10d51",
+  "evidence_plan": "pilot/reference-origin-evidence-plan-v3.json",
+  "certificate": {
+   "midi_origin_sample": 0,
+   "note_on_nominal_samples": {
+    "44100": 4410,
+    "48000": 4800
+   },
+   "acoustic_attack_delay_ms": {
+    "44100": 0.431,
+    "48000": 0.479
+   },
+   "deviation_samples": {
+    "44100": 2,
+    "48000": 0
+   },
+   "formula": "note_on_sample = midi_origin_sample + llround(note_on_seconds * output_rate)"
+  },
+  "existing_consumed_wav_role": "Read-only content/timing diagnosis, not fresh holdout or origin certification.",
+  "no_reference_launch_in_this_preparation": false,
+  "note": "Bounded diagnostic capture completed 2026-10-18 with four cold sessions / twelve WAVs; see the certificate."
+ },
+ "preparation_domain": {
+  "note": 69,
+  "velocity": 70,
+  "role": "Already-consumed authenticated diagnostic control, not new reference validation.",
+  "new_holdout_matrix": false
+ },
+ "formal_readiness": true,
+ "frozen_utc": "2026-10-18T09:08:24.700059+00:00"
+}

@@ -1,0 +1,703 @@
+{
+ "schema": "devpiano-task39-2-window-refusal-single-qualification-verification-v1",
+ "created_utc": "2026-10-16T17:13:46.733100+00:00",
+ "batch": "window-refusal-qualification-20261016-163340",
+ "user_authorization_verbatim": "同意，批准唯一完整资格：88 个新条件、4 个旧控制及同 seal 评估器回归，development 保持 false。",
+ "outcome": "qualified",
+ "status": "complete",
+ "aborted": null,
+ "qualification_scope": {
+  "scope": "complete_method_in_registered_synthetic_domain",
+  "includes": [
+   "观测器",
+   "NoteOn 坐标",
+   "静态族",
+   "repeat_quality",
+   "compare_analyses",
+   "封印绑定的六态评估器回归"
+  ],
+  "full_v3_evaluation": false,
+  "reference_origin_authentication": "independent_downstream_gate",
+  "downstream_release_gates": [
+   "reference_origin_authentication",
+   "real_capture_and_formal_evaluation"
+  ]
+ },
+ "qualification": {
+  "registered": 88,
+  "executed": 88,
+  "passed": 88,
+  "failed": []
+ },
+ "controls": {
+  "registered": 4,
+  "executed": 4,
+  "failed": []
+ },
+ "positive_coverage": {
+  "minimum_admitted_required": 8,
+  "cases_expected": 50,
+  "cases_verified_admitted": 50,
+  "admission_misses": [],
+  "satisfied": true
+ },
+ "pass_conditions": {
+  "complete_registered_role": true,
+  "complete_controls": true,
+  "complete_group_gates": true,
+  "evaluator_regression_passed": true,
+  "no_failed_gating_cases": true,
+  "controls_clean": true,
+  "positive_coverage_satisfied": true,
+  "repeat_groups_admitted": true,
+  "comparison_pairs_passed": true
+ },
+ "cross_case_gates": {
+  "repeat_groups": [
+   {
+    "group": "wrq-repeat-n28-r44100",
+    "members": [
+     "wrq-repeat-n28-r44100-repeat0",
+     "wrq-repeat-n28-r44100-repeat1"
+    ],
+    "admitted": true,
+    "reasons": [],
+    "frequency_spread_cents": 4.546455627620029e-06,
+    "B_relative_spread": 6.426282504420889e-07
+   },
+   {
+    "group": "wrq-repeat-n28-r48000",
+    "members": [
+     "wrq-repeat-n28-r48000-repeat0",
+     "wrq-repeat-n28-r48000-repeat1"
+    ],
+    "admitted": true,
+    "reasons": [],
+    "frequency_spread_cents": 2.571606619922756e-06,
+    "B_relative_spread": 7.306853795832961e-07
+   },
+   {
+    "group": "wrq-repeat-n81-r44100",
+    "members": [
+     "wrq-repeat-n81-r44100-repeat0",
+     "wrq-repeat-n81-r44100-repeat1"
+    ],
+    "admitted": true,
+    "reasons": [],
+    "frequency_spread_cents": 1.1766826233808956e-09,
+    "B_relative_spread": 1.3687214993106492e-10
+   },
+   {
+    "group": "wrq-repeat-n81-r48000",
+    "members": [
+     "wrq-repeat-n81-r48000-repeat0",
+     "wrq-repeat-n81-r48000-repeat1"
+    ],
+    "admitted": true,
+    "reasons": [],
+    "frequency_spread_cents": 3.5065526584391864e-07,
+    "B_relative_spread": 1.5544267828872265e-09
+   }
+  ],
+  "comparison_pairs": [
+   {
+    "pair": "wrq-pair-n21-r44100",
+    "reference": "wrq-stationary-n21-r44100-a",
+    "dev": "wrq-stationary-n21-r44100-b",
+    "state": "comparison_passed",
+    "norm_rms": 3.1158169086559663e-05,
+    "norm_max": 4.0226880881092784e-05,
+    "nonbase_count": 4,
+    "common_partials": 5,
+    "comparable_partials": 5,
+    "base_partial": 1,
+    "f1_cents": -1.3502860236780025e-05,
+    "ref_B": 6.814114500593446e-05,
+    "dev_B": 6.814242554633625e-05,
+    "B_rel_pct": 0.001879246968439149,
+    "expected_output": {
+     "base_partial": 1,
+     "comparable_partials": 5,
+     "nonbase_count": 4
+    },
+    "output_mismatches": {},
+    "output_obligation_satisfied": true
+   },
+   {
+    "pair": "wrq-pair-n21-r48000",
+    "reference": "wrq-stationary-n21-r48000-a",
+    "dev": "wrq-stationary-n21-r48000-b",
+    "state": "comparison_passed",
+    "norm_rms": 3.553859558830252e-05,
+    "norm_max": 4.821897382580474e-05,
+    "nonbase_count": 4,
+    "common_partials": 5,
+    "comparable_partials": 5,
+    "base_partial": 1,
+    "f1_cents": 8.117207264084723e-07,
+    "ref_B": 6.814154936751139e-05,
+    "dev_B": 6.814204494200385e-05,
+    "B_rel_pct": 0.0007272721226139739,
+    "expected_output": {
+     "base_partial": 1,
+     "comparable_partials": 5,
+     "nonbase_count": 4
+    },
+    "output_mismatches": {},
+    "output_obligation_satisfied": true
+   },
+   {
+    "pair": "wrq-pair-n35-r44100",
+    "reference": "wrq-stationary-n35-r44100-a",
+    "dev": "wrq-stationary-n35-r44100-b",
+    "state": "comparison_passed",
+    "norm_rms": 9.002804616602002e-06,
+    "norm_max": 1.6581980974607632e-05,
+    "nonbase_count": 4,
+    "common_partials": 5,
+    "comparable_partials": 5,
+    "base_partial": 1,
+    "f1_cents": 6.922679108535141e-06,
+    "ref_B": 0.0003775015377904389,
+    "dev_B": 0.0003775011971862868,
+    "B_rel_pct": -9.022589790787197e-05,
+    "expected_output": {
+     "base_partial": 1,
+     "comparable_partials": 5,
+     "nonbase_count": 4
+    },
+    "output_mismatches": {},
+    "output_obligation_satisfied": true
+   },
+   {
+    "pair": "wrq-pair-n35-r48000",
+    "reference": "wrq-stationary-n35-r48000-a",
+    "dev": "wrq-stationary-n35-r48000-b",
+    "state": "comparison_passed",
+    "norm_rms": 4.3192474515376545e-06,
+    "norm_max": 7.322733546898089e-06,
+    "nonbase_count": 4,
+    "common_partials": 5,
+    "comparable_partials": 5,
+    "base_partial": 1,
+    "f1_cents": -7.623185083212518e-07,
+    "ref_B": 0.0003775019255032659,
+    "dev_B": 0.0003775017921404623,
+    "B_rel_pct": -3.532771479888211e-05,
+    "expected_output": {
+     "base_partial": 1,
+     "comparable_partials": 5,
+     "nonbase_count": 4
+    },
+    "output_mismatches": {},
+    "output_obligation_satisfied": true
+   },
+   {
+    "pair": "wrq-pair-n36-r44100",
+    "reference": "wrq-stationary-n36-r44100-a",
+    "dev": "wrq-stationary-n36-r44100-b",
+    "state": "comparison_passed",
+    "norm_rms": 3.090026362658295e-06,
+    "norm_max": 3.573785793533876e-06,
+    "nonbase_count": 2,
+    "common_partials": 9,
+    "comparable_partials": 3,
+    "base_partial": 7,
+    "f1_cents": 5.686364705287535e-06,
+    "ref_B": 0.00039173851166479526,
+    "dev_B": 0.00039173834800794693,
+    "B_rel_pct": -4.177706389693524e-05,
+    "expected_output": {
+     "base_partial": 7,
+     "comparable_partials": 3,
+     "nonbase_count": 2
+    },
+    "output_mismatches": {},
+    "output_obligation_satisfied": true
+   },
+   {
+    "pair": "wrq-pair-n36-r48000",
+    "reference": "wrq-stationary-n36-r48000-a",
+    "dev": "wrq-stationary-n36-r48000-b",
+    "state": "comparison_passed",
+    "norm_rms": 1.0946185972715989e-06,
+    "norm_max": 1.3283497476542224e-06,
+    "nonbase_count": 2,
+    "common_partials": 9,
+    "comparable_partials": 3,
+    "base_partial": 7,
+    "f1_cents": 1.9367703923711597e-06,
+    "ref_B": 0.0003917384516506041,
+    "dev_B": 0.00039173836759394973,
+    "B_rel_pct": -2.1457340739375854e-05,
+    "expected_output": {
+     "base_partial": 7,
+     "comparable_partials": 3,
+     "nonbase_count": 2
+    },
+    "output_mismatches": {},
+    "output_obligation_satisfied": true
+   },
+   {
+    "pair": "wrq-pair-n72-r44100",
+    "reference": "wrq-stationary-n72-r44100-a",
+    "dev": "wrq-stationary-n72-r44100-b",
+    "state": "comparison_passed",
+    "norm_rms": 6.197411034565945e-07,
+    "norm_max": 8.763988689605705e-07,
+    "nonbase_count": 2,
+    "common_partials": 7,
+    "comparable_partials": 3,
+    "base_partial": 5,
+    "f1_cents": 8.066026759542494e-07,
+    "ref_B": 0.0008998952116110315,
+    "dev_B": 0.0008998951614903989,
+    "B_rel_pct": -5.569607653475717e-06,
+    "expected_output": {
+     "base_partial": 5,
+     "comparable_partials": 3,
+     "nonbase_count": 2
+    },
+    "output_mismatches": {},
+    "output_obligation_satisfied": true
+   },
+   {
+    "pair": "wrq-pair-n72-r48000",
+    "reference": "wrq-stationary-n72-r48000-a",
+    "dev": "wrq-stationary-n72-r48000-b",
+    "state": "comparison_passed",
+    "norm_rms": 2.0134623360391008e-06,
+    "norm_max": 2.088329113024623e-06,
+    "nonbase_count": 2,
+    "common_partials": 7,
+    "comparable_partials": 3,
+    "base_partial": 5,
+    "f1_cents": -5.181203448171836e-07,
+    "ref_B": 0.0008998951872167277,
+    "dev_B": 0.000899895194496481,
+    "B_rel_pct": 8.089556873933862e-07,
+    "expected_output": {
+     "base_partial": 5,
+     "comparable_partials": 3,
+     "nonbase_count": 2
+    },
+    "output_mismatches": {},
+    "output_obligation_satisfied": true
+   },
+   {
+    "pair": "wrq-pair-n96-r44100",
+    "reference": "wrq-stationary-n96-r44100-a",
+    "dev": "wrq-stationary-n96-r44100-b",
+    "state": "comparison_passed",
+    "norm_rms": 3.905444596358008e-07,
+    "norm_max": 5.219700305850345e-07,
+    "nonbase_count": 4,
+    "common_partials": 5,
+    "comparable_partials": 5,
+    "base_partial": 1,
+    "f1_cents": -8.913707232125687e-08,
+    "ref_B": 0.004119139997354939,
+    "dev_B": 0.004119139993085805,
+    "B_rel_pct": -1.0364138292067247e-07,
+    "expected_output": {
+     "base_partial": 1,
+     "comparable_partials": 5,
+     "nonbase_count": 4
+    },
+    "output_mismatches": {},
+    "output_obligation_satisfied": true
+   },
+   {
+    "pair": "wrq-pair-n96-r48000",
+    "reference": "wrq-stationary-n96-r48000-a",
+    "dev": "wrq-stationary-n96-r48000-b",
+    "state": "comparison_passed",
+    "norm_rms": 1.0186730868312556e-07,
+    "norm_max": 1.5624526974325103e-07,
+    "nonbase_count": 4,
+    "common_partials": 5,
+    "comparable_partials": 5,
+    "base_partial": 1,
+    "f1_cents": 2.9272911389385885e-07,
+    "ref_B": 0.004119140013095779,
+    "dev_B": 0.004119140003945933,
+    "B_rel_pct": -2.22130002439438e-07,
+    "expected_output": {
+     "base_partial": 1,
+     "comparable_partials": 5,
+     "nonbase_count": 4
+    },
+    "output_mismatches": {},
+    "output_obligation_satisfied": true
+   }
+  ],
+  "violations": [],
+  "gate_functions": [
+   "validation-eval.py:repeat_quality",
+   "validation-eval.py:compare_analyses"
+  ]
+ },
+ "conditional_domain": {
+  "cases": [
+   "wrq-am-n50-r44100",
+   "wrq-am-n50-r48000",
+   "wrq-weak-boundary-n86-r44100",
+   "wrq-weak-boundary-n86-r48000",
+   "wrq-short-decay-n24-r44100",
+   "wrq-short-decay-n24-r48000"
+  ],
+  "static_accepted": [
+   "wrq-weak-boundary-n86-r44100",
+   "wrq-weak-boundary-n86-r48000"
+  ],
+  "abstained": [
+   "wrq-am-n50-r44100",
+   "wrq-am-n50-r48000",
+   "wrq-short-decay-n24-r44100",
+   "wrq-short-decay-n24-r48000"
+  ],
+  "false_admissions": [],
+  "incomplete_accounting": [],
+  "observer_conditional": {
+   "static_certified": 30,
+   "explicit_abstained": 16
+  },
+  "am_carrier_never_in_B": "准入 B 相对误差义务即该约束的检查（AM carrier 输出不得进入 B）"
+ },
+ "evaluator_regression": {
+  "passed": true,
+  "command": [
+   "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Scripts\\python.exe",
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\validation-eval-tests.py"
+  ],
+  "exit_code": 0,
+  "script_sha256": "467f8d423ada2140ce715b3e78e7b16f264f565325e173b9ce12f9f4a9987098",
+  "stdout": "evaluator-regression.stdout",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr": "evaluator-regression.stderr",
+  "stderr_sha256": "ab055358d500aeb550889b7a163069906bea392a74072dfa490dba4e386ee3ab"
+ },
+ "identity": {
+  "preauthorization_registration_sha256": "a7e1b02098a2aa3a00b0a721c19707c9bf89efa5e8f983f21ea9ac816a40f6b5",
+  "approved_registration_sha256": "72fc0d109a20811b9de700ec378b4346c7105b59d0a337ed8d6212dce0da155e",
+  "scientific_payload_sha256": "d104d630f942dd853c39a05c432379f131c95d8936a9bd0b44322ec6ac857118",
+  "seal_sha256": "65a2b27758ace72060ddf5ed328ff8c31b755556f19cd0da0594ef4ede2e64fc",
+  "consumption_marker_sha256": "cfb62252e0986206744b1c0a679cbd1b3dd7e1399c1f81782f35c401d66537d7",
+  "report_sha256": "547dcdd3d6ca6e3ef008b0d5a5bd12f28fea5be46ce0796dd1c5c86667b44c21",
+  "native_receipt_sha256": "358da246ce39a35b8213da878921b543a902c5f8602ea3283fa184aa43a7c2b2",
+  "readonly_review_sha256": "ab256e0ecd125af52eb09111289e1fd0fbb9517294422cdfee77e955017b622e",
+  "authorization_closure_sha256": "667fcb4f150a67670d20162739eae630a79768eb9b4bdf2311641ca34a1d1d82"
+ },
+ "registration_authority_change": {
+  "allowed_paths": [
+   "execution/approval",
+   "execution/approval_note",
+   "prospective_review/review_state",
+   "prospective_review/execution_blockers",
+   "prospective_review/one_shot_execution_approval"
+  ],
+  "all_other_fields_unchanged": true,
+  "scientific_payload_unchanged": true,
+  "development_authorized": false,
+  "recorded_postapproval_SHA_before_seal_creation": true
+ },
+ "mandatory_UTF8": {
+  "passed": true,
+  "checks": {
+   "native_identity_matches": true,
+   "stdout_UTF8": true,
+   "stderr_UTF8": true,
+   "stdout_non_ASCII_roundtrip": true,
+   "stderr_non_ASCII_roundtrip": true,
+   "native_private_cwd": true,
+   "native_parent_environment_inherited": true,
+   "sealed_inputs_unchanged": true,
+   "historical_inputs_unchanged": true,
+   "seal_marker_output_absent": true
+  },
+  "gate_receipt_sha256": "f23a4c8ea4751eaa1b933707ce913f9f0c45b768a526afa3e4106f1d2b9461ba",
+  "before_seal_creation": true,
+  "before_consumption": true,
+  "environment": {
+   "python": "3.14.8 (main, Oct 14 2026, 01:07:21) [MSC v.1944 64 bit (AMD64)]",
+   "python_version": "3.14.8",
+   "platform": "Windows-11-10.0.26300-SP0",
+   "os_name": "nt",
+   "sys_platform": "win32",
+   "executable": "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Scripts\\python.exe",
+   "base_prefix": "C:\\Users\\Admin\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none",
+   "prefix": "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment",
+   "cwd": "G:\\tmp\\devpiano-task39-2-window-refusal-qualification-20261016-163340",
+   "python_executable_sha256": "6a4abc1b690d92385d20f159446040d76f740e5736c94ef1fcd30056f98cdd6a",
+   "packages": {
+    "numpy": {
+     "version": "2.5.4",
+     "module_file": "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Lib\\site-packages\\numpy\\__init__.py",
+     "module_sha256": "a6958cb364663b7acce81ccfd58eeb65a2b34d5376157f924777b97211a73be4",
+     "record_sha256": "387c2d437dbec00818e41ce67035905262151dd01e9ef5c73e120815cb39638e"
+    },
+    "scipy": {
+     "version": "1.18.1",
+     "module_file": "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Lib\\site-packages\\scipy\\__init__.py",
+     "module_sha256": "a11ad8a1eaf423d32a0d3dd6c9be6c7be86068321f043dacd2d555a49418b92f",
+     "record_sha256": "199658e4728381f2a27a74a97982b5b2b5ed7e9a095ced36d4e20ddd18562094"
+    }
+   },
+   "stdout_encoding": "utf-8",
+   "stderr_encoding": "utf-8",
+   "probe": "中文🎹",
+   "environment": {
+    "PYTHONIOENCODING": "utf-8",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1"
+   }
+  }
+ },
+ "native_execution": {
+  "child_exit_code": 0,
+  "status": "completed",
+  "error": null,
+  "elapsed_seconds": 1734.1953179999982,
+  "inputs_unchanged": true,
+  "role_attempts": 1,
+  "native_UTF8_gate_passed_before_consumption": true,
+  "authorization_closed_after_attempt": true,
+  "retry_or_reseal_authorized": false,
+  "stdout_sha256": "e40e948c777fd648312231ebdfff9864a4b170987df0893709f6dbf287b52d3b",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+ },
+ "artifact_review": {
+  "passed": true,
+  "checks": 2129,
+  "failures": [],
+  "reviewer": "review-qualification.py",
+  "reviewer_sha256": "4d5d4cbc89b6a1a286ab18aed4d76d722945d57d10f375bac2069fe58ad03f9e",
+  "report": "review/review.json",
+  "max_pcm_roundtrip_lsb": 0.49999998904058884,
+  "observer_input_window_records": 176,
+  "PCM_files": 92,
+  "PCM_check_scope": "SHA256 and original headers plus retained runtime quantization-roundtrip evidence; no new synthesis, FFT, fit or acoustic rescore.",
+  "raw_probe_interval_scope_note": "Raw claims in conditional/nonstationary regions are not stationary certifications; do not interpret the runner success-subset fraction as global coverage."
+ },
+ "frame_edge_observations": [
+  {
+   "id": "wrq-frames-boundary-n82-r44100",
+   "rate": 44100,
+   "verdict": "passed",
+   "stop_minus_frames": 7497,
+   "observer_W1_status": "input_accepted",
+   "observer_W2_status": "input_refused",
+   "observer_W2_probes": 0,
+   "ppa_branch": "required_rejected",
+   "ppa_admitted": false,
+   "ppa_windows": {
+    "W1": {
+     "status": "ok",
+     "stage": "complete",
+     "start_sample": 10365,
+     "stop_sample": 174417,
+     "samples": 164052
+    },
+    "W2": {
+     "status": "failed",
+     "stage": "spectrum",
+     "start_sample": 28887,
+     "stop_sample": 187647,
+     "samples": 158760
+    }
+   }
+  },
+  {
+   "id": "wrq-frames-boundary-n82-r48000",
+   "rate": 48000,
+   "verdict": "passed",
+   "stop_minus_frames": 8160,
+   "observer_W1_status": "input_accepted",
+   "observer_W2_status": "input_refused",
+   "observer_W2_probes": 0,
+   "ppa_branch": "required_rejected",
+   "ppa_admitted": false,
+   "ppa_windows": {
+    "W1": {
+     "status": "ok",
+     "stage": "complete",
+     "start_sample": 10850,
+     "stop_sample": 189410,
+     "samples": 178560
+    },
+    "W2": {
+     "status": "failed",
+     "stage": "spectrum",
+     "start_sample": 31010,
+     "stop_sample": 203810,
+     "samples": 172800
+    }
+   }
+  },
+  {
+   "id": "wrq-frames-exact-end-valid-n31-r44100",
+   "rate": 44100,
+   "verdict": "passed",
+   "stop_minus_frames": 0,
+   "observer_W1_status": "input_accepted",
+   "observer_W2_status": "input_accepted",
+   "observer_W2_probes": 5,
+   "ppa_branch": "required_admitted",
+   "ppa_admitted": true,
+   "ppa_windows": {
+    "W1": {
+     "status": "ok",
+     "stage": "complete",
+     "start_sample": 11009,
+     "stop_sample": 175061,
+     "samples": 164052
+    },
+    "W2": {
+     "status": "ok",
+     "stage": "complete",
+     "start_sample": 29531,
+     "stop_sample": 188291,
+     "samples": 158760
+    }
+   }
+  },
+  {
+   "id": "wrq-frames-one-sample-overrun-n84-r44100",
+   "rate": 44100,
+   "verdict": "passed",
+   "stop_minus_frames": 1,
+   "observer_W1_status": "input_accepted",
+   "observer_W2_status": "input_refused",
+   "observer_W2_probes": 0,
+   "ppa_branch": "required_rejected",
+   "ppa_admitted": false,
+   "ppa_windows": {
+    "W1": {
+     "status": "ok",
+     "stage": "complete",
+     "start_sample": 11106,
+     "stop_sample": 175158,
+     "samples": 164052
+    },
+    "W2": {
+     "status": "failed",
+     "stage": "spectrum",
+     "start_sample": 29628,
+     "stop_sample": 188388,
+     "samples": 158760
+    }
+   }
+  },
+  {
+   "id": "wrq-frames-exact-end-valid-n31-r48000",
+   "rate": 48000,
+   "verdict": "passed",
+   "stop_minus_frames": 0,
+   "observer_W1_status": "input_accepted",
+   "observer_W2_status": "input_accepted",
+   "observer_W2_probes": 5,
+   "ppa_branch": "required_admitted",
+   "ppa_admitted": true,
+   "ppa_windows": {
+    "W1": {
+     "status": "ok",
+     "stage": "complete",
+     "start_sample": 11494,
+     "stop_sample": 190054,
+     "samples": 178560
+    },
+    "W2": {
+     "status": "ok",
+     "stage": "complete",
+     "start_sample": 31654,
+     "stop_sample": 204454,
+     "samples": 172800
+    }
+   }
+  },
+  {
+   "id": "wrq-frames-one-sample-overrun-n84-r48000",
+   "rate": 48000,
+   "verdict": "passed",
+   "stop_minus_frames": 1,
+   "observer_W1_status": "input_accepted",
+   "observer_W2_status": "input_refused",
+   "observer_W2_probes": 0,
+   "ppa_branch": "required_rejected",
+   "ppa_admitted": false,
+   "ppa_windows": {
+    "W1": {
+     "status": "ok",
+     "stage": "complete",
+     "start_sample": 11591,
+     "stop_sample": 190151,
+     "samples": 178560
+    },
+    "W2": {
+     "status": "failed",
+     "stage": "spectrum",
+     "start_sample": 31751,
+     "stop_sample": 204551,
+     "samples": 172800
+    }
+   }
+  }
+ ],
+ "protected_inputs": {
+  "checked": 535,
+  "changed_after_authorization": 0,
+  "missing": 0,
+  "all_preparation_and_historical_inputs_unchanged_except_explicit_approval_metadata": true,
+  "receipt": "protected-after.json",
+  "receipt_sha256": "a808a67f29fa6f1eaf5fed1f517bf72ae6a83591f13f0318d66cc4857bb45d0d"
+ },
+ "current_source_matches_qualified_snapshot": true,
+ "current_method_independently_qualified": true,
+ "current_method_qualification_scope": "complete_method_in_registered_synthetic_domain only; not physical string identity, commercial algorithm equivalence or full v3 acceptance",
+ "execution_invocations": 1,
+ "seal_consumed": true,
+ "authorization_closed": true,
+ "new_execution_authorized_after_completion": false,
+ "retry_subset_replacement_tuning_or_reseal": false,
+ "development_role_executed": false,
+ "production_CPP_B_or_DSP_edited": false,
+ "historical_results": {
+  "old_66": "not_qualified; unchanged",
+  "old_84": "not_qualified; unchanged",
+  "previous_qualified_baseline_evidence": "unchanged; no reassignment",
+  "replay_rescore_or_reverdict": false
+ },
+ "downstream": {
+  "v3_preregistration_and_completed_method_evidence_unchanged": true,
+  "new_qualified_evidence_not_auto_bound_to_v3": true,
+  "reference_origin_authenticated": false,
+  "new_real_validation_matrix_selected": false,
+  "v3_frozen": false,
+  "A6_A7_or_reference_GUI_RPC_capture_started": false,
+  "formal_evaluation_authorized": false
+ },
+ "host_async_delivery_note": "The finite native job completed normally with exit0. Host completion notification was recovered via wait rather than auto-injected; raw native streams, capture and measurement were not rerun or altered.",
+ "evidence_locations": {
+  "root": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/window-refusal-qualification-20261016-163340",
+  "root_win": "G:\\source\\projects\\devpiano-evidence\\phase39\\task39-2\\window-refusal-qualification-20261016-163340",
+  "canonical_report": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/window-refusal-qualification-20261016-163340/qualification/method-qualification-report.json",
+  "canonical_report_win": "G:\\source\\projects\\devpiano-evidence\\phase39\\task39-2\\window-refusal-qualification-20261016-163340\\qualification\\method-qualification-report.json",
+  "manifest": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/window-refusal-qualification-20261016-163340/evidence-manifest.json",
+  "postcopy_verification": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/window-refusal-qualification-20261016-163340/archive-verification.json",
+  "archival_completion_authority": "Per-file source/destination manifest and postcopy receipt; no self-asserted copy completion in this report."
+ },
+ "direct_docs": {
+  "before": {
+   "devpiano/docs/roadmap/current-iteration.md": "b71f79b4b58109bdb4f8ac71ccab85c08a64214d92b87afea0076b3d046c2459",
+   "devpiano/CHANGELOG.md": "5e6bd5a32f6a5facfc6d71b4072957f74eaf4ed93a2fdbd7313fab8eea2c3842",
+   "research/pilot/runbook-validation-interp2.md": "9df404fb89ef0bca92e2f02a66c29962634c74fa15a814e1db1f982cc81a4fab"
+  },
+  "after": {
+   "devpiano/docs/roadmap/current-iteration.md": "5229586577e19cc95bc4edb8ef8bac058edf90463c320a6f125cac3a0da0bdd8",
+   "devpiano/CHANGELOG.md": "be210a169e57ba30d6ad93bde6b74730c06b73caf2015cf01ef0c2faac53fa40",
+   "research/pilot/runbook-validation-interp2.md": "b4cb4fa1723c510c4e75c12158d26e27e889495c58b3f07e5a1fab773d694497"
+  }
+ },
+ "next_recommended": "只读审阅本批已消费qualified证据与现行v3契约的精确绑定、支持域和剩余门禁；不自动替换原completed_method_evidence，不重跑或扩大本矩阵，也不重开已结束的参考原点调查。参考origin、真实矩阵、v3冻结、A6/A7和正式评估仍需各自独立证据及批准。"
+}

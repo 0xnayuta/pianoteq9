@@ -1,0 +1,85 @@
+{
+  "schema": "devpiano-task39-2-frequency-observable-contract-v3",
+  "status": "frozen_before_validation_rendering_or_inspection",
+  "objective": "Independent prediction of static inharmonic partial ratios; not unique physical string identity or commercial algorithm equivalence.",
+  "observable_types": {
+    "stationary_line": {
+      "producer": "partial-observer.py",
+      "required_status": "single_component_adequate",
+      "meaning": "Frequency adequate under the declared finite stationary damped-sinusoid models; not absolute absence of AM.",
+      "can_enter_family_fit": "Only with qualified interval and independently validated family/index/window/repeat obligations."
+    },
+    "resolved_components": {
+      "meaning": "Individually resolved frequencies, not automatic physical string assignments.",
+      "can_enter_family_fit": false
+    },
+    "conditional_am_carrier": {
+      "producer": "am-envelope-observer.py",
+      "meaning": "Carrier parameter conditional on the registered AM model; a coherent triplet may produce identical PCM.",
+      "can_enter_family_fit": false
+    },
+    "raw_power_peak": {
+      "meaning": "Candidate from stereo power spectrum; not a certified stationary line, carrier or centre string.",
+      "can_enter_family_fit": false
+    }
+  },
+  "frequency_interval": {
+    "units": "Hz",
+    "cent_budget": 0.05,
+    "absolute_floor_hz": 0.005,
+    "rule": "interval contains reported positive frequency and worst half-width <= max(0.005, f*(2**(0.05/1200)-1)); actual truth coverage separately checked by independent qualification.",
+    "universal_confidence_claim": false
+  },
+  "ppa_candidate_band": {
+    "producer": "pilot-partial-analysis.py",
+    "lower_hz": "min(40.0,0.5*theory)",
+    "upper_hz": 20000.0,
+    "meaning": "Only lower the existing search floor when low-note coverage requires it; do not narrow higher-note bands or treat a spectral candidate as a certified observation."
+  },
+  "family_admission": {
+    "windows": [
+      "W1",
+      "W2"
+    ],
+    "minimum_identified_partials": 5,
+    "minimum_training_partials": 3,
+    "minimum_independently_reidentified_holdouts": 2,
+    "independent_prediction_rms_cents_max": 1.0,
+    "independent_prediction_max_cents_max": 3.0,
+    "window_and_repeat_f1_spread_cents_max": 1.0,
+    "window_and_repeat_B_relative_spread_max": 0.1,
+    "partial_numbering": "One-based; correct assignment required, not just a low fit residual.",
+    "holdout": "Reidentify from observed PCM; no truth/production-B-guided selection.",
+    "structural_observation_policy": "PPA and reference_quality share observation_blocks_family: resolved_components, or ambiguous with coherent_structure_outside_component_search_bounds / multiple_component_alternative_unresolved, rejects the whole family even for excluded numbers. Ordinary information abstention alone does not establish a mixture; all retained lines still require qualified observations.",
+    "AM_support_cannot_override_static_abstention": true
+  },
+  "comparison": {
+    "observable": "Matching qualified stationary partial numbers on both producers, not strongest raw peaks or an AM carrier substituted for one side.",
+    "metric": "1200*log2((dev_n/dev_m)/(ref_n/ref_m))",
+    "base": "Lowest common admissible partial; excluded from error samples.",
+    "minimum_nonbase_partials": 2,
+    "rms_cents_max": 1.0,
+    "max_cents_max": 3.0,
+    "candidate_policy": "builtin_monochord_low_partials_v1",
+    "candidate_minimum": {
+      "monochord_midi_21_through_35": 1,
+      "multistring_midi_36_through_71": 7,
+      "midi_72_through_95": 5,
+      "midi_96_and_above": 1
+    },
+    "family_guard": "Both complete families must pass reference_quality before applying the candidate mask. Any observed mixed or explicit structural-conflict candidate, including excluded numbers and either window, rejects its whole family; a clean retained subset cannot erase recorded structural evidence.",
+    "topology_basis": "Frozen built-in Piano88KeyTable.h stringCount design and PianoSynthVoice::startNote: MIDI21..35 is monochord; no recovery of differentiated bichord/trichord components.",
+    "time_coordinate": "NoteOn-relative windows; each producer requires an independently bound MIDI-origin sample, not error-minimizing alignment."
+  },
+  "inconclusive_policy": "Retain every registered unit and reason; weak/mixed/time-varying/unqualified data are not zero error, a passing subset, or permission to replace a unit.",
+  "limits": {
+    "prior_full_method_qualification": "not_qualified; unchanged",
+    "AM_child_study": "study_qualified only in its finite preregistered domain",
+    "v3_formal_method_ready": true,
+    "production_changes": false,
+    "capture_authorized": true,
+    "formal_evaluation_authorized": false,
+    "historical_reverdict": false,
+    "frozen_utc": "2026-10-18T09:08:24.700059+00:00"
+  }
+}

@@ -79,11 +79,22 @@ def main() -> int:
                         help="逗号分隔的力度覆盖（默认 41,70,98；封闭验证集用 55,85,113）")
     args = parser.parse_args()
 
-    notes = tuple(int(part) for part in args.notes.split(",")) if args.notes else CORPUS_NOTES
-    velocities = tuple(int(part) for part in args.velocities.split(",")) if args.velocities else VELOCITIES
+    try:
+        notes = tuple(int(part) for part in args.notes.split(",")) if args.notes else CORPUS_NOTES
+        velocities = tuple(int(part) for part in args.velocities.split(",")) if args.velocities else VELOCITIES
+    except ValueError:
+        parser.error("Notes and velocities must be comma-separated MIDI integers")
+    if (not notes or len(set(notes)) != len(notes)
+            or any(not 0 <= note <= 127 for note in notes)):
+        parser.error("Notes must be distinct MIDI integers in 0..127")
+    if (not velocities or len(set(velocities)) != len(velocities)
+            or any(not 1 <= velocity <= 127 for velocity in velocities)):
+        parser.error("Velocities must be distinct MIDI integers in 1..127")
 
     out_dir = Path(args.out_dir)
     reference = Path(args.reference)
+    if out_dir.exists():
+        parser.error("Output directory exists; preserve previous stimulus and receipt")
     if not reference.is_file():
         print("reference missing: %s" % reference, file=sys.stderr)
         return 2
@@ -100,14 +111,15 @@ def main() -> int:
         print("  reference: %s" % reference_bytes.hex(), file=sys.stderr)
         return 2
 
-    out_dir.mkdir(parents=True, exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=False)
     files = []
     for note in notes:
         for velocity in velocities:
             name = "n%d-v%d.mid" % (note, velocity)
             data = build_mid(note, velocity)
             path = out_dir / name
-            path.write_bytes(data)
+            with path.open("xb") as stream:
+                stream.write(data)
             files.append({"path": name, "note": note, "velocity": velocity,
                           "bytes": len(data), "sha256": sha256_bytes(data)})
 
@@ -123,6 +135,15 @@ def main() -> int:
             "release_s": NOTE_OFF_TICKS / PPQ * (TEMPO_US / 1e6),
             "end_s": END_TICKS / PPQ * (TEMPO_US / 1e6),
             "cc64": 0, "cc66": 0, "cc67": 0, "note_off_velocity": NOTE_OFF_VELOCITY,
+            "timeline_ticks": [
+                {"tick": 0, "kind": "tempo", "microseconds_per_quarter": TEMPO_US},
+                {"tick": 0, "kind": "cc64", "value": 0},
+                {"tick": 0, "kind": "cc66", "value": 0},
+                {"tick": 0, "kind": "cc67", "value": 0},
+                {"tick": ONSET_TICKS, "kind": "note_on"},
+                {"tick": NOTE_OFF_TICKS, "kind": "note_off"},
+                {"tick": END_TICKS, "kind": "end_of_track"},
+            ],
         },
         "reference": {
             "path": str(reference),
@@ -132,7 +153,8 @@ def main() -> int:
         },
         "files": files,
     }
-    (out_dir / "receipt.json").write_text(json.dumps(receipt, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    with (out_dir / "receipt.json").open("x", encoding="utf-8") as stream:
+        stream.write(json.dumps(receipt, indent=2, ensure_ascii=False) + "\n")
 
     print("generated %d stimulus files in %s" % (len(files), out_dir))
     for item in files:

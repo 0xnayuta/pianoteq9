@@ -1,0 +1,575 @@
+{
+ "schema": "devpiano-task39-2-a3-a5-single-qualification-verification-v1",
+ "created_utc": "2026-10-16T11:41:09.208848+00:00",
+ "batch": "a3-a5-qualification-20261016-105446",
+ "user_authorization_verbatim": "同意，批准一次完整的 84 个新条件＋4 个旧控制＋同 seal 评估器回归，并明确将 Windows 原生 UTF-8 捕获核验作为消费 seal 前的必过检查",
+ "outcome": "not_qualified",
+ "status": "complete",
+ "aborted": null,
+ "new_method_qualified_in_registered_synthetic_domain": false,
+ "qualification_scope": {
+  "scope": "complete_method_in_registered_synthetic_domain",
+  "includes": [
+   "观测器",
+   "NoteOn 坐标",
+   "静态族",
+   "repeat_quality",
+   "compare_analyses",
+   "封印绑定的六态评估器回归"
+  ],
+  "full_v3_evaluation": false,
+  "reference_origin_authentication": "independent_downstream_gate",
+  "downstream_release_gates": [
+   "reference_origin_authentication",
+   "real_capture_and_formal_evaluation"
+  ]
+ },
+ "qualification": {
+  "registered": 84,
+  "executed": 84,
+  "passed": 82,
+  "failed": [
+   "a3a5q-frames-boundary-n83-r44100",
+   "a3a5q-frames-boundary-n83-r48000"
+  ]
+ },
+ "controls": {
+  "registered": 4,
+  "executed": 4,
+  "failed": []
+ },
+ "pass_conditions": {
+  "complete_registered_role": true,
+  "complete_controls": true,
+  "complete_group_gates": true,
+  "evaluator_regression_passed": true,
+  "no_failed_gating_cases": false,
+  "controls_clean": true,
+  "positive_coverage_satisfied": true,
+  "repeat_groups_admitted": true,
+  "comparison_pairs_passed": true
+ },
+ "positive_coverage": {
+  "minimum_admitted_required": 8,
+  "cases_expected": 48,
+  "cases_verified_admitted": 48,
+  "admission_misses": [],
+  "satisfied": true
+ },
+ "repeat_groups": [
+  {
+   "group": "a3a5q-repeat-n26-r44100",
+   "members": [
+    "a3a5q-repeat-n26-r44100-repeat0",
+    "a3a5q-repeat-n26-r44100-repeat1"
+   ],
+   "admitted": true,
+   "reasons": [],
+   "frequency_spread_cents": 1.98826303875747e-06,
+   "B_relative_spread": 2.1928585315343713e-06
+  },
+  {
+   "group": "a3a5q-repeat-n26-r48000",
+   "members": [
+    "a3a5q-repeat-n26-r48000-repeat0",
+    "a3a5q-repeat-n26-r48000-repeat1"
+   ],
+   "admitted": true,
+   "reasons": [],
+   "frequency_spread_cents": 2.062519361988447e-06,
+   "B_relative_spread": 2.029649267200179e-06
+  },
+  {
+   "group": "a3a5q-repeat-n79-r44100",
+   "members": [
+    "a3a5q-repeat-n79-r44100-repeat0",
+    "a3a5q-repeat-n79-r44100-repeat1"
+   ],
+   "admitted": true,
+   "reasons": [],
+   "frequency_spread_cents": 4.878116373533227e-07,
+   "B_relative_spread": 2.1384206496642358e-10
+  },
+  {
+   "group": "a3a5q-repeat-n79-r48000",
+   "members": [
+    "a3a5q-repeat-n79-r48000-repeat0",
+    "a3a5q-repeat-n79-r48000-repeat1"
+   ],
+   "admitted": true,
+   "reasons": [],
+   "frequency_spread_cents": 2.6202234880381035e-07,
+   "B_relative_spread": 1.5734561923061907e-08
+  }
+ ],
+ "comparison_pairs": [
+  {
+   "pair": "a3a5q-pair-n21-r44100",
+   "reference": "a3a5q-stationary-n21-r44100-a",
+   "dev": "a3a5q-stationary-n21-r44100-b",
+   "state": "comparison_passed",
+   "norm_rms": 2.382681223929649e-05,
+   "norm_max": 2.8384595736042343e-05,
+   "nonbase_count": 4,
+   "common_partials": 5,
+   "comparable_partials": 5,
+   "base_partial": 1,
+   "f1_cents": 1.3263642593358788e-05,
+   "ref_B": 6.671134380682369e-05,
+   "dev_B": 6.670948355782409e-05,
+   "B_rel_pct": -0.00278850476312841,
+   "expected_output": {
+    "base_partial": 1,
+    "comparable_partials": 5,
+    "nonbase_count": 4
+   },
+   "output_mismatches": {},
+   "output_obligation_satisfied": true
+  },
+  {
+   "pair": "a3a5q-pair-n21-r48000",
+   "reference": "a3a5q-stationary-n21-r48000-a",
+   "dev": "a3a5q-stationary-n21-r48000-b",
+   "state": "comparison_passed",
+   "norm_rms": 2.4534622909340197e-05,
+   "norm_max": 4.598385678888285e-05,
+   "nonbase_count": 4,
+   "common_partials": 5,
+   "comparable_partials": 5,
+   "base_partial": 1,
+   "f1_cents": 2.0614345536384877e-06,
+   "ref_B": 6.671084320140622e-05,
+   "dev_B": 6.671038787573616e-05,
+   "B_rel_pct": -0.0006825362238089489,
+   "expected_output": {
+    "base_partial": 1,
+    "comparable_partials": 5,
+    "nonbase_count": 4
+   },
+   "output_mismatches": {},
+   "output_obligation_satisfied": true
+  },
+  {
+   "pair": "a3a5q-pair-n35-r44100",
+   "reference": "a3a5q-stationary-n35-r44100-a",
+   "dev": "a3a5q-stationary-n35-r44100-b",
+   "state": "comparison_passed",
+   "norm_rms": 2.563686254540049e-05,
+   "norm_max": 3.1858149911690306e-05,
+   "nonbase_count": 4,
+   "common_partials": 5,
+   "comparable_partials": 5,
+   "base_partial": 1,
+   "f1_cents": 6.547451512638244e-06,
+   "ref_B": 0.0003889603466176898,
+   "dev_B": 0.00038895954958602087,
+   "B_rel_pct": -0.00020491334806735026,
+   "expected_output": {
+    "base_partial": 1,
+    "comparable_partials": 5,
+    "nonbase_count": 4
+   },
+   "output_mismatches": {},
+   "output_obligation_satisfied": true
+  },
+  {
+   "pair": "a3a5q-pair-n35-r48000",
+   "reference": "a3a5q-stationary-n35-r48000-a",
+   "dev": "a3a5q-stationary-n35-r48000-b",
+   "state": "comparison_passed",
+   "norm_rms": 1.0040534511377083e-05,
+   "norm_max": 1.394883245246888e-05,
+   "nonbase_count": 4,
+   "common_partials": 5,
+   "comparable_partials": 5,
+   "base_partial": 1,
+   "f1_cents": 7.206125075700254e-06,
+   "ref_B": 0.0003889599972432236,
+   "dev_B": 0.00038896002453661627,
+   "B_rel_pct": 7.017017917335155e-06,
+   "expected_output": {
+    "base_partial": 1,
+    "comparable_partials": 5,
+    "nonbase_count": 4
+   },
+   "output_mismatches": {},
+   "output_obligation_satisfied": true
+  },
+  {
+   "pair": "a3a5q-pair-n36-r44100",
+   "reference": "a3a5q-stationary-n36-r44100-a",
+   "dev": "a3a5q-stationary-n36-r44100-b",
+   "state": "comparison_passed",
+   "norm_rms": 8.446972803001966e-06,
+   "norm_max": 1.1134796940066563e-05,
+   "nonbase_count": 2,
+   "common_partials": 9,
+   "comparable_partials": 3,
+   "base_partial": 7,
+   "f1_cents": -7.083818537548877e-06,
+   "ref_B": 0.0004037899473598302,
+   "dev_B": 0.0004037900683069463,
+   "B_rel_pct": 2.9952978493566135e-05,
+   "expected_output": {
+    "base_partial": 7,
+    "comparable_partials": 3,
+    "nonbase_count": 2
+   },
+   "output_mismatches": {},
+   "output_obligation_satisfied": true
+  },
+  {
+   "pair": "a3a5q-pair-n36-r48000",
+   "reference": "a3a5q-stationary-n36-r48000-a",
+   "dev": "a3a5q-stationary-n36-r48000-b",
+   "state": "comparison_passed",
+   "norm_rms": 7.750696143183077e-06,
+   "norm_max": 9.742603807035527e-06,
+   "nonbase_count": 2,
+   "common_partials": 9,
+   "comparable_partials": 3,
+   "base_partial": 7,
+   "f1_cents": -3.90780720394546e-06,
+   "ref_B": 0.00040378998233919604,
+   "dev_B": 0.00040379019101908104,
+   "B_rel_pct": 5.168030266503897e-05,
+   "expected_output": {
+    "base_partial": 7,
+    "comparable_partials": 3,
+    "nonbase_count": 2
+   },
+   "output_mismatches": {},
+   "output_obligation_satisfied": true
+  },
+  {
+   "pair": "a3a5q-pair-n72-r44100",
+   "reference": "a3a5q-stationary-n72-r44100-a",
+   "dev": "a3a5q-stationary-n72-r44100-b",
+   "state": "comparison_passed",
+   "norm_rms": 1.0497271887170261e-06,
+   "norm_max": 1.1585741655158007e-06,
+   "nonbase_count": 2,
+   "common_partials": 7,
+   "comparable_partials": 3,
+   "base_partial": 5,
+   "f1_cents": -1.735948995525052e-07,
+   "ref_B": 0.0009331199826685686,
+   "dev_B": 0.0009331199823639232,
+   "B_rel_pct": -3.2648043173005685e-08,
+   "expected_output": {
+    "base_partial": 5,
+    "comparable_partials": 3,
+    "nonbase_count": 2
+   },
+   "output_mismatches": {},
+   "output_obligation_satisfied": true
+  },
+  {
+   "pair": "a3a5q-pair-n72-r48000",
+   "reference": "a3a5q-stationary-n72-r48000-a",
+   "dev": "a3a5q-stationary-n72-r48000-b",
+   "state": "comparison_passed",
+   "norm_rms": 1.6261381841573537e-06,
+   "norm_max": 2.22292799681606e-06,
+   "nonbase_count": 2,
+   "common_partials": 7,
+   "comparable_partials": 3,
+   "base_partial": 5,
+   "f1_cents": -5.425385274185229e-07,
+   "ref_B": 0.0009331199777897943,
+   "dev_B": 0.0009331200126934994,
+   "B_rel_pct": 3.7405377629818382e-06,
+   "expected_output": {
+    "base_partial": 5,
+    "comparable_partials": 3,
+    "nonbase_count": 2
+   },
+   "output_mismatches": {},
+   "output_obligation_satisfied": true
+  },
+  {
+   "pair": "a3a5q-pair-n96-r44100",
+   "reference": "a3a5q-stationary-n96-r44100-a",
+   "dev": "a3a5q-stationary-n96-r44100-b",
+   "state": "comparison_passed",
+   "norm_rms": 3.687818239892193e-07,
+   "norm_max": 6.605170096202743e-07,
+   "nonbase_count": 4,
+   "common_partials": 5,
+   "comparable_partials": 5,
+   "base_partial": 1,
+   "f1_cents": 5.5069976889146216e-08,
+   "ref_B": 0.004286500010748576,
+   "dev_B": 0.004286500004200526,
+   "B_rel_pct": -1.5275983389733562e-07,
+   "expected_output": {
+    "base_partial": 1,
+    "comparable_partials": 5,
+    "nonbase_count": 4
+   },
+   "output_mismatches": {},
+   "output_obligation_satisfied": true
+  },
+  {
+   "pair": "a3a5q-pair-n96-r48000",
+   "reference": "a3a5q-stationary-n96-r48000-a",
+   "dev": "a3a5q-stationary-n96-r48000-b",
+   "state": "comparison_passed",
+   "norm_rms": 5.2325616956016e-07,
+   "norm_max": 7.429787818240124e-07,
+   "nonbase_count": 4,
+   "common_partials": 5,
+   "comparable_partials": 5,
+   "base_partial": 1,
+   "f1_cents": -1.889861465935926e-08,
+   "ref_B": 0.004286499999272808,
+   "dev_B": 0.004286499996146823,
+   "B_rel_pct": -7.292627352540745e-08,
+   "expected_output": {
+    "base_partial": 1,
+    "comparable_partials": 5,
+    "nonbase_count": 4
+   },
+   "output_mismatches": {},
+   "output_obligation_satisfied": true
+  }
+ ],
+ "group_violations": [],
+ "evaluator_regression": {
+  "passed": true,
+  "command": [
+   "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Scripts\\python.exe",
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\validation-eval-tests.py"
+  ],
+  "exit_code": 0,
+  "script_sha256": "467f8d423ada2140ce715b3e78e7b16f264f565325e173b9ce12f9f4a9987098",
+  "stdout": "evaluator-regression.stdout",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr": "evaluator-regression.stderr",
+  "stderr_sha256": "5ee05e0bf1be2782f0f5c6a71ea3a42a65acfdd8774266ac3e3224638c805de4"
+ },
+ "failed_case_signatures": [
+  {
+   "id": "a3a5q-frames-boundary-n83-r44100",
+   "verdict": "failed",
+   "recipe_boundary": {
+    "kind": "frames_boundary",
+    "expected_stage": "spectrum",
+    "expected_windows": {
+     "W1": "ok",
+     "W2": "not_ok"
+    }
+   },
+   "observer_verdict": "failed",
+   "observer_violation_kinds": {
+    "observer_exception": 48
+   },
+   "observer_exception_details": [
+    "ValueError: window exceeds available samples"
+   ],
+   "ppa_verdict": "passed",
+   "ppa_branch": "required_rejected",
+   "ppa_admitted": false,
+   "ppa_violation_count": 0,
+   "ppa_windows": [
+    {
+     "window": "W1",
+     "status": "ok",
+     "stage": "complete",
+     "start_sample": 12186,
+     "stop_sample": 176238,
+     "samples": 164052
+    },
+    {
+     "window": "W2",
+     "status": "failed",
+     "stage": "spectrum",
+     "start_sample": 30708,
+     "stop_sample": 189468,
+     "samples": 158760
+    }
+   ],
+   "classification_scope": "Saved-output signature only; no new fit, scoring change or root-cause conclusion."
+  },
+  {
+   "id": "a3a5q-frames-boundary-n83-r48000",
+   "verdict": "failed",
+   "recipe_boundary": {
+    "kind": "frames_boundary",
+    "expected_stage": "spectrum",
+    "expected_windows": {
+     "W1": "ok",
+     "W2": "not_ok"
+    }
+   },
+   "observer_verdict": "failed",
+   "observer_violation_kinds": {
+    "observer_exception": 48
+   },
+   "observer_exception_details": [
+    "ValueError: window exceeds available samples"
+   ],
+   "ppa_verdict": "passed",
+   "ppa_branch": "required_rejected",
+   "ppa_admitted": false,
+   "ppa_violation_count": 0,
+   "ppa_windows": [
+    {
+     "window": "W1",
+     "status": "ok",
+     "stage": "complete",
+     "start_sample": 12709,
+     "stop_sample": 191269,
+     "samples": 178560
+    },
+    {
+     "window": "W2",
+     "status": "failed",
+     "stage": "spectrum",
+     "start_sample": 32869,
+     "stop_sample": 205669,
+     "samples": 172800
+    }
+   ],
+   "classification_scope": "Saved-output signature only; no new fit, scoring change or root-cause conclusion."
+  }
+ ],
+ "evidence_integrity": {
+  "passed": true,
+  "checks": 1353,
+  "failures": [],
+  "raw_interval_accounting": {
+   "emitted": 852,
+   "containing_nearest_registered_line": 852,
+   "runner_fraction_is_success_subset": true,
+   "note": "Raw claims in conditional/nonstationary regions are not stationary certifications; do not interpret the runner success-subset fraction as global coverage."
+  }
+ },
+ "protection": {
+  "passed": true,
+  "checked": 150,
+  "historical_files": 141,
+  "historical_WAV_files": 105,
+  "missing": 0,
+  "changed": 0
+ },
+ "identity": {
+  "approved_registration_sha256": "2efc7dbda325f2311b2a3debd70cfa11fd5a8a361c18b53ec249efebb77b387e",
+  "preauthorization_registration_sha256": "669a3e55ecdb999649a22eb68db5c87856059357410a22820a7fdad0fe37afb4",
+  "scientific_payload_sha256": "05207f00b6224ba6517c7ca0e1f6810b61f4b76e9abfa805922e712d8cfc3412",
+  "seal_sha256": "be4c1f30966818a109f3fad39c1690be94e346a9a5fb0f21e6735f4c80757a65",
+  "consumption_marker_sha256": "ba1458a4d482af9568d45e27a075facd4db930446a42959e7d4af139a6289bdd",
+  "report_sha256": "0fb2a2380a651cda4195209b223d024c7968199611919106bafdf599c5055a48",
+  "native_receipt_sha256": "d14fc473b75353357a7c17f51b9ced10c8f37fd7e5b877ea7f86dd32421a7410"
+ },
+ "mandatory_UTF8_gate": {
+  "passed": true,
+  "checked_before_seal_creation_and_consumption": true,
+  "stdout_encoding": "utf-8",
+  "stderr_encoding": "utf-8",
+  "probe_stdout_sha256": "4724c869ebe699216afec326bda81d8ef0e6c36ec48ef142a2b338fd4c38b8a2",
+  "probe_stderr_sha256": "f91e4abb09f0655fbe3f86c0e8dfb82e2db672f1c65f1bb2a2ae4f5e9fdb8d15",
+  "native_environment_matches_preparation": true,
+  "new_capture_decoding_error": false
+ },
+ "execution_receipt": {
+  "schema": "devpiano-task39-2-a3-a5-native-complete-role-receipt-v1",
+  "created_utc": "2026-10-16T11:30:50.083326+00:00",
+  "batch": "a3-a5-qualification-20261016-105446",
+  "command": [
+   "G:\\tmp\\devpiano-task39-2-a3-a5-preparation-20261016-101337\\environment\\Scripts\\python.exe",
+   "-B",
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\meter-qualification.py",
+   "--registration",
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\method-qualification-a3-a5-v1.json",
+   "--role",
+   "qualification",
+   "--seal",
+   "G:\\tmp\\devpiano-task39-2-a3-a5-qualification-20261016-105446\\qualification-seal.json",
+   "--out",
+   "G:\\tmp\\devpiano-task39-2-a3-a5-qualification-20261016-105446\\qualification"
+  ],
+  "child_exit_code": 1,
+  "status": "completed",
+  "error": null,
+  "elapsed_seconds": 1581.6145285999992,
+  "timeout_seconds": 3600,
+  "identity_before": {
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\meter-qualification.py": "c3584777862f8ff3065cc7e8ce50462af705924d95d06339559368c4a73514f5",
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\pilot-partial-analysis.py": "d260334e9e537d3a1ac09739bdcd06593a855f86c5d6e2724c0c4bcfab2b446a",
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\partial-observer.py": "76d727a3780d9516d6d7cef6bd26665fd65776528148cac26117f3059e6e29e2",
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\validation-eval.py": "4756071bc9db4e04a4682deab71d421509255ba5a3b23c6e6fc5843aea540603",
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\validation-eval-tests.py": "467f8d423ada2140ce715b3e78e7b16f264f565325e173b9ce12f9f4a9987098",
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\method-qualification-a3-a5-v1.json": "2efc7dbda325f2311b2a3debd70cfa11fd5a8a361c18b53ec249efebb77b387e",
+   "G:\\tmp\\devpiano-task39-2-a3-a5-qualification-20261016-105446\\qualification-seal.json": "be4c1f30966818a109f3fad39c1690be94e346a9a5fb0f21e6735f4c80757a65",
+   "G:\\tmp\\devpiano-task39-2-a3-a5-qualification-20261016-105446\\authorization.json": "3a3bb00ed16f4df570c19460d0df1b34d8261e62abccf66ab6b750d5ac4ef1aa",
+   "G:\\tmp\\devpiano-task39-2-a3-a5-qualification-20261016-105446\\authorization-change.json": "0b4954892758b44bee2406360da4cb09ec7e2fa3edca1ffc58e94ff8784a8aee",
+   "G:\\tmp\\devpiano-task39-2-a3-a5-qualification-20261016-105446\\utf8-gate.json": "f4c5b51bde84683637e7818dc59f7fb243dbede0e0be965f6d4ecbd1a086c4d1",
+   "G:\\tmp\\devpiano-task39-2-a3-a5-qualification-20261016-105446\\controller-identities.json": "31a33d033dc2b621a8d555f16ee8e246be1846b61b18d81823c74934948f217c"
+  },
+  "identity_after": {
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\meter-qualification.py": "c3584777862f8ff3065cc7e8ce50462af705924d95d06339559368c4a73514f5",
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\pilot-partial-analysis.py": "d260334e9e537d3a1ac09739bdcd06593a855f86c5d6e2724c0c4bcfab2b446a",
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\partial-observer.py": "76d727a3780d9516d6d7cef6bd26665fd65776528148cac26117f3059e6e29e2",
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\validation-eval.py": "4756071bc9db4e04a4682deab71d421509255ba5a3b23c6e6fc5843aea540603",
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\tools\\validation-eval-tests.py": "467f8d423ada2140ce715b3e78e7b16f264f565325e173b9ce12f9f4a9987098",
+   "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\method-qualification-a3-a5-v1.json": "2efc7dbda325f2311b2a3debd70cfa11fd5a8a361c18b53ec249efebb77b387e",
+   "G:\\tmp\\devpiano-task39-2-a3-a5-qualification-20261016-105446\\qualification-seal.json": "be4c1f30966818a109f3fad39c1690be94e346a9a5fb0f21e6735f4c80757a65",
+   "G:\\tmp\\devpiano-task39-2-a3-a5-qualification-20261016-105446\\authorization.json": "3a3bb00ed16f4df570c19460d0df1b34d8261e62abccf66ab6b750d5ac4ef1aa",
+   "G:\\tmp\\devpiano-task39-2-a3-a5-qualification-20261016-105446\\authorization-change.json": "0b4954892758b44bee2406360da4cb09ec7e2fa3edca1ffc58e94ff8784a8aee",
+   "G:\\tmp\\devpiano-task39-2-a3-a5-qualification-20261016-105446\\utf8-gate.json": "f4c5b51bde84683637e7818dc59f7fb243dbede0e0be965f6d4ecbd1a086c4d1",
+   "G:\\tmp\\devpiano-task39-2-a3-a5-qualification-20261016-105446\\controller-identities.json": "31a33d033dc2b621a8d555f16ee8e246be1846b61b18d81823c74934948f217c"
+  },
+  "inputs_unchanged": true,
+  "stdout_sha256": "57dfc1c6e9b79e4328c1509db0641de8c904b26b1d34c31ccf95afd408722af0",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "native_UTF8_gate_passed_before_consumption": true,
+  "role_attempts": 1,
+  "retry_or_reseal_authorized": false,
+  "authorization_closed_after_attempt": true
+ },
+ "execution_invocations": 1,
+ "seal_consumed": true,
+ "authorization_closed": true,
+ "sealed_registration_not_rewritten_after_consumption": true,
+ "old_controls_are_not_fresh_qualification": true,
+ "case_count_is_not_statistical_independence": {
+  "qualification_conditions": 84,
+  "design_clusters": 34
+ },
+ "development_executed": false,
+ "old_verdicts_rewritten": false,
+ "method_sources_edited": false,
+ "production_source_edited": false,
+ "reference_GUI_RPC_capture_executed": false,
+ "v3_freeze_or_formal_evaluation_executed": false,
+ "archive_directory": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/a3-a5-qualification-20261016-105446",
+ "raw_report": "qualification/method-qualification-report.json",
+ "raw_case_records": "qualification/*.json",
+ "raw_PCM": "qualification/pcm/*.wav",
+ "native_raw_streams": [
+  "qualification.stdout",
+  "qualification.stderr"
+ ],
+ "read_only_review": "review/review.json",
+ "authority_closure": "authorization-closure.json",
+ "next_recommended": "仅只读定位frames-boundary-n83双率失败的保存输出与源码，核对观察器越界异常和PPA预期拒绝之间的契约/评分职责；本轮不更改预期、忽略异常、重新合成、拟合或运行矩阵。任何修订与开发验证须另批，本批数据已消费且not_qualified保持。A6/A7及v3继续阻断。",
+ "archival": {
+  "canonical_report": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/a3-a5-qualification-20261016-105446/qualification/method-qualification-report.json",
+  "canonical_report_win": "G:\\source\\projects\\devpiano-evidence\\phase39\\task39-2\\a3-a5-qualification-20261016-105446\\qualification\\method-qualification-report.json",
+  "report_sha256": "0fb2a2380a651cda4195209b223d024c7968199611919106bafdf599c5055a48",
+  "evidence_manifest_sha256": "d2edf81f7325b35436e3eba826e783accf283b2b4d2c11779f4a954163c60a31",
+  "seal_sha256": "be4c1f30966818a109f3fad39c1690be94e346a9a5fb0f21e6735f4c80757a65",
+  "consumption_marker_sha256": "ba1458a4d482af9568d45e27a075facd4db930446a42959e7d4af139a6289bdd",
+  "files": 231,
+  "bytes": 221470084,
+  "verified": 231,
+  "mismatch": 0,
+  "missing": 0,
+  "core_bindings_verified": 16,
+  "verification_receipt": "/mnt/g/source/projects/devpiano-evidence/phase39/task39-2/a3-a5-qualification-20261016-105446/archive-verification.json"
+ },
+ "sealed_snapshot_permission_note": "The sealed registration retains approval=true as original single-batch evidence. Its consumed marker, immutable output and explicit closure terminate this grant; do not flip the sealed file or reseal/replay it.",
+ "new_execution_authorized_after_closure": false,
+ "not_an_execution_seal": true
+}

@@ -17,10 +17,14 @@ from pathlib import Path
 
 import numpy as np
 
-BASE = "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2"
+BASE = Path(__file__).resolve().parents[2]
 spec = importlib.util.spec_from_file_location("ppa", f"{BASE}/pilot/tools/pilot-partial-analysis.py")
 ppa = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(ppa)
+
+gate_spec = importlib.util.spec_from_file_location("validation_gate", Path(__file__).with_name("validation-eval.py"))
+gate = importlib.util.module_from_spec(gate_spec)
+gate_spec.loader.exec_module(gate)
 
 A4 = 440.0
 MATRIX = [  # (note, rate, repeat, session)
@@ -38,8 +42,12 @@ BEATING_PARTIALS_BELOW_72 = 6
 
 
 def peaks(path, note):
-    r = ppa.analyze_unit(ppa.Path(path), note)
+    # 消费数据诊断域：显式 file_absolute 绝对秒窗；历史绝对分析绝不改写为 NoteOn 相对坐标。
+    r = ppa.analyze_unit(ppa.Path(path), note, timing={"coordinate": ppa.COORDINATE_FILE_ABSOLUTE})
     w = r["windows"]["W1"]
+    quality = gate.reference_quality(r)
+    if not quality["admitted"]:
+        raise ValueError(f"reference-quality rejection: {quality['reasons']}; windows={r['window_failures']}")
     observed = {int(n): float(f) for n, f in zip(w["partial_numbers"], w["observed_peak_Hz"])}
     return observed, r["effective_B"], r["f1_Hz"], int(w["identified_partials"])
 
@@ -52,6 +60,8 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--candidate-table", default=None, help="frozen candidate table (recorded reference only)")
     args = ap.parse_args()
+    if Path(args.out).exists():
+        ap.error("Output exists; preserve historical evidence")
 
     ppa.NOTES = {n: A4 * 2.0 ** ((n - 69) / 12.0) for n in range(0, 128)}
     ppa.SNR_ADMISSION_DB = 25.0
@@ -104,6 +114,9 @@ def main():
     passing = [r for r in ok if r["norm_rms"] <= 1.0 and r["norm_max"] <= 3.0]
     out = {
         "schema": "devpiano-task39-2-interp-validation-eval",
+        "assessment_role": "consumed_data_diagnostic_only",
+        "historical_verdict_changed": False,
+        "partial_observer_sha256": ppa.sha256(ppa.OBSERVER_PATH),
         "reference_batch": str(ref_root),
         "dev_render": str(dev_root),
         "candidate_table": args.candidate_table,

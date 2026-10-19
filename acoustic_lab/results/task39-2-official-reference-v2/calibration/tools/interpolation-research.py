@@ -227,8 +227,10 @@ def main():
         for identity, unit in families['units'].items():
             if unit['note'] != note or 'v' + str(unit['velocity']) not in velocities:
                 continue
-            if (unit['independent_status'] != 'ok' or unit['independent_max_cents'] > 3.0
-                    or unit['independent_rms_cents'] > 1.0
+            if (unit.get('status') not in (None, 'ok') or unit['independent_status'] != 'ok'
+                    or unit['independent_max_cents'] is None or unit['independent_rms_cents'] is None
+                    or unit['f1_window_spread_cents'] is None
+                    or unit['independent_max_cents'] > 3.0 or unit['independent_rms_cents'] > 1.0
                     or abs(unit['f1_window_spread_cents']) > 1.0 or unit['identified_partials'] < 5):
                 continue
             samples.append({'identity': identity, **unit})
