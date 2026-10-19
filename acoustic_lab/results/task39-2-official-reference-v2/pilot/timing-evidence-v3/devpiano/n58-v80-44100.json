@@ -1,0 +1,79 @@
+{
+  "role": "input_and_dev_render_contract_only",
+  "passed": true,
+  "failures": [],
+  "midi": {
+    "sha256": "421d31e800054d0aa58cdcf2202976c7ef3ec096b5df92ce16e25e006caa4f17",
+    "note": 58,
+    "velocity": 80,
+    "events": [
+      {
+        "tick": 0,
+        "kind": "tempo",
+        "microseconds_per_quarter": 500000
+      },
+      {
+        "tick": 0,
+        "channel": 1,
+        "kind": "cc64",
+        "value": 0
+      },
+      {
+        "tick": 0,
+        "channel": 1,
+        "kind": "cc66",
+        "value": 0
+      },
+      {
+        "tick": 0,
+        "channel": 1,
+        "kind": "cc67",
+        "value": 0
+      },
+      {
+        "tick": 96,
+        "channel": 1,
+        "kind": "note_on",
+        "note": 58,
+        "velocity": 80
+      },
+      {
+        "tick": 4032,
+        "channel": 1,
+        "kind": "note_off",
+        "note": 58,
+        "velocity": 0
+      },
+      {
+        "tick": 4992,
+        "kind": "end_of_track"
+      }
+    ]
+  },
+  "wav": {
+    "rate": 44100,
+    "channels": 2,
+    "bits": 24,
+    "frames": 229320
+  },
+  "wav_sha256": "bf85a788ed6cd6d05ddf7b19c60e5f3c8f3a429fb08e2722b9ecc658e41661ce",
+  "receipt_sha256": "00b75d05a91ce5ce321967682b71513ed3f0b7ec56daed4e56a5a92caa38898f",
+  "first_nonzero_sample": 4410,
+  "last_nonzero_sample": 186545,
+  "note_on_sample": 4410,
+  "note_off_sample": 185220,
+  "windows": {
+    "W1": {
+      "start_sample": 7938,
+      "stop_sample": 171990
+    },
+    "W2": {
+      "start_sample": 26460,
+      "stop_sample": 185220
+    }
+  },
+  "reference_origin_certified": false,
+  "static_B_qualified": false,
+  "formal_evaluation": false,
+  "contract_sha256": "92a26c0f08ceedd356368cae057cdabf9ff454b995c3aa135e9946f33d967400"
+}

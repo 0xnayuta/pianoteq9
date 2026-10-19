@@ -1,0 +1,38 @@
+{
+ "schema": "devpiano-task39-2-v3-protocol-binding-v1",
+ "created_utc": "2026-10-18T13:26:48.159132+00:00",
+ "protocol_path": "/root/repos/pianoteq9/acoustic_lab/results/task39-2-official-reference-v2/pilot/validation-v3-preregistration.json",
+ "before_sha256": "09793984556af5b3d5d25561729ac11e2272314848f62f5ef153a7f04bddfbb3",
+ "after_sha256": "a0c8d65fd0d23b5abde89ab002f359e0545ababb78e7da156a46b3868f234c64",
+ "policy": {
+  "formal-window-decision.json": {
+   "path": "pilot/timing-evidence-v3/policy/formal-window-decision.json",
+   "sha256": "8b159e2add8e75ec0d1e6e6cca146bb09ac1e771e7f56c6745986407c1d535bc"
+  },
+  "window-repeat-identity.json": {
+   "path": "pilot/timing-evidence-v3/policy/window-repeat-identity.json",
+   "sha256": "0b1cbe95b95a7b14fb9bf8332533395fc79be9826cccbcca54978e288db88b80"
+  },
+  "formal-window-policy-check.json": {
+   "path": "pilot/timing-evidence-v3/policy/formal-window-policy-check.json",
+   "sha256": "30d4ad2c8701049c154073a7468970d342274b2eebf819cdac12865d5e58daed"
+  }
+ },
+ "timing_binding_manifest": {
+  "path": "pilot/timing-evidence-v3/binding-manifest.json",
+  "sha256": "e1485e12224bde2bff944f8aa29dad8959ef2f8e6df666a8503c9e90772d88dd"
+ },
+ "timing_binding_verification": {
+  "path": "pilot/timing-evidence-v3/binding-verification.json",
+  "sha256": "8ee34c2b846369a8393edfbf0005b399bbba35929e3a85a1712d5481a8bdaa48"
+ },
+ "counts": {
+  "reference_reports": 120,
+  "dev_reports": 60,
+  "reference_bindings": 120,
+  "dev_bindings": 120
+ },
+ "formal_evaluation_authorized": true,
+ "updated_utc": "2026-10-18T13:29:23.068010+00:00",
+ "portable_path_binding": "e90c7a6f9cae7b7f3cb7ba241c89de3b24953a3c3ae4df171dec9c5125c91588"
+}

@@ -1,0 +1,24 @@
+{
+ "schema": "devpiano-task39-2-v3-policy-runtime-check-v1",
+ "created_utc": "2026-10-18T13:30:21.111544+00:00",
+ "protocol_sha256": "a0c8d65fd0d23b5abde89ab002f359e0545ababb78e7da156a46b3868f234c64",
+ "policy_decision_sha256": "8b159e2add8e75ec0d1e6e6cca146bb09ac1e771e7f56c6745986407c1d535bc",
+ "identity_sha256": "0b1cbe95b95a7b14fb9bf8332533395fc79be9826cccbcca54978e288db88b80",
+ "checks": {
+  "protocol_W1_exact": true,
+  "protocol_W2_exact": true,
+  "protocol_note_off_4p2": true,
+  "decision_windows_match_protocol": true,
+  "all_pairs_identical_within_W1": true,
+  "all_pairs_identical_within_W2": true,
+  "all_non_identical_outside_W2": true,
+  "tail_not_adjudicative": true,
+  "no_tail_tolerance": true,
+  "no_tail_bit_identity_requirement": true,
+  "protocol_windows_unmodified": true,
+  "formal_evaluation_authorized_now": true,
+  "timing_evidence_bound": true
+ },
+ "ok": true,
+ "note": "The frozen decision retains its original formal_evaluation_authorized=false snapshot; current authorization is read from the protocol and is separate from the window policy."
+}

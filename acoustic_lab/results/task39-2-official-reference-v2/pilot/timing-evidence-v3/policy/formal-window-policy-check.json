@@ -1,0 +1,22 @@
+{
+ "schema": "devpiano-task39-2-v3-formal-window-policy-check-v1",
+ "generated_utc": "2026-10-18T12:25:03.010891+00:00",
+ "policy": "formal-window-decision.json",
+ "policy_sha256": "8b159e2add8e75ec0d1e6e6cca146bb09ac1e771e7f56c6745986407c1d535bc",
+ "identity": "window-repeat-identity.json",
+ "identity_sha256": "0b1cbe95b95a7b14fb9bf8332533395fc79be9826cccbcca54978e288db88b80",
+ "checks": {
+  "protocol_W1_exact": true,
+  "protocol_W2_exact": true,
+  "protocol_note_off_4p2": true,
+  "all_pairs_identical_within_W1": true,
+  "all_pairs_identical_within_W2": true,
+  "all_non_identical_full_file_pairs_outside_W2": true,
+  "min_margin_to_W2_ms": 10.226757369614425,
+  "tail_tolerance_defined": false,
+  "tail_bit_identity_required": false,
+  "protocol_modified": false,
+  "formal_evaluation_authorized": false
+ },
+ "ok": true
+}

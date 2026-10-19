@@ -1,0 +1,1295 @@
+{
+ "schema": "devpiano-task39-2-v3-timing-binding-manifest-v1",
+ "created_utc": "2026-10-18T13:26:33.908500+00:00",
+ "protocol_before_sha256": "09793984556af5b3d5d25561729ac11e2272314848f62f5ef153a7f04bddfbb3",
+ "counts": {
+  "reference_reports": 120,
+  "dev_reports": 60,
+  "reference_units": 120,
+  "dev_units": 60
+ },
+ "reference": {
+  "n37-v50-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n37-v50-44100-rep0.json",
+   "sha256": "a7483d138abce0884f0a942ecbd51df369364446e0e48ddcc1c28787ad601c62",
+   "wav_sha256": "d4c368754db7bea51642372589a1c9f97d2274b46ec630b232a2bfe3ad1dbd6f",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n37-v80-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n37-v80-44100-rep0.json",
+   "sha256": "084ebc94feabc4f5a61cc5a29e323b5fbc7c4e3f365f7fcbeeecc1820f68785a",
+   "wav_sha256": "cd2f6e9a9b3d49cf7be58eecf3c28610201a5be3caf938ad5fe04a3b86cbbbb2",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n37-v110-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n37-v110-44100-rep0.json",
+   "sha256": "8f4d4fe0fced0f187ebf5ed4e10008ad729622f237d0a46eee352446c0987ded",
+   "wav_sha256": "7a0dba74c3a84b6aa4c2e0f15a809b72c635ee18e793fd943840b759384c510b",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n37-v50-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n37-v50-44100-rep1.json",
+   "sha256": "abbfd1095fa2230585377921df94bbec6963d152006ee029f6871e804fdf3685",
+   "wav_sha256": "fba2ede13abe560b170f81cbac85ebfc0e48750ba82b41e3d332564a894b9ce6",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n37-v80-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n37-v80-44100-rep1.json",
+   "sha256": "36bae5da320f1a94a6bd97b0860eb959cb19d173bd0b505fa55f9e2a0d65f096",
+   "wav_sha256": "cd2f6e9a9b3d49cf7be58eecf3c28610201a5be3caf938ad5fe04a3b86cbbbb2",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n37-v110-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n37-v110-44100-rep1.json",
+   "sha256": "63c03e513cd54eba2c32f100d79f71c6128389795c187277e65ecabd6f61e9ef",
+   "wav_sha256": "03863c86a588625d2986388181ee314127c117c7c8c662cfddd323c1a137cf72",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n37-v50-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n37-v50-48000-rep0.json",
+   "sha256": "f99a45c1939e0d1dd77ab666ebbde664a74df3ce729cc20e92c29f26e6aae82f",
+   "wav_sha256": "1e0c7924bae6f3886593645842b947fdc182c9ef80c2530fd681ba2876c0cc02",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n37-v80-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n37-v80-48000-rep0.json",
+   "sha256": "db57582ddd2281db6610c07c273a4ebfa0654f75c1f35cc12960f1029fdccf23",
+   "wav_sha256": "08d9cadc36af871658382a22ae90f39bf903b132ab41aa83d286e85263830125",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n37-v110-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n37-v110-48000-rep0.json",
+   "sha256": "6fd684c0bf25f9bf7b85214bdd26528e8c57c69cfdc102da69cbd0ac44d588e4",
+   "wav_sha256": "199c04f0ecd09c340f01b35020334ea3aa2b0049bfcc72eb6c84cc6923032fd0",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n37-v50-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n37-v50-48000-rep1.json",
+   "sha256": "6da859f21746054c3ae389032e2c6f815faf60fb6c59f0f3d4dcfa7c3cfe5154",
+   "wav_sha256": "cf12df0a4d5129a74bb398eea12e49d5555680ef5e2a74f1393d1bc2b03dde1b",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n37-v80-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n37-v80-48000-rep1.json",
+   "sha256": "968d34f1fe02bbcce6ffecc2776918a07df06ed482578960c6a17e8a13883af9",
+   "wav_sha256": "e450e7a034cc865cf214b27a36eb4a2756e2bba0f336549e43816efafd7b3f02",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n37-v110-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n37-v110-48000-rep1.json",
+   "sha256": "6c525ff653061ef30cf16216dcf072dffaa20130c86aaa1db800becbffaaf2a3",
+   "wav_sha256": "199c04f0ecd09c340f01b35020334ea3aa2b0049bfcc72eb6c84cc6923032fd0",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n38-v50-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n38-v50-44100-rep0.json",
+   "sha256": "55bcd87c93f5a96883e455eb437175f4832fc6771737cf3fbaedb77e4e89a375",
+   "wav_sha256": "cdd25984f70c7477972736d81daf054981b848c25c267a6f3632454999bec55c",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n38-v80-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n38-v80-44100-rep0.json",
+   "sha256": "9adaafdc5e31e31c5de85203b26104363759465e7a4e51897675ac4dbcbdf91f",
+   "wav_sha256": "c405e764dce17083bfbb1d4f26fa4bee248ef616e88614c2fb868189af8a70ad",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n38-v110-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n38-v110-44100-rep0.json",
+   "sha256": "a8aefe1e18eead50c63d2226f15e33ba1a965d5f3ace51bef55ad536a4cd6c55",
+   "wav_sha256": "bd4ec5944c5ac950fc644f6e5ad7aa9b5bbd783e1da8519a45d5838ed63df23a",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n38-v50-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n38-v50-44100-rep1.json",
+   "sha256": "44159085bef52c69cf3840edf55032f6f4cd87d9d644c0b29b0b8ebbce81822e",
+   "wav_sha256": "cdd25984f70c7477972736d81daf054981b848c25c267a6f3632454999bec55c",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n38-v80-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n38-v80-44100-rep1.json",
+   "sha256": "8fcbaaf0f8f9dbfe7cbd6fb9fab72a7e062924a92a39bc9ecaf80cb439b9a558",
+   "wav_sha256": "c405e764dce17083bfbb1d4f26fa4bee248ef616e88614c2fb868189af8a70ad",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n38-v110-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n38-v110-44100-rep1.json",
+   "sha256": "bcf431003041f4e1d359fa826d8580cd9984ce86c0d486c1530dff54cbc8ef67",
+   "wav_sha256": "bd4ec5944c5ac950fc644f6e5ad7aa9b5bbd783e1da8519a45d5838ed63df23a",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n38-v50-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n38-v50-48000-rep0.json",
+   "sha256": "ef59d87b8e38f31702cacf494ae13e62f9ab4890b71c5b7d81c8dfd55e2239bd",
+   "wav_sha256": "42bbc1b3e08087ac34ffebf3b657e4fbb2431b1760dbf1f98599463c615efb47",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n38-v80-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n38-v80-48000-rep0.json",
+   "sha256": "aa0443e47f8430667974387cdaee1b8d358702cecebe0adb4269c8499b3a40c0",
+   "wav_sha256": "61d881550dd1feaccff3929b3f3cdd5510df29a5aeb7f77f1d319796346862b5",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n38-v110-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n38-v110-48000-rep0.json",
+   "sha256": "d5a61520732d8b3b7d3c85a72f65706abc0f700d2179072e548345bcf2db4f18",
+   "wav_sha256": "0f2334457765a54ecbeda516e1aaa2824a03fbf42409e23c9053fc55142ea16f",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n38-v50-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n38-v50-48000-rep1.json",
+   "sha256": "8d03424b5fa83b557d54d31182a8e5ef7d16e87e5907bfb1e68fcf95a008f2d6",
+   "wav_sha256": "dda4e5405bab0bccff093dd88d388ce9e54388485753e5c0ef7b716e7a9f5157",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n38-v80-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n38-v80-48000-rep1.json",
+   "sha256": "92463f897d0b8da3fafbf26b1594b99488f29cb4760a8e1c98b3c7a826f05b62",
+   "wav_sha256": "27dc68a35ab007769b4c807c81a30c40fdff534bdada804374bdfe9802f2493f",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n38-v110-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n38-v110-48000-rep1.json",
+   "sha256": "1c9612451e00a1ffc3b241a549e545c89135ac38fe54981aabb5e0af966fb6a0",
+   "wav_sha256": "0f2334457765a54ecbeda516e1aaa2824a03fbf42409e23c9053fc55142ea16f",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n41-v50-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n41-v50-44100-rep0.json",
+   "sha256": "3a67db85333fdf14cbcc1c7da50a4bd9158d23a14b54353d1d4edcf3e5a9c656",
+   "wav_sha256": "80a7f63bf6ffe1a076f1fecfe411dd17ca513b4cfdb47aeb5cd203e16dbe4b94",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n41-v80-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n41-v80-44100-rep0.json",
+   "sha256": "3a16d99e3414f4889f850e5325f1e78e345a200749589ce5a9bd81378e84427e",
+   "wav_sha256": "947caa400c810f7a144d8cb83f6c8088c8b96094e1596c55db485b6db168a1cf",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n41-v110-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n41-v110-44100-rep0.json",
+   "sha256": "5022bfe67c01b58c0195708402bae5b63c230f372d109c294b179bd15a295683",
+   "wav_sha256": "0fcd8ad3eb333b2bdf1974a7bdfcaa7a6d68e989e9b8de1963a8462678cd5d74",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n41-v50-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n41-v50-44100-rep1.json",
+   "sha256": "5e276becb2a6ae81dccb6367b544da868fddbca2cba562f6262321b052bf670f",
+   "wav_sha256": "80a7f63bf6ffe1a076f1fecfe411dd17ca513b4cfdb47aeb5cd203e16dbe4b94",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n41-v80-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n41-v80-44100-rep1.json",
+   "sha256": "6834361abec046ac4da8ea7755a8a1d954b5be2de6977ea14325e0bf7ac64c58",
+   "wav_sha256": "2a4abdbd9a47aed5f45de65a2ec2ded820134e04df3162ca8a51d80720e80ae4",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n41-v110-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n41-v110-44100-rep1.json",
+   "sha256": "054e398c351ff08ec1c2a27399481cad29479e4e065932b3bc33e399a8fd621d",
+   "wav_sha256": "0fcd8ad3eb333b2bdf1974a7bdfcaa7a6d68e989e9b8de1963a8462678cd5d74",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n41-v50-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n41-v50-48000-rep0.json",
+   "sha256": "b0c194d538f819b2f66e4968e439ad04919be8127ec34678a48962baa0191d4a",
+   "wav_sha256": "a3295ad5fe8eef50d301d5575515f11c8f01b47fd7fe74272fa4aa9385bb027b",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n41-v80-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n41-v80-48000-rep0.json",
+   "sha256": "0f0b1b5f146b17a8793391605cb4f358dd64a3562f35fca4571fe226b8064f6c",
+   "wav_sha256": "355b109e0b4a4989ecc87f051ebc3a48b0b16f63d8a673d76cf1a474661d654c",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n41-v110-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n41-v110-48000-rep0.json",
+   "sha256": "c774d74e8e7f44eb919470fa84e90004fd0d822fbf94aa7b317d5cd91b269e07",
+   "wav_sha256": "280120efdfcc1da1406eecafb31a72d41ef32f92fe3906f8c7970f9461e3c755",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n41-v50-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n41-v50-48000-rep1.json",
+   "sha256": "4cc28fdcf9a0872ba52cb21df27621d720938ddeaf0684f36aa96d2c02431add",
+   "wav_sha256": "a3295ad5fe8eef50d301d5575515f11c8f01b47fd7fe74272fa4aa9385bb027b",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n41-v80-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n41-v80-48000-rep1.json",
+   "sha256": "5085292d10828988872a18b7ec727f0514e7236518cce62e0790e8a5b3522db4",
+   "wav_sha256": "355b109e0b4a4989ecc87f051ebc3a48b0b16f63d8a673d76cf1a474661d654c",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n41-v110-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n41-v110-48000-rep1.json",
+   "sha256": "341fe6009980c2598d86a010b60059aaf0efa2aa201e1a66227dd61c25245d1a",
+   "wav_sha256": "c3cac6b30381dbdbd4862556059d7aeae9dc7951ba0c6721e5ab44b185f800b8",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n54-v50-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n54-v50-44100-rep0.json",
+   "sha256": "01bddd8b66448af446d9f7ea73243da8a155aba560bb16ebef31147569b6f771",
+   "wav_sha256": "e952013dfca9a628c15d7b3009bd63540a110f0b33d4f8dbdb3aa4d8f9272e5b",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n54-v80-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n54-v80-44100-rep0.json",
+   "sha256": "a6eba1358159483c87100a43d774d28cd525338bac44e1e456c5ca6a82e9343d",
+   "wav_sha256": "4e98a231079441e2fe945076a84d41881ba1ae37eacc182577555882e1353894",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n54-v110-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n54-v110-44100-rep0.json",
+   "sha256": "193abc4b16a77f282e5abd40f1f9d15e000d1274eca8d8576ce403648ffe2ed4",
+   "wav_sha256": "157f1f86091a2061bc8377950410d28e5c90e5dfa994acad3dcc6e8635de90ee",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n54-v50-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n54-v50-44100-rep1.json",
+   "sha256": "ce3fd8dc21a706edbfa0daaf12dfe2307a7600ed4e85f5e43dc5a29c10b4ba57",
+   "wav_sha256": "2c042b5ce6f63caccf3c0427f477d6818423586e65a3698ad5102e236d89c6f1",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n54-v80-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n54-v80-44100-rep1.json",
+   "sha256": "e0d46c49b112aa25189a261105ee588d00d10a5733a98846ac5c6ecab15f6557",
+   "wav_sha256": "4e98a231079441e2fe945076a84d41881ba1ae37eacc182577555882e1353894",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n54-v110-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n54-v110-44100-rep1.json",
+   "sha256": "92f1cae9c7e59fdddddf6f037c83998ee728330a0a1a82d8edc377d0829b00b0",
+   "wav_sha256": "157f1f86091a2061bc8377950410d28e5c90e5dfa994acad3dcc6e8635de90ee",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n54-v50-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n54-v50-48000-rep0.json",
+   "sha256": "9c08d2a10e8074aece174ce6142c7c82a906a4302ed71bde588ad74b9198d723",
+   "wav_sha256": "20df082e43024b8612d21c310dbf3ed8d9c5c4472ec9b9e114a73b13f58eadf5",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n54-v80-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n54-v80-48000-rep0.json",
+   "sha256": "4a0c7b20fd6744621c5fe11671a3d91dd4c6222b2a53a84a987d6d6c8ef8e8a9",
+   "wav_sha256": "d860a715a481fb122751bdb1323099563de3aa567ca2c56c99bcd6e03ba3fe1a",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n54-v110-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n54-v110-48000-rep0.json",
+   "sha256": "1daf5f8ce18e19a8387fea560e772d4e4cecc100339272d7ed24d1a84dc7ef38",
+   "wav_sha256": "c17f0b5b2ded861ccca6727671dd0a219498cbcd39c59096d520e4d22b63e8f4",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n54-v50-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n54-v50-48000-rep1.json",
+   "sha256": "50ce366fce178de1d37b61732805b7bd1e4ba819be0d5713a324ca0449a862ff",
+   "wav_sha256": "dec7d4f2c92fc736e71ae649a13dcad474c55bb7ec89d4cd891d286bf88dedd1",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n54-v80-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n54-v80-48000-rep1.json",
+   "sha256": "4764da4b862a7c6e5d14a80f973483de3f1fe40de70c877ef6a2095d30ae5f3a",
+   "wav_sha256": "537282332b7e397c4a7957069d7e72e63ef697a2040977697a321faa3f28a39c",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n54-v110-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n54-v110-48000-rep1.json",
+   "sha256": "606c456ac32b99a4c8145a69ae4c17d25bfb3817c5618bee50ee0a1ceb5b5ef3",
+   "wav_sha256": "39b6b4738967fe8bce9d597af9bb778872b9c858212781636439ec9ab0d83968",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n56-v50-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n56-v50-44100-rep0.json",
+   "sha256": "8f12773a6a647c1af9f2fe5745a0468d2de913e333a847eacbaac2d3050db289",
+   "wav_sha256": "23d44f606a857351062d24f36704808c568b04539f8e832a66396aaed6ef771e",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n56-v80-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n56-v80-44100-rep0.json",
+   "sha256": "ec1edb5db4d41426d062049fed4a4e8ddc786c954dfd03d576b058911a63c799",
+   "wav_sha256": "5dcb4fdb3d8cd32fa04d572287ce8a8b81614e85a948fb6677c99dd90cef4780",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n56-v110-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n56-v110-44100-rep0.json",
+   "sha256": "3c0bc3db8daa50e6c2adf14e8d03f49413eed1bbefc5086f928c537e234fe1e3",
+   "wav_sha256": "21a5906ecd62add2dcc7b0f58e1eee8ee222759e31a70507de2e8e34aa4696ba",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n56-v50-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n56-v50-44100-rep1.json",
+   "sha256": "a3d0c7d3348e745f0f6f382c1080bcb97b8687daf53c2db868bfffad8f734f7d",
+   "wav_sha256": "23d44f606a857351062d24f36704808c568b04539f8e832a66396aaed6ef771e",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n56-v80-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n56-v80-44100-rep1.json",
+   "sha256": "e5c0a7a113b5bcce5da3ac0b2731c3fc3d4a06009cce563634d0799b7865890b",
+   "wav_sha256": "21cf2b18ee86c909a121adde7b15be02fd781f2898343b3328827781850b2eb6",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n56-v110-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n56-v110-44100-rep1.json",
+   "sha256": "8fd2e15461597f886984656525fce95d1478daec17177c14c80dda791e32df6b",
+   "wav_sha256": "21a5906ecd62add2dcc7b0f58e1eee8ee222759e31a70507de2e8e34aa4696ba",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n56-v50-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n56-v50-48000-rep0.json",
+   "sha256": "0df7d63f645f8a096200a7d64678da07a517ffa375728ffe5b298320e2d48c64",
+   "wav_sha256": "296c65fbaf6f5c6b1dac90c9b963ee014004449dcdf514a4b32734467c78776c",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n56-v80-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n56-v80-48000-rep0.json",
+   "sha256": "10ef6aff645bc59c8a3c608935075d2267abe49b64c6f6d3d59302bf8941d296",
+   "wav_sha256": "3d79838e7556c0fe4110f65f4474ffa257842661ef5ee22ea05c8d2877c48904",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n56-v110-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n56-v110-48000-rep0.json",
+   "sha256": "1e243c047aeea512358591dd0ed2b2555a7a681e2dcf0b3559f303d05de22f9e",
+   "wav_sha256": "879086390223f1e16edb644ce4b07e542494f1f26d830bde13dece0711aeecb4",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n56-v50-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n56-v50-48000-rep1.json",
+   "sha256": "b270edb7651a940ce33823de1ad6396356f6dd0e35071366c04a99143540c7f8",
+   "wav_sha256": "296c65fbaf6f5c6b1dac90c9b963ee014004449dcdf514a4b32734467c78776c",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n56-v80-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n56-v80-48000-rep1.json",
+   "sha256": "17a8d526fe93b915a8a3f34fa6057348038cfcf54de0134b28dfb0bbb6064bad",
+   "wav_sha256": "46effb49e7b2afb5edb91212242d0e953c0f1ab37f162890156f955e10b36b27",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n56-v110-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n56-v110-48000-rep1.json",
+   "sha256": "31cec374bf6a9eca7d8ceba27e1151aef437ecf0f71e31b1cb3749b86748fdc1",
+   "wav_sha256": "879086390223f1e16edb644ce4b07e542494f1f26d830bde13dece0711aeecb4",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n58-v50-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n58-v50-44100-rep0.json",
+   "sha256": "f05ff0720d318f4e5b1e5c9a402d722d9d416ab064d97633e0e8a624bbd2945f",
+   "wav_sha256": "6270d77e583986381ad86dcdb7f7d061f4d4dd1f3f23341d3c9a088bd42d0eac",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n58-v80-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n58-v80-44100-rep0.json",
+   "sha256": "12687b11b9c4a8a1ab47f8511daaf86aace27a6b5d5ed1af357d6eac029d6b73",
+   "wav_sha256": "56a4b57405f740432362ace866407fbaf1ba105c6ec257612e6b030279c789c1",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n58-v110-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n58-v110-44100-rep0.json",
+   "sha256": "0dab0e6320b3a16a3731643ccf30bbffc1d941361de8f2d7741533b71c69ee0f",
+   "wav_sha256": "9a4644053f7bc91862d9c854d4153d2665b16d47595ef701cd8783dee5dfd4a0",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n58-v50-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n58-v50-44100-rep1.json",
+   "sha256": "5d28359d26a37c5e11db109585a92d82599aa18dd696e896bcd3f0431f4ebafa",
+   "wav_sha256": "6270d77e583986381ad86dcdb7f7d061f4d4dd1f3f23341d3c9a088bd42d0eac",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n58-v80-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n58-v80-44100-rep1.json",
+   "sha256": "331c1272f2eab45be1be47a634f7730d72f740641921ddf3a5b61d35a9b09b6f",
+   "wav_sha256": "2ab82148f8269c94616f668a2061e03e17ddcc0783dfaa363577d312f5be9f96",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n58-v110-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n58-v110-44100-rep1.json",
+   "sha256": "530183b84d5156fc6244652a75ad42cf745f4cd873caa321a80d23069f3235b3",
+   "wav_sha256": "0ccb6900a1fead52f3822680acbca558095a24fa7437888341049b1cf995e9a7",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n58-v50-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n58-v50-48000-rep0.json",
+   "sha256": "39c503f48059f69403e0e3db2623958182d6adf50d369895de96d4ac3870a9a2",
+   "wav_sha256": "e3fd4b65077efbd330212ce32140d82704382f75eec17dba0512500c3082c521",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n58-v80-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n58-v80-48000-rep0.json",
+   "sha256": "9d922eaa87152dacf2ebc5513281b66a654916b3ee85e52d5c9c92ba8f8a966c",
+   "wav_sha256": "1c54f067897f404397b9baec030b610f7ccaf0a3fe8c1343f708cd4482066430",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n58-v110-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n58-v110-48000-rep0.json",
+   "sha256": "97a6c3c321f82c6721758f5892d1144479b260d122540de94a6324a381ba6698",
+   "wav_sha256": "1b597ebfe0370d54929d987b7eea7262a91c137cfb0c59d1e486f2b2244eb1b4",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n58-v50-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n58-v50-48000-rep1.json",
+   "sha256": "88e019c63b70ff9cce4d04332d74ca9aa06499c96629d8ef7093077c40b33cd0",
+   "wav_sha256": "ace5a6ccd2ccf4f05a746d7f00662e0b9288bf49bf5f36a0ac9aa218f8fe4a15",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n58-v80-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n58-v80-48000-rep1.json",
+   "sha256": "a880142f5610bf785ca852bb9d16c601540b3a1a8cab518617fd878f1d1e3d3f",
+   "wav_sha256": "a65f536ef8caba046d0c00ca7922260ed3f659f80e69c13decab55a48f1ff03d",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n58-v110-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n58-v110-48000-rep1.json",
+   "sha256": "ac9e241932a2c1c3e3820b36f3e693ad34c1df39f23cf218321e6508c3ab72cc",
+   "wav_sha256": "4273d1a3dd6262d2ed6128833c7a4ce1ae456a76e6d3c50513b93065e5a60ce9",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n61-v50-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n61-v50-44100-rep0.json",
+   "sha256": "63ecaa60fdbfd26657fe2401b1de59aedda5898f8d48e9a68c0676f7668436de",
+   "wav_sha256": "5a2bd71677c97f7c5f013acf672bde43711e2e56b78362798a2a77effdd5538e",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n61-v80-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n61-v80-44100-rep0.json",
+   "sha256": "88c36ed091565037a1b24f3330f44dbff349d6b0a5acc92d3e8afc8d4102469a",
+   "wav_sha256": "13d12f3a9246219019c48ccbae1312ab159c33673954b1270cf2cb5e8b418be2",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n61-v110-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n61-v110-44100-rep0.json",
+   "sha256": "dd15ad3f15383be1d32e30f2ddef5ca86635bfea830eaaf82930004f0fc854b8",
+   "wav_sha256": "0b83cea0e1cc235efc73c3d7e1126bc6d569f9d9715b378a6842deabecf2ceab",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n61-v50-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n61-v50-44100-rep1.json",
+   "sha256": "1b3415b477919cd0834b4b5fdc4b8ad302a0b7ea23988878fcf3872dda2f9f13",
+   "wav_sha256": "5a2bd71677c97f7c5f013acf672bde43711e2e56b78362798a2a77effdd5538e",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n61-v80-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n61-v80-44100-rep1.json",
+   "sha256": "5a49884f2250775da0018e469d3da7dd6d34260bc3e88446571e94d11a1aab99",
+   "wav_sha256": "13d12f3a9246219019c48ccbae1312ab159c33673954b1270cf2cb5e8b418be2",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n61-v110-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n61-v110-44100-rep1.json",
+   "sha256": "ace5a73a76a35f44a97c0a307253449c74f3424e4277d9d7809310eed4327d1b",
+   "wav_sha256": "775e154f2d7ccb2dec11d7adfc5ff1de852b2f4271f736526b043abea8c9bab9",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n61-v50-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n61-v50-48000-rep0.json",
+   "sha256": "be3e8d89dad736b3cec148a00493a1096ec43f567eafac1a74952dcd44a4475b",
+   "wav_sha256": "4d93fcd987486183a3e1f6fa65221fb4b4611156efb4bcd0b18055f708f14e5b",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n61-v80-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n61-v80-48000-rep0.json",
+   "sha256": "2dacc06c8fb0784e20bb6a71f9d8c82ff3239514e06b65a90a4e3fa994b20e13",
+   "wav_sha256": "1c6aa3232185c21e823e3fb800ced01df16c75d1ab6bdc51cfdcd83a28148112",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n61-v110-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n61-v110-48000-rep0.json",
+   "sha256": "151caf0ba6aee03dd930b19f6bb6ef9bcd574a6366f281b002cc6df96ad7b336",
+   "wav_sha256": "cf412bb3498836c73fc833b114fe39d4d190553cd0d385a3497d548a32bc2fcf",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n61-v50-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n61-v50-48000-rep1.json",
+   "sha256": "284aa749012fb3a8953322523e78ba250bfb38457c9c512d295379175220b9dd",
+   "wav_sha256": "4d93fcd987486183a3e1f6fa65221fb4b4611156efb4bcd0b18055f708f14e5b",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n61-v80-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n61-v80-48000-rep1.json",
+   "sha256": "6d981697a5a30ea16699937902833d79cd0e6ad10ddac132ffa4c9ba0b56d6a4",
+   "wav_sha256": "2c271730f8453f9ab2811b9d6aa850672666af66c44f841adb0b2db18f9b9d64",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n61-v110-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n61-v110-48000-rep1.json",
+   "sha256": "dcd4c28330f4447347ae5a48431f84b63bd177b86888afd231b3413df6d78f71",
+   "wav_sha256": "97696cefdda2648015947fe5d30967484f45893f995f8d29985143c7dcd7e4f9",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n65-v50-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n65-v50-44100-rep0.json",
+   "sha256": "d480d53d4324b4a5b63b32d500abc64d3f396a43c5f82d560c0104dc1f63ebc8",
+   "wav_sha256": "0cfb8e5cce2214ccb218af7433286faf0e8bbd67494f3404bca6065be7b75a25",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n65-v80-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n65-v80-44100-rep0.json",
+   "sha256": "9014262ae34c493aaaf1246298dfe2242ca18b7387aa29e8724ee3b7e9db1c04",
+   "wav_sha256": "5e5c3c90b35021d34e7896590da9a98a5c574fc879f523c7107a1ebe49869d4a",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n65-v110-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n65-v110-44100-rep0.json",
+   "sha256": "cb6ce307907b6d626aa1993cb8e1b407a75a5e0fb7ba60c4790802366fba9644",
+   "wav_sha256": "fde497d923a3d4a41307a0c162753907160c2455ce3e6b38519de9ccd3b31242",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n65-v50-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n65-v50-44100-rep1.json",
+   "sha256": "ae835d70b55e5dd505232f764153e3661c930ac5c518002899de2eadc4df291f",
+   "wav_sha256": "0cfb8e5cce2214ccb218af7433286faf0e8bbd67494f3404bca6065be7b75a25",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n65-v80-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n65-v80-44100-rep1.json",
+   "sha256": "17b0752983d4deca1aef178de30754c5d3a0164c939c98c0cc21ff0f508c29b7",
+   "wav_sha256": "21aaadb54f5183a79e6bb937946ec6074d0b98880f89f864f17f98902e6f1594",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n65-v110-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n65-v110-44100-rep1.json",
+   "sha256": "2e3c95d44df56245f8ba1b3fd5f1e9fdc8263618011e65a1db6be37c859ff0a6",
+   "wav_sha256": "d8511c93302d534a8e1fb434ae4ca01d226b0729c27b264e4a23df1ff36dc007",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n65-v50-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n65-v50-48000-rep0.json",
+   "sha256": "b99225e873100874aeb99546a9b42ee0c1496d8f555242b46b093ac1c45b162c",
+   "wav_sha256": "21ce3f25f6594b94669229ff655f58953f5b32044e5ea3c5b9010b5f0d149832",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n65-v80-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n65-v80-48000-rep0.json",
+   "sha256": "4a91fd5c754e26fa08f41eb14161a5339d31463f43a9eac1981e76e70186f377",
+   "wav_sha256": "844f57036d79032985d6ca49a071ffd641b2356d564609095eb4ccbd99316d1b",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n65-v110-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n65-v110-48000-rep0.json",
+   "sha256": "cca53f8c62441ea7585d1b95f64c7c63da36cefc15adb330404d48155465bc84",
+   "wav_sha256": "6e815828db433e7cb71a7bad06690c8aca4dac44b2f337ffffc8328524521a65",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n65-v50-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n65-v50-48000-rep1.json",
+   "sha256": "df322e4861b4e7761a796eeba06e335a7ca6f8170194d03d7edb6a488c2871f0",
+   "wav_sha256": "4b4d63b2218646bfb7d1756ff29659a0fe17b912cd3ae1b6d3785abd3b19c934",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n65-v80-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n65-v80-48000-rep1.json",
+   "sha256": "8cc6bb89346cf28f5450909bd4e839d17bd5f408a31413bbfe3aae8548d86ca2",
+   "wav_sha256": "844f57036d79032985d6ca49a071ffd641b2356d564609095eb4ccbd99316d1b",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n65-v110-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n65-v110-48000-rep1.json",
+   "sha256": "cf23705b92d997a50709530520b19a66486974047fac0baf7124f96d60aa2997",
+   "wav_sha256": "8e1840346b0cdb1b97bd43e8d2873eac636ee852d373da1a4c36bbd3aacd8260",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n68-v50-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n68-v50-44100-rep0.json",
+   "sha256": "cb12e32fb1c3dd4187eb63c5016227bf1accc0f0d28f61417fa3c08151d1dee1",
+   "wav_sha256": "0993084b04472601021f5eeccab014a4a34f7791b6b79dbe6fa803a7dad53322",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n68-v80-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n68-v80-44100-rep0.json",
+   "sha256": "26b95675d396198358caf4cd121a0e5c68aca40b3e4ece61021ac5baeb71f825",
+   "wav_sha256": "cd7df81d64971f95a458eacafdbf46c293f42d00367d832e9a8b37f73da97e61",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n68-v110-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n68-v110-44100-rep0.json",
+   "sha256": "de73fe8597c32c53324cf4816f6fb3c105511e680da0419491612d8191fd1ce5",
+   "wav_sha256": "61b3fbbbdb8d05ede3608d764edb8fcb02ffdcca7c7b95dfae1f3d28569b653a",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n68-v50-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n68-v50-44100-rep1.json",
+   "sha256": "03f53355d4e6a003f03e3ffdf920bddbc3459443d92a5dda170c97faf84c029e",
+   "wav_sha256": "d1532e4b56a451a083e24b6b4799097a43b334826fb8740b3fa056b7a0a8d64b",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n68-v80-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n68-v80-44100-rep1.json",
+   "sha256": "416f8e16d150f94a8cb1cf4d6175e2634fefbb47d2b53ca29a303319e393d3cd",
+   "wav_sha256": "0c04b84d3ebac3a477f78301883fb64bf8b2a559e7c1deb37369ace2d9f2e701",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n68-v110-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n68-v110-44100-rep1.json",
+   "sha256": "95fc5ea662b7de1f81285825a5675765561bfac7cd694bb2417c565ce3f6ee60",
+   "wav_sha256": "61b3fbbbdb8d05ede3608d764edb8fcb02ffdcca7c7b95dfae1f3d28569b653a",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n68-v50-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n68-v50-48000-rep0.json",
+   "sha256": "64e062c88fd218ff672c35294706ac456bff88126bb90669a1e283ec72504d8f",
+   "wav_sha256": "434ce0044b72d688d92653e6436516e06d3d64da53e889a2982496dcb1004603",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n68-v80-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n68-v80-48000-rep0.json",
+   "sha256": "f7b6685d953628d4811e706e5f6a4585cf1c739e3028591c1f1a3d052afbacda",
+   "wav_sha256": "2892837005bc1632a7759a24dde6da45d69a42ff5182a6beb3da382ccd0d3089",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n68-v110-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n68-v110-48000-rep0.json",
+   "sha256": "d39f9f9ac47228c9e681abf67fe1fb067decb0de0411a52eb9771a1ff853105a",
+   "wav_sha256": "8ac59c8ee7e66eb2ebdc045abb4726a5fa2b18733483fc880e2cf5694a6db31c",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n68-v50-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n68-v50-48000-rep1.json",
+   "sha256": "30e9a9c0743bcc87051557776848298947538a7ca58f35f1299f466237928bbb",
+   "wav_sha256": "29c8612c6cc00d7c45ae4ca09994707e0251f876ba58419354a670035539f9fa",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n68-v80-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n68-v80-48000-rep1.json",
+   "sha256": "d75b4c98fcf937f36a91eedc0aac9af0c319c6ec3d45a5e0d233f21fdeec4956",
+   "wav_sha256": "2892837005bc1632a7759a24dde6da45d69a42ff5182a6beb3da382ccd0d3089",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n68-v110-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n68-v110-48000-rep1.json",
+   "sha256": "7708a4df6874c2778e4293c6c64fa4bc6c8b5f3941e61648f19ef3021f32932b",
+   "wav_sha256": "2be9921cd7bd5e6938700ee74b727533bb1ccedc5968a7d85c224e3f67be508d",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n70-v50-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n70-v50-44100-rep0.json",
+   "sha256": "9ae3e43e724ab0fefd86096db87271dc5e24d1024b007c6b2c8c9c9301774eab",
+   "wav_sha256": "054fa5e1cc897be88cbdffe524c575640e118a50fb5bb7835ca83b26d8500569",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n70-v80-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n70-v80-44100-rep0.json",
+   "sha256": "79df26e99508d71b11dde6153c205e2d0420d82da6ea89689988e333f38bb25c",
+   "wav_sha256": "297279de15555c0e5c43f5ce412b13325a3df0a672cdb59a879d2ec53f6ddcab",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n70-v110-44100-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n70-v110-44100-rep0.json",
+   "sha256": "ab7a74a1bd8c16c0c8958b3bbe6e45f785569d794efa60d273145b91da90cae0",
+   "wav_sha256": "53d25589f3469d6b0b535492d59bc8342805713570642f70aaf0a73b84783fc0",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n70-v50-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n70-v50-44100-rep1.json",
+   "sha256": "ba949483a60845ce93c5d6255b24d37af296d3b03b4405c6af6625b1478a47c5",
+   "wav_sha256": "9a07a8873e5b5f602fa6c6cb8cd4e90660787772c2b262d2c611ae226e135929",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n70-v80-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n70-v80-44100-rep1.json",
+   "sha256": "bfa131906533aef759e97d71de68cb6e4b68f99074e89bbc5acd0198a5eb3b86",
+   "wav_sha256": "a683cb82e06e03c02bc66521f8a7fcec8b199a3ab91a12a9f95742d69d5682dd",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n70-v110-44100-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n70-v110-44100-rep1.json",
+   "sha256": "859ce49900759821bd7f78a80293228c4be7be88da2ffcfcfa339518222f6b72",
+   "wav_sha256": "3fa8e0e0f82913308191d1610d186b80c35bc4d3affd25c7ecf6579c9e6e7e2d",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n70-v50-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n70-v50-48000-rep0.json",
+   "sha256": "f75a33409d52a3a95fd552c4cac33be7acf7b1408f8f33e5c8d038d90cd91661",
+   "wav_sha256": "219d70c1dbfac5d8c5800c2706581b22c23439a61c2aa989e0ad95599e3e7993",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n70-v80-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n70-v80-48000-rep0.json",
+   "sha256": "bbe8ccf4f7f6fe17853f1ce0f70e481520186bc955b89005c6bb8b79b17502a8",
+   "wav_sha256": "8eb2992a80ffda28aea17ea360c88cdc8f94c4f1ef9351c9cf56b7198d6e9be0",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n70-v110-48000-rep0": {
+   "path": "pilot/timing-evidence-v3/reference/n70-v110-48000-rep0.json",
+   "sha256": "dd7c05b4f8e2741b66daa462e046946c8303f4cb373589416827ec3e0b77710d",
+   "wav_sha256": "38490545e48716aacda4f06a204ecc53747f5104e02312c210ba8ff14f607e9f",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n70-v50-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n70-v50-48000-rep1.json",
+   "sha256": "8f4c006c935820e04132027e67ee542570b1b53666531e20490673cde819548b",
+   "wav_sha256": "54fd27ff8b563b599ff8a24c2053d0a18ae5e8e03feb656d2223ee491ed5850e",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n70-v80-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n70-v80-48000-rep1.json",
+   "sha256": "1c304a66584df485245e32276ba791f34a72f7f1605b76b151d4317566f53aa2",
+   "wav_sha256": "50e233373b951521bdb5d101d05a0fe5f020333397c1a0171cf16245b169ad4f",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  },
+  "n70-v110-48000-rep1": {
+   "path": "pilot/timing-evidence-v3/reference/n70-v110-48000-rep1.json",
+   "sha256": "02ace3d8d20a3654c9473ff182e70814baf0987ec068c2125e8bfe586a211ecf",
+   "wav_sha256": "53c34215b1c2094d0913144a8dc0ea6da8dfb4a1b2c25e14fae9ce069210fe05",
+   "report_role": "reference_origin_authenticated",
+   "path_windows_portable": true
+  }
+ },
+ "devpiano": {
+  "n37-v50-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n37-v50-44100.json",
+   "sha256": "a0165fd5d8daaf4b8739f24a603ba36c4f1baf837308fb0f092404fd40e80782",
+   "wav_sha256": "5a79441a6f7eaa26780dc98fb465867d07f05140fe55ee2f88c091d67fe4c256",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n37-v50-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n37-v50-48000.json",
+   "sha256": "8ed22fbe5bf092ba886a93d38f519c37d24938a095e4634ad127d7dd2b733961",
+   "wav_sha256": "75ed66abf06a9b63238095f284db1d31b79b6b3b2d587ed5df6c5989a256b1e3",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n37-v80-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n37-v80-44100.json",
+   "sha256": "0a2f076bfcbf37b81adbb91f74398e96faaa7e62df8302de9a49b00f69477889",
+   "wav_sha256": "38dc80de255c528a8e6db1b27ca07e14533d3afb073c4ea00a32b75591e7d0ce",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n37-v80-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n37-v80-48000.json",
+   "sha256": "25711d30408f71d34ba850331eb89dd387d7e3f12fd58fc18e63fb5375a70ee3",
+   "wav_sha256": "7999a585d75e036097c5e0795b0b1549cc1642ee5b1a94485c1796b45042e7df",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n37-v110-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n37-v110-44100.json",
+   "sha256": "89ddcfbd7a5f6f841a0714b86a216ef0e8386f307bf11e95141c8f895b6fdef1",
+   "wav_sha256": "39270fb220df36b14d157195c15a67c900a4de04143e5af3d4ded11c539f8b93",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n37-v110-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n37-v110-48000.json",
+   "sha256": "d97e493b3da593c20120077cae22498f46940439fd3a61ea4308365ff9343af3",
+   "wav_sha256": "0154583841813eb9890a91238d76daef8a1260a3ad0685bae09efb50a39c91c0",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n38-v50-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n38-v50-44100.json",
+   "sha256": "cfa79b0b7e23ea400e07da3c3a8511457d284092a1dcdcccd0c88db5b07e1b57",
+   "wav_sha256": "1fc50668aff4312fa7a027d0017353cb5c21ec66d6a8decad23b305750298f6c",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n38-v50-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n38-v50-48000.json",
+   "sha256": "0fc3c51934221332b0ae3c483246cc7e2991503736c89f130bab11c4a8c0c966",
+   "wav_sha256": "26e09b042c7459434e7733958707fa802bfd445de3a6c773c0a23add4b4b8538",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n38-v80-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n38-v80-44100.json",
+   "sha256": "f08e782a8d03b961e08a7794aa30ea895aec9aa08d5cd298759367ea567da991",
+   "wav_sha256": "78d3841fc50903be0bec1ec5c7f12d319b4088015d1745d87e8fee247b06688e",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n38-v80-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n38-v80-48000.json",
+   "sha256": "36d4f9f5cd875f55b95dd78a9e6396434f2353dc26fa7a66abacbec2616a389c",
+   "wav_sha256": "aae3fcda6229073fa99a7075dd724e87d9e9ec198d492fdbd396e7b96a985677",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n38-v110-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n38-v110-44100.json",
+   "sha256": "002be83ab03ab993e691aff5ef9241303971002431e235bb4ac25fa015557051",
+   "wav_sha256": "2dadac70afa376f9486a4b4a45299416f0eb933df51ecd7008a62f60b9fab078",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n38-v110-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n38-v110-48000.json",
+   "sha256": "43e1dc5f3c8b672b2a1b264c87b575cb6dd21ca8d83e8a93523df2bf675de8a5",
+   "wav_sha256": "d29ec95b51ca29dc8524ea85a1f0c46c7427f6ce7df51eb552a142ebe635f202",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n41-v50-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n41-v50-44100.json",
+   "sha256": "7b277067b61443b168d60e415703d81f9afaee21ca2a9e2bc134602df5b76d44",
+   "wav_sha256": "f0d55bdda3df92c0d8aa49840a7feb2b2c3db0bbb07c7528ab6e5c6613f07dd7",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n41-v50-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n41-v50-48000.json",
+   "sha256": "11bb4f2b07e19d1a29759bf50ced4e7f014b507c29ea4fb9571644251d1e2a2b",
+   "wav_sha256": "92820bdd8fd4dd8d2b352faee0b49f023893381d5104d00b988a6fcd10b0e9ba",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n41-v80-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n41-v80-44100.json",
+   "sha256": "53574048ae84e24e0a64cd6abc46032033d91bb891b355e030e513660889707d",
+   "wav_sha256": "fdb395bfd7970113f0c95b8dc40b600eb833bfd80189ab584b1113b9a04d2bc0",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n41-v80-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n41-v80-48000.json",
+   "sha256": "dff5f5cc4e1c653bbc2972c828097d210262e16285eabb401c254855aa792f6e",
+   "wav_sha256": "105ead4b31563fdd5a4ffb968a7f813001d7e6f6969d4a6c19a83ddbd9581554",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n41-v110-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n41-v110-44100.json",
+   "sha256": "e13be059f380c0e2fb8ee1a321299f9f893f1a334129c80195082b4204d3714e",
+   "wav_sha256": "5e9c3e387f21356dbb81b29874918e66fd8b3641cde05d77cb7925476b8bf426",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n41-v110-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n41-v110-48000.json",
+   "sha256": "3ae1e9785bfce3d47d6d1b4bf67cd8f072c91179f1d30dc761327f7be057f55e",
+   "wav_sha256": "9d0bd9cf6aba27beb0f9b1ec60f20d790406b2a73d81049bcc3944afaa14f3c8",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n54-v50-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n54-v50-44100.json",
+   "sha256": "3d79d8214f3f7a28e1c31448edcceba03a773faecc3c18c500ad0449809cc3fa",
+   "wav_sha256": "296b05283ac8a70d8ba0af2474cdb0c6d64b9865341edb04ccff6244e8cc7793",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n54-v50-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n54-v50-48000.json",
+   "sha256": "fb16fc22519821fa4fade2139d8c71c859d7761bcf4a31b9f9c25bd1103230d0",
+   "wav_sha256": "5bdec3b4712b1b6c5924fd2876751418b57ae6be264244796aed06e8a1187301",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n54-v80-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n54-v80-44100.json",
+   "sha256": "ab07af88dc776fbfc02eb88f3580aee20ff56daa82bdbb98a4349f77eee2fc22",
+   "wav_sha256": "f775cb80d18c3913ded2b11b77037c45d6f5608d33e4724891ce2779ca3ecf44",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n54-v80-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n54-v80-48000.json",
+   "sha256": "c8c7c7c442a99d0dfabd64fda3cfee0d24c017aff90134885bc5ff6c2ea549ec",
+   "wav_sha256": "8c4f2f9b694b9045881c5a88299e22ce59758391d58797d3d50a1466b0ef07be",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n54-v110-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n54-v110-44100.json",
+   "sha256": "242eb0c41f67411202a0e9ebf6545fa5177acf07bc7f886051e569d7107531fa",
+   "wav_sha256": "d9b5d84cdabdf3b4088b727e76c3ae641cc9db13111a35b2e480817cc1a71c41",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n54-v110-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n54-v110-48000.json",
+   "sha256": "3073556cd17163007a59a315cb3d7034bc4837c014d90f8a40bc9f602e49ad92",
+   "wav_sha256": "fd506bd44d20e1d5679c3b6bbe0dbf28f73e6f897329c39c7dd433851bc33a78",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n56-v50-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n56-v50-44100.json",
+   "sha256": "c3052a1e4f47644c369d7c4b14e632cb2755f31a0149202100a9da90eda8149a",
+   "wav_sha256": "ba26f5e8d82677d50fc008cbd7a6134f10866cbb933aad4b8d615e5589c460e7",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n56-v50-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n56-v50-48000.json",
+   "sha256": "67d2c2fff83261d6833d1d3ff5f1f0b1096c12a12a1fdad43161305606a7f5a1",
+   "wav_sha256": "7e1ff9ba374c8eb7444577087e933f1c4ba8f25dcbc283a99d43aca562f6290a",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n56-v80-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n56-v80-44100.json",
+   "sha256": "b0918b9bbb826c311bd38eb03fe25e34b7cc680c4001592338863a8023564171",
+   "wav_sha256": "4805549088705c375c2027d3300b1cc966a1fcdd7814892f144e93607e01d104",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n56-v80-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n56-v80-48000.json",
+   "sha256": "d0c827ebc20e4ee9f843868e8546702daf6ce3bd80c82e13fd89d9700931c914",
+   "wav_sha256": "058dc2f51666b0f6892592648e0a31b5bb90fd44a67274b78d066333a8c55be5",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n56-v110-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n56-v110-44100.json",
+   "sha256": "2b93c0c68016cd74242a7556e73062726c21c20e2415e7dd5f8481b2b8c9759b",
+   "wav_sha256": "3b4c0763b4628bd2f572e14f76844db76b6f305aacea034949ecf57864047986",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n56-v110-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n56-v110-48000.json",
+   "sha256": "0ce76814abf4cc06307596836430f892d1247c258c76e0d665d9639fa437e849",
+   "wav_sha256": "19694db82a5244931843ecb9261006045a703488c80ec8ce943c8924be2d1805",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n58-v50-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n58-v50-44100.json",
+   "sha256": "a0b9ed36be348d45a2e49d6e2339eb42da30b73878fc60e22c0501bbebf43689",
+   "wav_sha256": "83d6489319ce44d880e0a490ed42996ead263bf7f04913813b80ab4f6be8b1fa",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n58-v50-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n58-v50-48000.json",
+   "sha256": "90faa0207d01f830461ffd396ab3b19426aeb20e3b18400abd271eb8212029d1",
+   "wav_sha256": "62cf52df5bf7790ac4d95ca199494f17aad135dea5517cfe5666b6ac08bd857e",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n58-v80-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n58-v80-44100.json",
+   "sha256": "d7dc2badd6f7b31ad0fecd3ebed0c28285ae96ad2093f876a49b8e7ac5c04526",
+   "wav_sha256": "bf85a788ed6cd6d05ddf7b19c60e5f3c8f3a429fb08e2722b9ecc658e41661ce",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n58-v80-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n58-v80-48000.json",
+   "sha256": "4238b5dbe768f75ab9053acc5fc88fbfd63903498987fb22243a2807172ec29a",
+   "wav_sha256": "32e87e821de23fdce486557ff1cfd6835a4c138800cb2957e489400e8d0fdcb9",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n58-v110-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n58-v110-44100.json",
+   "sha256": "5b9e927047deb71937b18b34c4d84c04247250a380af36841c26facda7744170",
+   "wav_sha256": "37f3cca5bfe70ace70c3483216e0e29b35a35a76546b562ff2288c3a48c64cb7",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n58-v110-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n58-v110-48000.json",
+   "sha256": "b2b6a8b7f394eedbb5a2dd449a2dc863bdc6e48ec329a0253fe2fea700a310e1",
+   "wav_sha256": "a450cf84f21b1348ce5953339adb9eb1c20ba2b820a79de87c3c77dd37d8667f",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n61-v50-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n61-v50-44100.json",
+   "sha256": "97ae5e144302c994056135e8a98bd0084398dfe17b85987c571fa22514566b86",
+   "wav_sha256": "ceef6bd0e36d7b91b3801a4203928706fed89ec201a337faa3d990c03f4eb8a9",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n61-v50-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n61-v50-48000.json",
+   "sha256": "6be751e92680039299287cf9d48cd7b6e49d64c3db8a0da9b2ea7bb9141980f7",
+   "wav_sha256": "0c21fd7f3af58c361eaee5b4134a6761a0b00c96b0857a836d30ee55e95d7c44",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n61-v80-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n61-v80-44100.json",
+   "sha256": "65af82442cb85936f9d814d80be1941da991f4b0204be39e2034caea8090af05",
+   "wav_sha256": "b6b833e2724c1c8dc648bbab604db07b37f3df24fc32cd10fd1154279a893bbd",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n61-v80-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n61-v80-48000.json",
+   "sha256": "21f61d0409ee1f599356245968c620eaf2d7faa409ef48df53fbe9f1fc3a186e",
+   "wav_sha256": "52e8bd795ed22df702f0b49bd20a7cb1c214bbde17e5d5eaf6e0c8385ab61d31",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n61-v110-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n61-v110-44100.json",
+   "sha256": "f6775bc5da4be803fdf540003796fcd968b723b6a577c8b95ec041a30ee65ec7",
+   "wav_sha256": "37e9bd3e4ede0b6720ac5e5f658f6a006e24611cfb54019cec6c6025e30fbd2b",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n61-v110-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n61-v110-48000.json",
+   "sha256": "6b8ddd1d97008b7fd91047862007ac02d1d6d091a0b46b45e9d98cb95c87ebda",
+   "wav_sha256": "f8e0fd6be86a10b9478eca51d8d2d86c041b49567fe99087acb379e1dda08486",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n65-v50-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n65-v50-44100.json",
+   "sha256": "cf0f0c625020528b6de829ff870c8458b71a8a31e94a0017454f4c6d9535b6ac",
+   "wav_sha256": "ced0f37500c92c5fccb49b4d83b65f99b430b71016d3c3254b3f4be35907dbaa",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n65-v50-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n65-v50-48000.json",
+   "sha256": "4065e9ec2da3db2b08e3763121def5f5254c6983bfcdcd94cfae8ec3c019a4aa",
+   "wav_sha256": "8b91c7c9bdaca0c2db9beb043b9a47b79dd4e30cf352ce1faa4f5243068fa9a8",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n65-v80-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n65-v80-44100.json",
+   "sha256": "7737ba0b7f4b35c5664061d800c3a98b0f8224fb0b3c70f49aa31ade6caf5cb8",
+   "wav_sha256": "e331b52a9ce9472f48ddbb6e0aec425b2636788f5d78583ae4aaee65903ed0bf",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n65-v80-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n65-v80-48000.json",
+   "sha256": "ae8817ccf986de3c866aa6d1d2fa33008e34246ec85d1f285747c5d59f65cec9",
+   "wav_sha256": "f96e9323d53adaf0a246238be200155599bc519b8a3c09bf33b40b5fc8543ade",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n65-v110-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n65-v110-44100.json",
+   "sha256": "f1a97d697933a7d5ce9aed2bdf3ab45cd24d6e0678854362f8e060c89ff117e6",
+   "wav_sha256": "f1988124256eac4620bf3c151db857d32e4f3775108d3690ea30f38e319065ab",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n65-v110-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n65-v110-48000.json",
+   "sha256": "70b1dfc2112b4b1ce0727d84d4a9c07af717f73341737780ff7a5b64aec675dd",
+   "wav_sha256": "66e6ec822b122a52eceb1ae6f0c68b6a51a183c94f212db36bdb35b7acf2f9c8",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n68-v50-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n68-v50-44100.json",
+   "sha256": "27d2260513f33ec2ab89f3adfe123cca9f6a420c9beee2aee4f4b0ab9b30b610",
+   "wav_sha256": "8c9b2c35b7cda76700db51fe80c4866df4d6465273ba011811512ba12f16e493",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n68-v50-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n68-v50-48000.json",
+   "sha256": "9363d1d5098706d82f8bfb78eb7cba25b4d3733a7ab7e58cea025081e6e00a67",
+   "wav_sha256": "3657e6327e92a0bcbde3603d047f2a34c7b32a3601f4ea61ba8bd5dff7c69797",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n68-v80-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n68-v80-44100.json",
+   "sha256": "b17cb18f3e2b5de8f6b0707b2d42e56303bde00aeea51423d46a0c0b866719bb",
+   "wav_sha256": "aa00b7ccf86746959bc12aa40e8398c88ef36a73dcf9ac8895f8d61797d19423",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n68-v80-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n68-v80-48000.json",
+   "sha256": "64bc819a2db523339757d08118a1223ff86ecd2a3fe77716b3c8e3f882822dc9",
+   "wav_sha256": "b2e16441da23695e0d192447f751cb54da4e95f7b9d3b220e4bb0d0f91dd25d7",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n68-v110-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n68-v110-44100.json",
+   "sha256": "b27baa51084acedaa22aefbb8320f1105c8b9c6430da4a4bd691e975499c4079",
+   "wav_sha256": "f82559fe80d67b788dca9548508afe01d1146addd2bc39bc4c1c52583f7486e5",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n68-v110-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n68-v110-48000.json",
+   "sha256": "bb366d76e2c101ef2c3498e4072a4354e17f7a67f20351fde339eeab8dc40e26",
+   "wav_sha256": "2f0420abc3635aa8e779b86d784324721c215074f77786a956c02c700cf0f31e",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n70-v50-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n70-v50-44100.json",
+   "sha256": "f386425d63b6dcf2d5ca8f6c2bb648a4d314fac901d42516d9767a16ed4b7c55",
+   "wav_sha256": "bb8393c472477293a9941e80062b50b1f476bb2eb3625cff0ed6d60565dcb9b6",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n70-v50-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n70-v50-48000.json",
+   "sha256": "377c7e1c4f4a12feab01d6fdbd7c64f8ca87fb15c9f50733ed050d5f9a95af8b",
+   "wav_sha256": "959c1e8c82414513b2af78fb7a3314316275f1c55142a79ac287ec0907747f92",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n70-v80-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n70-v80-44100.json",
+   "sha256": "82bd37fc0ed9829d07283470050a9ee8ae0ae791c79b1993f2c54bd408754dad",
+   "wav_sha256": "64b128a60aa6fe62738e181fabeddfb621b73e7db4caf5660a8adbc1cbb20d89",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n70-v80-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n70-v80-48000.json",
+   "sha256": "b1b094a2f73d2bad87797ccb933ab5c3e8a28b21a5da9c065da698d061ea8647",
+   "wav_sha256": "c324fccb76423d85519bec04cbd0084830c85fc48d51942c9bfc1641a1bc67a9",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n70-v110-44100": {
+   "path": "pilot/timing-evidence-v3/devpiano/n70-v110-44100.json",
+   "sha256": "e7ff139dac9ae098748848833b9b934ea9a301fa98f881a2727327d0d8489ff8",
+   "wav_sha256": "9a1466964ed1abdac708885d3641c2ba2f5d4b93cec06a34ec0679259da6308b",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  },
+  "n70-v110-48000": {
+   "path": "pilot/timing-evidence-v3/devpiano/n70-v110-48000.json",
+   "sha256": "48facb347ca7de637247d06d53a5e0af712882b44d9712cf94052bcd0781b5bc",
+   "wav_sha256": "cc3fc659579b3066d48a43132c2d49f441eb42ffb5c94e39faa34f6069fac774",
+   "report_role": "input_and_dev_render_contract_only",
+   "repeat_binding": "shared across repeats for this note/velocity/rate"
+  }
+ },
+ "policy": {
+  "formal-window-decision.json": {
+   "path": "pilot/timing-evidence-v3/policy/formal-window-decision.json",
+   "sha256": "8b159e2add8e75ec0d1e6e6cca146bb09ac1e771e7f56c6745986407c1d535bc"
+  },
+  "window-repeat-identity.json": {
+   "path": "pilot/timing-evidence-v3/policy/window-repeat-identity.json",
+   "sha256": "0b1cbe95b95a7b14fb9bf8332533395fc79be9826cccbcca54978e288db88b80"
+  },
+  "formal-window-policy-check.json": {
+   "path": "pilot/timing-evidence-v3/policy/formal-window-policy-check.json",
+   "sha256": "30d4ad2c8701049c154073a7468970d342274b2eebf819cdac12865d5e58daed"
+  }
+ },
+ "errors": [],
+ "portable_path_binding": {
+  "created_utc": "2026-10-18T13:29:23.061862+00:00",
+  "note": "Reference report MIDI/WAV/certificate paths rewritten to Windows-native absolute paths for evaluation under Windows Python; hashes and timing fields unchanged. POSIX-path originals retained under reference-posix/.",
+  "reference_posix_manifest_sha256": "e1485e12224bde2bff944f8aa29dad8959ef2f8e6df666a8503c9e90772d88dd"
+ }
+}

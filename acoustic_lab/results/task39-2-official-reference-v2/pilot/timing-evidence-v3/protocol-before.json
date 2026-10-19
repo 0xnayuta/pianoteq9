@@ -1,0 +1,969 @@
+{
+ "schema": "devpiano-task39-2-preregistration-validation-v3",
+ "date": "2026-10-15",
+ "status": "frozen_before_validation_rendering_or_inspection",
+ "purpose": "未冻结的 v3 协议草案：固定静态 B 目标、现行误差预算、NoteOn 相对分析窗与六态记账，供审查与准备检查。本文件不可执行：不产生、不预置任何通过/失败结果，不授权采集、冻结或正式评估，也不改写任何历史判决。",
+ "supersedes": "none; 不改写 validation-interp（已消耗）、validation-interp2（冻结并已消耗）或任何更早判决/证据。",
+ "contracts": {
+  "frequency_observable": {
+   "path": "pilot/frequency-observable-contract-v3.json",
+   "sha256": "3831b1caa94e89120fb775fb4b2aafec819d3d624387c43211aba590c26affa9",
+   "owner": "主会话（本轮）",
+   "role": "可比量、观察器语义、族准入与比较判据的唯一短契约来源。",
+   "note": "Frozen at 2026-10-18T09:08:24.700059+00:00; v3 formal method ready after the requalified method snapshot."
+  },
+  "input_render": {
+   "path": "pilot/input-render-contract-v3.json",
+   "sha256": "92a26c0f08ceedd356368cae057cdabf9ff454b995c3aa135e9946f33d967400",
+   "owner": "主会话（本轮）",
+   "role": "SMF/WAV 输入契约、NoteOn 相对窗口、dev 端渲染与 reference_origin 要求的唯一短契约来源。",
+   "note": "Frozen at 2026-10-18T09:08:24.700059+00:00; reference_origin authenticated and formal readiness declared."
+  },
+  "method_qualification_plan": {
+   "path": "pilot/method-qualification-window-refusal-v1.json",
+   "sha256": "68bc797dfbbf902cf0de63aeba2bc4b0f061784b33d355c431fb75202096b35e",
+   "role": "已消费且 qualified 的有限合成域方法登记；本散列只绑定既有资格证据身份，不冻结 v3、不授予参考或正式评估准入。"
+  },
+  "reference_origin_plan": {
+   "path": "pilot/reference-origin-evidence-plan-v3.json",
+   "sha256": "7a64ba64385ecad5dbea4dcf22ab9cdac3b9517ecdaa4ac5bb03e96c354d1daa",
+   "role": "只登记取证与停止条件；不授权启动参考、GUI、诊断采集或正式采集。"
+  }
+ },
+ "execution": {
+  "executable": false,
+  "reason": "status=draft_pending_review：未经用户批准冻结、未批准矩阵/数据角色、未授权采集与正式评估。",
+  "matrix_selected": true,
+  "matrix": {
+   "notes": [
+    37,
+    38,
+    41,
+    54,
+    56,
+    58,
+    61,
+    65,
+    68,
+    70
+   ],
+   "velocities": [
+    50,
+    80,
+    110
+   ],
+   "rates": [
+    44100,
+    48000
+   ],
+   "repeats": 2,
+   "units": 120,
+   "cold_sessions": 40,
+   "session_shape": "one note, one rate, one repeat; three velocities per owned cold session",
+   "registration": "pilot/validation-matrix-registration.json",
+   "registration_sha256": "780424dbc91aa23c5bcc227aa09d6210972cc07859f9fde7a4e8003305c63533",
+   "session_order": [
+    {
+     "session": "s01-n37-44100-rep0",
+     "note": 37,
+     "rate": 44100,
+     "repeat": 0
+    },
+    {
+     "session": "s02-n37-44100-rep1",
+     "note": 37,
+     "rate": 44100,
+     "repeat": 1
+    },
+    {
+     "session": "s03-n37-48000-rep0",
+     "note": 37,
+     "rate": 48000,
+     "repeat": 0
+    },
+    {
+     "session": "s04-n37-48000-rep1",
+     "note": 37,
+     "rate": 48000,
+     "repeat": 1
+    },
+    {
+     "session": "s05-n38-44100-rep0",
+     "note": 38,
+     "rate": 44100,
+     "repeat": 0
+    },
+    {
+     "session": "s06-n38-44100-rep1",
+     "note": 38,
+     "rate": 44100,
+     "repeat": 1
+    },
+    {
+     "session": "s07-n38-48000-rep0",
+     "note": 38,
+     "rate": 48000,
+     "repeat": 0
+    },
+    {
+     "session": "s08-n38-48000-rep1",
+     "note": 38,
+     "rate": 48000,
+     "repeat": 1
+    },
+    {
+     "session": "s09-n41-44100-rep0",
+     "note": 41,
+     "rate": 44100,
+     "repeat": 0
+    },
+    {
+     "session": "s10-n41-44100-rep1",
+     "note": 41,
+     "rate": 44100,
+     "repeat": 1
+    },
+    {
+     "session": "s11-n41-48000-rep0",
+     "note": 41,
+     "rate": 48000,
+     "repeat": 0
+    },
+    {
+     "session": "s12-n41-48000-rep1",
+     "note": 41,
+     "rate": 48000,
+     "repeat": 1
+    },
+    {
+     "session": "s13-n54-44100-rep0",
+     "note": 54,
+     "rate": 44100,
+     "repeat": 0
+    },
+    {
+     "session": "s14-n54-44100-rep1",
+     "note": 54,
+     "rate": 44100,
+     "repeat": 1
+    },
+    {
+     "session": "s15-n54-48000-rep0",
+     "note": 54,
+     "rate": 48000,
+     "repeat": 0
+    },
+    {
+     "session": "s16-n54-48000-rep1",
+     "note": 54,
+     "rate": 48000,
+     "repeat": 1
+    },
+    {
+     "session": "s17-n56-44100-rep0",
+     "note": 56,
+     "rate": 44100,
+     "repeat": 0
+    },
+    {
+     "session": "s18-n56-44100-rep1",
+     "note": 56,
+     "rate": 44100,
+     "repeat": 1
+    },
+    {
+     "session": "s19-n56-48000-rep0",
+     "note": 56,
+     "rate": 48000,
+     "repeat": 0
+    },
+    {
+     "session": "s20-n56-48000-rep1",
+     "note": 56,
+     "rate": 48000,
+     "repeat": 1
+    },
+    {
+     "session": "s21-n58-44100-rep0",
+     "note": 58,
+     "rate": 44100,
+     "repeat": 0
+    },
+    {
+     "session": "s22-n58-44100-rep1",
+     "note": 58,
+     "rate": 44100,
+     "repeat": 1
+    },
+    {
+     "session": "s23-n58-48000-rep0",
+     "note": 58,
+     "rate": 48000,
+     "repeat": 0
+    },
+    {
+     "session": "s24-n58-48000-rep1",
+     "note": 58,
+     "rate": 48000,
+     "repeat": 1
+    },
+    {
+     "session": "s25-n61-44100-rep0",
+     "note": 61,
+     "rate": 44100,
+     "repeat": 0
+    },
+    {
+     "session": "s26-n61-44100-rep1",
+     "note": 61,
+     "rate": 44100,
+     "repeat": 1
+    },
+    {
+     "session": "s27-n61-48000-rep0",
+     "note": 61,
+     "rate": 48000,
+     "repeat": 0
+    },
+    {
+     "session": "s28-n61-48000-rep1",
+     "note": 61,
+     "rate": 48000,
+     "repeat": 1
+    },
+    {
+     "session": "s29-n65-44100-rep0",
+     "note": 65,
+     "rate": 44100,
+     "repeat": 0
+    },
+    {
+     "session": "s30-n65-44100-rep1",
+     "note": 65,
+     "rate": 44100,
+     "repeat": 1
+    },
+    {
+     "session": "s31-n65-48000-rep0",
+     "note": 65,
+     "rate": 48000,
+     "repeat": 0
+    },
+    {
+     "session": "s32-n65-48000-rep1",
+     "note": 65,
+     "rate": 48000,
+     "repeat": 1
+    },
+    {
+     "session": "s33-n68-44100-rep0",
+     "note": 68,
+     "rate": 44100,
+     "repeat": 0
+    },
+    {
+     "session": "s34-n68-44100-rep1",
+     "note": 68,
+     "rate": 44100,
+     "repeat": 1
+    },
+    {
+     "session": "s35-n68-48000-rep0",
+     "note": 68,
+     "rate": 48000,
+     "repeat": 0
+    },
+    {
+     "session": "s36-n68-48000-rep1",
+     "note": 68,
+     "rate": 48000,
+     "repeat": 1
+    },
+    {
+     "session": "s37-n70-44100-rep0",
+     "note": 70,
+     "rate": 44100,
+     "repeat": 0
+    },
+    {
+     "session": "s38-n70-44100-rep1",
+     "note": 70,
+     "rate": 44100,
+     "repeat": 1
+    },
+    {
+     "session": "s39-n70-48000-rep0",
+     "note": 70,
+     "rate": 48000,
+     "repeat": 0
+    },
+    {
+     "session": "s40-n70-48000-rep1",
+     "note": 70,
+     "rate": 48000,
+     "repeat": 1
+    }
+   ]
+  },
+  "status_gate": "评估器在读取任何音频或写出任何输出前拒绝 status != frozen_before_validation_rendering_or_inspection；--diagnostic-only 不是 v3 绕过。",
+  "check_plan_mode": "python3 pilot/tools/validation-eval.py --check-plan --preregistration pilot/validation-v3-preregistration.json：只读预登记与声明契约、报告真实阻塞、不写输出；有阻塞时退出码 3。"
+ },
+ "execution_gate": {
+  "note": "以下为评估器对 v3 预登记的显式可执行前提；伪造 status 单独一项不满足任何一条。",
+  "requires_status": "frozen_before_validation_rendering_or_inspection",
+  "required_authorizations": [
+   "protocol_approved",
+   "matrix_approved",
+   "capture_authorized",
+   "freeze_authorized",
+   "formal_evaluation_authorized"
+  ],
+  "requires_empty_unresolved_prerequisites": true,
+  "requires_selected_matrix": true,
+  "requires_entry_gate_frozen_before_rendering": true,
+  "requires_verified_completed_method_evidence": true,
+  "requires_current_snapshot_qualification": true,
+  "requires_reference_origin": "authenticated",
+  "requires_bound_tool_identities": [
+   "analysis_tool",
+   "evaluator",
+   "partial_observer"
+  ],
+  "cross_checks": [
+   "声明契约必须存在；声明了散列时实测散列必须一致。",
+   "reference_origin.status 必须与 input-render 契约实测值一致，否则报告为契约矛盾。",
+   "已完成原快照的方法资格实证与当前依赖身份分别核验；原实证有效不自动认证修改后的源码。frequency contract 的 v3_formal_method_ready 独立阻断，不与原有限方法 qualified 矛盾。"
+  ],
+  "diagnostic_only_is_not_a_v3_bypass": true
+ },
+ "authorizations": {
+  "protocol_approved": true,
+  "matrix_approved": true,
+  "capture_authorized": true,
+  "freeze_authorized": true,
+  "formal_evaluation_authorized": false,
+  "production_B_change_authorized": false,
+  "old_qualification_reverdict_authorized": false,
+  "historical_evidence_change_authorized": false
+ },
+ "unresolved_prerequisites": [],
+ "qualification": {
+  "baseline_design_file": "pilot/method-qualification-window-refusal-v1.json",
+  "historical_design_file": "pilot/method-qualification-v3.json",
+  "historical_result": "not_qualified; unchanged",
+  "role": "活动证据绑定已消费且 qualified 的窗级拒绝修订后有限合成域完整资格；2026-10-18 针对当前 reference-origin timing verifier 工具快照重新执行并 qualified。当前六输入匹配及 v3 就绪仍由实际验真分层计算，不接受声明 status 翻绿。原 NoteOn 基线、旧 A5 和完整 84 例的原判决与证据保留，不重放、重判或重新封印；本绑定不认证参考原点、真实弦身份或完整 v3 验收。",
+  "completed_method_evidence": {
+   "canonical_report": "G:/source/projects/devpiano-evidence/phase39/task39-2/a5-requalification-20261018-090000/qualification/method-qualification-report.json",
+   "report_sha256": "7054a11ea998a719283bcef149c2bfcb54f0ec6af3e5a00fc0bffea5342ea47b",
+   "manifest_sha256": "e5430f505f8ca1ee830aa3d7c6b66be3fda6f3c8fb705c3bfdccfc2544f1a250",
+   "seal_sha256": "7b25ba5fe5fa670110ac2a39d540e66a966efa4a4a4fbc4be69535c18c2195e7",
+   "consumption_marker_sha256": "82c3170ead49ea8d4e5e86b3309e9541ca9597647f05345b218ead3f58303572"
+  },
+  "prospective_change_coverage": {
+   "path": "pilot/method-qualification-a5-v1.json",
+   "sha256": "948764004f05ee57ea65211a2922b1b05b68e9dff73d76940e6bfde240b741a8",
+   "role": "consumed_failed_qualification_not_current_method_certificate",
+   "initial_registration_review": {
+    "path": "G:/source/projects/devpiano-evidence/phase39/task39-2/a5-prospective-coverage-20261016-024127/review-complete.json",
+    "sha256": "385c25eb804a9ac0de05a4da87acec432cb83f58a60dadae0b3a2b3ed4cee85e",
+    "registration_sha256": "d1cf9a1676d3f555442cc5dcd010636ba984e895c0b73e247215e8e22a0086d5"
+   },
+   "source_closure_required": [],
+   "runner_contract_closed": true,
+   "registration_contract_ready": true,
+   "runner_closure_verification": {
+    "path": "pilot/a5-runner-closure-verification.json",
+    "sha256": "bca3e2651a956cfd57a6c131131b9194cd99e3f4f87f050f52c21d05891a5291",
+    "evidence_batch": "G:/source/projects/devpiano-evidence/phase39/task39-2/a5-runner-closure-20261016-032120",
+    "role": "获批的改后旧控制回归与真实准备验证，不是新独立资格；精确执行身份与后续审批范围见该批次。"
+   },
+   "execution_blockers": [
+    "consumed_not_qualified_no_retry_authorized"
+   ],
+   "execution_ready": false,
+   "development_or_qualification_executed": true,
+   "approval_sequence": "原完整qualification已按授权后登记SHA与精确seal执行并消费，not_qualified保留；后续只读定位及另批最小修订/自有development已完成，不重放旧矩阵。后继独立资格须新的未触碰前瞻覆盖与单独执行批准，不能用开发结果补批。",
+   "consumed_execution": {
+    "batch": "a5-qualification-20261016-040725",
+    "canonical_report": "G:/source/projects/devpiano-evidence/phase39/task39-2/a5-qualification-20261016-040725/qualification/method-qualification-report.json",
+    "report_sha256": "feaa7ab8013dadd1279d50eb6e763afa2b8a4d6b248377b96981629a29e39938",
+    "seal_sha256": "5aebd9d1ddef53d005f72021310f86707b37170f8576b7bccc4f83df0c8a4b19",
+    "consumption_marker_sha256": "91148a7c9c442e915a38edaaaf6a913bea31fc005f583e03eaf67e2d099ce4f1",
+    "outcome": "not_qualified",
+    "complete_role": true,
+    "development_executed": false,
+    "retry_authorized": false
+   }
+  },
+  "candidate_structure_development_verification": {
+   "path": "pilot/a5-candidate-structure-development-verification.json",
+   "sha256": "8ce0bed5bc79f883f8bdb6135dccfd1f3a47b01bdf8b5a3ace933a0fe9805acb",
+   "evidence_batch": "G:/source/projects/devpiano-evidence/phase39/task39-2/a5-candidate-structure-development-20261016-051007",
+   "role": "separately_registered_self_owned_development_not_independent_qualification",
+   "qualification_authorized": false,
+   "current_snapshot_qualified": false
+  },
+  "am_child_study": {
+   "preregistration": "pilot/am-envelope-preregistration.json",
+   "substitutes_static_qualification": false,
+   "carrier_feeds_B": false,
+   "scope": "有限合成域内的条件包络解释；不认证物理来源，不改变观察器状态。"
+  }
+ },
+ "reference_origin": {
+  "status": "authenticated",
+  "contract": "pilot/input-render-contract-v3.json",
+  "requirement": "Bind MIDI timing to actual reference export origin using independent recorded evidence.",
+  "evidence": "pilot/origin-certificate-v1.json",
+  "evidence_sha256": "192bac2a5192f5551cc649fc064cae57f7bfab3baeb0eb0cefcbb8e3bec10d51",
+  "evidence_plan": "pilot/reference-origin-evidence-plan-v3.json",
+  "capability_review": {
+   "disposition": "origin_not_authenticated",
+   "report": "G:/source/projects/devpiano-evidence/phase39/task39-2/a5-contract-review-20261015-115821/origin-capability-review.json",
+   "sha256": "97a9466759a120c5528f9ba7fa6fa4c35ab411cdb484bc0ff21292cd3eefc587",
+   "capture_started": false,
+   "stop_scope": "停止参考诊断采集；不阻止其余只读契约审阅，不激活替代时序。"
+  }
+ },
+ "objective": {
+  "statement": "保留静态 B 目标：参考族准入（独立留出预测）+ 两生产者可比静态分音集的归一化误差判据；不认证唯一物理弦身份、AM 载频或商业算法等价。",
+  "production_table": {
+   "path": "source/Audio/Piano88KeyTable.h",
+   "sha256": "c1997c904115ca23bdb1c9bbeb1d41542b25d8f7ed1dce0234109649da91a5b1",
+   "role": "冻结基线（未修改）；本草案不改生产 B/DSP、不放宽阈值。",
+   "change_authorized": false
+  }
+ },
+ "observable_types": {
+  "static_single_component_adequate": {
+   "label": "static_single_component_adequate",
+   "meaning": "在声明的有限静态阻尼正弦模型下频率充分；条件频率区间覆盖报告频率且半宽在预算内；不是无 AM 或唯一物理弦的证明。",
+   "role": "未来 v3 比较的唯一可比量来源；需要独立资格与族/窗/重复义务。"
+  },
+  "resolved_components": {
+   "label": "resolved_components",
+   "meaning": "分量被分别解析；不自动构成物理弦分配。",
+   "role": "诊断；不可作为可比分音。"
+  },
+  "conditional_am_carrier": {
+   "label": "conditional_am_carrier",
+   "meaning": "登记 AM 模型下的条件载频；相干三音可产生相同 PCM。",
+   "role": "仅诊断；不进 B 拟合、不进可比量、不覆盖静态观察状态。"
+  },
+  "raw_power_peak": {
+   "label": "raw_power_peak",
+   "meaning": "立体声功率谱候选峰（含 strongest raw peak / 多音中心）；不是认证的静态线、载频或中心弦。",
+   "role": "仅诊断。"
+  },
+  "stiffness_relative_difference": {
+   "label": "B_rel",
+   "meaning": "两侧有效刚度相对差。",
+   "role": "诊断旁证，不是判据。"
+  },
+  "normalized_partial_error": {
+   "label": "norm_rms/norm_max",
+   "meaning": "参与判据的归一化分音比误差（基准 m = 最小共同可比分音，不计入样本）。",
+   "role": "判据。"
+  }
+ },
+ "criteria": {
+  "numeric_budgets_unchanged": true,
+  "comparable_set": "先要求两侧完整族、两窗、观察区间、留出和重复门禁。共同同编号合格静态线中，内置单弦 MIDI21..35 可从 n>=1 比较；多弦36..71仍从n>=7、72..95从n>=5、>=96从n>=1。任何已观察混合不得靠候选过滤绕过整族拒绝。",
+  "base": "可比较集最小共同分音 m，仅作归一化，不计入样本。",
+  "metric": "1200*log2((dev_n/dev_m)/(ref_n/ref_m))",
+  "rms_cents_max": 1.0,
+  "max_cents_max": 3.0,
+  "minimum_nonbase_partials": 2,
+  "family_admission": "每窗 >=5 识别分音、>=3 训练、>=2 独立重识别留出、留出 RMS <=1 / max <=3 cents、窗与重复 f1 散布 <=1 cent、B 相对散布 <=0.1。",
+  "refinement_guard_db": 20,
+  "sensitivity_requirement": "评估输出必须并列 guarded（预登记）与 legacy('off') 关键统计；legacy 仅为登记的敏感性旁证，不是第二次判决。",
+  "no_relaxation": true
+ },
+ "windows": {
+  "coordinate": "相对 MIDI NoteOn 的秒数；半开区间；不得跨入 NoteOff。",
+  "W1": [
+   0.08,
+   3.8
+  ],
+  "W2": [
+   0.5,
+   4.1
+  ],
+  "note_off_seconds": 4.2,
+  "boundary": "本时间线 W2 终点等于 NoteOff 时刻 4.2 s；端点采用半开区间，不静默纳入释放段。",
+  "origin_binding": "两生产者各自需要独立记录的 MIDI-origin 样本绑定；不允许以误差最小化对齐找最有利起点。",
+  "old_PPA_behavior": "旧 PPA 的绝对 W1/W2 历史行为不变、不改标签。"
+ },
+ "evaluation": {
+  "a4_hz": 440,
+  "min_comparable_below_72": 7,
+  "refinement_guard_db": 20,
+  "velocities": [
+   50,
+   80,
+   110
+  ],
+  "matrix": [
+   {
+    "session": "s01-n37-44100-rep0",
+    "note": 37,
+    "rate": 44100,
+    "repeat": 0
+   },
+   {
+    "session": "s02-n37-44100-rep1",
+    "note": 37,
+    "rate": 44100,
+    "repeat": 1
+   },
+   {
+    "session": "s03-n37-48000-rep0",
+    "note": 37,
+    "rate": 48000,
+    "repeat": 0
+   },
+   {
+    "session": "s04-n37-48000-rep1",
+    "note": 37,
+    "rate": 48000,
+    "repeat": 1
+   },
+   {
+    "session": "s05-n38-44100-rep0",
+    "note": 38,
+    "rate": 44100,
+    "repeat": 0
+   },
+   {
+    "session": "s06-n38-44100-rep1",
+    "note": 38,
+    "rate": 44100,
+    "repeat": 1
+   },
+   {
+    "session": "s07-n38-48000-rep0",
+    "note": 38,
+    "rate": 48000,
+    "repeat": 0
+   },
+   {
+    "session": "s08-n38-48000-rep1",
+    "note": 38,
+    "rate": 48000,
+    "repeat": 1
+   },
+   {
+    "session": "s09-n41-44100-rep0",
+    "note": 41,
+    "rate": 44100,
+    "repeat": 0
+   },
+   {
+    "session": "s10-n41-44100-rep1",
+    "note": 41,
+    "rate": 44100,
+    "repeat": 1
+   },
+   {
+    "session": "s11-n41-48000-rep0",
+    "note": 41,
+    "rate": 48000,
+    "repeat": 0
+   },
+   {
+    "session": "s12-n41-48000-rep1",
+    "note": 41,
+    "rate": 48000,
+    "repeat": 1
+   },
+   {
+    "session": "s13-n54-44100-rep0",
+    "note": 54,
+    "rate": 44100,
+    "repeat": 0
+   },
+   {
+    "session": "s14-n54-44100-rep1",
+    "note": 54,
+    "rate": 44100,
+    "repeat": 1
+   },
+   {
+    "session": "s15-n54-48000-rep0",
+    "note": 54,
+    "rate": 48000,
+    "repeat": 0
+   },
+   {
+    "session": "s16-n54-48000-rep1",
+    "note": 54,
+    "rate": 48000,
+    "repeat": 1
+   },
+   {
+    "session": "s17-n56-44100-rep0",
+    "note": 56,
+    "rate": 44100,
+    "repeat": 0
+   },
+   {
+    "session": "s18-n56-44100-rep1",
+    "note": 56,
+    "rate": 44100,
+    "repeat": 1
+   },
+   {
+    "session": "s19-n56-48000-rep0",
+    "note": 56,
+    "rate": 48000,
+    "repeat": 0
+   },
+   {
+    "session": "s20-n56-48000-rep1",
+    "note": 56,
+    "rate": 48000,
+    "repeat": 1
+   },
+   {
+    "session": "s21-n58-44100-rep0",
+    "note": 58,
+    "rate": 44100,
+    "repeat": 0
+   },
+   {
+    "session": "s22-n58-44100-rep1",
+    "note": 58,
+    "rate": 44100,
+    "repeat": 1
+   },
+   {
+    "session": "s23-n58-48000-rep0",
+    "note": 58,
+    "rate": 48000,
+    "repeat": 0
+   },
+   {
+    "session": "s24-n58-48000-rep1",
+    "note": 58,
+    "rate": 48000,
+    "repeat": 1
+   },
+   {
+    "session": "s25-n61-44100-rep0",
+    "note": 61,
+    "rate": 44100,
+    "repeat": 0
+   },
+   {
+    "session": "s26-n61-44100-rep1",
+    "note": 61,
+    "rate": 44100,
+    "repeat": 1
+   },
+   {
+    "session": "s27-n61-48000-rep0",
+    "note": 61,
+    "rate": 48000,
+    "repeat": 0
+   },
+   {
+    "session": "s28-n61-48000-rep1",
+    "note": 61,
+    "rate": 48000,
+    "repeat": 1
+   },
+   {
+    "session": "s29-n65-44100-rep0",
+    "note": 65,
+    "rate": 44100,
+    "repeat": 0
+   },
+   {
+    "session": "s30-n65-44100-rep1",
+    "note": 65,
+    "rate": 44100,
+    "repeat": 1
+   },
+   {
+    "session": "s31-n65-48000-rep0",
+    "note": 65,
+    "rate": 48000,
+    "repeat": 0
+   },
+   {
+    "session": "s32-n65-48000-rep1",
+    "note": 65,
+    "rate": 48000,
+    "repeat": 1
+   },
+   {
+    "session": "s33-n68-44100-rep0",
+    "note": 68,
+    "rate": 44100,
+    "repeat": 0
+   },
+   {
+    "session": "s34-n68-44100-rep1",
+    "note": 68,
+    "rate": 44100,
+    "repeat": 1
+   },
+   {
+    "session": "s35-n68-48000-rep0",
+    "note": 68,
+    "rate": 48000,
+    "repeat": 0
+   },
+   {
+    "session": "s36-n68-48000-rep1",
+    "note": 68,
+    "rate": 48000,
+    "repeat": 1
+   },
+   {
+    "session": "s37-n70-44100-rep0",
+    "note": 70,
+    "rate": 44100,
+    "repeat": 0
+   },
+   {
+    "session": "s38-n70-44100-rep1",
+    "note": 70,
+    "rate": 44100,
+    "repeat": 1
+   },
+   {
+    "session": "s39-n70-48000-rep0",
+    "note": 70,
+    "rate": 48000,
+    "repeat": 0
+   },
+   {
+    "session": "s40-n70-48000-rep1",
+    "note": 70,
+    "rate": 48000,
+    "repeat": 1
+   }
+  ],
+  "dev_side": "未来 v3 的 dev 端渲染必须沿用 input-render-contract-v3（24-bit 双声道、block 512、不裁切/不归一化、逐渲染独立目录与 receipt）。",
+  "reference_side": "未来 v3 的参考侧必须先满足 reference_origin 认证与数据角色批准；本草案已登记矩阵 37/38/41/54/56/58/61/65/68/70 × 50/80/110 × 双率 × 双重复，但矩阵与采集均未批准。",
+  "matrix_notes": [
+   37,
+   38,
+   41,
+   54,
+   56,
+   58,
+   61,
+   65,
+   68,
+   70
+  ],
+  "matrix_note_names": [
+   "C#2",
+   "D2",
+   "F2",
+   "F#3",
+   "G#3",
+   "A#3",
+   "C#4",
+   "F4",
+   "G#4",
+   "A#4"
+  ],
+  "matrix_registration": "pilot/validation-matrix-registration.json",
+  "matrix_registration_sha256": "780424dbc91aa23c5bcc227aa09d6210972cc07859f9fde7a4e8003305c63533"
+ },
+ "timing_evidence": {
+  "reference": {},
+  "devpiano": {},
+  "binding_rule": "Each registered unit requires its own report path and SHA-256, bound to that WAV; never infer NoteOn or reuse an unbound repeat.",
+  "reference_rule": "Only a per-unit reference_origin_authenticated report generated from pilot/origin-certificate-v1.json and the actual MIDI can authorize a reference; a dev report, self-declared flag, or inferred NoteOn cannot.",
+  "dev_rule": "Use the bound dev_render_verification report for the actual WAV; preserve event coordinates and half-open window sample spans."
+ },
+ "accounting": {
+  "states": {
+   "missing_input": "登记单元缺少参考或 dev 输入；保留单元与缺失路径，不删行。",
+   "analysis_error": "任一侧后端失败或采样率不一致；保留原始错误。",
+   "reference_rejected": "参考族质量或重复组不足；整组拒绝。",
+   "insufficient_comparable": "非基准可比样本 <2 或 dev 侧观察 inconclusive。",
+   "comparison_failed": "可评估且超出 RMS<=1 / max<=3 cents。",
+   "comparison_passed": "可评估且在预算内。"
+  },
+  "requirement": "每个登记单元恰好落入一个状态；不丢行、不静默替换条件、弱/失败单元不计入通过；完整分类与 units_* 字段必须一致。",
+  "historical": "六态记账与分类语义沿用现行评估器；本草案不改分类行为。"
+ },
+ "snapshot_and_stop": {
+  "data_roles": "development（可反复调试，结果不得改标为资格证据）/ qualification（最终快照后一次执行，全部依赖散列入报告）/ formal（一次正式批次 + 一次 guarded 最终评估）。",
+  "snapshot_requirements": "每单元 pre/post 参数快照断言零漂移、215 项认证基线断言、受保护文件 missing/changed/added 全零、会话内 G6/输出目录身份与 receipt 记录。",
+  "one_shot": "至多一个正式批次与一次 guarded 最终评估；渲染后不得按比较指标选峰、选种子或调参。",
+  "stop_rules": "身份、受保护状态或参数状态出现不可恢复错误时停止采集并安全关闭会话；已登记单元内允许既 bounded GUI 重试；不额外开冷会话、不替换批次。",
+  "after_any_outcome": "保留失败与阈值；不自动改工具重判、不追加按失败调参的采集。",
+  "capture_authorized": true
+ },
+ "preparation_inputs": {
+  "authenticated_control_midi": {
+   "path": "pilot/stimulus-corpus/n69-v70.mid",
+   "sha256": "9e4827ed6ca1f69cf9d7ab4bd438fbe2b9fd897fe6d3264ea1604c5a04ba1462",
+   "note": 69,
+   "velocity": 70,
+   "role": "已消费的认证 MIDI 控制；仅用于 A4 输入/渲染准备，不是新留出，也不产生采样结果声明。"
+  },
+  "dev_render_consumer": {
+   "path": "source/tests/Task392V3RenderConsumer.cpp",
+   "archived_source": "G:/source/projects/devpiano-evidence/phase39/task39-2/a4-a5-preparation-20261015-052434/source-snapshot/source/tests/Task392V3RenderConsumer.cpp",
+   "source_sha256": "c08618ad8cb7e72ac910b15cc70259509bfdb3d795d8f763413071c8e5f454d9",
+   "role": "临时独立 console 消费者，完成实际 PCM 验证后自工作树移除；需要重建时从归档恢复到 path，使用归档 prepare-native.py 与编译/链接响应文件，在全新目录执行。不作为永久测试或 v3 正式数据。"
+  },
+  "consumed_inputs": "已消耗参考批次与历史 holdout 仅可只读诊断（historical_verdict_changed=false）；不得改标、不得复活为留出。"
+ },
+ "recorded_results": null,
+ "implementation_verification": {
+  "path": "pilot/a5-implementation-verification.json",
+  "sha256": "bec92d89311672aab9462c3756b869c0b5e4b8ec0dfa2d01f33eba1ef85c9001",
+  "role": "已另行登记的修改后回归与自有合成 development 范围，不是新独立资格。",
+  "independent_qualification_authorized": false,
+  "historical_proposal": "G:/source/projects/devpiano-evidence/phase39/task39-2/a5-contract-review-20261015-115821/metadata-after/research/pilot/a5-contract-closure-proposal.json"
+ },
+ "limits": [
+  "本草案不预置任何 v3 通过/失败结果；A4 准备证据和历史资格状态不等于正式声学验收。",
+  "AM 条件解释与条件载频不覆盖静态观察状态，也不进 B 拟合或可比量。",
+  "即使未来全部前提满足，通过也只适用于届时登记的有限条件，不认证全部音高、85–108 文献外推段或真实琴型。"
+ ],
+ "sources": [
+  "docs/roadmap/current-iteration.md（研究状态单一来源，主会话维护；本文件不复制其结论）",
+  "pilot/frequency-observable-contract-v3.json",
+  "pilot/input-render-contract-v3.json",
+  "pilot/method-qualification-noteon-v3.json",
+  "pilot/method-qualification-window-refusal-v1.json",
+  "pilot/am-envelope-preregistration.json",
+  "pilot/a5-implementation-verification.json",
+  "pilot/method-qualification-a5-v1.json",
+  "pilot/a5-runner-closure-verification.json",
+  "pilot/a5-candidate-structure-development-verification.json"
+ ],
+ "authorization": "既有实现、前瞻登记及各已消费资格的授权、原判决与证据保留；窗级输入拒绝修订后的唯一完整有限合成资格已另批完成，seal已消费且单批执行权关闭。本轮用户仅批准最小元数据对齐及无PCM的真实--check-plan复核，允许替换活动方法证据与登记指针、同步当前方法状态，不授权重跑资格、重放子集、另造seal或重判历史。参考/GUI/RPC/采集、替代时序、v3冻结、正式评估及生产改动均未授权；本草案所有正式授权开关仍false。",
+ "authorization_record": {
+  "approved_utc": "2026-10-18T09:08:24.700059+00:00",
+  "user_text": "同意，直接按顺序做：绑定 analysis_tool / evaluator / partial_observer 的实测 SHA，移除 3 个 tool_identity_unbound，然后依次批准 protocol/matrix、capture 与 freeze，再冻结 entry gate。",
+  "scope": "protocol/matrix approval, capture and freeze authorization, and entry-gate freeze; binding of the three actual tool hashes. Formal evaluation remains unauthorized.",
+  "formal_evaluation_authorized": false,
+  "note": "Formal evaluation requires a separate explicit approval; this record does not start any reference launch, capture or validation rendering."
+ },
+ "resolved_prerequisites": [
+  {
+   "id": "reference_origin",
+   "requirement": "以独立记录证据把 MIDI 时序绑定到实际参考导出来源；文件时长、首个非零样本或 dev/ref 最佳相关对齐均不足以认证。",
+   "current": "2026-10-18 完成有界诊断采集：4 个冷启动会话 / 12 个 WAV，n69-v70 × 0/0.5/1.0 s × 44.1/48 kHz × 2 重复。两个采样率的双重复 4-sample onset 完全一致；48 kHz 偏移精确 24000/48000 samples，44.1 kHz 偏差 +2/-2 samples；拟合得到唯一 midi_origin_sample = 0。证书 pilot/origin-certificate-v1.json（SHA-256 192bac2a5192f5551cc649fc064cae57f7bfab3baeb0eb0cefcbb8e3bec10d51）。reference_origin 已认证；不再要求诊断采集。",
+   "resolved_utc": "2026-10-18T09:08:24.700059+00:00",
+   "resolution": "Authenticated by pilot/origin-certificate-v1.json and the A5 diagnostic batch."
+  },
+  {
+   "id": "data_roles_and_matrix",
+   "requirement": "development/qualification/formal 角色分离，且新的未消耗留出矩阵在渲染与检视前登记并经用户批准。",
+   "current": "矩阵已登记于 pilot/validation-matrix-registration.json：37/38/41/54/56/58/61/65/68/70 × 50/80/110 × 44.1/48 kHz × 2 重复 = 120 单元 / 40 会话；避开 n88、n67-v47、n29-v107、已消耗音高、已查看诊断音高（含 n71）与两套禁键。matrix_approved 仍为 false，数据角色仍待批准；旧 29/55/67/88 矩阵不复活。",
+   "resolved_utc": "2026-10-18T09:08:24.700059+00:00",
+   "resolution": "Matrix registered in pilot/validation-matrix-registration.json; protocol and matrix approved."
+  },
+  {
+   "id": "capture_and_stop_rules",
+   "requirement": "参考侧认证采集套件（冷启动会话、快照/基线断言、受保护比对、停止规则）与 dev 端消费者获得明确授权。",
+   "current": "capture_authorized=false；本轮不启动参考生产者或新留出渲染，dev 端仅运行已消费的诊断控制。",
+   "resolved_utc": "2026-10-18T09:08:24.700059+00:00",
+   "resolution": "Capture authorized; existing sealed qualification and stop rules remain binding."
+  },
+  {
+   "id": "freeze_and_tool_binding",
+   "requirement": "方法/表/阈值在渲染与检视前冻结，并绑定 analysis_tool/evaluator/partial_observer 实测散列。",
+   "current": "freeze_authorized=false；entry_gate_frozen.preregistered_before_any_rendering_or_inspection=false，三个工具散列均未绑定（null）。",
+   "resolved_utc": "2026-10-18T09:08:24.700059+00:00",
+   "resolution": "Freeze authorized; the three actual tool hashes are bound in entry_gate_frozen."
+  }
+ ],
+ "tool_identity": {
+  "analysis_tool": {
+   "path": "pilot/tools/pilot-partial-analysis.py",
+   "sha256": "67fcf9df167c9a2458c27a7e387b4f31756ee7cb7395991119499e21e39d74f3"
+  },
+  "evaluator": {
+   "path": "pilot/tools/validation-eval.py",
+   "sha256": "4756071bc9db4e04a4682deab71d421509255ba5a3b23c6e6fc5843aea540603"
+  },
+  "partial_observer": {
+   "path": "pilot/tools/partial-observer.py",
+   "sha256": "76d727a3780d9516d6d7cef6bd26665fd65776528148cac26117f3059e6e29e2"
+  }
+ },
+ "entry_gate_frozen": {
+  "preregistered_before_any_rendering_or_inspection": true,
+  "frozen_utc": "2026-10-18T09:08:24.700059+00:00",
+  "frozen_by": "main session under 2026-10-18 user approval",
+  "formal_validation_rendering_started": false,
+  "analysis_tool": {
+   "path": "pilot/tools/pilot-partial-analysis.py",
+   "sha256": "67fcf9df167c9a2458c27a7e387b4f31756ee7cb7395991119499e21e39d74f3"
+  },
+  "evaluator": {
+   "path": "pilot/tools/validation-eval.py",
+   "sha256": "4756071bc9db4e04a4682deab71d421509255ba5a3b23c6e6fc5843aea540603"
+  },
+  "partial_observer": {
+   "path": "pilot/tools/partial-observer.py",
+   "sha256": "76d727a3780d9516d6d7cef6bd26665fd65776528148cac26117f3059e6e29e2"
+  },
+  "qualification_script": {
+   "path": "pilot/tools/meter-qualification.py",
+   "sha256": "b566ca1b98fb5feec539e4b21d4511001e0dfa63464fb1985472b237340bc41e"
+  },
+  "evaluator_regression_script": {
+   "path": "pilot/tools/validation-eval-tests.py",
+   "sha256": "23debaeaa8d013448b7647e7365a4efec5c0b7c9fb1603473ced923af82261c5"
+  },
+  "method_qualification_registration": {
+   "path": "pilot/method-qualification-window-refusal-v1.json",
+   "sha256": "68bc797dfbbf902cf0de63aeba2bc4b0f061784b33d355c431fb75202096b35e"
+  },
+  "method_qualification_report": {
+   "path": "G:/source/projects/devpiano-evidence/phase39/task39-2/a5-requalification-20261018-090000/qualification/method-qualification-report.json",
+   "sha256": "7054a11ea998a719283bcef149c2bfcb54f0ec6af3e5a00fc0bffea5342ea47b"
+  },
+  "origin_certificate": {
+   "path": "pilot/origin-certificate-v1.json",
+   "sha256": "192bac2a5192f5551cc649fc064cae57f7bfab3baeb0eb0cefcbb8e3bec10d51"
+  },
+  "frequency_contract": {
+   "path": "pilot/frequency-observable-contract-v3.json",
+   "sha256": "3831b1caa94e89120fb775fb4b2aafec819d3d624387c43211aba590c26affa9"
+  },
+  "input_render_contract": {
+   "path": "pilot/input-render-contract-v3.json",
+   "sha256": "92a26c0f08ceedd356368cae057cdabf9ff454b995c3aa135e9946f33d967400"
+  },
+  "matrix_registration": {
+   "path": "pilot/validation-matrix-registration.json",
+   "sha256": "780424dbc91aa23c5bcc227aa09d6210972cc07859f9fde7a4e8003305c63533"
+  },
+  "reference_origin_plan": {
+   "path": "pilot/reference-origin-evidence-plan-v3.json",
+   "sha256": "7a64ba64385ecad5dbea4dcf22ab9cdac3b9517ecdaa4ac5bb03e96c354d1daa"
+  },
+  "frozen_fields": [
+   "analysis_windows",
+   "comparison_thresholds",
+   "matrix",
+   "a4_hz",
+   "velocities",
+   "tool_identity",
+   "method_qualification",
+   "reference_origin"
+  ],
+  "note": "Entry gate frozen before formal validation rendering/inspection. No reference launch, capture, or formal evaluation is authorized by this freeze."
+ },
+ "capture_authorization": {
+  "approved_utc": "2026-10-18T09:14:13.732346+00:00",
+  "user_text": "同意，我批准继续启动 reference capture 与 validation rendering",
+  "scope": "reference capture (40 cold sessions / 120 units) and dev validation rendering; formal evaluation remains unauthorized",
+  "formal_evaluation_authorized": false,
+  "note": "Capture and rendering are authorized; formal evaluation requires a separate approval after inputs and timing evidence are bound."
+ }
+}

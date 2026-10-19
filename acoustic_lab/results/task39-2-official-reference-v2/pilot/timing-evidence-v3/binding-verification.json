@@ -1,0 +1,12 @@
+{
+ "schema": "devpiano-task39-2-v3-timing-binding-verification-v1",
+ "created_utc": "2026-10-18T13:29:23.066610+00:00",
+ "checks": {
+  "reference_reports_120": true,
+  "dev_reports_60": true,
+  "all_reference_reports_pass": true,
+  "windows_portable_paths": true
+ },
+ "errors": [],
+ "ok": true
+}

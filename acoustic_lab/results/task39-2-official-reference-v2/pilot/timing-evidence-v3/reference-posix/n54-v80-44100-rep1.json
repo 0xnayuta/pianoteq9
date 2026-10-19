@@ -1,0 +1,47 @@
+{
+  "schema": "devpiano-task39-2-reference-origin-timing-v1",
+  "created_utc": "2026-10-18T13:24:49.896282+00:00",
+  "role": "reference_origin_authenticated",
+  "unit": "n54-v80-44100-rep1",
+  "passed": true,
+  "failures": [],
+  "reference_origin_certified": true,
+  "certificate": {
+    "path": "../../origin-certificate-v1.json",
+    "sha256": "192bac2a5192f5551cc649fc064cae57f7bfab3baeb0eb0cefcbb8e3bec10d51",
+    "midi_origin_sample": 0
+  },
+  "midi": {
+    "path": "../../../../../../../../../mnt/g/tmp/devpiano-task39-2-v3-formal-capture-20261018-100000/stimulus/n54-v80.mid",
+    "sha256": "31e01dc7c8246c7276110e6e54747c354723d8fd9588c7f279cf4134ee216ed3",
+    "ppq": 480,
+    "tempo_us": 500000,
+    "note": 54,
+    "velocity": 80,
+    "note_on_tick": 96,
+    "note_off_tick": 4032,
+    "note_on_seconds": 0.1,
+    "note_off_seconds": 4.2
+  },
+  "wav": {
+    "path": "/mnt/g/tmp/devpiano-task39-2-v3-formal-capture-20261018-100000/sessions/s14-n54-44100-rep1/private-home/Documents/n54-v80.wav",
+    "sha256": "4e98a231079441e2fe945076a84d41881ba1ae37eacc182577555882e1353894",
+    "rate": 44100,
+    "frames": 238336,
+    "channels": 2,
+    "bits": 24
+  },
+  "wav_sha256": "4e98a231079441e2fe945076a84d41881ba1ae37eacc182577555882e1353894",
+  "note_on_sample": 4410,
+  "note_off_sample": 185220,
+  "windows": {
+    "W1": {
+      "start_sample": 7938,
+      "stop_sample": 171990
+    },
+    "W2": {
+      "start_sample": 26460,
+      "stop_sample": 185220
+    }
+  }
+}

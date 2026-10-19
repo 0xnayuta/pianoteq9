@@ -1,0 +1,498 @@
+{
+  "schema": "devpiano-task39-2-a5-validation-matrix-registration-v1",
+  "created_utc": "2026-10-18T06:46:30Z",
+  "status": "registered_pending_approval",
+  "role": "formal_validation",
+  "frozen_b_table": {
+    "path": "source/Audio/Piano88KeyTable.h",
+    "sha256": "c1997c904115ca23bdb1c9bbeb1d41542b25d8f7ed1dce0234109649da91a5b1",
+    "nodes": 19,
+    "note": "17 measured anchors plus 96/108 literature-extrapolated nodes; unchanged by this matrix"
+  },
+  "matrix": {
+    "notes": [
+      37,
+      38,
+      41,
+      54,
+      56,
+      58,
+      61,
+      65,
+      68,
+      70
+    ],
+    "note_names": [
+      "C#2",
+      "D2",
+      "F2",
+      "F#3",
+      "G#3",
+      "A#3",
+      "C#4",
+      "F4",
+      "G#4",
+      "A#4"
+    ],
+    "velocities": [
+      50,
+      80,
+      110
+    ],
+    "rates": [
+      44100,
+      48000
+    ],
+    "repeats": 2,
+    "units": 120,
+    "cold_sessions": 40,
+    "session_shape": "one note, one rate, one repeat; three velocities per owned cold session",
+    "session_order": [
+      {
+        "session": "s01-n37-44100-rep0",
+        "note": 37,
+        "rate": 44100,
+        "repeat": 0
+      },
+      {
+        "session": "s02-n37-44100-rep1",
+        "note": 37,
+        "rate": 44100,
+        "repeat": 1
+      },
+      {
+        "session": "s03-n37-48000-rep0",
+        "note": 37,
+        "rate": 48000,
+        "repeat": 0
+      },
+      {
+        "session": "s04-n37-48000-rep1",
+        "note": 37,
+        "rate": 48000,
+        "repeat": 1
+      },
+      {
+        "session": "s05-n38-44100-rep0",
+        "note": 38,
+        "rate": 44100,
+        "repeat": 0
+      },
+      {
+        "session": "s06-n38-44100-rep1",
+        "note": 38,
+        "rate": 44100,
+        "repeat": 1
+      },
+      {
+        "session": "s07-n38-48000-rep0",
+        "note": 38,
+        "rate": 48000,
+        "repeat": 0
+      },
+      {
+        "session": "s08-n38-48000-rep1",
+        "note": 38,
+        "rate": 48000,
+        "repeat": 1
+      },
+      {
+        "session": "s09-n41-44100-rep0",
+        "note": 41,
+        "rate": 44100,
+        "repeat": 0
+      },
+      {
+        "session": "s10-n41-44100-rep1",
+        "note": 41,
+        "rate": 44100,
+        "repeat": 1
+      },
+      {
+        "session": "s11-n41-48000-rep0",
+        "note": 41,
+        "rate": 48000,
+        "repeat": 0
+      },
+      {
+        "session": "s12-n41-48000-rep1",
+        "note": 41,
+        "rate": 48000,
+        "repeat": 1
+      },
+      {
+        "session": "s13-n54-44100-rep0",
+        "note": 54,
+        "rate": 44100,
+        "repeat": 0
+      },
+      {
+        "session": "s14-n54-44100-rep1",
+        "note": 54,
+        "rate": 44100,
+        "repeat": 1
+      },
+      {
+        "session": "s15-n54-48000-rep0",
+        "note": 54,
+        "rate": 48000,
+        "repeat": 0
+      },
+      {
+        "session": "s16-n54-48000-rep1",
+        "note": 54,
+        "rate": 48000,
+        "repeat": 1
+      },
+      {
+        "session": "s17-n56-44100-rep0",
+        "note": 56,
+        "rate": 44100,
+        "repeat": 0
+      },
+      {
+        "session": "s18-n56-44100-rep1",
+        "note": 56,
+        "rate": 44100,
+        "repeat": 1
+      },
+      {
+        "session": "s19-n56-48000-rep0",
+        "note": 56,
+        "rate": 48000,
+        "repeat": 0
+      },
+      {
+        "session": "s20-n56-48000-rep1",
+        "note": 56,
+        "rate": 48000,
+        "repeat": 1
+      },
+      {
+        "session": "s21-n58-44100-rep0",
+        "note": 58,
+        "rate": 44100,
+        "repeat": 0
+      },
+      {
+        "session": "s22-n58-44100-rep1",
+        "note": 58,
+        "rate": 44100,
+        "repeat": 1
+      },
+      {
+        "session": "s23-n58-48000-rep0",
+        "note": 58,
+        "rate": 48000,
+        "repeat": 0
+      },
+      {
+        "session": "s24-n58-48000-rep1",
+        "note": 58,
+        "rate": 48000,
+        "repeat": 1
+      },
+      {
+        "session": "s25-n61-44100-rep0",
+        "note": 61,
+        "rate": 44100,
+        "repeat": 0
+      },
+      {
+        "session": "s26-n61-44100-rep1",
+        "note": 61,
+        "rate": 44100,
+        "repeat": 1
+      },
+      {
+        "session": "s27-n61-48000-rep0",
+        "note": 61,
+        "rate": 48000,
+        "repeat": 0
+      },
+      {
+        "session": "s28-n61-48000-rep1",
+        "note": 61,
+        "rate": 48000,
+        "repeat": 1
+      },
+      {
+        "session": "s29-n65-44100-rep0",
+        "note": 65,
+        "rate": 44100,
+        "repeat": 0
+      },
+      {
+        "session": "s30-n65-44100-rep1",
+        "note": 65,
+        "rate": 44100,
+        "repeat": 1
+      },
+      {
+        "session": "s31-n65-48000-rep0",
+        "note": 65,
+        "rate": 48000,
+        "repeat": 0
+      },
+      {
+        "session": "s32-n65-48000-rep1",
+        "note": 65,
+        "rate": 48000,
+        "repeat": 1
+      },
+      {
+        "session": "s33-n68-44100-rep0",
+        "note": 68,
+        "rate": 44100,
+        "repeat": 0
+      },
+      {
+        "session": "s34-n68-44100-rep1",
+        "note": 68,
+        "rate": 44100,
+        "repeat": 1
+      },
+      {
+        "session": "s35-n68-48000-rep0",
+        "note": 68,
+        "rate": 48000,
+        "repeat": 0
+      },
+      {
+        "session": "s36-n68-48000-rep1",
+        "note": 68,
+        "rate": 48000,
+        "repeat": 1
+      },
+      {
+        "session": "s37-n70-44100-rep0",
+        "note": 70,
+        "rate": 44100,
+        "repeat": 0
+      },
+      {
+        "session": "s38-n70-44100-rep1",
+        "note": 70,
+        "rate": 44100,
+        "repeat": 1
+      },
+      {
+        "session": "s39-n70-48000-rep0",
+        "note": 70,
+        "rate": 48000,
+        "repeat": 0
+      },
+      {
+        "session": "s40-n70-48000-rep1",
+        "note": 70,
+        "rate": 48000,
+        "repeat": 1
+      }
+    ]
+  },
+  "coverage": {
+    "36_to_43_interpolation": [
+      37,
+      38,
+      41
+    ],
+    "48_to_60_interpolation": [
+      54,
+      56,
+      58
+    ],
+    "60_to_71_long_span": [
+      61,
+      65,
+      68,
+      70
+    ],
+    "not_covered_by_design": [
+      "72 and above: reference-side structural boundary and prior stage failures",
+      "44 to 47: 46 is trial-muted and 45/47 are already consumed",
+      "21 to 35: low-note tension modulation and f1 tool floor",
+      "96 and above: structural partial shortage"
+    ]
+  },
+  "avoided_known_gaps": {
+    "n88_e6": "Excluded; validation-interp2 had 12/12 reference-side no-staged-match failures.",
+    "n67_v47": "Excluded by pitch and velocity; prior unit had insufficient comparable partials.",
+    "n29_v107": "Excluded by pitch and velocity; prior unit had reference-family quality failure.",
+    "trial_muted_standard": [
+      30,
+      32,
+      34,
+      73,
+      75,
+      78,
+      80,
+      82
+    ],
+    "trial_muted_native_observed": [
+      42,
+      44,
+      46,
+      85,
+      87,
+      90,
+      92,
+      94
+    ],
+    "already_consumed": [
+      21,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      33,
+      36,
+      39,
+      40,
+      43,
+      44,
+      45,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      55,
+      57,
+      59,
+      60,
+      63,
+      64,
+      67,
+      69,
+      72,
+      74,
+      77,
+      84,
+      86,
+      88,
+      91,
+      95,
+      96,
+      98,
+      104,
+      108
+    ],
+    "already_viewed_diagnostic_only": [
+      21,
+      24,
+      35,
+      36,
+      43,
+      44,
+      47,
+      48,
+      57,
+      60,
+      62,
+      69,
+      71,
+      72,
+      84,
+      95,
+      96,
+      102,
+      106,
+      107,
+      108
+    ]
+  },
+  "blindness_scan": {
+    "source": "G:/source/projects/devpiano-evidence/phase39/task39-2/validation-interp2-prereg-20261014/blind-audit-scan.json",
+    "source_consumed_total": [
+      21,
+      24,
+      25,
+      26,
+      27,
+      28,
+      33,
+      36,
+      39,
+      40,
+      43,
+      44,
+      45,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      57,
+      59,
+      60,
+      63,
+      64,
+      69,
+      72,
+      74,
+      77,
+      84,
+      86,
+      91,
+      95,
+      96,
+      98,
+      104,
+      108
+    ],
+    "added_after_scan": [
+      29,
+      55,
+      67,
+      88
+    ],
+    "selected_all_unconsumed_and_unmuted": true,
+    "note": "The selected pitches are absent from all archived batch units/stimulus names and from both muted-key sets.",
+    "excluded_already_viewed": [
+      71
+    ],
+    "replacement_note": 70,
+    "replacement_reason": "n71 appears in already_viewed_diagnostic_only; n70 is absent from consumed and viewed lists and from both muted-key sets",
+    "selected_all_unconsumed_unmuted_and_unviewed": true
+  },
+  "conditions": {
+    "a4_hz": 440,
+    "refinement_guard_db": 20,
+    "comparison": "amendments 1-5: independent split prediction, comparable partial set, minimum-common base, strength-guarded refinement",
+    "candidate_minimum": {
+      "monochord_midi_21_through_35": 1,
+      "multistring_midi_36_through_71": 7,
+      "midi_72_through_95": 5,
+      "midi_96_and_above": 1
+    },
+    "error_budget": {
+      "rms_cents_max": 1.0,
+      "max_cents_max": 3.0,
+      "minimum_nonbase_comparable_partials": 2
+    },
+    "no_relaxation": true
+  },
+  "family_quality_precondition": {
+    "minimum_identified_partials": 5,
+    "minimum_training_partials": 3,
+    "minimum_independently_reidentified_holdouts": 2,
+    "window_and_repeat_f1_spread_cents_max": 1.0,
+    "window_and_repeat_B_relative_spread_max": 0.1,
+    "failure_disposition": "Record the unit as evidence-insufficient or reference-rejected; do not replace the pitch, velocity, rate or repeat, and do not relax thresholds."
+  },
+  "authorizations": {
+    "matrix_approved": false,
+    "protocol_approved": false,
+    "capture_authorized": false,
+    "freeze_authorized": false,
+    "formal_evaluation_authorized": false,
+    "diagnostic_capture_authorized": false
+  },
+  "next_gate": "Review this registration, approve the matrix and the bounded origin diagnostic separately, then freeze tools and protocol. A6 capture and A7 evaluation remain closed until those gates pass."
+}

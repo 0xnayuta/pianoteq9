@@ -1,0 +1,198 @@
+{
+  "schema": "devpiano-task39-2-a5-origin-certificate-v1",
+  "created_utc": "2026-10-18T07:26:42.293893+00:00",
+  "status": "authenticated",
+  "midi_origin_sample": 0,
+  "formula": "note_on_sample = midi_origin_sample + llround(note_on_seconds * output_rate)",
+  "method": "Three pre-registered time shifts (0.0/0.5/1.0 s) per rate with two independent cold sessions; measure the 4-sample energy onset on the same n69-v70 control and test linearity.",
+  "evidence_batch": "/mnt/g/tmp/devpiano-task39-2-a5-origin-diagnostic-20261018-070000",
+  "rates": {
+    "44100": {
+      "shifts_seconds": [
+        0.0,
+        0.5,
+        1.0
+      ],
+      "frames": [
+        238336,
+        260352,
+        282368
+      ],
+      "durations_seconds": [
+        5.404444444444445,
+        5.903673469387755,
+        6.402902494331066
+      ],
+      "onset_4sample_rep0": [
+        4429,
+        26481,
+        48529
+      ],
+      "onset_4sample_rep1": [
+        4429,
+        26481,
+        48529
+      ],
+      "onset_delta_samples": [
+        22052,
+        22048
+      ],
+      "nominal_delta_samples": [
+        22050,
+        22050
+      ],
+      "deviation_samples": [
+        2,
+        -2
+      ],
+      "note_on_nominal_sample": 4410,
+      "acoustic_attack_delay_samples": 19,
+      "acoustic_attack_delay_ms": 0.431,
+      "frame_count_note": "File length increases by 22016 samples per 0.5 s; the 4-sample onset increases by 22052/22048. The difference is tail/block padding, not origin drift."
+    },
+    "48000": {
+      "shifts_seconds": [
+        0.0,
+        0.5,
+        1.0
+      ],
+      "frames": [
+        259328,
+        283392,
+        307456
+      ],
+      "durations_seconds": [
+        5.402666666666667,
+        5.904,
+        6.405333333333333
+      ],
+      "onset_4sample_rep0": [
+        4823,
+        28823,
+        52823
+      ],
+      "onset_4sample_rep1": [
+        4823,
+        28823,
+        52823
+      ],
+      "onset_delta_samples": [
+        24000,
+        24000
+      ],
+      "nominal_delta_samples": [
+        24000,
+        24000
+      ],
+      "deviation_samples": [
+        0,
+        0
+      ],
+      "note_on_nominal_sample": 4800,
+      "acoustic_attack_delay_samples": 23,
+      "acoustic_attack_delay_ms": 0.479,
+      "frame_count_note": "File length increases by 24064 samples per 0.5 s (512-sample block padding); the measured audio onset increases by exactly 24000 samples."
+    }
+  },
+  "repetition": "Both cold sessions per rate produced identical 4-sample onsets; WAV SHA-256 may differ only in the decay tail.",
+  "acceptance": {
+    "unique_integer_mapping": true,
+    "all_twelve_wavs_share_one_mapping": true,
+    "mapping": "midi_origin_sample = 0",
+    "note_on_coordinate": "nominal note_on sample = 0 + round(0.1 * rate); the measured acoustic onset follows after a 0.43-0.48 ms instrument attack",
+    "deviation_bound_samples_44k": 2,
+    "deviation_bound_samples_48k": 0
+  },
+  "not_certified": [
+    "other pitches or velocities",
+    "other plugin versions or editions",
+    "real piano string identity",
+    "MIDI export origin of any producer other than the pinned official 9.2.5 trial"
+  ],
+  "wav_sha256": [
+    {
+      "session": "s01-n69-44100-rep0",
+      "shift": 0.0,
+      "rate": 44100,
+      "frames": 238336,
+      "sha256": "0853ff0f1e7914ae4663c89f6a43a69513114c81560c8b0da503b70c52d34758"
+    },
+    {
+      "session": "s01-n69-44100-rep0",
+      "shift": 0.5,
+      "rate": 44100,
+      "frames": 260352,
+      "sha256": "4cd49b5e6d63430ab15bd742b9bcc3bb14ded4c8a35701f3ec8b1e2fffb8b513"
+    },
+    {
+      "session": "s01-n69-44100-rep0",
+      "shift": 1.0,
+      "rate": 44100,
+      "frames": 282368,
+      "sha256": "0c9643d1e60c5ac6869a61a0856c4ccc0afea7058e54341c6bf222bf3b5073c9"
+    },
+    {
+      "session": "s02-n69-44100-rep1",
+      "shift": 0.0,
+      "rate": 44100,
+      "frames": 238336,
+      "sha256": "fb83a413cc66864e8d990f20d29d075371b4821fd8ae752623b5daf79a2847bc"
+    },
+    {
+      "session": "s02-n69-44100-rep1",
+      "shift": 0.5,
+      "rate": 44100,
+      "frames": 260352,
+      "sha256": "686a84737a93b8540236e704cf7dc56a79038cb87c420d1b64768bec2e3499b7"
+    },
+    {
+      "session": "s02-n69-44100-rep1",
+      "shift": 1.0,
+      "rate": 44100,
+      "frames": 282368,
+      "sha256": "0606e599f1af8fc5774b31e2937cfa0c2bc520621073c7b64324004bef95fe7c"
+    },
+    {
+      "session": "s03-n69-48000-rep0",
+      "shift": 0.0,
+      "rate": 48000,
+      "frames": 259328,
+      "sha256": "61797ae14989ade42e807d0732c2044bbe75430f332827a8b7f97eb10e6f7cd3"
+    },
+    {
+      "session": "s03-n69-48000-rep0",
+      "shift": 0.5,
+      "rate": 48000,
+      "frames": 283392,
+      "sha256": "c6de30d77f7406d72319d8abf06c84347a7201b8590978a478082293f983d6a0"
+    },
+    {
+      "session": "s03-n69-48000-rep0",
+      "shift": 1.0,
+      "rate": 48000,
+      "frames": 307456,
+      "sha256": "70bd14e4c42b18baa3dfe09998193295b248ee5baef3fa718ce74b7d79f65f9f"
+    },
+    {
+      "session": "s04-n69-48000-rep1",
+      "shift": 0.0,
+      "rate": 48000,
+      "frames": 259328,
+      "sha256": "095017ef0474536c4659837c6280b4f0464c3b24ef10b3c09b0b9508236dbcc1"
+    },
+    {
+      "session": "s04-n69-48000-rep1",
+      "shift": 0.5,
+      "rate": 48000,
+      "frames": 283392,
+      "sha256": "627483b670ebd6465fa439637eaf3e45569f80ae1ffa34e925dac0e8f4d186b6"
+    },
+    {
+      "session": "s04-n69-48000-rep1",
+      "shift": 1.0,
+      "rate": 48000,
+      "frames": 307456,
+      "sha256": "70bd14e4c42b18baa3dfe09998193295b248ee5baef3fa718ce74b7d79f65f9f"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "devpiano-task39-2-a5-origin-diagnostic-plan-v1",
+  "created_utc": "2026-10-18T06:46:00Z",
+  "status": "registered_pending_diagnostic_authorization",
+  "purpose": "Establish, rather than verify, the MIDI tick-zero to exported WAV sample mapping using a bounded timing-only diagnostic.",
+  "control": {
+    "midi_path": "pilot/stimulus-corpus/n69-v70.mid",
+    "sha256": "9e4827ed6ca1f69cf9d7ab4bd438fbe2b9fd897fe6d3264ea1604c5a04ba1462",
+    "note": 69,
+    "velocity": 70,
+    "role": "already-consumed authenticated control; timing-only, never an acoustic holdout"
+  },
+  "timeline": {
+    "base_events_seconds": {
+      "note_on": 0.1,
+      "note_off": 4.2,
+      "end_of_track": 5.2
+    },
+    "shifts_seconds": [0.0, 0.5, 1.0],
+    "shift_rule": "Add each pre-registered delta to NoteOn, NoteOff and EOT; retain tempo and initial pedal reset at tick zero.",
+    "fixed_before_capture": true
+  },
+  "rates_hz": [44100, 48000],
+  "cold_repeats_per_rate": 2,
+  "maximum_cold_sessions": 4,
+  "maximum_wavs": 12,
+  "session_normal_stop_seconds": 900,
+  "absolute_trial_boundary_seconds": 1200,
+  "capture_route": "GUI owned-session with main-session Windows-MCP per-action approval; no headless RPC substitute",
+  "state_baseline": "authenticated Standard FXP, 215 numeric parameters, A4=440, private session and protected user state",
+  "observations": [
+    "WAV sample rate, channels, bit depth and frame count",
+    "first non-zero frame index",
+    "independently estimated NoteOn onset index",
+    "export duration and its difference from the SMF timeline",
+    "linearity of the inferred offset across the 0.0 / 0.5 / 1.0 second shifts",
+    "cold-repeat consistency within each rate"
+  ],
+  "acceptance": {
+    "formula": "note_on_sample = midi_origin_sample + llround(note_on_seconds * output_rate)",
+    "unique_integer_mapping_required": true,
+    "all_twelve_wavs_must_share_one_mapping": true,
+    "rounding": "nonnegative half-away-from-zero; report integer half-open intervals",
+    "insufficient_evidence": [
+      "file duration alone",
+      "first non-zero sample alone",
+      "cold-repeat determinism alone",
+      "best dev/reference cross-correlation",
+      "successful B fit or spectral comparison"
+    ],
+    "failure_disposition": "origin_not_authenticated; stop the bounded attempt; no retry, replacement case, threshold or shift tuning"
+  },
+  "avoided_known_gaps": [
+    "Uses only the already-consumed n69-v70 control; it does not open a new acoustic holdout.",
+    "Does not touch n88, n67, n29 or any pitch reserved for the new formal matrix.",
+    "Does not use standard trial-muted keys 30/32/34/73/75/78/80/82 or observed native-muted keys 42/44/46/85/87/90/92/94.",
+    "Does not extend the formal validation matrix or produce acoustic evaluation samples."
+  ],
+  "authorization": {
+    "diagnostic_capture_authorized": false,
+    "gui_mutation_authorized": false,
+    "v3_freeze_authorized": false,
+    "note": "This file registers the plan only. Execution requires a separate explicit approval after the go/no-go revision is reviewed."
+  },
+  "go_no_go_revision": "The former plan required independent binding capability before capture, which is circular. This bounded diagnostic is the experiment that establishes the mapping; it may start only after separate authorization and must stop on any identity, protection, parameter, deadline or mapping failure."
+}

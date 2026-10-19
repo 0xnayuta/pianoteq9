@@ -1,0 +1,47 @@
+{
+ "schema": "devpiano-task39-2-reference-origin-timing-v1",
+ "created_utc": "2026-10-18T13:25:16.134684+00:00",
+ "role": "reference_origin_authenticated",
+ "unit": "n65-v80-48000-rep0",
+ "passed": true,
+ "failures": [],
+ "reference_origin_certified": true,
+ "certificate": {
+  "path": "\\\\wsl.localhost\\Ubuntu\\root\\repos\\pianoteq9\\acoustic_lab\\results\\task39-2-official-reference-v2\\pilot\\origin-certificate-v1.json",
+  "sha256": "192bac2a5192f5551cc649fc064cae57f7bfab3baeb0eb0cefcbb8e3bec10d51",
+  "midi_origin_sample": 0
+ },
+ "midi": {
+  "path": "G:\\tmp\\devpiano-task39-2-v3-formal-capture-20261018-100000\\stimulus\\n65-v80.mid",
+  "sha256": "0c93a4f5d7582ddd36b4012eb3a7825938e9cf17c353b9c6f283fc6d2168c43c",
+  "ppq": 480,
+  "tempo_us": 500000,
+  "note": 65,
+  "velocity": 80,
+  "note_on_tick": 96,
+  "note_off_tick": 4032,
+  "note_on_seconds": 0.1,
+  "note_off_seconds": 4.2
+ },
+ "wav": {
+  "path": "G:\\tmp\\devpiano-task39-2-v3-formal-capture-20261018-100000\\sessions\\s31-n65-48000-rep0\\private-home\\Documents\\n65-v80.wav",
+  "sha256": "844f57036d79032985d6ca49a071ffd641b2356d564609095eb4ccbd99316d1b",
+  "rate": 48000,
+  "frames": 259328,
+  "channels": 2,
+  "bits": 24
+ },
+ "wav_sha256": "844f57036d79032985d6ca49a071ffd641b2356d564609095eb4ccbd99316d1b",
+ "note_on_sample": 4800,
+ "note_off_sample": 201600,
+ "windows": {
+  "W1": {
+   "start_sample": 8640,
+   "stop_sample": 187200
+  },
+  "W2": {
+   "start_sample": 28800,
+   "stop_sample": 201600
+  }
+ }
+}

@@ -1,0 +1,169 @@
+{
+  "schema": "devpiano-task39-2-reference-origin-evidence-plan-v3",
+  "status": "documented_capability_review_complete_origin_not_authenticated",
+  "goal": "Independently bind reference MIDI event time to exported WAV sample coordinates; not infer the best dev/reference alignment or certify a physical string.",
+  "authorizations": {
+    "read_only_capability_review": true,
+    "reference_launch": false,
+    "gui_mutation": false,
+    "diagnostic_capture": false,
+    "formal_capture": false,
+    "instrumentation_or_system_audio": false,
+    "v3_freeze": false
+  },
+  "existing_evidence": [
+    {
+      "source": "gui-export-20261012-092853/rpc/cold2-sequencer-info.json",
+      "observed": {
+        "method": "getSequencerInfo",
+        "duration_s": 5.2,
+        "position_s": 0.0,
+        "playback_speed": 1.0
+      },
+      "limit": "These observed fields identify sequencer state, not an exported-frame event ledger. Do not infer that all official interfaces lack such a facility."
+    },
+    {
+      "source": "gui-export-20261012-092853/cold-2/diagnostic-receipt.json",
+      "observed": {
+        "rate_hz": 44100,
+        "frames": 238336,
+        "duration_s": 5.404444444444445,
+        "wav_sha256": "d232bda0dd4202b0e7899142fbd76c6c81c650becd38c0ad7d88b675063f9952"
+      },
+      "limit": "A difference between SMF duration and WAV duration cannot locate preroll, trimming, latency or tail padding individually."
+    },
+    {
+      "source": "a4-a5-preparation-20261015-052434/verification-summary.json",
+      "observed": {
+        "reference_first_nonzero_sample": 0,
+        "reference_origin_certified": false
+      },
+      "limit": "A nonzero first frame is not a NoteOn marker. No threshold or cross-producer correlation may be tuned to force an origin."
+    }
+  ],
+  "stage_order": [
+    {
+      "stage": "documented_coordinate_capability",
+      "status": "completed_origin_not_authenticated",
+      "action": "Read the exact official version export documentation and already recorded interface descriptions; seek an export start/trim/resampling rule or sequencer-event/export-frame binding with explicit authority. Do not launch the reference to search speculatively.",
+      "required_output": "Original documentation/record bytes and SHA256, exact version/configuration applicability, and a proposed event-to-frame mapping.",
+      "stop": "If no independent mapping authority is available, report origin_not_authenticated and stop before diagnostic capture. Extra WAVs alone do not solve the missing binding."
+    },
+    {
+      "stage": "review_bounded_diagnostic",
+      "action": "Submit the finite control matrix, primary binding evidence source, expected integer-frame mapping and rejection rules for explicit approval.",
+      "required_output": "Approved scope/run identifier and Windows-MCP main-session per-action approval route.",
+      "stop": "No approval means no reference launch, MIDI generation for this plan, state mutation or export."
+    },
+    {
+      "stage": "conditional_control_acquisition",
+      "action": "Only after both prior stages pass, use the already-consumed MIDI69/velocity70 control and declared time shifts, unchanged official925/FXP/215-parameter baseline and private session protection.",
+      "required_output": "Raw SMFs, WAVs, event/export binding observations and state/lifecycle receipts, all in a fresh diagnostic root.",
+      "stop": "Any identity/protected-state/parameter mismatch, deadline breach, missing primary binding or unregistered export ends the attempt; close safely, do not replace or restart to obtain a pass."
+    },
+    {
+      "stage": "mapping_verification_and_disposition",
+      "action": "Verify event timestamps, integer sample mapping, trim/padding/resampling treatment and all repeated controls. Within-reference shift consistency may corroborate primary event-frame evidence; it cannot create absolute origin authority.",
+      "required_output": "authenticated only if every declared case has a uniquely determined sample mapping bound to its own WAV; otherwise origin_not_authenticated with all failures retained.",
+      "stop": "All outcomes end this bounded attempt. No posthoc threshold/shift choice, replacement cases or automatic next attempt."
+    }
+  ],
+  "proposed_diagnostic_domain": {
+    "role": "timing-only, already-consumed control; never independent acoustic holdout",
+    "note": 69,
+    "velocity": 70,
+    "rates_hz": [
+      44100,
+      48000
+    ],
+    "cold_repeats_per_rate": 2,
+    "timeline_shifts_s": [
+      0.0,
+      0.5,
+      1.0
+    ],
+    "base_events_s": {
+      "note_on": 0.1,
+      "note_off": 4.2,
+      "end_of_track": 5.2
+    },
+    "shift_rule": "Add each declared delta to NoteOn, NoteOff and EOT, retain tempo and initial pedal reset at tick0. Fixed shifts chosen before capture, not from any acoustic error.",
+    "maximum_cold_sessions": 4,
+    "maximum_wavs": 12,
+    "maximum_formal_evaluations": 0,
+    "session_normal_stop_s": 900,
+    "absolute_trial_boundary_s": 1200,
+    "generated_or_captured": false,
+    "go_no_go": "This bounded diagnostic is the experiment that establishes the mapping, not a verification of a known mapping. It may start only after a separate diagnostic execution authorization and after the reviewed registration; stop on any identity, protection, parameter, deadline or mapping failure.",
+    "diagnostic_registration": "pilot/origin-diagnostic-plan.json",
+    "diagnostic_registration_sha256": "f4a3163b1b54791e01fcbf1ed36993fac1a6fb40470f91855b4e75748378d337"
+  },
+  "mapping_acceptance": {
+    "time_origin": "MIDI tick0 mapped into the export WAV coordinate; a negative MIDI-origin sample is allowed only if authoritative trimming evidence explains it and all needed events/windows remain in the file.",
+    "formula": "note_on_sample = midi_origin_sample + llround(note_on_seconds*output_rate), then window = note_on_sample + llround(relative_seconds*output_rate)",
+    "rounding": "Nonnegative half-away-from-zero; report integer half-open intervals. No int(float*rate) truncation.",
+    "uncertainty": "Evidence must select a unique integer start/stop for both W1 and W2; retain the full admissible origin interval. If multiple window boundaries remain possible, do not authenticate.",
+    "repetition": "Every registered session/variant must satisfy its declared mapping, with no fitted offset chosen per file to improve B or comparison error.",
+    "quality_not_criteria": [
+      "audible-onset precision alone",
+      "longer WAV duration alone",
+      "cold-repeat determinism alone",
+      "best dev/ref cross-correlation",
+      "successful B fit or spectral comparison"
+    ]
+  },
+  "required_certificate_fields": {
+    "artifact_bindings": [
+      "official_exe_sha256",
+      "version",
+      "preset_sha256",
+      "parameter_snapshot_sha256",
+      "midi_sha256",
+      "wav_sha256",
+      "rate_hz",
+      "channels",
+      "pcm_bits",
+      "frames"
+    ],
+    "timing_bindings": [
+      "midi_origin_sample_interval",
+      "note_on_tick",
+      "note_on_sample",
+      "note_off_tick",
+      "note_off_sample",
+      "window_start_stop_samples",
+      "rounding_rule",
+      "export_trim_padding_and_resampling_rule"
+    ],
+    "authority_and_observations": [
+      "primary_evidence_paths_and_sha256",
+      "evidence_authority_scope",
+      "run_session_identity",
+      "all_control_outcomes",
+      "capture_approval_record"
+    ],
+    "not_a_certificate": "This plan is not loadable as timing evidence; no authenticated result or example pass certificate is supplied."
+  },
+  "prohibitions": [
+    "Do not relabel an A4 dev_render_verification report as reference authentication.",
+    "Do not turn self-declared JSON flags into event-to-frame authority.",
+    "No production B/DSP/threshold changes, physical source claims, original file replacement or old verdict revision.",
+    "No automatic fallback to invasive instrumentation, system recording, trial workarounds or another reference version. Such a route requires a separate decision."
+  ],
+  "current_disposition": {
+    "reference_origin": "origin_not_authenticated",
+    "evidence_collected_this_plan": true,
+    "capture_started": false,
+    "v3_ready": false,
+    "evidence_role": "read_only_pinned_documentation_and_existing_version_bound_receipts",
+    "review_report": "G:/source/projects/devpiano-evidence/phase39/task39-2/a5-contract-review-20261015-115821/origin-capability-review.json",
+    "review_report_sha256": "97a9466759a120c5528f9ba7fa6fa4c35ab411cdb484bc0ff21292cd3eefc587",
+    "reviewed_manual_sha256": "601473ece9de67913718973e121dc4d158ad1340e94ad70be9e81868ddf5fe29",
+    "finding": "所审精确随附手册及官方9.2.5版本绑定回执未建立选定离线导出路径的事件—整数帧映射；不宣称所有官方接口都缺少该能力。旧9.1.2帮助、41方法清单和serve页面已排除，不外推为官方9.2.5规范。",
+    "diagnostic_capture_allowed": false,
+    "stop_scope": "停止参考诊断采集和原点认证；其余只读 A5 契约工作继续。",
+    "alternative_timing_contract_activated": false,
+    "fresh_rpc_calls": 0,
+    "reference_launches": 0
+  }
+}

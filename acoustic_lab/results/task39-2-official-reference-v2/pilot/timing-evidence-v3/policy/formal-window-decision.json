@@ -1,0 +1,90 @@
+{
+ "schema": "devpiano-task39-2-v3-formal-window-decision-v1",
+ "decided_utc": "2026-10-18T12:25:03.004558+00:00",
+ "status": "frozen_before_formal_evaluation",
+ "protocol": {
+  "path": "protocol/validation-v3-preregistration.json",
+  "sha256": "09793984556af5b3d5d25561729ac11e2272314848f62f5ef153a7f04bddfbb3",
+  "windows": {
+   "coordinate": "相对 MIDI NoteOn 的秒数；半开区间；不得跨入 NoteOff。",
+   "W1": [
+    0.08,
+    3.8
+   ],
+   "W2": [
+    0.5,
+    4.1
+   ],
+   "note_off_seconds": 4.2,
+   "boundary": "本时间线 W2 终点等于 NoteOff 时刻 4.2 s；端点采用半开区间，不静默纳入释放段。"
+  }
+ },
+ "decision": {
+  "adjudicative_windows": [
+   "W1",
+   "W2"
+  ],
+  "window_usage": "Use exactly the registered W1 and W2; half-open; relative to MIDI NoteOn; never cross NoteOff.",
+  "release_tail_policy": "excluded from every formal evaluation metric and decision",
+  "tail_tolerance_db": null,
+  "tail_bit_identity_required": false,
+  "new_threshold": false,
+  "protocol_modified": false
+ },
+ "absolute_timeline": {
+  "note_on_seconds": 0.1,
+  "note_off_seconds": 4.2,
+  "W1_absolute": [
+   0.18,
+   3.9
+  ],
+  "W2_absolute": [
+   0.6,
+   4.2
+  ],
+  "note": "Derived from the registered stimulus timeline; per-unit origin-certified sample spans are still required before formal evaluation."
+ },
+ "observed_repeat_evidence": {
+  "repeat_pairs": 60,
+  "full_file_identical": 24,
+  "full_file_non_identical": 36,
+  "min_first_difference_seconds": 4.210226757369615,
+  "min_first_difference_after_note_off_ms": 10.226757369614425,
+  "W1_margin_ms": 310.226757,
+  "W2_margin_ms": 10.226757,
+  "all_pairs_identical_through_W1": true,
+  "all_pairs_identical_through_W2": true,
+  "all_non_identical_full_file_pairs_outside_W2": true,
+  "tail_diff_rms_dbfs_range": [
+   -153.38760616937395,
+   -101.77693172335005
+  ],
+  "tail_signal_rms_dbfs_range": [
+   -86.37449773589015,
+   -69.6848064179136
+  ],
+  "tail_spectral_mean_abs_db_range": [
+   0.9248138805120321,
+   3.6881241820146418
+  ],
+  "tail_only": true,
+  "diagnosis_path": "repeat-consistency-diagnosis.json",
+  "diagnosis_sha256": "80bb8a85e3ae0d1c570a6d44c3fe2d24724bb50853bdc1a018448e89aa6ff309"
+ },
+ "formal_evaluation_rule": [
+  "All formal metrics are computed only inside the registered W1 and W2.",
+  "Do not include any sample at or after NoteOff in a formal metric.",
+  "Do not add a release-tail tolerance, tail metric, or bit-identity requirement to formal classification.",
+  "Do not modify W1, W2, or any numeric budget after any rendering or inspection.",
+  "Report release-tail diagnostics separately and label them non-adjudicative.",
+  "Per-unit origin-certified sample spans remain mandatory; this decision does not replace them."
+ ],
+ "reasoning": {
+  "observed_divergence": "36/60 full-file repeat pairs differ only after NoteOff; all 60 pairs are PCM-identical through at least 4.2102 s absolute.",
+  "why_exclude": "Both registered windows end at or before NoteOff. W2 ends at NoteOff (4.2 s absolute); the earliest observed divergence is 10.2 ms after NoteOff, so it lies outside both windows.",
+  "why_not_shorten": "Shortening W2 would modify the preregistered window and reduce comparability. The registered W2 already excludes the observed release-tail divergence.",
+  "why_not_tail_tolerance": "A tolerance would create a new, post-hoc decision surface and an unregistered threshold; the tail is diagnostic only."
+ },
+ "authorization": "User instructed: analyze carefully and directly adopt the best formal adjudication rule.",
+ "formal_evaluation_authorized": false
+}

@@ -1,0 +1,16 @@
+{
+ "checks": {
+  "protocol_W1_exact": true,
+  "protocol_W2_exact": true,
+  "protocol_note_off_4p2": true,
+  "all_pairs_identical_within_W1": true,
+  "all_pairs_identical_within_W2": true,
+  "all_non_identical_full_file_pairs_outside_W2": true,
+  "tail_not_adjudicative": true,
+  "no_tail_tolerance": true,
+  "no_tail_bit_identity_requirement": true,
+  "protocol_unmodified": true,
+  "formal_evaluation_not_authorized": true
+ },
+ "ok": true
+}
